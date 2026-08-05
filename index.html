@@ -1,57 +1,30 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site Customizado</title>
-    <!-- Vinculando o arquivo CSS externo -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- TELA DE INÍCIO -->
-    <section id="tela-inicio" class="tela ativa">
-        <div class="conteudo-centro">
-            <h1>Bem-vindo ao Projeto</h1>
-            <p>Clique abaixo para acessar o painel de controle.</p>
-            <button class="btn-principal" onclick="mudarTela('tela-opcoes')">Entrar</button>
-        </div>
-    </section>
-
-    <!-- TELA DE OPÇÕES -->
-    <section id="tela-opcoes" class="tela">
-        <div class="conteudo-centro">
-            <h2>Painel de Opções</h2>
-            <div class="grade-opcoes">
-                <button class="btn-opcao" onclick="mudarTela('tela-corpo')">Visualizar Corpo Específico</button>
-                <button class="btn-opcao" onclick="alert('Opção 2 clicada!')">Configurações</button>
-                <button class="btn-opcao" onclick="alert('Opção 3 clicada!')">Suporte</button>
-            </div>
-            <button class="btn-voltar" onclick="mudarTela('tela-inicio')">← Voltar ao Início</button>
-        </div>
-    </section>
-
     <!-- O CORPO ESPECÍFICO -->
     <main id="tela-corpo" class="tela">
-        <header class="topo-corpo">
-            <h2>Seu Espaço Customizado</h2>
-            <button class="btn-voltar" onclick="mudarTela('tela-opcoes')">← Menu de Opções</button>
-        </header>
+        <!-- Botão flutuante para conseguir voltar caso queira -->
+        <button class="btn-voltar-flutuante" onclick="mudarTela('tela-opcoes')">← Menu</button>
         
-        <!-- O layout que você quer do seu jeito vai entrar nesta div -->
-        <div class="container-customizado">
-            <p>Esta é a área que vamos moldar exatamente do jeito específico que você precisa.</p>
+        <!-- Metade Superior (Vermelha) -->
+        <div class="metade-superior">
+            <!-- Animação do Raio Caindo -->
+            <div class="raio-container">
+                <svg class="raio" viewBox="0 0 100 200" preserveAspectRatio="none">
+                    <polyline points="50,0 30,80 65,75 35,140 55,135 25,200" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Listra Preta Central -->
+        <div class="listra-preta">
+            <!-- O botão central da esfera -->
+            <div class="esfera-botao"></div>
+        </div>
+
+        <!-- Metade Inferior (Branca) -->
+        <div class="metade-inferior">
+            <!-- O conteúdo do seu site vai aparecer aqui dentro após a abertura -->
+            <div class="conteudo-site">
+                <h2>Seu Espaço Customizado</h2>
+                <p>Aqui você pode colocar seus textos, imagens e dados.</p>
+            </div>
         </div>
     </main>
-
-    <!-- Script de navegação -->
-    <script>
-        function mudarTela(idNovaTela) {
-            document.querySelectorAll('.tela').forEach(tela => {
-                tela.classList.remove('ativa');
-            });
-            document.getElementById(idNovaTela).classList.add('ativa');
-        }
-    </script>
-</body>
-</html>

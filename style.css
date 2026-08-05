@@ -1,109 +1,160 @@
-/* Configurações Gerais e Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* ==========================================================================
+   ESTILO DO CORPO ESPECÍFICO (TEMA ESFERA / POKÉBOLA COM RAIO)
+   ========================================================================== */
 
-body {
-    background-color: #f4f7f6;
-    color: #333;
-    min-height: 100vh;
-}
-
-/* Lógica de Ocultar/Mostrar Telas */
-.tela {
-    display: none;
-    width: 100%;
-    min-height: 100vh;
-}
-
-.tela.ativa {
+#tela-corpo {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Centralizador para as Telas de Início e Opções */
-.conteudo-centro {
-    margin: auto;
-    text-align: center;
-    padding: 40px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    max-width: 500px;
-    width: 90%;
-}
-
-h1, h2 {
-    margin-bottom: 20px;
-    color: #1a1a1a;
-}
-
-/* Botões Estilizados */
-button {
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-}
-
-.btn-principal {
-    background-color: #007bff;
+/* Botão de voltar discreto no topo */
+.btn-voltar-flutuante {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
     color: white;
-    padding: 12px 30px;
-    font-size: 18px;
-    border-radius: 6px;
-    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
 }
 
-.btn-principal:hover {
-    background-color: #0056b3;
-}
-
-/* Grade de Botões da Tela de Opções */
-.grade-opcoes {
-    display: grid;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.btn-opcao {
-    background-color: #e9ecef;
-    color: #495057;
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 8px;
-    font-weight: 500;
-}
-
-.btn-opcao:hover {
-    background-color: #dee2e6;
-    color: #212529;
-}
-
-.btn-voltar {
-    background: none;
-    color: #6c757d;
-    font-size: 14px;
-}
-
-.btn-voltar:hover {
-    color: #343a40;
-    text-decoration: underline;
-}
-
-/* Estilo Base para o Corpo Customizado */
-.topo-corpo {
-    background-color: #ffffff;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.container-customizado {
-    padding: 40px;
+/* Metade Superior (Vermelha) com animação de subida */
+.metade-superior {
+    background-color: #ff1c1c;
     flex: 1;
+    position: relative;
+    transform: translateY(-100%);
+}
+
+#tela-corpo.ativa .metade-superior {
+    animation: abrirCima 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Metade Inferior (Branca) com animação de descida */
+.metade-inferior {
+    background-color: #ffffff;
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%);
+}
+
+#tela-corpo.ativa .metade-inferior {
+    animation: abrirBaixo 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Listra Preta Central */
+.listra-preta {
+    height: 20px;
+    background-color: #232323;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) scaleY(0);
+    z-index: 10;
+}
+
+#tela-corpo.ativa .listra-preta {
+    animation: expandirLinha 0.6s ease forwards;
+}
+
+/* Botão Central da Esfera */
+.esfera-botao {
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border: 12px solid #232323;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+#tela-corpo.ativa .esfera-botao {
+    animation: surgirBotao 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
+}
+
+/* Conteúdo do site que surge de forma suave */
+.conteudo-site {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#tela-corpo.ativa .conteudo-site {
+    animation: mostrarConteudo 0.5s ease 1.2s forwards;
+}
+
+/* Animação do Raio Elétrico */
+.raio-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 250px;
+    z-index: 5;
+}
+
+.raio {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #f39c12; /* Cor amarela do trovão */
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 12px #ffeb3b);
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+#tela-corpo.ativa .raio {
+    animation: choqueRaio 0.4s ease 0.9s forwards;
+}
+
+/* ==========================================================================
+   KEYFRAMES (ANIMAÇÕES)
+   ========================================================================== */
+
+@keyframes abrirCima {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(0); } /* Altere para -40% se quiser que ela permaneça aberta revelando o fundo */
+}
+
+@keyframes abrirBaixo {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(0); } /* Altere para 40% se quiser afastar as metades */
+}
+
+/* Correção para o efeito de "abrir por completo" se preferir revelar um fundo atrás:
+Se quiser que as metades realmente se separem fisicamente para mostrar o site atrás delas, mude o 100% do 'abrirCima' para translateY(-50%) e do 'abrirBaixo' para translateY(50%). Do jeito atual, elas se montam na tela de forma estática criando o padrão perfeito que você pediu. */
+
+@keyframes expandirLinha {
+    100% { transform: translateY(-50%) scaleY(1); }
+}
+
+@keyframes surgirBotao {
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes choqueRaio {
+    0% { stroke-dashoffset: 1000; opacity: 1; }
+    50% { stroke-dashoffset: 0; opacity: 1; }
+    90% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; } /* O raio cai e some */
+}
+
+@keyframes mostrarConteudo {
+    100% { opacity: 1; transform: translateY(0); }
 }

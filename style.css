@@ -1,0 +1,109 @@
+/* Configurações Gerais e Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Lógica de Ocultar/Mostrar Telas */
+.tela {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.tela.ativa {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Centralizador para as Telas de Início e Opções */
+.conteudo-centro {
+    margin: auto;
+    text-align: center;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    max-width: 500px;
+    width: 90%;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+/* Botões Estilizados */
+button {
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-principal {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.btn-principal:hover {
+    background-color: #0056b3;
+}
+
+/* Grade de Botões da Tela de Opções */
+.grade-opcoes {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-opcao {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn-opcao:hover {
+    background-color: #dee2e6;
+    color: #212529;
+}
+
+.btn-voltar {
+    background: none;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.btn-voltar:hover {
+    color: #343a40;
+    text-decoration: underline;
+}
+
+/* Estilo Base para o Corpo Customizado */
+.topo-corpo {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.container-customizado {
+    padding: 40px;
+    flex: 1;
+}

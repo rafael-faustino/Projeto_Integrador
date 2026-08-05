@@ -3,124 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esfera Interativa</title>
-    <style>
-        /* Centraliza tudo na tela e define um fundo escuro */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            color: #ffffff;
-        }
-
-        /* Container principal da esfera */
-        .esfera-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            cursor: pointer;
-            display: flex;
-        }
-
-        /* Configuração comum para as duas metades */
-        .metade {
-            width: 50%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Cria o visual de esfera 3D juntando os gradientes */
-        .metade::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 100px 100px, #555, #000);
-            box-shadow: inset -10px -10px 30px rgba(0,0,0,0.7), 
-                        10px 10px 20px rgba(0,0,0,0.5);
-        }
-
-        /* Ajusta a imagem de fundo da metade esquerda */
-        .esquerda::before {
-            left: 0;
-        }
-
-        /* Ajusta a imagem de fundo da metade direita e adiciona a linha vertical */
-        .direita::before {
-            right: 0;
-        }
-
-        /* A linha vertical cinza no meio que você pediu */
-        .direita {
-            border-left: 2px solid #444;
-        }
-
-        /* Animação: Afasta as metades quando a classe 'abrir' for adicionada */
-        .esfera-container.abrir .esquerda {
-            transform: translateX(-150px);
-        }
-
-        .esfera-container.abrir .direita {
-            transform: translateX(150px);
-        }
-
-        /* Texto de instrução piscando na tela */
-        .instrucao {
-            margin-top: 40px;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: piscar 1.5s infinite;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-
-        @keyframes piscar {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-    </style>
+    <title>Meu Site Customizado</title>
+    <!-- Vinculando o arquivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Estrutura da Esfera dividida ao meio -->
-    <div class="esfera-container" id="esfera">
-        <div class="metade esquerda"></div>
-        <div class="metade direita"></div>
-    </div>
+    <!-- TELA DE INÍCIO -->
+    <section id="tela-inicio" class="tela ativa">
+        <div class="conteudo-centro">
+            <h1>Bem-vindo ao Projeto</h1>
+            <p>Clique abaixo para acessar o painel de controle.</p>
+            <button class="btn-principal" onclick="mudarTela('tela-opcoes')">Entrar</button>
+        </div>
+    </section>
 
-    <!-- Mensagem para o usuário -->
-    <div class="instrucao" id="texto-instrucao">Aperte qualquer botão para abrir</div>
+    <!-- TELA DE OPÇÕES -->
+    <section id="tela-opcoes" class="tela">
+        <div class="conteudo-centro">
+            <h2>Painel de Opções</h2>
+            <div class="grade-opcoes">
+                <button class="btn-opcao" onclick="mudarTela('tela-corpo')">Visualizar Corpo Específico</button>
+                <button class="btn-opcao" onclick="alert('Opção 2 clicada!')">Configurações</button>
+                <button class="btn-opcao" onclick="alert('Opção 3 clicada!')">Suporte</button>
+            </div>
+            <button class="btn-voltar" onclick="mudarTela('tela-inicio')">← Voltar ao Início</button>
+        </div>
+    </section>
 
+    <!-- O CORPO ESPECÍFICO -->
+    <main id="tela-corpo" class="tela">
+        <header class="topo-corpo">
+            <h2>Seu Espaço Customizado</h2>
+            <button class="btn-voltar" onclick="mudarTela('tela-opcoes')">← Menu de Opções</button>
+        </header>
+        
+        <!-- O layout que você quer do seu jeito vai entrar nesta div -->
+        <div class="container-customizado">
+            <p>Esta é a área que vamos moldar exatamente do jeito específico que você precisa.</p>
+        </div>
+    </main>
+
+    <!-- Script de navegação -->
     <script>
-        const esfera = document.getElementById('esfera');
-        const instrucao = document.getElementById('texto-instrucao');
-        let aberta = false;
-
-        // Função responsável por abrir a esfera e sumir com o texto
-        function abrirEsfera() {
-            if (!aberta) {
-                esfera.classList.add('abrir');
-                instrucao.style.opacity = '0'; // Esconde o texto suavemente
-                aberta = true;
-            }
+        function mudarTela(idNovaTela) {
+            document.querySelectorAll('.tela').forEach(tela => {
+                tela.classList.remove('ativa');
+            });
+            document.getElementById(idNovaTela).classList.add('ativa');
         }
-
-        // Detecta o clique do mouse na tela ou na esfera
-        window.addEventListener('click', abrirEsfera);
-
-        // Detecta quando qualquer tecla do teclado for pressionada
-        window.addEventListener('keydown', abrirEsfera);
     </script>
 </body>
 </html>

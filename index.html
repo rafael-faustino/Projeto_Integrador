@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- ELEMENTO DE ÁUDIO (MÚSICA TEMA) -->
+    <audio id="musica-tema" loop>
+        <source src="https://soundhelix.com" type="audio/mp3">
+    </audio>
 
     <!-- TELA DE ENTRADA: A POKÉBOLA -->
     <div id="tela-pokebola" class="tela-bloqueio">
@@ -30,8 +35,8 @@
         <div class="metade-esfera base-branca"></div>
     </div>
 
-    <!-- TELA PRINCIPAL: CONTEÚDO DO SITE -->
-    <main id="conteudo-principal" class="site-oculto">
+    <!-- TELA PRINCIPAL: CONTEÚDO DO SITE (Fica por baixo esperando a abertura) -->
+    <main id="conteudo-principal">
         <!-- Cabeçalho Estilo Pokédex -->
         <header class="pokedex-header">
             <div class="pokedex-luzes">
@@ -43,6 +48,8 @@
                 </div>
             </div>
             <h1>POKÉMON DASHBOARD</h1>
+            <!-- Controle de Som no Topo -->
+            <button id="btn-som" class="btn-som-control" onclick="alternarSom()">🎵 Som: Ligado</button>
         </header>
 
         <!-- Seções do Site -->
@@ -109,4 +116,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

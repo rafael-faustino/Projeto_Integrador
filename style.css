@@ -7,13 +7,14 @@
 }
 
 body {
-    background-color: #101010;
-    overflow: hidden;
+    background-color: #1a1a1a;
+    overflow-x: hidden;
     height: 100vh;
+    position: relative;
 }
 
 /* ==========================================================================
-   TELA DA POKÉBOLA (ABERTURA)
+   TELA DA POKÉBOLA (CAMADA SUPERIOR FIXA)
    ========================================================================== */
 .tela-bloqueio {
     position: fixed;
@@ -24,27 +25,27 @@ body {
     display: flex;
     flex-direction: column;
     z-index: 999;
-    transition: visibility 1.2s;
+    pointer-events: auto;
 }
 
 .metade-esfera {
     width: 100%;
     height: 50vh;
     position: relative;
-    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .topo-vermelho {
     background-color: #e3350d;
-    border-bottom: 4px solid #232323;
+    border-bottom: 6px solid #232323;
 }
 
 .base-branca {
     background-color: #f0f0f0;
-    border-top: 4px solid #232323;
+    border-top: 6px solid #232323;
 }
 
-/* Faixa Preta e Botão */
+/* Faixa Preta Central */
 .faixa-preta {
     position: absolute;
     top: 50%;
@@ -57,18 +58,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease, transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .botao-central {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     background-color: #ffffff;
-    border: 10px solid #232323;
+    border: 12px solid #232323;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
     transition: transform 0.2s, background-color 0.3s;
 }
 
@@ -78,30 +79,30 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    border: 3px solid #232323;
+    width: 34px;
+    height: 34px;
+    border: 4px solid #232323;
     border-radius: 50%;
 }
 
 .botao-central:hover {
     transform: scale(1.1);
-    background-color: #ffde00; /* Brilha amarelo ao passar o mouse */
+    background-color: #ffde00;
 }
 
-/* Efeito Piscando Ativado pelo JS */
+/* Animação Piscando */
 .botao-central.piscando {
-    animation: pulsarVermelho 0.2s ease 3 alternate;
+    animation: pulsarVermelho 0.15s ease 4 alternate;
 }
 
 /* Animação do Raio */
 .raio-container {
     position: absolute;
-    bottom: -20px;
+    bottom: -23px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 300px;
+    width: 120px;
+    height: 320px;
     z-index: 15;
     pointer-events: none;
     opacity: 0;
@@ -112,13 +113,17 @@ body {
     height: 100%;
     fill: none;
     stroke: #ffde00;
-    stroke-width: 8;
+    stroke-width: 10;
     stroke-linecap: round;
     stroke-linejoin: round;
-    filter: drop-shadow(0 0 15px #ffde00);
+    filter: drop-shadow(0 0 20px #ffde00);
 }
 
-/* Classes de Gatilho de Animação */
+/* GATILHOS DE ANIMAÇÃO DE ABERTURA */
+.tela-bloqueio.aberta {
+    pointer-events: none;
+}
+
 .tela-bloqueio.aberta .topo-vermelho {
     transform: translateY(-100%);
 }
@@ -129,39 +134,37 @@ body {
 
 .tela-bloqueio.aberta .faixa-preta {
     opacity: 0;
-    pointer-events: none;
+    transform: translateY(-50%) scaleX(0);
 }
 
 .tela-bloqueio.aberta .raio-container {
-    animation: dispararRaio 0.5s ease 0.3s forwards;
+    animation: dispararRaio 0.6s ease 0.4s forwards;
 }
 
 /* ==========================================================================
-   CONTEÚDO PRINCIPAL (ESTILO POKÉDEX)
+   CONTEÚDO PRINCIPAL (ABIXO DA CAMADA DA POKÉBOLA)
    ========================================================================== */
 #conteudo-principal {
     width: 100%;
     height: 100vh;
-    background-color: #232323;
+    background-color: #2b2b2b;
     display: flex;
     flex-direction: column;
-    opacity: 0;
-    transition: opacity 0.8s ease 0.8s;
-}
-
-#conteudo-principal.visivel {
-    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
     overflow-y: auto;
 }
 
 /* Header Pokédex */
 .pokedex-header {
     background-color: #cc0000;
-    padding: 20px;
+    padding: 20px 40px;
     border-bottom: 8px solid #8b0000;
     display: flex;
     align-items: center;
-    gap: 30px;
+    justify-content: space-between;
 }
 
 .pokedex-luzes {
@@ -176,7 +179,7 @@ body {
     background: radial-gradient(circle, #00cbff 0%, #005f9e 100%);
     border: 4px solid #ffffff;
     border-radius: 50%;
-    box-shadow: 0 0 10px #00cbff;
+    box-shadow: 0 0 15px #00cbff;
 }
 
 .luzes-status {
@@ -196,33 +199,50 @@ body {
 
 .pokedex-header h1 {
     color: #ffffff;
-    font-size: 24px;
+    font-size: 26px;
     letter-spacing: 2px;
+    margin-right: auto;
+    margin-left: 30px;
 }
 
-/* Grid e Container */
+.btn-som-control {
+    background-color: #232323;
+    color: white;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-som-control:hover {
+    background-color: #ffde00;
+    color: black;
+}
+
+/* Layout Interno */
 .container-pokedex {
     display: flex;
     flex: 1;
-    padding: 20px;
-    gap: 20px;
+    padding: 30px;
+    gap: 30px;
 }
 
 .menu-lateral {
-    width: 250px;
-    background-color: #333333;
-    border: 4px solid #444444;
-    border-radius: 10px;
+    width: 260px;
+    background-color: #1e1e1e;
+    border: 4px solid #3a3a3a;
+    border-radius: 12px;
     padding: 20px;
     color: white;
 }
 
 .menu-lateral h3 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 16px;
     color: #ffde00;
-    border-bottom: 2px solid #444444;
-    padding-bottom: 5px;
+    border-bottom: 3px solid #3a3a3a;
+    padding-bottom: 8px;
 }
 
 .menu-lateral ul {
@@ -231,115 +251,122 @@ body {
 
 .item-menu {
     display: block;
-    color: #fff;
+    color: #eee;
     text-decoration: none;
-    padding: 12px;
-    margin-bottom: 8px;
-    background-color: #2a2a2a;
-    border-radius: 5px;
-    transition: background 0.2s;
+    padding: 14px;
+    margin-bottom: 10px;
+    background-color: #2d2d2d;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .item-menu:hover, .item-menu.ativa {
     background-color: #cc0000;
     font-weight: bold;
+    transform: translateX(5px);
 }
 
-/* Painel dos Cards */
+/* Grid de Cards */
 .painel-pokemon {
     flex: 1;
-    background-color: #4f4f4f;
-    border: 4px solid #333333;
-    border-radius: 10px;
-    padding: 20px;
+    background-color: #3a3a3a;
+    border: 4px solid #232323;
+    border-radius: 12px;
+    padding: 25px;
 }
 
 .painel-pokemon h2 {
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
 }
 
 .grade-pokemon {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
 }
 
-/* Cards de Pokémon */
+/* Cards dos Iniciais */
 .card-pkmn {
     background-color: #ffffff;
-    border: 5px solid #232323;
-    border-radius: 15px;
-    padding: 20px;
+    border: 6px solid #232323;
+    border-radius: 18px;
+    padding: 25px 20px;
     text-align: center;
     position: relative;
-    box-shadow: 0 6px 0 #232323;
+    box-shadow: 0 8px 0 #232323;
+    transition: transform 0.2s;
+}
+
+.card-pkmn:hover {
+    transform: translateY(-5px);
 }
 
 .numero {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 12px;
+    top: 12px;
+    left: 12px;
+    font-size: 13px;
     font-weight: bold;
-    color: #888;
+    color: #aaa;
 }
 
 .circulo-img {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     margin: 0 auto 15px;
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid #232323;
+    border: 4px solid #232323;
 }
 
 .circulo-img img {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
 }
 
 .tipos {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .tipo {
-    padding: 4px 12px;
+    padding: 5px 14px;
     border-radius: 20px;
     font-size: 11px;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
+    border: 2px solid rgba(0,0,0,0.15);
 }
 
-/* Cores dos Elementos dos Tipos */
+/* Cores de Tipagem */
 .planta  { background-color: #78C850; }
 .veneno  { background-color: #A040A0; }
 .fogo    { background-color: #F08030; }
 .agua    { background-color: #6890F0; }
 
-/* Cores Temáticas de Borda dos Cards */
 .card-planta { border-color: #78C850; }
 .card-fogo   { border-color: #F08030; }
 .card-agua   { border-color: #6890F0; }
 
 /* ==========================================================================
-   ANIMAÇÕES (KEYFRAMES)
+   KEYFRAMES (ANIMAÇÕES)
    ========================================================================== */
 @keyframes pulsarVermelho {
     0% { background-color: #ffffff; }
-    100% { background-color: #ff3333; box-shadow: 0 0 20px #ff3333; }
+    100% { background-color: #ff2a2a; box-shadow: 0 0 25px #ff2a2a; }
 }
 
 @keyframes dispararRaio {
     0% { opacity: 0; transform: translateX(-50%) scaleY(0); }
-    15% { opacity: 1; transform: translateX(-50%) scaleY(1); }
-    85% { opacity: 1; }
+    20% { opacity: 1; transform: translateX(-50%) scaleY(1); }
+    80% { opacity: 1; }
     100% { opacity: 0; }
 }

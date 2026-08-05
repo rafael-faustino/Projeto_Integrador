@@ -1,30 +1,112 @@
-    <!-- O CORPO ESPECÍFICO -->
-    <main id="tela-corpo" class="tela">
-        <!-- Botão flutuante para conseguir voltar caso queira -->
-        <button class="btn-voltar-flutuante" onclick="mudarTela('tela-opcoes')">← Menu</button>
+   <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon World - Explore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA DE ENTRADA: A POKÉBOLA -->
+    <div id="tela-pokebola" class="tela-bloqueio">
         
-        <!-- Metade Superior (Vermelha) -->
-        <div class="metade-superior">
-            <!-- Animação do Raio Caindo -->
+        <!-- Metade Superior Vermelha -->
+        <div class="metade-esfera topo-vermelho">
             <div class="raio-container">
-                <svg class="raio" viewBox="0 0 100 200" preserveAspectRatio="none">
+                <svg class="raio-svg" viewBox="0 0 100 200" preserveAspectRatio="none">
                     <polyline points="50,0 30,80 65,75 35,140 55,135 25,200" />
                 </svg>
             </div>
         </div>
-
-        <!-- Listra Preta Central -->
-        <div class="listra-preta">
-            <!-- O botão central da esfera -->
-            <div class="esfera-botao"></div>
+        
+        <!-- Faixa Preta Central -->
+        <div class="faixa-preta">
+            <!-- Botão de Abertura -->
+            <button id="btn-abrir" class="botao-central" onclick="abrirSite()"></button>
         </div>
+        
+        <!-- Metade Inferior Branca -->
+        <div class="metade-esfera base-branca"></div>
+    </div>
 
-        <!-- Metade Inferior (Branca) -->
-        <div class="metade-inferior">
-            <!-- O conteúdo do seu site vai aparecer aqui dentro após a abertura -->
-            <div class="conteudo-site">
-                <h2>Seu Espaço Customizado</h2>
-                <p>Aqui você pode colocar seus textos, imagens e dados.</p>
+    <!-- TELA PRINCIPAL: CONTEÚDO DO SITE -->
+    <main id="conteudo-principal" class="site-oculto">
+        <!-- Cabeçalho Estilo Pokédex -->
+        <header class="pokedex-header">
+            <div class="pokedex-luzes">
+                <div class="luz-azul"></div>
+                <div class="luzes-status">
+                    <div class="luz-vermelha"></div>
+                    <div class="luz-amarela"></div>
+                    <div class="luz-verde"></div>
+                </div>
             </div>
+            <h1>POKÉMON DASHBOARD</h1>
+        </header>
+
+        <!-- Seções do Site -->
+        <div class="container-pokedex">
+            
+            <!-- Menu Lateral Temático -->
+            <aside class="menu-lateral">
+                <h3>Opções de Treinador</h3>
+                <ul>
+                    <li><a href="#" class="item-menu ativa">🎒 Mochila</a></li>
+                    <li><a href="#" class="item-menu">🗺️ Mapa de Kanto</a></li>
+                    <li><a href="#" class="item-menu">🏆 Ginásios</a></li>
+                    <li><a href="#" class="item-menu" onclick="fecharSite()">🚪 Sair</a></li>
+                </ul>
+            </aside>
+
+            <!-- Vitrine de Cartões Pokémon -->
+            <section class="painel-pokemon">
+                <h2>Seus Iniciais</h2>
+                <div class="grade-pokemon">
+                    
+                    <!-- Card Bulbasaur -->
+                    <div class="card-pkmn card-planta">
+                        <span class="numero">#001</span>
+                        <div class="circulo-img">
+                            <img src="https://githubusercontent.com" alt="Bulbasaur">
+                        </div>
+                        <h3>Bulbasaur</h3>
+                        <div class="tipos">
+                            <span class="tipo planta">Planta</span>
+                            <span class="tipo veneno">Veneno</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Charmander -->
+                    <div class="card-pkmn card-fogo">
+                        <span class="numero">#004</span>
+                        <div class="circulo-img">
+                            <img src="https://githubusercontent.com" alt="Charmander">
+                        </div>
+                        <h3>Charmander</h3>
+                        <div class="tipos">
+                            <span class="tipo fogo">Fogo</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Squirtle -->
+                    <div class="card-pkmn card-agua">
+                        <span class="numero">#007</span>
+                        <div class="circulo-img">
+                            <img src="https://githubusercontent.com" alt="Squirtle">
+                        </div>
+                        <h3>Squirtle</h3>
+                        <div class="tipos">
+                            <span class="tipo agua">Água</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
         </div>
     </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

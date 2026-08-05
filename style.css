@@ -1,160 +1,345 @@
-/* ==========================================================================
-   ESTILO DO CORPO ESPECÍFICO (TEMA ESFERA / POKÉBOLA COM RAIO)
-   ========================================================================== */
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace, sans-serif;
+}
 
-#tela-corpo {
-    position: relative;
+body {
+    background-color: #101010;
     overflow: hidden;
+    height: 100vh;
+}
+
+/* ==========================================================================
+   TELA DA POKÉBOLA (ABERTURA)
+   ========================================================================== */
+.tela-bloqueio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    z-index: 999;
+    transition: visibility 1.2s;
 }
 
-/* Botão de voltar discreto no topo */
-.btn-voltar-flutuante {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-/* Metade Superior (Vermelha) com animação de subida */
-.metade-superior {
-    background-color: #ff1c1c;
-    flex: 1;
-    position: relative;
-    transform: translateY(-100%);
-}
-
-#tela-corpo.ativa .metade-superior {
-    animation: abrirCima 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-
-/* Metade Inferior (Branca) com animação de descida */
-.metade-inferior {
-    background-color: #ffffff;
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(100%);
-}
-
-#tela-corpo.ativa .metade-inferior {
-    animation: abrirBaixo 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-
-/* Listra Preta Central */
-.listra-preta {
-    height: 20px;
-    background-color: #232323;
+.metade-esfera {
     width: 100%;
+    height: 50vh;
+    position: relative;
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.topo-vermelho {
+    background-color: #e3350d;
+    border-bottom: 4px solid #232323;
+}
+
+.base-branca {
+    background-color: #f0f0f0;
+    border-top: 4px solid #232323;
+}
+
+/* Faixa Preta e Botão */
+.faixa-preta {
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translateY(-50%) scaleY(0);
+    width: 100%;
+    height: 40px;
+    background-color: #232323;
+    transform: translateY(-50%);
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
 }
 
-#tela-corpo.ativa .listra-preta {
-    animation: expandirLinha 0.6s ease forwards;
-}
-
-/* Botão Central da Esfera */
-.esfera-botao {
-    width: 60px;
-    height: 60px;
-    background: #ffffff;
-    border: 12px solid #232323;
+.botao-central {
+    width: 80px;
+    height: 80px;
+    background-color: #ffffff;
+    border: 10px solid #232323;
     border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.botao-central::after {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid #232323;
+    border-radius: 50%;
 }
 
-#tela-corpo.ativa .esfera-botao {
-    animation: surgirBotao 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
+.botao-central:hover {
+    transform: scale(1.1);
+    background-color: #ffde00; /* Brilha amarelo ao passar o mouse */
 }
 
-/* Conteúdo do site que surge de forma suave */
-.conteudo-site {
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
+/* Efeito Piscando Ativado pelo JS */
+.botao-central.piscando {
+    animation: pulsarVermelho 0.2s ease 3 alternate;
 }
 
-#tela-corpo.ativa .conteudo-site {
-    animation: mostrarConteudo 0.5s ease 1.2s forwards;
-}
-
-/* Animação do Raio Elétrico */
+/* Animação do Raio */
 .raio-container {
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 250px;
-    z-index: 5;
+    width: 100px;
+    height: 300px;
+    z-index: 15;
+    pointer-events: none;
+    opacity: 0;
 }
 
-.raio {
+.raio-svg {
     width: 100%;
     height: 100%;
     fill: none;
-    stroke: #f39c12; /* Cor amarela do trovão */
-    stroke-width: 6;
+    stroke: #ffde00;
+    stroke-width: 8;
     stroke-linecap: round;
     stroke-linejoin: round;
-    filter: drop-shadow(0 0 12px #ffeb3b);
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
+    filter: drop-shadow(0 0 15px #ffde00);
 }
 
-#tela-corpo.ativa .raio {
-    animation: choqueRaio 0.4s ease 0.9s forwards;
+/* Classes de Gatilho de Animação */
+.tela-bloqueio.aberta .topo-vermelho {
+    transform: translateY(-100%);
+}
+
+.tela-bloqueio.aberta .base-branca {
+    transform: translateY(100%);
+}
+
+.tela-bloqueio.aberta .faixa-preta {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tela-bloqueio.aberta .raio-container {
+    animation: dispararRaio 0.5s ease 0.3s forwards;
 }
 
 /* ==========================================================================
-   KEYFRAMES (ANIMAÇÕES)
+   CONTEÚDO PRINCIPAL (ESTILO POKÉDEX)
    ========================================================================== */
-
-@keyframes abrirCima {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(0); } /* Altere para -40% se quiser que ela permaneça aberta revelando o fundo */
+#conteudo-principal {
+    width: 100%;
+    height: 100vh;
+    background-color: #232323;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.8s ease 0.8s;
 }
 
-@keyframes abrirBaixo {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(0); } /* Altere para 40% se quiser afastar as metades */
+#conteudo-principal.visivel {
+    opacity: 1;
+    overflow-y: auto;
 }
 
-/* Correção para o efeito de "abrir por completo" se preferir revelar um fundo atrás:
-Se quiser que as metades realmente se separem fisicamente para mostrar o site atrás delas, mude o 100% do 'abrirCima' para translateY(-50%) e do 'abrirBaixo' para translateY(50%). Do jeito atual, elas se montam na tela de forma estática criando o padrão perfeito que você pediu. */
-
-@keyframes expandirLinha {
-    100% { transform: translateY(-50%) scaleY(1); }
+/* Header Pokédex */
+.pokedex-header {
+    background-color: #cc0000;
+    padding: 20px;
+    border-bottom: 8px solid #8b0000;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
-@keyframes surgirBotao {
-    100% { transform: translate(-50%, -50%) scale(1); }
+.pokedex-luzes {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-@keyframes choqueRaio {
-    0% { stroke-dashoffset: 1000; opacity: 1; }
-    50% { stroke-dashoffset: 0; opacity: 1; }
-    90% { opacity: 1; }
-    100% { stroke-dashoffset: 0; opacity: 0; } /* O raio cai e some */
+.luz-azul {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #00cbff 0%, #005f9e 100%);
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00cbff;
 }
 
-@keyframes mostrarConteudo {
-    100% { opacity: 1; transform: translateY(0); }
+.luzes-status {
+    display: flex;
+    gap: 8px;
+}
+
+.luzes-status div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+.luz-vermelha { background-color: #ff0000; }
+.luz-amarela  { background-color: #ffcc00; }
+.luz-verde    { background-color: #00ff00; }
+
+.pokedex-header h1 {
+    color: #ffffff;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+/* Grid e Container */
+.container-pokedex {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+}
+
+.menu-lateral {
+    width: 250px;
+    background-color: #333333;
+    border: 4px solid #444444;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}
+
+.menu-lateral h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #ffde00;
+    border-bottom: 2px solid #444444;
+    padding-bottom: 5px;
+}
+
+.menu-lateral ul {
+    list-style: none;
+}
+
+.item-menu {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.item-menu:hover, .item-menu.ativa {
+    background-color: #cc0000;
+    font-weight: bold;
+}
+
+/* Painel dos Cards */
+.painel-pokemon {
+    flex: 1;
+    background-color: #4f4f4f;
+    border: 4px solid #333333;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.painel-pokemon h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.grade-pokemon {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Cards de Pokémon */
+.card-pkmn {
+    background-color: #ffffff;
+    border: 5px solid #232323;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 6px 0 #232323;
+}
+
+.numero {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #888;
+}
+
+.circulo-img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #232323;
+}
+
+.circulo-img img {
+    width: 90px;
+    height: 90px;
+}
+
+.tipos {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.tipo {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Cores dos Elementos dos Tipos */
+.planta  { background-color: #78C850; }
+.veneno  { background-color: #A040A0; }
+.fogo    { background-color: #F08030; }
+.agua    { background-color: #6890F0; }
+
+/* Cores Temáticas de Borda dos Cards */
+.card-planta { border-color: #78C850; }
+.card-fogo   { border-color: #F08030; }
+.card-agua   { border-color: #6890F0; }
+
+/* ==========================================================================
+   ANIMAÇÕES (KEYFRAMES)
+   ========================================================================== */
+@keyframes pulsarVermelho {
+    0% { background-color: #ffffff; }
+    100% { background-color: #ff3333; box-shadow: 0 0 20px #ff3333; }
+}
+
+@keyframes dispararRaio {
+    0% { opacity: 0; transform: translateX(-50%) scaleY(0); }
+    15% { opacity: 1; transform: translateX(-50%) scaleY(1); }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
 }

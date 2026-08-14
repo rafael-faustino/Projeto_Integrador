@@ -1,118 +1,239 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon World - Explore</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pokédex da Óptica - Missão Concluída</title>
+    <style>
+        :root {
+            --pokedex-red: #dc0a2d;
+            --pokedex-dark-red: #8b0000;
+            --pokedex-blue: #28a745;
+            --screen-blue: #007bff;
+            --pokedex-yellow: #f6de3e;
+            --dark-bg: #212529;
+            --card-bg: #2a2e33;
+            --text-light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--pokedex-red), var(--pokedex-dark-red));
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            border-bottom: 10px solid #500000;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .pokedex-lens {
+            width: 40px;
+            height: 40px;
+            background-color: #00bfff;
+            border: 4px solid white;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            box-shadow: 0 0 10px #00bfff;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            margin-bottom: 10px;
+        }
+
+        .intro-box {
+            background-color: #111;
+            border: 3px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .grid-missoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+        }
+
+        .card-missao {
+            background-color: var(--card-bg);
+            border: 4px solid #444;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .card-missao:hover {
+            transform: translateY(-5px);
+            border-color: var(--pokedex-yellow);
+        }
+
+        .badge-rota {
+            background-color: var(--pokedex-red);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .card-missao h2 {
+            color: var(--pokedex-yellow);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .info-linha {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .info-linha strong {
+            color: #00bfff;
+        }
+
+        .principio-optico {
+            background-color: rgba(246, 222, 62, 0.1);
+            border-left: 4px solid var(--pokedex-yellow);
+            padding: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .curiosidade-box {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px dashed #666;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        .ia-report {
+            background-color: #1e222b;
+            border: 3px solid var(--screen-blue);
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 0 15px rgba(0,123,255,0.3);
+        }
+
+        .ia-report h3 {
+            color: var(--screen-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ELEMENTO DE ÁUDIO (MÚSICA TEMA) -->
-    <audio id="musica-tema" loop>
-        <source src="https://soundhelix.com" type="audio/mp3">
-    </audio>
+    <header>
+        <div class="pokedex-lens"></div>
+        <h1>Pokédex da Óptica</h1>
+        <p>Explorando os Fenômenos Luminosos do Nosso Dia a Dia</p>
+    </header>
 
-    <!-- TELA DE ENTRADA: A POKÉBOLA -->
-    <div id="tela-pokebola" class="tela-bloqueio">
-        
-        <!-- Metade Superior Vermelha -->
-        <div class="metade-esfera topo-vermelho">
-            <div class="raio-container">
-                <svg class="raio-svg" viewBox="0 0 100 200" preserveAspectRatio="none">
-                    <polyline points="50,0 30,80 65,75 35,140 55,135 25,200" />
-                </svg>
-            </div>
+    <main>
+        <div class="intro-box">
+            <p>&gt; TRANSMISSÃO DO PROFESSOR: Olá, Treinador! Seus relatórios de campo foram salvos com sucesso no banco de dados. Abaixo estão os quatro registros de aparelhos tecnológicos que utilizam os princípios da física óptica.</p>
         </div>
-        
-        <!-- Faixa Preta Central -->
-        <div class="faixa-preta">
-            <!-- Botão de Abertura -->
-            <button id="btn-abrir" class="botao-central" onclick="abrirSite()"></button>
-        </div>
-        
-        <!-- Metade Inferior Branca -->
-        <div class="metade-esfera base-branca"></div>
-    </div>
 
-    <!-- TELA PRINCIPAL: CONTEÚDO DO SITE (Fica por baixo esperando a abertura) -->
-    <main id="conteudo-principal">
-        <!-- Cabeçalho Estilo Pokédex -->
-        <header class="pokedex-header">
-            <div class="pokedex-luzes">
-                <div class="luz-azul"></div>
-                <div class="luzes-status">
-                    <div class="luz-vermelha"></div>
-                    <div class="luz-amarela"></div>
-                    <div class="luz-verde"></div>
-                </div>
-            </div>
-            <h1>POKÉMON DASHBOARD</h1>
-            <!-- Controle de Som no Topo -->
-            <button id="btn-som" class="btn-som-control" onclick="alternarSom()">🎵 Som: Ligado</button>
-        </header>
-
-        <!-- Seções do Site -->
-        <div class="container-pokedex">
+        <div class="grid-missoes">
             
-            <!-- Menu Lateral Temático -->
-            <aside class="menu-lateral">
-                <h3>Opções de Treinador</h3>
-                <ul>
-                    <li><a href="#" class="item-menu ativa">🎒 Mochila</a></li>
-                    <li><a href="#" class="item-menu">🗺️ Mapa de Kanto</a></li>
-                    <li><a href="#" class="item-menu">🏆 Ginásios</a></li>
-                    <li><a href="#" class="item-menu" onclick="fecharSite()">🚪 Sair</a></li>
-                </ul>
-            </aside>
+            <!-- MISSÃO 1 -->
+            <div class="card-missao">
+                <span class="badge-rota">Rota 01 - Residencial</span>
+                <h2>Fibra Óptica (Conexão Ampharos ⚡)</h2>
+                <div class="info-linha"><strong>Como funciona:</strong> Os dados da internet viram pulsos de luz ultra velozes dentro de um fio de vidro ou plástico ultrafino. A luz faz curvas rebatendo nas paredes internas sem escapar.</div>
+                <div class="info-linha"><strong>Onde aparece:</strong> Conectada atrás do modem ou roteador de internet da sua residência.</div>
+                <div class="principio-optico">Princípio: Reflexão Interna Total</div>
+                <div class="curiosidade-box">⚡ Fio mais fino que cabelo do Pidgeot, mas transmite dados para milhares de pessoas jogarem sem lag!</div>
+            </div>
 
-            <!-- Vitrine de Cartões Pokémon -->
-            <section class="painel-pokemon">
-                <h2>Seus Iniciais</h2>
-                <div class="grade-pokemon">
-                    
-                    <!-- Card Bulbasaur -->
-                    <div class="card-pkmn card-planta">
-                        <span class="numero">#001</span>
-                        <div class="circulo-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gIna5djzKroH5EO4tXAtEabv9OdAIx-ILzCap6yziwbyIplIKgl5YMw&s=10" alt="Bulbasaur">
-                        </div>
-                        <h3>Bulbasaur</h3>
-                        <div class="tipos">
-                            <span class="tipo planta">Planta</span>
-                            <span class="tipo veneno">Veneno</span>
-                        </div>
-                    </div>
+            <!-- MISSÃO 2 -->
+            <div class="card-missao">
+                <span class="badge-rota">Centro Urbano - Comercial</span>
+                <h2>Câmera de Segurança (Visão Umbreon 🌙)</h2>
+                <div class="info-linha"><strong>Como funciona:</strong> À noite, o aparelho dispara raios infravermelhos invisíveis. Eles batem nos alvos e voltam para um sensor digital, revelando invasores no escuro total.</div>
+                <div class="info-linha"><strong>Onde aparece:</strong> Em tetos de lojas, vitrines de comércios, supermercados e shoppings.</div>
+                <div class="principio-optico">Princípio: Refração (Lentes) e Infravermelho</div>
+                <div class="curiosidade-box">🌙 Teste do Rotom-Fone: Aponte o controle da TV para a câmera do celular e aperte um botão para ver a luz piscar!</div>
+            </div>
 
-                    <!-- Card Charmander -->
-                    <div class="card-pkmn card-fogo">
-                        <span class="numero">#004</span>
-                        <div class="circulo-img">
-                            <img src="https://s2-ge.glbimg.com/KA7CaWaackKTbVQsYU3uSxZ39Yw=/0x0:1280x670/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2021/k/W/ey3W2jRAmAY9m4dAgfZg/charmander.jpg" alt="Charmander">
-                        </div>
-                        <h3>Charmander</h3>
-                        <div class="tipos">
-                            <span class="tipo fogo">Fogo</span>
-                        </div>
-                    </div>
+            <!-- MISSÃO 3 -->
+            <div class="card-missao">
+                <span class="badge-rota">Laboratório - Escolar</span>
+                <h2>Microscópio (Lupa do Prof. Carvalho 🧪)</h2>
+                <div class="info-linha"><strong>Como funciona:</strong> A luz atravessa uma lâmina de vidro e passa por lentes curvas empilhadas. Essas lentes desviam os raios, esticando a imagem para ampliar microestruturas.</div>
+                <div class="info-linha"><strong>Onde aparece:</strong> Nas bancadas do laboratório de ciências ou biologia da escola.</div>
+                <div class="principio-optico">Princípio: Lentes Convergentes (Refração)</div>
+                <div class="curiosidade-box">🧪 Inventado em 1590 empilhando lentes em um tubo. Sem isso, nunca veríamos as células dos Pokémon planta!</div>
+            </div>
 
-                    <!-- Card Squirtle -->
-                    <div class="card-pkmn card-agua">
-                        <span class="numero">#007</span>
-                        <div class="circulo-img">
-                            <img src="https://static.wikia.nocookie.net/pokedex/images/2/27/Squirtle_de_Ash.png/revision/latest?cb=20141029001144&path-prefix=pt-br" alt="Squirtle">
-                        </div>
-                        <h3>Squirtle</h3>
-                        <div class="tipos">
-                            <span class="tipo agua">Água</span>
-                        </div>
-                    </div>
+            <!-- MISSÃO 4 -->
+            <div class="card-missao">
+                <span class="badge-rota">Área Industrial - Silph Co.</span>
+                <h2>Sensor de Barreira (Armadilha Rocket ⚙️)</h2>
+                <div class="info-linha"><strong>Como funciona:</strong> Um feixe laser perfeitamente reto é disparado. Quando uma Pokébola passa pela esteira e corta a luz, o receptor avisa a máquina para contar a produção.</div>
+                <div class="info-linha"><strong>Onde aparece:</strong> Em esteiras de produção de fábricas, linhas de embalagem e braços robóticos.</div>
+                <div class="principio-optico">Princípio: Propagação Retilínea da Luz</div>
+                <div class="curiosidade-box">⚙️ Rápido como o ataque Velocidade Extrema. Detecta falhas microscópicas em objetos a mais de 100 km/h!</div>
+            </div>
 
-                </div>
-            </section>
+        </div>
+
+        <!-- RELATÓRIO DA IA -->
+        <div class="ia-report">
+            <h3>🤖 Suporte Técnico da Rotom-IA</h3>
+            <p>Para concluir esta pesquisa, contamos com o suporte da Inteligência Artificial como nossa <strong>Rotom-Dex</strong>. Ela nos ajudou a simplificar conceitos complexos (como a física da reflexão total), padronizar os dados científicos e estruturar a nossa base de códigos para publicação.</p>
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <footer>
+        <p>Projeto Escolar de Física & Óptica © 2026 - Desenvolvido pela Equipe de Treinadores</p>
+    </footer>
+
 </body>
 </html>

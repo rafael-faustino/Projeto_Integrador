@@ -1,62 +1,25 @@
-const musica = document.getElementById('musica-tema');
-const btnSom = document.getElementById('btn-som');
+function mudarAba(indexAlvo) {
+    // 1. Seleciona os elementos da página
+    const cards = document.querySelectorAll('.card-missao');
+    const botoes = document.querySelectorAll('.nav-btn');
+    const lente = document.getElementById('pokedexLens');
+    const caixaTexto = document.getElementById('professorText');
 
-function abrirSite() {
-    const botao = document.getElementById('btn-abrir');
-    const pokebola = document.getElementById('tela-pokebola');
+    // 2. Remove o estado ativo de todas as abas
+    cards.forEach(card => card.classList.remove('active'));
+    botoes.forEach(btn => btn.classList.remove('active'));
 
-    // 1. Inicia a pulsação luminosa no botão central
-    botao.classList.add('piscando');
+    // 3. Adiciona o estado ativo apenas no que foi clicado
+    cards[indexAlvo].classList.add('active');
+    botoes[indexAlvo].classList.add('active');
 
-    // Tenta iniciar a trilha sonora imediatamente após o clique físico do usuário
-    tocarMusica();
-
-    // 2. Executa a abertura física da Pokébola e o disparo do raio após o piscar
+    // 4. Cria o efeito visual de piscar a lente do topo
+    lente.classList.add('lens-flash');
     setTimeout(() => {
-        pokebola.classList.add('aberta');
-    }, 600);
+        lente.classList.remove('lens-flash');
+    }, 200);
 
-    // 3. Remove a interatividade da camada para que o usuário clique no dashboard tranquilamente
-    setTimeout(() => {
-        pokebola.style.display = 'none';
-    }, 1800);
-}
-
-function fecharSite() {
-    const pokebola = document.getElementById('tela-pokebola');
-    const botao = document.getElementById('btn-abrir');
-
-    // Para a música ao sair do site
-    musica.pause();
-    musica.currentTime = 0;
-
-    // Reseta os estados visuais das transições
-    pokebola.style.display = 'flex';
-    botao.classList.remove('piscando');
-    
-    // Pequeno delay para renderizar o display flex antes de fechar os painéis fisicamente
-    setTimeout(() => {
-        pokebola.classList.remove('aberta');
-    }, 50);
-}
-
-function tocarMusica() {
-    musica.volume = 0.3; // Define um volume confortável (30%)
-    musica.play().catch(error => {
-        console.log("O navegador bloqueou a reprodução automática. O som tocará ao interagir.");
-    });
-}
-
-function alternarSom() {
-    if (musica.paused) {
-        musica.play();
-        btnSom.innerText = "🎵 Som: Ligado";
-        btnSom.style.backgroundColor = "#232323";
-        btnSom.style.color = "white";
-    } else {
-        musica.pause();
-        btnSom.innerText = "🔇 Som: Mutado";
-        btnSom.style.backgroundColor = "#555";
-        btnSom.style.color = "#aaa";
-    }
+    // 5. Atualiza o texto do terminal simulando o escaneamento
+    const nomes = ["Fibra Óptica", "Câmera de Segurança", "Microscópio", "Sensor de Barreira"];
+    caixaTexto.innerHTML = `&gt; ESCANEANDO: Dados do equipamento [${nomes[indexAlvo]}] carregados com sucesso na tela principal!`;
 }

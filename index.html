@@ -3,102 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex da Óptica — Projeto Integrador</title>
+    <title>Projeto Integrador - Pokédex</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- TELA DE INTRODUÇÃO (ANIMAÇÃO DA POKÉBOLA) -->
-    <div id="introScreen" class="intro-screen">
-        <div class="intro-content">
-            <h1 class="intro-title">Pokédex da Óptica</h1>
+    <!-- FASE 1: TELA PRETA DE ENTRADA -->
+    <div id="telaIntro" class="tela-intro">
+        <div class="intro-box">
+            <h1 class="txt-pixel">SISTEMA POKÉDEX</h1>
+            <p class="txt-sub">APERTE QUALQUER LUGAR NA POKÉBOLA PARA INICIAR</p>
             
-            <!-- A Pokébola Física feita em CSS -->
-            <div id="pokebola" class="pokebola" onclick="iniciarCaptura()">
-                <div class="pokebola-botao"></div>
+            <!-- Corpo da Pokébola -->
+            <div id="pokebola" class="pokebola" onclick="dispararCaptura()">
+                <div class="linha-central"></div>
+                <div class="botao-central"></div>
             </div>
-            
-            <p class="intro-instruction">CLIQUE NA POKÉBOLA PARA COMEÇAR</p>
         </div>
         
-        <!-- O Raio de Luz que vai puxar o usuário -->
-        <div id="captureBeam" class="capture-beam"></div>
+        <!-- O Raio de energia que vai se expandir e sugar a tela -->
+        <div id="raioSugador" class="raio-sugador"></div>
     </div>
 
-    <!-- CONSOLE DA POKÉDEX (FICA ESCONDIDO ATÉ O CLIQUE) -->
-    <div id="pokedexContainer" class="pokedex-container hidden">
-        
-        <!-- Topo Técnico com Lentes -->
-        <div class="top-lights">
-            <div id="mainLens" class="big-blue-lens"></div>
-            <div class="small-light light-red"></div>
-            <div class="small-light light-yellow"></div>
-            <div class="small-light light-green"></div>
-        </div>
-
-        <!-- Terminal Verde de Resposta -->
-        <div class="pokedex-terminal">
-            <p id="terminalTexto">> CAPTURA CONCLUÍDA COM SUCESSO!<br>> Selecione uma rota para escanear os dados ópticos.</p>
-        </div>
-
-        <!-- Botões de Controle de Abas -->
-        <div class="pokedex-nav">
-            <button class="nav-btn active" onclick="mudarAba(0)">⚡ Rota 01: Fibra</button>
-            <button class="nav-btn" onclick="mudarAba(1)">🌙 Urbano: Câmera</button>
-            <button class="nav-btn" onclick="mudarAba(2)">🧪 Lab: Micro</button>
-            <button class="nav-btn" onclick="mudarAba(3)">⚙️ Fábrica: Sensor</button>
-        </div>
-
-        <!-- Tela Principal de Exibição de Dados -->
-        <div class="pokedex-main-screen">
-
-            <!-- CARD 1 -->
-            <div class="data-card active">
-                <span class="badge-contexto">Residencial</span>
-                <h2>Fibra Óptica (Conexão Ampharos ⚡)</h2>
-                <p><strong>Como funciona:</strong> Transforma dados de internet em pulsos de luz ultra velozes. Viajam por fios de vidro ultrafinos rebatendo continuamente nas paredes sem escapar.</p>
-                <p><strong>Onde aparece:</strong> Conectada diretamente atrás do modem ou roteador da sua residência.</p>
-                <div class="highlight-box">Princípio Óptico: <span>Reflexão Interna Total</span></div>
-                <p class="fun-fact">💡 Curiosidade: Um fio pode ser mais fino que um fio de cabelo do Pidgeot, mas transmite dados sem perder estabilidade.</p>
+    <!-- FASE 2: CONSOLE PRINCIPAL (INICIA ESCONDIDO) -->
+    <div id="pokedexApp" class="pokedex-app escondido">
+        <div class="pokedex-moldura">
+            <div class="led-principal"></div>
+            <div class="visor-mensagem">
+                <p>&gt; CAPTURA CONCLUÍDA COM SUCESSO!</p>
+                <p>&gt; Treinador inserido no banco de dados da Óptica.</p>
             </div>
-
-            <!-- CARD 2 -->
-            <div class="data-card">
-                <span class="badge-contexto">Comercial</span>
-                <h2>Câmera de Segurança (Visão Umbreon 🌙)</h2>
-                <p><strong>Como funciona:</strong> À noite, emite luz infravermelha invisível a olho nu. Essa luz bate nos alvos e retorna para um sensor digital interno, gerando imagens claras na escuridão.</p>
-                <p><strong>Onde aparece:</strong> Tetos de lojas, comércios, supermercados e grandes shoppings.</p>
-                <div class="highlight-box">Princípio Óptico: <span>Refração (Lentes) e Espectro Infravermelho</span></div>
-                <p class="fun-fact">💡 Curiosidade: Faça o teste do Rotom-Fone! Aponte o controle da TV para a câmera do celular e aperte um botão para ver a luz invisível piscar na tela.</p>
+            
+            <!-- Menu temporário só para validar a entrada -->
+            <div class="menu-teste">
+                <button class="btn-rota">⚡ Rota 01</button>
+                <button class="btn-rota">🌙 Rota 02</button>
             </div>
-
-            <!-- CARD 3 -->
-            <div class="data-card">
-                <span class="badge-contexto">Escolar</span>
-                <h2>Microscópio (Lupa do Prof. Carvalho 🧪)</h2>
-                <p><strong>Como funciona:</strong> Uma fonte de luz na base atravessa uma lâmina de vidro e passa por lentes curvas empilhadas (objetiva e ocular). Elas desviam os raios e ampliam o tamanho aparente de microestruturas.</p>
-                <p><strong>Onde aparece:</strong> Nas bancadas do laboratório de ciências ou biologia da sua escola.</p>
-                <div class="highlight-box">Princípio Óptico: <span>Refração por Lentes Convergentes</span></div>
-                <p class="fun-fact">💡 Curiosidade: Inventado in 1590 por fabricantes de óculos holandeses. Sem isso, nunca descobriríamos a estrutura biológica de Pokémon planta!</p>
-            </div>
-
-            <!-- CARD 4 -->
-            <div class="data-card">
-                <span class="badge-contexto">Industrial</span>
-                <h2>Sensor de Barreira (Armadilha Rocket ⚙️)</h2>
-                <p><strong>Como funciona:</strong> Um emissor dispara um feixe retilíneo contínuo de luz em direção a um receptor. Se um objeto cruza a esteira e bloqueia essa luz, o sistema para ou registra a contagem.</p>
-                <p><strong>Onde aparece:</strong> Esteiras industriais automáticas de fábricas e linhas de embalagem.</p>
-                <div class="highlight-box">Princípio Óptico: <span>Propagação Retilínea e Bloqueio da Luz</span></div>
-                <p class="fun-fact">💡 Curiosidade: Operam na velocidade do ataque Velocidade Extrema. Detectam erros milimétricos em peças movendo-se a mais de 100 km/h.</p>
-            </div>
-
         </div>
-
-        <!-- Relatório de Suporte de IA no Rodapé -->
-        <div class="ia-footer-panel">
-            <p>🤖 <strong>Suporte Técnico Rotom-IA:</strong> Processamento de dados físicos e organização modular estruturada para fins educacionais do Projeto Integrador.</p>
-        </div>
-
     </div>
 
     <script src="script.js"></script>

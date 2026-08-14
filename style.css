@@ -1,340 +1,173 @@
-:root {
-    --pokedex-red: #dc0a2d;
-    --pokedex-dark: #2a2e33;
-    --screen-bg: #1a1a1a;
-    --text-green: #39ff14;
-    --accent-yellow: #f6de3e;
-    --accent-blue: #00bfff;
-    --light-gray: #f8f9fa;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
-    background-color: #121212;
-    color: var(--light-gray);
+    background-color: #000;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
 }
 
-/* ========================================================
-   TELA DE INTRODUÇÃO E ANIMAÇÃO DA POKÉBOLA
-   ======================================================== */
-.intro-screen {
+/* Tela Preta Inicial */
+.tela-intro {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #1a1a1a;
+    width: 100%;
+    height: 100%;
+    background-color: #0b0b0b;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
-    transition: opacity 0.5s ease;
+    z-index: 99;
 }
 
-.intro-content {
+.intro-box {
     text-align: center;
-    z-index: 1001;
+    z-index: 101;
 }
 
-.intro-title {
-    font-size: 2.2rem;
-    color: var(--accent-yellow);
-    margin-bottom: 40px;
-    letter-spacing: 2px;
-    text-shadow: 3px 3px 0px #000;
+.txt-pixel {
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
-/* Desenho da Pokébola em CSS Puro */
+.txt-sub {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 50px;
+    animation: piscar 1.5s infinite;
+}
+
+@keyframes piscar {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Construção da Pokébola Estilizada */
 .pokebola {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(to bottom, #ff1c1c 50%, white 50%);
-    border: 6px solid #000;
+    width: 130px;
+    height: 130px;
+    background: linear-gradient(to bottom, #e12727 50%, #ffffff 50%);
+    border: 7px solid #111;
     border-radius: 50%;
     position: relative;
     margin: 0 auto;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    animation: flutuar 2s ease-in-out infinite;
-    transition: transform 0.2s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+    animation: flutuar OitoSegundos ease-in-out infinite;
+    animation: flutuar 2.5s ease-in-out infinite;
 }
 
-.pokebola:hover {
-    transform: scale(1.1);
-}
-
-/* Linha central da Pokébola */
-.pokebola::before {
-    content: "";
+.linha-central {
     position: absolute;
-    top: 52px;
+    top: 55px;
     left: 0;
-    width: 108px;
+    width: 100%;
     height: 8px;
-    background-color: #000;
+    background-color: #111;
 }
 
-/* Botão central */
-.pokebola-botao {
-    width: 32px;
-    height: 32px;
-    background-color: white;
-    border: 5px solid #000;
+.botao-central {
+    width: 34px;
+    height: 34px;
+    background-color: #fff;
+    border: 6px solid #111;
     border-radius: 50%;
     position: absolute;
-    top: 38px;
-    left: 38px;
-    box-shadow: 0 0 0 3px white;
+    top: 41px;
+    left: 41px;
+    box-shadow: 0 0 0 4px #fff;
     transition: background-color 0.2s;
 }
 
-/* Animação de Flutuar na Tela Inicial */
 @keyframes flutuar {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-15px); }
 }
 
-/* Animação quando a Pokébola abre/saltar ao clicar */
-.pokebola-abrir {
-    animation: saltarEAbri 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+/* Animação do Pulo ao Clicar (Gatilhada via JS) */
+.pokebola-saltar {
+    animation: saltarAcao 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
 }
 
-@keyframes saltarEAbri {
+@keyframes saltarAcao {
     0% { transform: scale(1) translateY(0); }
-    30% { transform: scale(0.8) translateY(10px); }
-    100% { transform: scale(1.4) translateY(-30px); }
+    40% { transform: scale(0.9) translateY(10px); }
+    100% { transform: scale(1.3) translateY(-40px); }
 }
 
-.pokebola-abrir .pokebola-botao {
-    background-color: #ff4136;
-    box-shadow: 0 0 15px #ff4136;
-}
-
-/* O Raio de Captura (Puxando você para dentro) */
-.capture-beam {
+/* O Raio que suga o usuário para dentro */
+.raio-sugador {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: radial-gradient(circle, #ffffff 10%, #ff4136 60%, transparent 100%);
-    border-radius: 50%;
-    opacity: 0;
-    z-index: 1000;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0px;
+    height: 0px;
+    background: radial-gradient(circle, #ffffff 10%, #ff2323 60%, #000 100%);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
 }
 
-/* Classe ativada por Script que faz o raio explodir e ocupar a tela toda */
-.beam-active {
-    animation: feixeExpansao 0.6s ease-out forwards;
+/* Efeito de expansão do raio cobrindo tudo */
+.raio-ativo {
+    animation: explosaoRaio 0.6s ease-out forwards;
 }
 
-@keyframes feixeExpansao {
-    0% { width: 10px; height: 10px; opacity: 1; }
-    40% { width: 300px; height: 300px; opacity: 1; }
-    100% { width: 2500px; height: 2500px; opacity: 1; border-radius: 0%; }
-}
-
-.intro-instruction {
-    margin-top: 30px;
-    font-size: 0.85rem;
-    color: #888;
-    letter-spacing: 1px;
+@keyframes explosaoRaio {
+    0% { width: 0px; height: 0px; opacity: 1; }
+    50% { width: 500px; height: 500px; opacity: 1; }
+    100% { width: 3000px; height: 3000px; opacity: 1; border-radius: 0%; }
 }
 
 
-/* ========================================================
-   ESTILOS DO CONSOLE DA POKÉDEX
-   ======================================================== */
-.pokedex-container {
-    background-color: var(--pokedex-red);
+/* ==========================================
+   MOLDURA DA POKÉDEX (FASE 2)
+   ========================================== */
+.pokedex-app {
     width: 100%;
-    max-width: 750px;
-    border-radius: 20px;
-    box-shadow: 0 12px 0px #8b0000, 0 20px 25px rgba(0,0,0,0.7);
-    border: 4px solid #333;
-    padding: 25px;
-    animation: interfaceSurge 0.4s ease-out;
+    max-width: 600px;
+    padding: 20px;
+    animation: entradaApp 0.5s ease-out forwards;
 }
 
-@keyframes interfaceSurge {
-    from { transform: scale(0.8); opacity: 0; }
+@keyframes entradaApp {
+    from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-.hidden {
+.escondido {
     display: none !important;
 }
 
-.top-lights {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #8b0000;
-    padding-bottom: 15px;
-}
-
-.big-blue-lens {
-    width: 45px;
-    height: 45px;
-    background: radial-gradient(circle, #85e3ff, #00bfff);
-    border: 4px solid white;
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--accent-blue);
-    transition: all 0.2s ease;
-}
-
-.lens-flash {
-    background: white !important;
-    box-shadow: 0 0 30px white !important;
-}
-
-.small-light {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 1px solid #333;
-}
-.light-red { background-color: #ff4136; }
-.light-yellow { background-color: #ffdc00; }
-.light-green { background-color: #2ecc40; }
-
-.pokedex-terminal {
-    background-color: #051a05;
-    border: 4px solid #333;
-    border-radius: 8px;
-    padding: 12px;
-    color: var(--text-green);
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    min-height: 60px;
-    box-shadow: inset 0 0 10px rgba(0,255,0,0.5);
-}
-
-.pokedex-nav {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-@media(min-width: 500px) {
-    .pokedex-nav { grid-template-columns: repeat(4, 1fr); }
-}
-
-.nav-btn {
-    background-color: var(--pokedex-dark);
-    color: white;
-    border: 3px solid #1a1a1a;
-    padding: 12px 8px;
-    font-weight: bold;
-    font-size: 0.85rem;
-    cursor: pointer;
-    border-radius: 6px;
-    box-shadow: 0 4px 0 #111;
-    transition: all 0.1s ease;
-}
-
-.nav-btn:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #111;
-}
-
-.nav-btn.active {
-    background-color: var(--accent-yellow);
-    color: #1a1a1a;
-    border-color: white;
-    box-shadow: 0 4px 0 #bfa600;
-}
-
-.pokedex-main-screen {
-    background-color: var(--screen-bg);
-    border: 4px solid #333;
-    border-radius: 10px;
+.pokedex-moldura {
+    background-color: #dc0a2d;
+    border: 4px solid #222;
+    border-radius: 15px;
     padding: 20px;
-    min-height: 280px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+    box-shadow: 0 10px 0 #8b0000;
 }
 
-.data-card {
-    display: none;
-}
-
-.data-card.active {
-    display: block;
-}
-
-.badge-contexto {
-    background-color: #444;
-    color: var(--accent-yellow);
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 4px;
-    border: 1px solid #555;
-    display: inline-block;
-    margin-bottom: 12px;
-}
-
-.data-card h2 {
-    color: white;
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-}
-
-.data-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #ccc;
-    margin-bottom: 12px;
-}
-
-.data-card p strong {
-    color: var(--accent-blue);
-}
-
-.highlight-box {
-    background-color: rgba(220, 10, 45, 0.15);
-    border-left: 4px solid var(--pokedex-red);
-    padding: 10px;
-    margin: 15px 0;
-    font-size: 0.95rem;
-}
-
-.highlight-box span {
-    color: white;
-    font-weight: bold;
-}
-
-.fun-fact {
-    font-size: 0.85rem;
-    font-style: italic;
-    color: #aaa;
-    border-top: 1px solid #333;
-    padding-top: 10px;
-}
-
-.ia-footer-panel {
-    margin-top: 20px;
-    background-color: rgba(0,0,0,0.3);
+.visor-mensagem {
+    background-color: #081c08;
+    border: 3px solid #222;
     padding: 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.85rem;
-    color: #ddd;
+    color: #39ff14;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

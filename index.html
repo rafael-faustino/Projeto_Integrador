@@ -3,31 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Pokémon - Entrada</title>
-    <!-- Vinculando o arquivo CSS externo -->
-    <link rel="stylesheet" href="style.css">
+    <title>Minha Pokédex Virtual</title>
+    <style>
+        /* CONFIGURAÇÕES DO CORPO DA PÁGINA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace; /* Fonte estilo videogame */
+        }
+
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #0f171e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ESTRUTURA PRINCIPAL DA POKÉDEX */
+        .pokedex {
+            background-color: #dc0a2d; /* Vermelho clássico da Pokédex */
+            width: 360px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 0 #8b0000, 0 25px 30px rgba(0, 0, 0, 0.5);
+            border: 4px solid #1a1a1a;
+            position: relative;
+        }
+
+        /* LUZES SUPERIORES (DETALHE VISUAL) */
+        .luzes-topo {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .luz-azul {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #00f0ff 0%, #0055ff 100%);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 10px #00f0ff;
+        }
+
+        .luz-pisca {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid #1a1a1a;
+        }
+        .vermelha { background-color: #ff0000; }
+        .amarela { background-color: #ffde00; }
+        .verde { background-color: #00ff00; }
+
+        /* TELA ONDE APARECE O POKÉMON */
+        .tela-pokedex {
+            background-color: #dedede;
+            border-radius: 10px;
+            border: 15px solid #eaeaea;
+            border-bottom: 35px solid #eaeaea; /* Simula o detalhe de plástico */
+            height: 240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        .tela-pokedex img {
+            width: 140px;
+            height: 140px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+
+        .info-pokemon {
+            color: #222;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: -10px;
+        }
+
+        /* CAMPO DE BUSCA E BOTÃO */
+        .painel-busca {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .input-busca {
+            padding: 12px;
+            font-size: 1rem;
+            border: 3px solid #1a1a1a;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            background-color: #222;
+            color: #00ff00; /* Texto verde estilo terminal */
+        }
+
+        .input-busca::placeholder {
+            color: #00aa00;
+        }
+
+        .btn-buscar {
+            background-color: #4dad5b; /* Verde Pokémon */
+            color: white;
+            border: 3px solid #1a1a1a;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #286030;
+            transition: all 0.1s ease;
+        }
+
+        .btn-buscar:hover {
+            background-color: #5cbf6b;
+        }
+
+        .btn-buscar:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0 #286030;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- PORTA DE ENTRADA (FACHADA DO MENU) -->
-    <div class="centro-pokemon-fachada" id="fachada">
-        <div class="topo-vermelho">CENTRO POKÉMON</div>
+    <!-- CORDPO DA POKÉDEX -->
+    <div class="pokedex">
         
-        <div class="menu-entrada">
-            <!-- Adicionamos IDs para o JavaScript reconhecer qual botão foi clicado -->
-            <button class="btn-entrar" id="btn-entrar">Entrar no Centro</button>
-            <button class="btn-entrar" id="btn-curar">Curar Pokémons</button>
-            <button class="btn-entrar" id="btn-pc">Acessar PC de Bill</button>
+        <!-- Detalhes das luzes de cima -->
+        <div class="luzes-topo">
+            <div class="luz-azul"></div>
+            <div class="luz-pisca vermelha"></div>
+            <div class="luz-pisca amarela"></div>
+            <div class="luz-pisca verde"></div>
         </div>
+
+        <!-- Tela de exibição -->
+        <div class="tela-pokedex">
+            <img id="poke-imagem" src="https://githubusercontent.com" alt="Pokemon">
+            <div class="info-pokemon" id="poke-info">Nº 001 - bulbasaur</div>
+        </div>
+
+        <!-- Controles de busca -->
+        <div class="painel-busca">
+            <input type="text" class="input-busca" id="input-pokemon" placeholder="NOME OU NÚMERO">
+            <button class="btn-buscar" onclick="buscarPokemon()">BUSCAR POKÉMON</button>
+        </div>
+
     </div>
 
-    <!-- INTERIOR DO CENTRO POKÉMON -->
-    <div class="interior-centro" id="interior">
-        <h1 id="titulo-interior">Bem-vindo ao Centro Pokémon!</h1>
-        <p id="mensagem-interior">Aguarde um instante...</p>
-    </div>
+    <!-- LÓGICA DE BUSCA DA API -->
+    <script>
+        async function buscarPokemon() {
+            const input = document.getElementById('input-pokemon');
+            const imagem = document.getElementById('poke-imagem');
+            const info = document.getElementById('poke-info');
+            
+            // Pega o termo digitado e transforma em letras minúsculas
+            const termoBusca = input.value.toLowerCase().trim();
 
-    <!-- Vinculando o arquivo JavaScript externo -->
-    <script src="script.js"></script>
+            if (!termoBusca) return;
+
+            info.innerText = "PROCURANDO...";
+            imagem.src = "";
+
+            try {
+                // Faz a requisição para a API oficial do Pokémon
+                const resposta = await fetch(`https://pokeapi.co{termoBusca}`);
+                
+                if (!resposta.ok) throw new Error('Não encontrado');
+
+                const dados = await resposta.json();
+
+                // Atualiza a tela com a foto e os dados reais obtidos
+                imagem.src = dados.sprites.front_default;
+                info.innerText = `Nº ${dados.id} - ${dados.name}`;
+                
+            } catch (erro) {
+                // Caso o usuário digite um nome que não existe
+                imagem.src = "";
+                info.innerText = "NÃO ENCONTRADO!";
+            }
+        }
+
+        // Permite buscar também ao apertar a tecla "Enter" no teclado
+        document.getElementById('input-pokemon').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                buscarPokemon();
+            }
+        });
+    </script>
 </body>
 </html>

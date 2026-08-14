@@ -1,70 +1,156 @@
 /* =====================================================
-ADICIONADO: BARRA DE STATUS DO TREINADOR POKÉMON
+   PLANO DE FUNDO - ASH
 ===================================================== */
-.trainer-status-bar {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around;
-background: var(--painel);
-border: 2px solid rgba(255, 255, 255, 0.15);
-border-radius: 16px;
-padding: 15px;
-margin: 25px auto 45px auto;
-max-width: 800px;
-font-weight: bold;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-border-left: 5px solid var(--vermelho);
-} 
 
-.status-item {
-margin: 5px 10px;
-font-size: 15px;
-letter-spacing: 1px;
-color: var(--branco);
-} 
+body {
+    position: relative;
+    background:
+        linear-gradient(
+            rgba(8, 16, 24, .88),
+            rgba(8, 16, 24, .94)
+        ),
+        url("https://live.staticflickr.com/3206/5764005330_350c318106_o.jpg");
 
-.status-item span.label {
-color: var(--cinza);
-} 
-
-.status-item span.value {
-color: var(--branco);
-text-shadow: 0 0 10px rgba(115, 201, 255, 0.3);
-} 
-
-/* =====================================================
-ADICIONADO: ÍCONE DE POKÉBOLA NO TÍTULO DA SEÇÃO
-===================================================== */
-.section-title-pokemon {
-display: flex;
-align-items: center;
-gap: 14px;
-margin-bottom: 30px;
-font-size: 30px;
-} 
-
-.pokeball-icon {
-width: 26px;
-height: 26px;
-background: linear-gradient(to bottom, #ef233c 50%, #ffffff 50%);
-border: 3px solid #111;
-border-radius: 50%;
-position: relative;
-display: inline-block;
-box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
-flex-shrink: 0;
-} 
-
-.pokeball-icon::after {
-content: '';
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 8px;
-height: 8px;
-background-color: #fff;
-border: 3px solid #111;
-border-radius: 50%;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
 }
 
+/* Mantém o conteúdo acima do fundo */
+
+#site {
+    position: relative;
+    z-index: 2;
+}
+
+/* =====================================================
+   ABAS
+===================================================== */
+
+.abas {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px 5% 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.aba {
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(16,29,41,.85);
+
+    color: var(--cinza);
+
+    padding: 14px 24px;
+
+    border-radius: 14px 14px 0 0;
+
+    cursor: pointer;
+
+    font-weight: bold;
+    font-size: 15px;
+
+    transition: .3s;
+
+    backdrop-filter: blur(8px);
+}
+
+.aba:hover {
+    color: white;
+
+    background:
+        rgba(230,57,70,.25);
+
+    transform: translateY(-3px);
+}
+
+.aba.ativa {
+    color: white;
+
+    background:
+        var(--vermelho);
+
+    border-color:
+        var(--vermelho);
+
+    box-shadow:
+        0 -5px 20px
+        rgba(230,57,70,.25);
+}
+
+/* Conteúdo das abas */
+
+.pagina-aba {
+    display: none;
+
+    animation:
+        aparecerAba .4s ease;
+}
+
+.pagina-aba.ativa {
+    display: block;
+}
+
+@keyframes aparecerAba {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* Painéis mais transparentes para mostrar Ash */
+
+.card,
+.curiosidade,
+.pesquisa,
+.ficha,
+header {
+    backdrop-filter: blur(8px);
+}
+
+.card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23,40,56,.92),
+            rgba(16,29,41,.92)
+        );
+}
+
+.curiosidade {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(21,31,44,.92),
+            rgba(16,24,32,.92)
+        );
+}
+
+/* Mobile */
+
+@media(max-width:700px) {
+
+    .abas {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .aba {
+        width: 100%;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+}

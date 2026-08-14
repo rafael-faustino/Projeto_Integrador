@@ -882,21 +882,21 @@ footer {
 
         <nav>
 
-            <button onclick="irPara('assuntos')">
-                Assuntos
-            </button>
+            <nav>
 
-            <button onclick="irPara('curiosidades')">
-                Curiosidades
-            </button>
+    <button onclick="abrirAba('optica', this)">
+        🔬 Introdução da Óptica
+    </button>
 
-            <button onclick="irPara('ia')">
-                IA
-            </button>
+    <button onclick="abrirAba('robotica', this)">
+        🤖 Robótica
+    </button>
 
-            <button onclick="irPara('acessibilidade')">
-                Acessibilidade
-            </button>
+    <button onclick="abrirAba('fisica', this)">
+        ⚛️ Física e Tecnociência
+    </button>
+
+</nav>
 
         </nav>
 
@@ -904,6 +904,364 @@ footer {
 
 </header>
 
+
+<!-- =====================================================
+     ABAS PRINCIPAIS
+===================================================== -->
+
+<div class="abas">
+
+    <button
+        class="aba ativa"
+        onclick="abrirAba('optica', this)"
+    >
+        🔬 Introdução da Óptica
+    </button>
+
+    <button
+        class="aba"
+        onclick="abrirAba('robotica', this)"
+    >
+        🤖 Robótica
+    </button>
+
+    <button
+        class="aba"
+        onclick="abrirAba('fisica', this)"
+    >
+        ⚛️ Física e Tecnociência
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     ABA 1 - ÓPTICA
+===================================================== -->
+
+<div
+    id="optica"
+    class="pagina-aba ativa"
+>
+
+    <section class="hero">
+
+        <h1>
+            INTRODUÇÃO DA ÓPTICA
+        </h1>
+
+        <div class="linha"></div>
+
+        <p>
+            A óptica é a área da Física que estuda a luz,
+            sua propagação, reflexão, refração, formação de
+            imagens e suas aplicações tecnológicas.
+        </p>
+
+    </section>
+
+
+    <div class="pesquisa-area">
+
+        <input
+            class="pesquisa"
+            id="pesquisa"
+            type="text"
+            placeholder="🔎 Pesquisar equipamento ou assunto..."
+        >
+
+    </div>
+
+
+    <section
+        class="secao"
+        id="assuntos"
+    >
+
+        <h2 class="titulo-secao">
+            📁 Fichas de Pesquisa
+        </h2>
+
+        <div class="grid" id="grid">
+
+            <!-- COLOQUE AQUI OS SEUS CARDS ATUAIS -->
+
+            <!-- Fibra Óptica -->
+            <!-- Câmera -->
+            <!-- Microscópio -->
+            <!-- Sensor -->
+            <!-- Cores -->
+            <!-- Acessibilidade -->
+            <!-- IA -->
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     ABA 2 - ROBÓTICA
+===================================================== -->
+
+<div
+    id="robotica"
+    class="pagina-aba"
+>
+
+    <section class="hero">
+
+        <h1>
+            ROBÓTICA
+        </h1>
+
+        <div class="linha"></div>
+
+        <p>
+            A robótica combina Física, programação, eletrônica,
+            sensores e mecânica para criar máquinas capazes
+            de realizar tarefas de forma automática.
+        </p>
+
+    </section>
+
+
+    <section class="secao">
+
+        <h2 class="titulo-secao">
+            🤖 Robótica e Óptica
+        </h2>
+
+        <div class="grid">
+
+            <article class="card">
+
+                <div class="icone">
+                    🤖
+                </div>
+
+                <span class="contexto">
+                    Automação
+                </span>
+
+                <h3>
+                    Robôs Industriais
+                </h3>
+
+                <p>
+                    Robôs utilizam sensores ópticos para detectar
+                    objetos, posições e obstáculos durante
+                    processos automatizados.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icone">
+                    👁️
+                </div>
+
+                <span class="contexto">
+                    Sensores
+                </span>
+
+                <h3>
+                    Visão Robótica
+                </h3>
+
+                <p>
+                    Câmeras e sensores permitem que robôs
+                    obtenham informações do ambiente por meio
+                    da luz.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icone">
+                    🔴
+                </div>
+
+                <span class="contexto">
+                    Detecção
+                </span>
+
+                <h3>
+                    Sensores Ópticos
+                </h3>
+
+                <p>
+                    Sensores podem emitir e receber luz para
+                    identificar objetos e controlar máquinas.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icone">
+                    🚗
+                </div>
+
+                <span class="contexto">
+                    Tecnologia
+                </span>
+
+                <h3>
+                    Robôs Autônomos
+                </h3>
+
+                <p>
+                    Sistemas de visão, sensores e inteligência
+                    artificial ajudam robôs a interpretar
+                    ambientes e tomar decisões.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     ABA 3 - FÍSICA E TECNOCIÊNCIA
+===================================================== -->
+
+<div
+    id="fisica"
+    class="pagina-aba"
+>
+
+    <section class="hero">
+
+        <h1>
+            FÍSICA E TECNOCIÊNCIA
+        </h1>
+
+        <div class="linha"></div>
+
+        <p>
+            A Física está presente no desenvolvimento de
+            tecnologias que transformam conhecimentos científicos
+            em ferramentas utilizadas pela sociedade.
+        </p>
+
+    </section>
+
+
+    <section class="secao">
+
+        <h2 class="titulo-secao">
+            ⚛️ Física aplicada à tecnologia
+        </h2>
+
+        <div class="grid">
+
+            <article class="card">
+
+                <div class="icone">
+                    💡
+                </div>
+
+                <span class="contexto">
+                    Óptica
+                </span>
+
+                <h3>
+                    Luz e Comunicação
+                </h3>
+
+                <p>
+                    A fibra óptica utiliza propriedades da luz
+                    para transmitir enormes quantidades de dados
+                    em alta velocidade.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icone">
+                    ⚡
+                </div>
+
+                <span class="contexto">
+                    Energia
+                </span>
+
+                <h3>
+                    Eletricidade
+                </h3>
+
+                <p>
+                    Circuitos elétricos são fundamentais para
+                    computadores, sensores, robôs e diversos
+                    equipamentos tecnológicos.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icone">
+                    🧠
+                </div>
+
+                <span class="contexto">
+                    Tecnociência
+                </span>
+
+                <h3>
+                    Inteligência Artificial
+                </h3>
+
+                <p>
+                    A inteligência artificial pode analisar dados,
+                    reconhecer padrões e auxiliar no desenvolvimento
+                    de novas tecnologias.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icone">
+                    🔬
+                </div>
+
+                <span class="contexto">
+                    Ciência
+                </span>
+
+                <h3>
+                    Ciência e Sociedade
+                </h3>
+
+                <p>
+                    A tecnociência aproxima a pesquisa científica
+                    das aplicações tecnológicas utilizadas no
+                    cotidiano.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</div>
 
 <!-- =====================================================
      HERO
@@ -1804,6 +2162,16 @@ pesquisa.addEventListener(
         });
 
     }
+===================================================== */
+
+function irPara(id) {
+
+    document
+        .getElementById(id)
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
 );
 
 

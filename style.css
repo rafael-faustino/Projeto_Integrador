@@ -1,203 +1,340 @@
 :root {
     --pokedex-red: #dc0a2d;
-    --pokedex-dark-red: #8b0000;
-    --pokedex-green: #28a745;
-    --screen-blue: #007bff;
-    --pokedex-yellow: #f6de3e;
-    --dark-bg: #212529;
-    --card-bg: #2a2e33;
-    --text-light: #f8f9fa;
+    --pokedex-dark: #2a2e33;
+    --screen-bg: #1a1a1a;
+    --text-green: #39ff14;
+    --accent-yellow: #f6de3e;
+    --accent-blue: #00bfff;
+    --light-gray: #f8f9fa;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 body {
-    background-color: var(--dark-bg);
-    color: var(--text-light);
+    background-color: #121212;
+    color: var(--light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-header {
-    background: linear-gradient(135deg, var(--pokedex-red), var(--pokedex-dark-red));
-    padding: 30px;
+/* ========================================================
+   TELA DE INTRODUÇÃO E ANIMAÇÃO DA POKÉBOLA
+   ======================================================== */
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: opacity 0.5s ease;
+}
+
+.intro-content {
     text-align: center;
-    border-radius: 15px;
-    border-bottom: 10px solid #500000;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-    margin-bottom: 30px;
-    position: relative;
+    z-index: 1001;
 }
 
-.pokedex-lens {
-    width: 40px;
-    height: 40px;
-    background-color: #00bfff;
-    border: 4px solid white;
+.intro-title {
+    font-size: 2.2rem;
+    color: var(--accent-yellow);
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px #000;
+}
+
+/* Desenho da Pokébola em CSS Puro */
+.pokebola {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(to bottom, #ff1c1c 50%, white 50%);
+    border: 6px solid #000;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    animation: flutuar 2s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+
+.pokebola:hover {
+    transform: scale(1.1);
+}
+
+/* Linha central da Pokébola */
+.pokebola::before {
+    content: "";
+    position: absolute;
+    top: 52px;
+    left: 0;
+    width: 108px;
+    height: 8px;
+    background-color: #000;
+}
+
+/* Botão central */
+.pokebola-botao {
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border: 5px solid #000;
     border-radius: 50%;
     position: absolute;
-    top: 15px;
-    left: 15px;
-    box-shadow: 0 0 10px #00bfff;
+    top: 38px;
+    left: 38px;
+    box-shadow: 0 0 0 3px white;
     transition: background-color 0.2s;
 }
 
-/* Efeito de flash controlado pelo script */
-.lens-flash {
-    background-color: #fff !important;
-    box-shadow: 0 0 25px #fff !important;
+/* Animação de Flutuar na Tela Inicial */
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
 }
 
-header h1 {
-    font-size: 2.5rem;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-    margin-bottom: 10px;
+/* Animação quando a Pokébola abre/saltar ao clicar */
+.pokebola-abrir {
+    animation: saltarEAbri 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
 }
 
-.intro-box {
-    background-color: #111;
-    border: 3px solid #333;
-    border-radius: 10px;
-    padding: 15px;
-    color: #00ff00;
-    font-family: 'Courier New', Courier, monospace;
-    margin: 20px auto;
-    max-width: 800px;
-    text-align: left;
+@keyframes saltarEAbri {
+    0% { transform: scale(1) translateY(0); }
+    30% { transform: scale(0.8) translateY(10px); }
+    100% { transform: scale(1.4) translateY(-30px); }
 }
 
-/* Menu de Navegação em Abas */
-.pokedex-navigation {
+.pokebola-abrir .pokebola-botao {
+    background-color: #ff4136;
+    box-shadow: 0 0 15px #ff4136;
+}
+
+/* O Raio de Captura (Puxando você para dentro) */
+.capture-beam {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #ffffff 10%, #ff4136 60%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 1000;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+/* Classe ativada por Script que faz o raio explodir e ocupar a tela toda */
+.beam-active {
+    animation: feixeExpansao 0.6s ease-out forwards;
+}
+
+@keyframes feixeExpansao {
+    0% { width: 10px; height: 10px; opacity: 1; }
+    40% { width: 300px; height: 300px; opacity: 1; }
+    100% { width: 2500px; height: 2500px; opacity: 1; border-radius: 0%; }
+}
+
+.intro-instruction {
+    margin-top: 30px;
+    font-size: 0.85rem;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+
+/* ========================================================
+   ESTILOS DO CONSOLE DA POKÉDEX
+   ======================================================== */
+.pokedex-container {
+    background-color: var(--pokedex-red);
+    width: 100%;
+    max-width: 750px;
+    border-radius: 20px;
+    box-shadow: 0 12px 0px #8b0000, 0 20px 25px rgba(0,0,0,0.7);
+    border: 4px solid #333;
+    padding: 25px;
+    animation: interfaceSurge 0.4s ease-out;
+}
+
+@keyframes interfaceSurge {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.top-lights {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    max-width: 800px;
-    margin: 0 auto 30px auto;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #8b0000;
+    padding-bottom: 15px;
 }
 
-.nav-btn {
-    background-color: #444;
-    color: white;
-    border: 2px solid #555;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.9rem;
+.big-blue-lens {
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle, #85e3ff, #00bfff);
+    border: 4px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent-blue);
     transition: all 0.2s ease;
 }
 
-.nav-btn:hover {
-    background-color: #555;
-    border-color: var(--pokedex-yellow);
+.lens-flash {
+    background: white !important;
+    box-shadow: 0 0 30px white !important;
+}
+
+.small-light {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+.light-red { background-color: #ff4136; }
+.light-yellow { background-color: #ffdc00; }
+.light-green { background-color: #2ecc40; }
+
+.pokedex-terminal {
+    background-color: #051a05;
+    border: 4px solid #333;
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--text-green);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    min-height: 60px;
+    box-shadow: inset 0 0 10px rgba(0,255,0,0.5);
+}
+
+.pokedex-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+@media(min-width: 500px) {
+    .pokedex-nav { grid-template-columns: repeat(4, 1fr); }
+}
+
+.nav-btn {
+    background-color: var(--pokedex-dark);
+    color: white;
+    border: 3px solid #1a1a1a;
+    padding: 12px 8px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 4px 0 #111;
+    transition: all 0.1s ease;
+}
+
+.nav-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #111;
 }
 
 .nav-btn.active {
-    background-color: var(--pokedex-red);
-    border-color: #fff;
-    box-shadow: 0 0 10px rgba(220, 10, 45, 0.5);
+    background-color: var(--accent-yellow);
+    color: #1a1a1a;
+    border-color: white;
+    box-shadow: 0 4px 0 #bfa600;
 }
 
-/* Container de Exibição das Missões */
-.pokedex-screen {
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    min-height: 320px;
-}
-
-.card-missao {
-    background-color: var(--card-bg);
-    border: 4px solid #444;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    display: none; /* Escondido por padrão */
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-.card-missao.active {
-    display: block; /* Exibido quando ativo */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.badge-rota {
-    background-color: var(--pokedex-green);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 15px;
-}
-
-.card-missao h2 {
-    color: var(--pokedex-yellow);
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #444;
-    padding-bottom: 10px;
-}
-
-.info-linha {
-    margin-bottom: 12px;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.info-linha strong {
-    color: #00bfff;
-}
-
-.principio-optico {
-    background-color: rgba(246, 222, 62, 0.1);
-    border-left: 4px solid var(--pokedex-yellow);
-    padding: 10px;
-    margin: 20px 0;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.curiosidade-box {
-    background-color: rgba(255,255,255,0.05);
-    border: 1px dashed #666;
-    padding: 12px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-style: italic;
-}
-
-.ia-report {
-    background-color: #1e222b;
-    border: 3px solid #007bff;
-    border-radius: 12px;
-    padding: 25px;
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    box-shadow: 0 0 15px rgba(0,123,255,0.3);
-}
-
-.ia-report h3 {
-    color: #007bff;
-    margin-bottom: 15px;
-}
-
-footer {
-    text-align: center;
+.pokedex-main-screen {
+    background-color: var(--screen-bg);
+    border: 4px solid #333;
+    border-radius: 10px;
     padding: 20px;
-    color: #666;
-    font-size: 0.9rem;
-    border-top: 1px solid #333;
-    margin-top: 40px;
+    min-height: 280px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
 }
+
+.data-card {
+    display: none;
+}
+
+.data-card.active {
+    display: block;
+}
+
+.badge-contexto {
+    background-color: #444;
+    color: var(--accent-yellow);
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: 1px solid #555;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.data-card h2 {
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.data-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-bottom: 12px;
+}
+
+.data-card p strong {
+    color: var(--accent-blue);
+}
+
+.highlight-box {
+    background-color: rgba(220, 10, 45, 0.15);
+    border-left: 4px solid var(--pokedex-red);
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 0.95rem;
+}
+
+.highlight-box span {
+    color: white;
+    font-weight: bold;
+}
+
+.fun-fact {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #aaa;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
+
+.ia-footer-panel {
+    margin-top: 20px;
+    background-color: rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #ddd;

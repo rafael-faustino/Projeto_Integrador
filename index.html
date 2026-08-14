@@ -3,206 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Pokédex Virtual</title>
+    <title>Menu Pokebola</title>
     <style>
-        /* CONFIGURAÇÕES DO CORPO DA PÁGINA */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace; /* Fonte estilo videogame */
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #111; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; }
 
-        body {
-            background: linear-gradient(135deg, #2c3e50 0%, #0f171e 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
+        /* Container Principal */
+        .cena { position: relative; width: 200px; height: 200px; transition: transform 1s ease-in; }
 
-        /* ESTRUTURA PRINCIPAL DA POKÉDEX */
-        .pokedex {
-            background-color: #dc0a2d; /* Vermelho clássico da Pokédex */
-            width: 360px;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 15px 0 #8b0000, 0 25px 30px rgba(0, 0, 0, 0.5);
-            border: 4px solid #1a1a1a;
-            position: relative;
-        }
+        /* Efeito de Zoom no Corpo do Site */
+        .zoom-background { transform: scale(5); filter: brightness(2); }
 
-        /* LUZES SUPERIORES (DETALHE VISUAL) */
-        .luzes-topo {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            align-items: center;
-        }
+        /* Estilização Base da Pokebola */
+        .pokebola { width: 100%; height: 100%; position: relative; cursor: pointer; }
+        .metade { position: absolute; width: 100%; height: 50%; left: 0; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); border: 8px solid #000; }
+        .topo { top: 0; background: #ff1c1c; border-radius: 100px 100px 0 0; }
+        .base { bottom: 0; background: #fff; border-radius: 0 0 100px 100px; }
 
-        .luz-azul {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, #00f0ff 0%, #0055ff 100%);
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 10px #00f0ff;
-        }
+        /* Botão Central */
+        .botao-central { position: absolute; width: 50px; height: 50px; background: #fff; border: 8px solid #000; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; transition: all 0.5s; }
+        .botao-central::before { content: ''; position: absolute; width: 20px; height: 20px; background: #fff; border: 2px solid #ccc; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-        .luz-pisca {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 1px solid #1a1a1a;
-        }
-        .vermelha { background-color: #ff0000; }
-        .amarela { background-color: #ffde00; }
-        .verde { background-color: #00ff00; }
+        /* Classes de Animação (Ativadas por JS) */
+        .abrir .topo { transform: translateY(-120px); }
+        .abrir .base { transform: translateY(120px); }
+        .abrir .botao-central { opacity: 0; transform: translate(-50%, -50%) scale(0); }
 
-        /* TELA ONDE APARECE O POKÉMON */
-        .tela-pokedex {
-            background-color: #dedede;
-            border-radius: 10px;
-            border: 15px solid #eaeaea;
-            border-bottom: 35px solid #eaeaea; /* Simula o detalhe de plástico */
-            height: 240px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
-        }
-
-        .tela-pokedex img {
-            width: 140px;
-            height: 140px;
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
-        }
-
-        .info-pokemon {
-            color: #222;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            text-align: center;
-            margin-top: -10px;
-        }
-
-        /* CAMPO DE BUSCA E BOTÃO */
-        .painel-busca {
-            margin-top: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .input-busca {
-            padding: 12px;
-            font-size: 1rem;
-            border: 3px solid #1a1a1a;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            background-color: #222;
-            color: #00ff00; /* Texto verde estilo terminal */
-        }
-
-        .input-busca::placeholder {
-            color: #00aa00;
-        }
-
-        .btn-buscar {
-            background-color: #4dad5b; /* Verde Pokémon */
-            color: white;
-            border: 3px solid #1a1a1a;
-            padding: 12px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 0 #286030;
-            transition: all 0.1s ease;
-        }
-
-        .btn-buscar:hover {
-            background-color: #5cbf6b;
-        }
-
-        .btn-buscar:active {
-            transform: translateY(4px);
-            box-shadow: 0 0px 0 #286030;
-        }
+        /* O Raio que puxa o usuário */
+        .raio-luz { position: fixed; top: 50%; left: 50%; width: 10px; height: 10px; background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,183,255,1) 50%, rgba(0,0,0,0) 70%); border-radius: 50%; transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; z-index: 999; transition: transform 0.8s ease-in, opacity 0.4s ease-in; }
+        .raio-ativo { transform: translate(-50%, -50%) scale(300); opacity: 1; }
     </style>
 </head>
 <body>
 
-    <!-- CORDPO DA POKÉDEX -->
-    <div class="pokedex">
-        
-        <!-- Detalhes das luzes de cima -->
-        <div class="luzes-topo">
-            <div class="luz-azul"></div>
-            <div class="luz-pisca vermelha"></div>
-            <div class="luz-pisca amarela"></div>
-            <div class="luz-pisca verde"></div>
+    <div class="cena" id="canvas">
+        <div class="pokebola" id="pokebola" onclick="capturar()">
+            <div class="metade topo"></div>
+            <div class="botao-central"></div>
+            <div class="metade base"></div>
         </div>
-
-        <!-- Tela de exibição -->
-        <div class="tela-pokedex">
-            <img id="poke-imagem" src="https://githubusercontent.com" alt="Pokemon">
-            <div class="info-pokemon" id="poke-info">Nº 001 - bulbasaur</div>
-        </div>
-
-        <!-- Controles de busca -->
-        <div class="painel-busca">
-            <input type="text" class="input-busca" id="input-pokemon" placeholder="NOME OU NÚMERO">
-            <button class="btn-buscar" onclick="buscarPokemon()">BUSCAR POKÉMON</button>
-        </div>
-
     </div>
 
-    <!-- LÓGICA DE BUSCA DA API -->
+    <div class="raio-luz" id="raio"></div>
+
     <script>
-        async function buscarPokemon() {
-            const input = document.getElementById('input-pokemon');
-            const imagem = document.getElementById('poke-imagem');
-            const info = document.getElementById('poke-info');
-            
-            // Pega o termo digitado e transforma em letras minúsculas
-            const termoBusca = input.value.toLowerCase().trim();
+        function capturar() {
+            const pokebola = document.getElementById('pokebola');
+            const raio = document.getElementById('raio');
+            const canvas = document.getElementById('canvas');
 
-            if (!termoBusca) return;
+            // 1. Abre a pokebola
+            pokebola.classList.add('abrir');
 
-            info.innerText = "PROCURANDO...";
-            imagem.src = "";
+            // 2. Dispara o raio e o efeito de puxar após um pequeno delay
+            setTimeout(() => {
+                raio.classList.add('raio-ativo');
+                canvas.classList.add('zoom-background');
+            }, 300);
 
-            try {
-                // Faz a requisição para a API oficial do Pokémon
-                const resposta = await fetch(`https://pokeapi.co{termoBusca}`);
-                
-                if (!resposta.ok) throw new Error('Não encontrado');
-
-                const dados = await resposta.json();
-
-                // Atualiza a tela com a foto e os dados reais obtidos
-                imagem.src = dados.sprites.front_default;
-                info.innerText = `Nº ${dados.id} - ${dados.name}`;
-                
-            } catch (erro) {
-                // Caso o usuário digite um nome que não existe
-                imagem.src = "";
-                info.innerText = "NÃO ENCONTRADO!";
-            }
+            // 3. Redireciona para o menu real após a tela ficar totalmente coberta
+            setTimeout(() => {
+                // Substitua pelo link da sua página de menu interna
+                // window.location.href = "menu.html"; 
+                alert("Você foi puxado para dentro do menu!");
+            }, 1100);
         }
-
-        // Permite buscar também ao apertar a tecla "Enter" no teclado
-        document.getElementById('input-pokemon').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                buscarPokemon();
-            }
-        });
     </script>
 </body>
 </html>

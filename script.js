@@ -1,26 +1,39 @@
-function dispararCaptura() {
-    const pokebola = document.getElementById('pokebola');
-    const raio = document.getElementById('raioSugador');
-    const telaIntro = document.getElementById('telaIntro');
-    const pokedexApp = document.getElementById('pokedexApp');
+// Selecionando os elementos de transição de tela
+const fachada = document.getElementById('fachada');
+const interior = document.getElementById('interior');
 
-    // 1. Faz a pokébola dar o salto/pulo
-    pokebola.classList.add('pokebola-saltar');
+// Selecionando os textos que vamos mudar dinamicamente
+const tituloInterior = document.getElementById('titulo-interior');
+const mensagemInterior = document.getElementById('mensagem-interior');
 
-    // 2. Dispara o raio vermelho logo em seguida (200ms)
-    setTimeout(() => {
-        raio.classList.add('raio-ativo');
-    }, 200);
+// Selecionando cada botão individualmente
+const btnEntrar = document.getElementById('btn-entrar');
+const btnCurar = document.getElementById('btn-curar');
+const btnPc = document.getElementById('btn-pc');
 
-    // 3. Remove a tela de introdução e exibe a Pokédex após o feixe cobrir os olhos do usuário
-    setTimeout(() => {
-        telaIntro.style.transition = "opacity 0.3s";
-        telaIntro.style.opacity = "0";
-        
-        setTimeout(() => {
-            telaIntro.classList.add('escondido');
-            pokedexApp.classList.remove('escondido');
-        }, 300);
-
-    }, 700);
+// Função padrão para fazer a animação de transição de telas
+function transicaoParaOInterior() {
+    fachada.classList.add('fachada-escondida');
+    interior.classList.add('interior-visivel');
 }
+
+// Ação do Botão 1: Apenas Entrar
+btnEntrar.addEventListener('click', () => {
+    tituloInterior.innerText = "Bem-vindo ao Centro Pokémon!";
+    mensagemInterior.innerText = "Você acabou de passar pelas portas automáticas. A Enfermeira Joy está sorrindo para você!";
+    transicaoParaOInterior();
+});
+
+// Ação do Botão 2: Ir direto curar os Pokémons
+btnCurar.addEventListener('click', () => {
+    tituloInterior.innerText = "Balcão de Cura";
+    mensagemInterior.innerText = "Por favor, coloque suas Pokébolas na máquina. Vamos restaurar a vida dos seus companheiros!";
+    transicaoParaOInterior();
+});
+
+// Ação do Botão 3: Acessar o PC do Bill
+btnPc.addEventListener('click', () => {
+    tituloInterior.innerText = "PC do Bill Acessado";
+    mensagemInterior.innerText = "Conectando ao sistema de armazenamento... Pronto! Qual Pokémon você quer retirar ou depositar?";
+    transicaoParaOInterior();
+});

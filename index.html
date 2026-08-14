@@ -3,45 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Integrador - Pokédex</title>
+    <title>Centro Pokémon - Entrada</title>
+    <!-- Vinculando o arquivo CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- FASE 1: TELA PRETA DE ENTRADA -->
-    <div id="telaIntro" class="tela-intro">
-        <div class="intro-box">
-            <h1 class="txt-pixel">SISTEMA POKÉDEX</h1>
-            <p class="txt-sub">APERTE QUALQUER LUGAR NA POKÉBOLA PARA INICIAR</p>
-            
-            <!-- Corpo da Pokébola -->
-            <div id="pokebola" class="pokebola" onclick="dispararCaptura()">
-                <div class="linha-central"></div>
-                <div class="botao-central"></div>
-            </div>
-        </div>
+    <!-- PORTA DE ENTRADA (FACHADA DO MENU) -->
+    <div class="centro-pokemon-fachada" id="fachada">
+        <div class="topo-vermelho">CENTRO POKÉMON</div>
         
-        <!-- O Raio de energia que vai se expandir e sugar a tela -->
-        <div id="raioSugador" class="raio-sugador"></div>
-    </div>
-
-    <!-- FASE 2: CONSOLE PRINCIPAL (INICIA ESCONDIDO) -->
-    <div id="pokedexApp" class="pokedex-app escondido">
-        <div class="pokedex-moldura">
-            <div class="led-principal"></div>
-            <div class="visor-mensagem">
-                <p>&gt; CAPTURA CONCLUÍDA COM SUCESSO!</p>
-                <p>&gt; Treinador inserido no banco de dados da Óptica.</p>
-            </div>
-            
-            <!-- Menu temporário só para validar a entrada -->
-            <div class="menu-teste">
-                <button class="btn-rota">⚡ Rota 01</button>
-                <button class="btn-rota">🌙 Rota 02</button>
-            </div>
+        <div class="menu-entrada">
+            <!-- Adicionamos IDs para o JavaScript reconhecer qual botão foi clicado -->
+            <button class="btn-entrar" id="btn-entrar">Entrar no Centro</button>
+            <button class="btn-entrar" id="btn-curar">Curar Pokémons</button>
+            <button class="btn-entrar" id="btn-pc">Acessar PC de Bill</button>
         </div>
     </div>
 
+    <!-- INTERIOR DO CENTRO POKÉMON -->
+    <div class="interior-centro" id="interior">
+        <h1 id="titulo-interior">Bem-vindo ao Centro Pokémon!</h1>
+        <p id="mensagem-interior">Aguarde um instante...</p>
+    </div>
+
+    <!-- Vinculando o arquivo JavaScript externo -->
     <script src="script.js"></script>
 </body>
 </html>

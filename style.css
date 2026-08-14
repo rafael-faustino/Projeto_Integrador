@@ -1,1 +1,30 @@
+/* Criando uma mini Poké-bola com CSS puro para colocar antes do título */
+.section-title-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pokeball-icon {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(to bottom, #ff1a1a 50%, #ffffff 50%);
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+}
+
+.pokeball-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 50%;
+}
 

@@ -1,30 +1,70 @@
-/* Criando uma mini Poké-bola com CSS puro para colocar antes do título */
+/* =====================================================
+ADICIONADO: BARRA DE STATUS DO TREINADOR POKÉMON
+===================================================== */
+.trainer-status-bar {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+background: var(--painel);
+border: 2px solid rgba(255, 255, 255, 0.15);
+border-radius: 16px;
+padding: 15px;
+margin: 25px auto 45px auto;
+max-width: 800px;
+font-weight: bold;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+border-left: 5px solid var(--vermelho);
+} 
+
+.status-item {
+margin: 5px 10px;
+font-size: 15px;
+letter-spacing: 1px;
+color: var(--branco);
+} 
+
+.status-item span.label {
+color: var(--cinza);
+} 
+
+.status-item span.value {
+color: var(--branco);
+text-shadow: 0 0 10px rgba(115, 201, 255, 0.3);
+} 
+
+/* =====================================================
+ADICIONADO: ÍCONE DE POKÉBOLA NO TÍTULO DA SEÇÃO
+===================================================== */
 .section-title-pokemon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
+display: flex;
+align-items: center;
+gap: 14px;
+margin-bottom: 30px;
+font-size: 30px;
+} 
 
 .pokeball-icon {
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(to bottom, #ff1a1a 50%, #ffffff 50%);
-  border: 2px solid #333;
-  border-radius: 50%;
-  position: relative;
-}
+width: 26px;
+height: 26px;
+background: linear-gradient(to bottom, #ef233c 50%, #ffffff 50%);
+border: 3px solid #111;
+border-radius: 50%;
+position: relative;
+display: inline-block;
+box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+flex-shrink: 0;
+} 
 
 .pokeball-icon::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 6px;
-  height: 6px;
-  background-color: #fff;
-  border: 2px solid #333;
-  border-radius: 50%;
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 8px;
+height: 8px;
+background-color: #fff;
+border: 3px solid #111;
+border-radius: 50%;
 }
 

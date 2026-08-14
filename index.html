@@ -3,71 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Pokebola</title>
+    <title>Pokédex</title>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #111; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Container Principal */
-        .cena { position: relative; width: 200px; height: 200px; transition: transform 1s ease-in; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #111;
+            overflow: hidden;
+        }
 
-        /* Efeito de Zoom no Corpo do Site */
-        .zoom-background { transform: scale(5); filter: brightness(2); }
+        /* =========================
+           TELA INICIAL
+        ========================= */
 
-        /* Estilização Base da Pokebola */
-        .pokebola { width: 100%; height: 100%; position: relative; cursor: pointer; }
-        .metade { position: absolute; width: 100%; height: 50%; left: 0; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); border: 8px solid #000; }
-        .topo { top: 0; background: #ff1c1c; border-radius: 100px 100px 0 0; }
-        .base { bottom: 0; background: #fff; border-radius: 0 0 100px 100px; }
+        #inicio {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at center, #e63946 0%, #9d111b 45%, #210407 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            cursor: pointer;
+            transition: opacity 1s ease, transform 1s ease;
+        }
 
-        /* Botão Central */
-        .botao-central { position: absolute; width: 50px; height: 50px; background: #fff; border: 8px solid #000; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; transition: all 0.5s; }
-        .botao-central::before { content: ''; position: absolute; width: 20px; height: 20px; background: #fff; border: 2px solid #ccc; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        #inicio.saindo {
+            opacity: 0;
+            transform: scale(1.5);
+            pointer-events: none;
+        }
 
-        /* Classes de Animação (Ativadas por JS) */
-        .abrir .topo { transform: translateY(-120px); }
-        .abrir .base { transform: translateY(120px); }
-        .abrir .botao-central { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+        /* Brilho no fundo */
 
-        /* O Raio que puxa o usuário */
-        .raio-luz { position: fixed; top: 50%; left: 50%; width: 10px; height: 10px; background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,183,255,1) 50%, rgba(0,0,0,0) 70%); border-radius: 50%; transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; z-index: 999; transition: transform 0.8s ease-in, opacity 0.4s ease-in; }
-        .raio-ativo { transform: translate(-50%, -50%) scale(300); opacity: 1; }
+        .brilho {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            filter: blur(50px);
+        }
+
+        /* =========================
+           POKÉBOLA
+        ========================= */
+
+        .pokebola {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(
+                to bottom,
+                #ef233c 0%,
+                #ef233c 47%,
+                #111 47%,
+                #111 53%,
+                #f5f5f5 53%,
+                #f5f5f5 100%
+            );
+
+            border: 8px solid #111;
+
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(255,255,255,0.2);
+
+            animation:
+                pulo 1.8s ease-in-out infinite,
+                aproxima 4s ease-in-out forwards;
+        }
+
+        .pokebola::before {
+            content: "";
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            background: #111;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pokebola::after {
+            content: "";
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border: 5px solid #111;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes pulo {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-35px) rotate(8deg);
+            }
+        }
+
+        @keyframes aproxima {
+            0% {
+                transform: scale(0.2);
+            }
+
+            60% {
+                transform: scale(0.7);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* =========================
+           TEXTO INICIAL
+        ========================= */
+
+        .titulo {
+            margin-top: 50px;
+            color: white;
+            font-size: clamp(28px, 5vw, 55px);
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-shadow:
+                3px 3px 0 #222,
+                0 0 20px rgba(255,255,255,0.4);
+        }
+
+        .aperte {
+            margin-top: 35px;
+            color: white;
+            font-size: 18px;
+            letter-spacing: 3px;
+            animation: piscar 1.2s infinite;
+        }
+
+        @keyframes piscar {
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        /* =========================
+           POKÉDEX
+        ========================= */
+
+        #pokedex {
+            min-height: 100vh;
+            overflow-y: auto;
+            background:
+                linear-gradient(135deg, #e9eef2, #c9d1d9);
+            padding: 30px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        #pokedex.visivel {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cabecalho {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 40px;
+            font-weight: 900;
+            color: #e63946;
+            text-shadow: 3px 3px #222;
+        }
+
+        .pesquisa {
+            width: 300px;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .lista {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+        }
+
+        .pokemon {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 300px;
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.15);
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+
+            cursor: pointer;
+        }
+
+        .pokemon:hover {
+            transform: translateY(-10px) scale(1.02);
+
+            box-shadow:
+                0 20px 35px rgba(0,0,0,0.25);
+        }
+
+        .numero {
+            color: #888;
+            font-weight: bold;
+        }
+
+        .imagem-pokemon {
+            height: 160px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 70px;
+        }
+
+        .nome {
+            font-size: 25px;
+            font-weight: bold;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+        }
+
+        .tipo {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: #e63946;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            #pokedex {
+                padding: 15px;
+            }
+
+            .cabecalho {
+                flex-direction: column;
+            }
+
+            .logo {
+                font-size: 32px;
+            }
+
+            .pesquisa {
+                width: 100%;
+            }
+
+            .pokebola {
+                width: 140px;
+                height: 140px;
+            }
+
+            .titulo {
+                text-align: center;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-    <div class="cena" id="canvas">
-        <div class="pokebola" id="pokebola" onclick="capturar()">
-            <div class="metade topo"></div>
-            <div class="botao-central"></div>
-            <div class="metade base"></div>
-        </div>
-    </div>
+    <!-- =========================
+         TELA INICIAL
+    ========================== -->
 
-    <div class="raio-luz" id="raio"></div>
+    <section id="inicio">
+
+        <div class="brilho"></div>
+
+        <div class="pokebola"></div>
+
+        <h1 class="titulo">
+            POKÉDEX
+        </h1>
+
+        <p class="aperte">
+            PRESSIONE QUALQUER BOTÃO
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         POKÉDEX
+    ========================== -->
+
+    <main id="pokedex">
+
+        <header class="cabecalho">
+
+            <div class="logo">
+                POKÉDEX
+            </div>
+
+            <input
+                type="text"
+                class="pesquisa"
+                id="pesquisa"
+                placeholder="Pesquisar Pokémon..."
+            >
+
+        </header>
+
+
+        <section class="lista" id="lista">
+
+            <!-- Pokémon temporários.
+                 Depois vamos substituir pelas informações que você mandar. -->
+
+            <article class="pokemon">
+
+                <div class="numero">
+                    #001
+                </div>
+
+                <div class="imagem-pokemon">
+                    🌱
+                </div>
+
+                <div class="nome">
+                    Bulbasaur
+                </div>
+
+                <span class="tipo">
+                    Planta
+                </span>
+
+            </article>
+
+
+            <article class="pokemon">
+
+                <div class="numero">
+                    #004
+                </div>
+
+                <div class="imagem-pokemon">
+                    🔥
+                </div>
+
+                <div class="nome">
+                    Charmander
+                </div>
+
+                <span class="tipo">
+                    Fogo
+                </span>
+
+            </article>
+
+
+            <article class="pokemon">
+
+                <div class="numero">
+                    #007
+                </div>
+
+                <div class="imagem-pokemon">
+                    💧
+                </div>
+
+                <div class="nome">
+                    Squirtle
+                </div>
+
+                <span class="tipo">
+                    Água
+                </span>
+
+            </article>
+
+        </section>
+
+    </main>
+
 
     <script>
-        function capturar() {
-            const pokebola = document.getElementById('pokebola');
-            const raio = document.getElementById('raio');
-            const canvas = document.getElementById('canvas');
 
-            // 1. Abre a pokebola
-            pokebola.classList.add('abrir');
+        const inicio = document.getElementById("inicio");
+        const pokedex = document.getElementById("pokedex");
+        const pesquisa = document.getElementById("pesquisa");
 
-            // 2. Dispara o raio e o efeito de puxar após um pequeno delay
+        let entrou = false;
+
+
+        /*
+        ====================================
+        ENTRAR NA POKÉDEX
+        ====================================
+        */
+
+        function entrar() {
+
+            if (entrou) return;
+
+            entrou = true;
+
+            inicio.classList.add("saindo");
+
             setTimeout(() => {
-                raio.classList.add('raio-ativo');
-                canvas.classList.add('zoom-background');
-            }, 300);
 
-            // 3. Redireciona para o menu real após a tela ficar totalmente coberta
-            setTimeout(() => {
-                // Substitua pelo link da sua página de menu interna
-                // window.location.href = "menu.html"; 
-                alert("Você foi puxado para dentro do menu!");
-            }, 1100);
+                pokedex.classList.add("visivel");
+
+                document.body.style.overflow = "auto";
+
+            }, 500);
+
         }
+
+
+        /*
+        ====================================
+        QUALQUER TECLA
+        ====================================
+        */
+
+        document.addEventListener("keydown", (evento) => {
+
+            if (!entrou) {
+                entrar();
+            }
+
+        });
+
+
+        /*
+        ====================================
+        CLIQUE / TOUCH
+        ====================================
+        */
+
+        inicio.addEventListener("click", entrar);
+
+        inicio.addEventListener("touchstart", entrar);
+
+
+        /*
+        ====================================
+        PESQUISA
+        ====================================
+        */
+
+        pesquisa.addEventListener("input", () => {
+
+            const texto =
+                pesquisa.value.toLowerCase();
+
+            const pokemons =
+                document.querySelectorAll(".pokemon");
+
+            pokemons.forEach((pokemon) => {
+
+                const nome =
+                    pokemon
+                    .querySelector(".nome")
+                    .textContent
+                    .toLowerCase();
+
+                if (nome.includes(texto)) {
+
+                    pokemon.style.display = "";
+
+                } else {
+
+                    pokemon.style.display = "none";
+
+                }
+
+            });
+
+        });
+
     </script>
+
 </body>
 </html>

@@ -1,156 +1,205 @@
-/* =====================================================
-   PLANO DE FUNDO - ASH
-===================================================== */
-
-body {
-    position: relative;
-    background:
-        linear-gradient(
-            rgba(8, 16, 24, .88),
-            rgba(8, 16, 24, .94)
-        ),
-        url("https://live.staticflickr.com/3206/5764005330_350c318106_o.jpg");
-
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-/* Mantém o conteúdo acima do fundo */
-
-#site {
-    position: relative;
-    z-index: 2;
+body{
+font-family:Arial,sans-serif;
+background:#081018;
+color:white;
+overflow-x:hidden;
 }
 
-/* =====================================================
-   ABAS
-===================================================== */
-
-.abas {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 20px 5% 0;
-
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-
-    flex-wrap: wrap;
+#inicio{
+position:fixed;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle,#e63946,#210407);
+z-index:999;
+cursor:pointer;
+transition:1s;
 }
 
-.aba {
-    border: 1px solid rgba(255,255,255,.12);
-
-    background: rgba(16,29,41,.85);
-
-    color: var(--cinza);
-
-    padding: 14px 24px;
-
-    border-radius: 14px 14px 0 0;
-
-    cursor: pointer;
-
-    font-weight: bold;
-    font-size: 15px;
-
-    transition: .3s;
-
-    backdrop-filter: blur(8px);
+#inicio.saindo{
+opacity:0;
+transform:scale(1.5);
+pointer-events:none;
 }
 
-.aba:hover {
-    color: white;
-
-    background:
-        rgba(230,57,70,.25);
-
-    transform: translateY(-3px);
+.pokebola{
+width:180px;
+height:180px;
+border-radius:50%;
+border:8px solid #111;
+background:
+linear-gradient(
+to bottom,
+#ef233c 0 47%,
+#111 47% 53%,
+white 53%
+);
+animation:pulo 2s infinite;
 }
 
-.aba.ativa {
-    color: white;
-
-    background:
-        var(--vermelho);
-
-    border-color:
-        var(--vermelho);
-
-    box-shadow:
-        0 -5px 20px
-        rgba(230,57,70,.25);
+@keyframes pulo{
+50%{
+transform:translateY(-25px);
+}
 }
 
-/* Conteúdo das abas */
-
-.pagina-aba {
-    display: none;
-
-    animation:
-        aparecerAba .4s ease;
+.titulo{
+margin-top:40px;
+font-size:60px;
+font-weight:900;
 }
 
-.pagina-aba.ativa {
-    display: block;
+.aperte{
+margin-top:20px;
+animation:piscar 1s infinite;
 }
 
-@keyframes aparecerAba {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+@keyframes piscar{
+50%{
+opacity:.3;
+}
 }
 
-/* Painéis mais transparentes para mostrar Ash */
-
-.card,
-.curiosidade,
-.pesquisa,
-.ficha,
-header {
-    backdrop-filter: blur(8px);
+#site{
+opacity:0;
+transition:1s;
 }
 
-.card {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(23,40,56,.92),
-            rgba(16,29,41,.92)
-        );
+#site.visivel{
+opacity:1;
 }
 
-.curiosidade {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(21,31,44,.92),
-            rgba(16,24,32,.92)
-        );
+header{
+position:sticky;
+top:0;
+background:#081018;
+padding:20px;
+border-bottom:1px solid #222;
 }
 
-/* Mobile */
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-@media(max-width:700px) {
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:bold;
+}
 
-    .abas {
-        padding-left: 3%;
-        padding-right: 3%;
-    }
+.logo-bola{
+width:35px;
+height:35px;
+border-radius:50%;
+background:
+linear-gradient(
+#ef233c 0 45%,
+#111 45% 55%,
+white 55%
+);
+}
 
-    .aba {
-        width: 100%;
-        border-radius: 12px;
-        text-align: center;
-    }
+nav{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
 
+nav button{
+background:#162330;
+border:none;
+color:white;
+padding:10px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.hero{
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+}
+
+.linha{
+width:100px;
+height:4px;
+background:#e63946;
+margin:20px auto;
+}
+
+.pesquisa-area{
+max-width:700px;
+margin:auto;
+padding:20px;
+}
+
+.pesquisa{
+width:100%;
+padding:15px;
+border-radius:40px;
+border:none;
+}
+
+.secao{
+padding:50px 5%;
+}
+
+.titulo-secao{
+margin-bottom:25px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:#162330;
+padding:25px;
+border-radius:20px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.icone{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.contexto{
+color:#e63946;
+font-size:13px;
+font-weight:bold;
+}
+
+.curiosidade{
+background:#162330;
+padding:25px;
+border-radius:20px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+margin-top:40px;
+border-top:1px solid #222;
 }

@@ -1,10 +1,12 @@
-/* =====================================================
+ =====================================================
    SISTEMA DE ABAS
 ===================================================== */
 
-function abrirAba(id, botao) {
+function abrir/*Aba(id, botao) {
 
-    // Esconde todas as páginas
+    // Esconde todativa");
+
+        });s as páginas
     document
         .querySelectorAll(".pagina-aba")
         .forEach(pagina => {
@@ -19,9 +21,7 @@ function abrirAba(id, botao) {
         .querySelectorAll(".aba")
         .forEach(aba => {
 
-            aba.classList.remove("ativa");
-
-        });
+            aba.classList.remove("a
 
 
     // Mostra a página selecionada

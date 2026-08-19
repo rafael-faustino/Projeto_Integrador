@@ -1,28 +1,21 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pokédex da Óptica</title>
 
 <style>
+
+/* =====================================================
+   CONFIGURAÇÕES
+===================================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-:root {
-    --vermelho: #e63946;
-    --vermelho-escuro: #8e1520;
-    --azul: #1769aa;
-    --azul-escuro: #0b2942;
-    --fundo: #081018;
-    --painel: #101d29;
-    --painel2: #172838;
-    --branco: #f5f7fa;
-    --cinza: #aebdcc;
 }
 
 html {
@@ -31,31 +24,46 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--fundo);
-    color: var(--branco);
+    background: #081018;
+    color: white;
     overflow-x: hidden;
 }
 
+:root {
+    --vermelho: #e63946;
+    --vermelho-escuro: #8e1520;
+    --azul: #49a9e8;
+    --fundo: #081018;
+    --painel: #101d29;
+    --painel2: #172838;
+    --texto: #f5f7fa;
+    --cinza: #aebdcc;
+}
+
 /* =====================================================
-   TELA DE ABERTURA
+   TELA INICIAL
 ===================================================== */
 
 #inicio {
     position: fixed;
     inset: 0;
+
     z-index: 999;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    background:
-        radial-gradient(circle at center,
-        #e63946 0%,
-        #9d111b 45%,
-        #210407 100%);
-
     cursor: pointer;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #e63946 0%,
+            #9d111b 45%,
+            #210407 100%
+        );
 
     transition:
         opacity 1s ease,
@@ -70,14 +78,21 @@ body {
 
 .brilho {
     position: absolute;
+
     width: 500px;
     height: 500px;
+
     border-radius: 50%;
-    background: rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.08);
+
     filter: blur(50px);
 }
 
-/* Pokébola */
+/* =====================================================
+   POKÉBOLA
+===================================================== */
 
 .pokebola {
     position: relative;
@@ -124,7 +139,8 @@ body {
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 }
 
 .pokebola::after {
@@ -144,18 +160,24 @@ body {
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 }
 
 @keyframes pulo {
 
     0%,100% {
-        transform: translateY(0) rotate(0deg);
+        transform:
+            translateY(0)
+            rotate(0deg);
     }
 
     50% {
-        transform: translateY(-35px) rotate(8deg);
+        transform:
+            translateY(-35px)
+            rotate(8deg);
     }
+
 }
 
 @keyframes aproxima {
@@ -171,12 +193,18 @@ body {
     100% {
         transform: scale(1);
     }
+
 }
+
+/* =====================================================
+   TEXTO DA ABERTURA
+===================================================== */
 
 .titulo {
     margin-top: 50px;
 
-    font-size: clamp(30px,5vw,58px);
+    font-size:
+        clamp(30px,5vw,58px);
 
     font-weight: 900;
 
@@ -206,6 +234,7 @@ body {
     50% {
         opacity: .2;
     }
+
 }
 
 /* =====================================================
@@ -224,6 +253,7 @@ body {
 
 #site.visivel {
     opacity: 1;
+
     transform: scale(1);
 }
 
@@ -238,18 +268,21 @@ header {
 
     z-index: 50;
 
-    background: rgba(8,16,24,.94);
+    padding: 18px 5%;
 
-    backdrop-filter: blur(12px);
+    background:
+        rgba(8,16,24,.95);
+
+    backdrop-filter:
+        blur(12px);
 
     border-bottom:
-        1px solid rgba(255,255,255,.1);
-
-    padding: 18px 5%;
+        1px solid
+        rgba(255,255,255,.1);
 }
 
 .nav {
-    max-width: 1300px;
+    max-width: 1350px;
 
     margin: auto;
 
@@ -267,11 +300,13 @@ header {
 
     align-items: center;
 
-    gap: 12px;
+    gap: 10px;
 
-    font-size: 25px;
+    font-size: 22px;
 
     font-weight: 900;
+
+    white-space: nowrap;
 }
 
 .logo-bola {
@@ -280,24 +315,24 @@ header {
 
     border-radius: 50%;
 
+    border: 3px solid #111;
+
     background:
         linear-gradient(
             #e63946 0 45%,
             #111 45% 55%,
             white 55%
         );
-
-    border: 3px solid #111;
 }
 
 nav {
     display: flex;
 
-    gap: 8px;
-
     flex-wrap: wrap;
 
     justify-content: flex-end;
+
+    gap: 6px;
 }
 
 nav button {
@@ -307,22 +342,22 @@ nav button {
 
     color: var(--cinza);
 
-    padding: 9px 13px;
+    padding: 9px 12px;
 
     border-radius: 10px;
 
     cursor: pointer;
 
-    transition: .25s;
-
     font-weight: bold;
+
+    transition: .25s;
 }
 
 nav button:hover {
     color: white;
 
     background:
-        rgba(230,57,70,.15);
+        rgba(230,57,70,.18);
 }
 
 /* =====================================================
@@ -334,7 +369,8 @@ nav button:hover {
 
     margin: auto;
 
-    padding: 75px 5% 45px;
+    padding:
+        80px 5% 45px;
 
     text-align: center;
 }
@@ -343,31 +379,19 @@ nav button:hover {
     font-size:
         clamp(35px,6vw,70px);
 
-    margin-bottom: 15px;
-
     background:
         linear-gradient(
             90deg,
-            #fff,
+            white,
             #73c9ff,
-            #fff
+            white
         );
 
     -webkit-background-clip: text;
 
     color: transparent;
-}
 
-.hero p {
-    max-width: 750px;
-
-    margin: auto;
-
-    color: var(--cinza);
-
-    line-height: 1.7;
-
-    font-size: 18px;
+    margin-bottom: 15px;
 }
 
 .linha {
@@ -375,11 +399,24 @@ nav button:hover {
 
     height: 4px;
 
-    background: var(--vermelho);
-
-    margin: 25px auto;
+    background:
+        var(--vermelho);
 
     border-radius: 20px;
+
+    margin: 25px auto;
+}
+
+.hero p {
+    max-width: 800px;
+
+    margin: auto;
+
+    color: var(--cinza);
+
+    font-size: 18px;
+
+    line-height: 1.7;
 }
 
 /* =====================================================
@@ -389,7 +426,7 @@ nav button:hover {
 .pesquisa-area {
     max-width: 800px;
 
-    margin: 20px auto 55px;
+    margin: 20px auto 50px;
 
     padding: 0 5%;
 }
@@ -406,15 +443,12 @@ nav button:hover {
 
     outline: none;
 
-    background: #101c27;
+    background:
+        #101c27;
 
     color: white;
 
     font-size: 16px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.2);
 }
 
 .pesquisa:focus {
@@ -423,35 +457,42 @@ nav button:hover {
 }
 
 /* =====================================================
-   ASSUNTOS
+   SEÇÕES
 ===================================================== */
 
 .secao {
-    max-width: 1300px;
+    max-width: 1350px;
 
     margin: auto;
 
     padding:
-        30px 5% 70px;
+        35px 5% 70px;
 }
 
 .titulo-secao {
-    margin-bottom: 30px;
-
     font-size: 30px;
+
+    margin-bottom: 30px;
 }
+
+/* =====================================================
+   GRID
+===================================================== */
 
 .grid {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(260px,1fr));
+        repeat(
+            auto-fit,
+            minmax(260px,1fr)
+        );
 
     gap: 22px;
 }
 
 /* =====================================================
-   CARD
+   CARDS
 ===================================================== */
 
 .card {
@@ -474,9 +515,9 @@ nav button:hover {
 
     padding: 27px;
 
-    cursor: pointer;
-
     min-height: 300px;
+
+    cursor: pointer;
 
     transition:
         transform .3s,
@@ -496,27 +537,10 @@ nav button:hover {
         rgba(0,0,0,.35);
 }
 
-.card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(230,57,70,.08);
-
-    right: -70px;
-    bottom: -70px;
-}
-
 .icone {
     font-size: 48px;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .card h3 {
@@ -525,13 +549,13 @@ nav button:hover {
     margin-bottom: 10px;
 }
 
-.card .contexto {
+.contexto {
     color:
-        #e63946;
-
-    font-weight: bold;
+        var(--vermelho);
 
     font-size: 13px;
+
+    font-weight: bold;
 
     text-transform: uppercase;
 
@@ -551,13 +575,45 @@ nav button:hover {
 
     margin-top: 20px;
 
-    color: white;
-
     font-weight: bold;
 }
 
 /* =====================================================
-   MODAL / FICHA
+   CURIOSIDADES
+===================================================== */
+
+.curiosidade {
+    background:
+        linear-gradient(
+            135deg,
+            #151f2c,
+            #101820
+        );
+
+    border-radius: 22px;
+
+    padding: 30px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+}
+
+.curiosidade h3 {
+    color:
+        #ffd166;
+
+    margin-bottom: 12px;
+}
+
+.curiosidade p {
+    color: var(--cinza);
+
+    line-height: 1.7;
+}
+
+/* =====================================================
+   MODAL
 ===================================================== */
 
 #modal {
@@ -565,18 +621,18 @@ nav button:hover {
 
     inset: 0;
 
-    z-index: 100;
+    z-index: 200;
 
     display: none;
 
-    align-items: center;
-
     justify-content: center;
+
+    align-items: center;
 
     padding: 20px;
 
     background:
-        rgba(0,0,0,.78);
+        rgba(0,0,0,.8);
 
     backdrop-filter:
         blur(8px);
@@ -587,11 +643,16 @@ nav button:hover {
 }
 
 .ficha {
-    width: min(950px,100%);
+    width:
+        min(950px,100%);
 
     max-height: 90vh;
 
     overflow-y: auto;
+
+    padding: 35px;
+
+    border-radius: 28px;
 
     background:
         linear-gradient(
@@ -604,19 +665,15 @@ nav button:hover {
         1px solid
         rgba(255,255,255,.12);
 
-    border-radius: 28px;
-
-    padding: 35px;
-
     box-shadow:
         0 30px 80px
         rgba(0,0,0,.6);
 
     animation:
-        entrarFicha .35s ease;
+        fichaEntrar .35s ease;
 }
 
-@keyframes entrarFicha {
+@keyframes fichaEntrar {
 
     from {
         opacity: 0;
@@ -633,6 +690,7 @@ nav button:hover {
             scale(1)
             translateY(0);
     }
+
 }
 
 .fechar {
@@ -661,32 +719,24 @@ nav button:hover {
 }
 
 .ficha-topo {
-    padding-right: 50px;
-
     margin-bottom: 30px;
-}
-
-.ficha-topo .icone {
-    font-size: 60px;
-
-    margin-bottom: 10px;
 }
 
 .ficha-topo h2 {
     font-size: 38px;
 
-    margin-bottom: 8px;
+    margin-top: 10px;
 }
 
 .tag {
     display: inline-block;
 
-    background:
-        var(--vermelho);
-
     padding: 7px 14px;
 
     border-radius: 20px;
+
+    background:
+        var(--vermelho);
 
     font-size: 12px;
 
@@ -697,29 +747,30 @@ nav button:hover {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(250px,1fr));
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
 
     gap: 18px;
-
-    margin-bottom: 25px;
 }
 
 .bloco {
+    padding: 20px;
+
+    border-radius: 16px;
+
     background:
         rgba(255,255,255,.045);
 
     border:
         1px solid
         rgba(255,255,255,.06);
-
-    border-radius: 16px;
-
-    padding: 20px;
 }
 
 .bloco h4 {
     color:
-        #73c9ff;
+        var(--azul);
 
     margin-bottom: 10px;
 
@@ -752,65 +803,26 @@ nav button:hover {
 }
 
 /* =====================================================
-   CURIOSIDADES
-===================================================== */
-
-.curiosidade {
-    background:
-        linear-gradient(
-            135deg,
-            #151f2c,
-            #101820
-        );
-
-    border-radius: 22px;
-
-    padding: 30px;
-
-    margin-top: 30px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-}
-
-.curiosidade h3 {
-    margin-bottom: 12px;
-
-    color: #ffd166;
-}
-
-.curiosidade p {
-    color: var(--cinza);
-
-    line-height: 1.7;
-}
-
-/* =====================================================
    RODAPÉ
 ===================================================== */
 
 footer {
+    text-align: center;
+
+    padding: 40px;
+
     border-top:
         1px solid
         rgba(255,255,255,.08);
-
-    text-align: center;
-
-    padding: 35px;
 
     color: #7f91a1;
 }
 
 /* =====================================================
-   MOBILE
+   RESPONSIVO
 ===================================================== */
 
-@media(max-width:700px) {
-
-    header {
-        position: relative;
-    }
+@media(max-width:900px) {
 
     .nav {
         flex-direction: column;
@@ -820,12 +832,17 @@ footer {
         justify-content: center;
     }
 
-    .hero {
-        padding-top: 45px;
+}
+
+@media(max-width:600px) {
+
+    .pokebola {
+        width: 140px;
+        height: 140px;
     }
 
-    .card {
-        min-height: auto;
+    .hero {
+        padding-top: 50px;
     }
 
     .ficha {
@@ -835,14 +852,17 @@ footer {
     .ficha-topo h2 {
         font-size: 30px;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
+
 <!-- =====================================================
-     ABERTURA
+     TELA INICIAL
 ===================================================== -->
 
 <section id="inicio">
@@ -863,10 +883,15 @@ footer {
 
 
 <!-- =====================================================
-     SITE
+     SITE PRINCIPAL
 ===================================================== -->
 
 <div id="site">
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
 
 <header>
 
@@ -882,21 +907,33 @@ footer {
 
         <nav>
 
-            <nav>
+            <button onclick="irPara('assuntos')">
+                Assuntos
+            </button>
 
-    <button onclick="abrirAba('optica', this)">
-        🔬 Introdução da Óptica
-    </button>
+            <button onclick="irPara('fisica')">
+                ⚛️ Física
+            </button>
 
-    <button onclick="abrirAba('robotica', this)">
-        🤖 Robótica
-    </button>
+            <button onclick="irPara('robotica')">
+                🤖 Tecnociência e Robótica
+            </button>
 
-    <button onclick="abrirAba('fisica', this)">
-        ⚛️ Física e Tecnociência
-    </button>
+            <button onclick="irPara('fakenews')">
+                📰 Fake News
+            </button>
 
-</nav>
+            <button onclick="irPara('curiosidades')">
+                💡 Curiosidades
+            </button>
+
+            <button onclick="irPara('ia')">
+                🤖 IA
+            </button>
+
+            <button onclick="irPara('acessibilidade')">
+                ♿ Acessibilidade
+            </button>
 
         </nav>
 
@@ -906,365 +943,7 @@ footer {
 
 
 <!-- =====================================================
-     ABAS PRINCIPAIS
-===================================================== -->
-
-<div class="abas">
-
-    <button
-        class="aba ativa"
-        onclick="abrirAba('optica', this)"
-    >
-        🔬 Introdução da Óptica
-    </button>
-
-    <button
-        class="aba"
-        onclick="abrirAba('robotica', this)"
-    >
-        🤖 Robótica
-    </button>
-
-    <button
-        class="aba"
-        onclick="abrirAba('fisica', this)"
-    >
-        ⚛️ Física e Tecnociência
-    </button>
-
-</div>
-
-
-<!-- =====================================================
-     ABA 1 - ÓPTICA
-===================================================== -->
-
-<div
-    id="optica"
-    class="pagina-aba ativa"
->
-
-    <section class="hero">
-
-        <h1>
-            INTRODUÇÃO DA ÓPTICA
-        </h1>
-
-        <div class="linha"></div>
-
-        <p>
-            A óptica é a área da Física que estuda a luz,
-            sua propagação, reflexão, refração, formação de
-            imagens e suas aplicações tecnológicas.
-        </p>
-
-    </section>
-
-
-    <div class="pesquisa-area">
-
-        <input
-            class="pesquisa"
-            id="pesquisa"
-            type="text"
-            placeholder="🔎 Pesquisar equipamento ou assunto..."
-        >
-
-    </div>
-
-
-    <section
-        class="secao"
-        id="assuntos"
-    >
-
-        <h2 class="titulo-secao">
-            📁 Fichas de Pesquisa
-        </h2>
-
-        <div class="grid" id="grid">
-
-            <!-- COLOQUE AQUI OS SEUS CARDS ATUAIS -->
-
-            <!-- Fibra Óptica -->
-            <!-- Câmera -->
-            <!-- Microscópio -->
-            <!-- Sensor -->
-            <!-- Cores -->
-            <!-- Acessibilidade -->
-            <!-- IA -->
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =====================================================
-     ABA 2 - ROBÓTICA
-===================================================== -->
-
-<div
-    id="robotica"
-    class="pagina-aba"
->
-
-    <section class="hero">
-
-        <h1>
-            ROBÓTICA
-        </h1>
-
-        <div class="linha"></div>
-
-        <p>
-            A robótica combina Física, programação, eletrônica,
-            sensores e mecânica para criar máquinas capazes
-            de realizar tarefas de forma automática.
-        </p>
-
-    </section>
-
-
-    <section class="secao">
-
-        <h2 class="titulo-secao">
-            🤖 Robótica e Óptica
-        </h2>
-
-        <div class="grid">
-
-            <article class="card">
-
-                <div class="icone">
-                    🤖
-                </div>
-
-                <span class="contexto">
-                    Automação
-                </span>
-
-                <h3>
-                    Robôs Industriais
-                </h3>
-
-                <p>
-                    Robôs utilizam sensores ópticos para detectar
-                    objetos, posições e obstáculos durante
-                    processos automatizados.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">
-                    👁️
-                </div>
-
-                <span class="contexto">
-                    Sensores
-                </span>
-
-                <h3>
-                    Visão Robótica
-                </h3>
-
-                <p>
-                    Câmeras e sensores permitem que robôs
-                    obtenham informações do ambiente por meio
-                    da luz.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">
-                    🔴
-                </div>
-
-                <span class="contexto">
-                    Detecção
-                </span>
-
-                <h3>
-                    Sensores Ópticos
-                </h3>
-
-                <p>
-                    Sensores podem emitir e receber luz para
-                    identificar objetos e controlar máquinas.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">
-                    🚗
-                </div>
-
-                <span class="contexto">
-                    Tecnologia
-                </span>
-
-                <h3>
-                    Robôs Autônomos
-                </h3>
-
-                <p>
-                    Sistemas de visão, sensores e inteligência
-                    artificial ajudam robôs a interpretar
-                    ambientes e tomar decisões.
-                </p>
-
-            </article>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =====================================================
-     ABA 3 - FÍSICA E TECNOCIÊNCIA
-===================================================== -->
-
-<div
-    id="fisica"
-    class="pagina-aba"
->
-
-    <section class="hero">
-
-        <h1>
-            FÍSICA E TECNOCIÊNCIA
-        </h1>
-
-        <div class="linha"></div>
-
-        <p>
-            A Física está presente no desenvolvimento de
-            tecnologias que transformam conhecimentos científicos
-            em ferramentas utilizadas pela sociedade.
-        </p>
-
-    </section>
-
-
-    <section class="secao">
-
-        <h2 class="titulo-secao">
-            ⚛️ Física aplicada à tecnologia
-        </h2>
-
-        <div class="grid">
-
-            <article class="card">
-
-                <div class="icone">
-                    💡
-                </div>
-
-                <span class="contexto">
-                    Óptica
-                </span>
-
-                <h3>
-                    Luz e Comunicação
-                </h3>
-
-                <p>
-                    A fibra óptica utiliza propriedades da luz
-                    para transmitir enormes quantidades de dados
-                    em alta velocidade.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">
-                    ⚡
-                </div>
-
-                <span class="contexto">
-                    Energia
-                </span>
-
-                <h3>
-                    Eletricidade
-                </h3>
-
-                <p>
-                    Circuitos elétricos são fundamentais para
-                    computadores, sensores, robôs e diversos
-                    equipamentos tecnológicos.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">
-                    🧠
-                </div>
-
-                <span class="contexto">
-                    Tecnociência
-                </span>
-
-                <h3>
-                    Inteligência Artificial
-                </h3>
-
-                <p>
-                    A inteligência artificial pode analisar dados,
-                    reconhecer padrões e auxiliar no desenvolvimento
-                    de novas tecnologias.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">
-                    🔬
-                </div>
-
-                <span class="contexto">
-                    Ciência
-                </span>
-
-                <h3>
-                    Ciência e Sociedade
-                </h3>
-
-                <p>
-                    A tecnociência aproxima a pesquisa científica
-                    das aplicações tecnológicas utilizadas no
-                    cotidiano.
-                </p>
-
-            </article>
-
-        </div>
-
-    </section>
-
-</div>
-
-<!-- =====================================================
-     HERO
+     APRESENTAÇÃO
 ===================================================== -->
 
 <section class="hero">
@@ -1291,8 +970,8 @@ footer {
 <div class="pesquisa-area">
 
     <input
-        class="pesquisa"
         id="pesquisa"
+        class="pesquisa"
         type="text"
         placeholder="🔎 Pesquisar equipamento ou assunto..."
     >
@@ -1313,18 +992,18 @@ footer {
         📁 Fichas de Pesquisa
     </h2>
 
-    <div class="grid" id="grid">
+    <div class="grid">
 
-
-        <!-- FIBRA -->
 
         <article
             class="card"
-            data-search="fibra óptica residencial reflexão interna total internet"
+            data-search="fibra óptica residencial reflexão interna total"
             onclick="abrirFicha('fibra')"
         >
 
-            <div class="icone">💡</div>
+            <div class="icone">
+                💡
+            </div>
 
             <span class="contexto">
                 Residencial
@@ -1335,8 +1014,8 @@ footer {
             </h3>
 
             <p>
-                Dados são transportados por pulsos de
-                luz através de um fio extremamente fino.
+                Dados de internet são transportados
+                por pulsos de luz através de uma fibra.
             </p>
 
             <span class="abrir">
@@ -1346,15 +1025,15 @@ footer {
         </article>
 
 
-        <!-- CÂMERA -->
-
         <article
             class="card"
-            data-search="câmera segurança comercial infravermelho refração"
+            data-search="câmera segurança comercial infravermelho"
             onclick="abrirFicha('camera')"
         >
 
-            <div class="icone">📷</div>
+            <div class="icone">
+                📷
+            </div>
 
             <span class="contexto">
                 Comercial
@@ -1365,8 +1044,8 @@ footer {
             </h3>
 
             <p>
-                Utiliza luz visível e infravermelha para
-                produzir imagens mesmo em ambientes escuros.
+                Utiliza luz e infravermelho para
+                produzir imagens mesmo no escuro.
             </p>
 
             <span class="abrir">
@@ -1376,15 +1055,15 @@ footer {
         </article>
 
 
-        <!-- MICROSCÓPIO -->
-
         <article
             class="card"
-            data-search="microscópio escolar lentes convergentes refração"
+            data-search="microscópio escolar lentes convergentes"
             onclick="abrirFicha('microscopio')"
         >
 
-            <div class="icone">🔬</div>
+            <div class="icone">
+                🔬
+            </div>
 
             <span class="contexto">
                 Escolar
@@ -1395,8 +1074,8 @@ footer {
             </h3>
 
             <p>
-                Utiliza lentes curvas para desviar a luz
-                e ampliar objetos muito pequenos.
+                Utiliza lentes para ampliar a imagem
+                de células e microrganismos.
             </p>
 
             <span class="abrir">
@@ -1406,15 +1085,15 @@ footer {
         </article>
 
 
-        <!-- SENSOR -->
-
         <article
             class="card"
-            data-search="sensor óptico barreira industrial esteira luz"
+            data-search="sensor óptico barreira industrial"
             onclick="abrirFicha('sensor')"
         >
 
-            <div class="icone">🔴</div>
+            <div class="icone">
+                🔴
+            </div>
 
             <span class="contexto">
                 Industrial
@@ -1425,8 +1104,8 @@ footer {
             </h3>
 
             <p>
-                Detecta objetos quando eles interrompem
-                um feixe contínuo de luz.
+                Detecta objetos através da interrupção
+                de um feixe de luz.
             </p>
 
             <span class="abrir">
@@ -1436,15 +1115,15 @@ footer {
         </article>
 
 
-        <!-- CORES -->
-
         <article
             class="card"
-            data-search="cores luz RGB disco newton síntese aditiva"
+            data-search="cores luz rgb"
             onclick="abrirFicha('cores')"
         >
 
-            <div class="icone">🌈</div>
+            <div class="icone">
+                🌈
+            </div>
 
             <span class="contexto">
                 Cores e Luz
@@ -1455,8 +1134,8 @@ footer {
             </h3>
 
             <p>
-                Entenda como diferentes frequências luminosas
-                se combinam para formar novas cores.
+                Entenda como luzes vermelha, verde e azul
+                podem formar diferentes cores.
             </p>
 
             <span class="abrir">
@@ -1466,15 +1145,15 @@ footer {
         </article>
 
 
-        <!-- ACESSIBILIDADE -->
-
         <article
             class="card"
-            data-search="acessibilidade baixa visão contraste tecnologia assistiva"
+            data-search="acessibilidade baixa visão contraste"
             onclick="abrirFicha('acessibilidade')"
         >
 
-            <div class="icone">♿</div>
+            <div class="icone">
+                ♿
+            </div>
 
             <span class="contexto">
                 Tecnologia Assistiva
@@ -1485,8 +1164,8 @@ footer {
             </h3>
 
             <p>
-                Como iluminação, contraste e tecnologias
-                ópticas podem aumentar autonomia e segurança.
+                Aplicações de iluminação, contraste,
+                sensores e tecnologias assistivas.
             </p>
 
             <span class="abrir">
@@ -1496,15 +1175,15 @@ footer {
         </article>
 
 
-        <!-- IA -->
-
         <article
             class="card"
-            data-search="inteligência artificial IA trabalho pesquisa"
+            data-search="inteligência artificial IA"
             onclick="abrirFicha('ia')"
         >
 
-            <div class="icone">🤖</div>
+            <div class="icone">
+                🤖
+            </div>
 
             <span class="contexto">
                 Pesquisa
@@ -1515,8 +1194,8 @@ footer {
             </h3>
 
             <p>
-                Veja como a IA foi utilizada para organizar,
-                explicar e estruturar os conhecimentos.
+                Como a IA ajudou na organização e
+                explicação dos conteúdos.
             </p>
 
             <span class="abrir">
@@ -1525,33 +1204,326 @@ footer {
 
         </article>
 
+    </div>
 
-        <!-- CURIOSIDADES -->
+</section>
 
-        <article
-            class="card"
-            data-search="curiosidades fatos fibra câmera microscópio sensor"
-            onclick="irPara('curiosidades')"
-        >
 
-            <div class="icone">💎</div>
+<!-- =====================================================
+     FÍSICA
+===================================================== -->
+
+<section
+    class="secao"
+    id="fisica"
+>
+
+    <h2 class="titulo-secao">
+        ⚛️ Física
+    </h2>
+
+    <div class="grid">
+
+        <article class="card">
+
+            <div class="icone">
+                💡
+            </div>
 
             <span class="contexto">
-                Extras
+                Física
             </span>
 
             <h3>
-                Curiosidades
+                Óptica
             </h3>
 
             <p>
-                Descubra fatos interessantes relacionados
-                aos equipamentos pesquisados.
+                Estudo da luz, sua propagação,
+                reflexão, refração e suas
+                aplicações no cotidiano.
             </p>
 
-            <span class="abrir">
-                Ver curiosidades →
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                🌈
+            </div>
+
+            <span class="contexto">
+                Física
             </span>
+
+            <h3>
+                Luz e Cores
+            </h3>
+
+            <p>
+                Diferentes frequências da luz
+                são percebidas como diferentes cores.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                🔭
+            </div>
+
+            <span class="contexto">
+                Física
+            </span>
+
+            <h3>
+                Fenômenos Ópticos
+            </h3>
+
+            <p>
+                Reflexão, refração, absorção e
+                propagação da luz aparecem em
+                diversas tecnologias.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TECNOCIÊNCIA E ROBÓTICA
+===================================================== -->
+
+<section
+    class="secao"
+    id="robotica"
+>
+
+    <h2 class="titulo-secao">
+        🤖 Tecnociência e Robótica
+    </h2>
+
+    <div class="grid">
+
+
+        <article class="card">
+
+            <div class="icone">
+                🤖
+            </div>
+
+            <span class="contexto">
+                Tecnologia
+            </span>
+
+            <h3>
+                Robótica
+            </h3>
+
+            <p>
+                Robôs utilizam sensores, câmeras
+                e sistemas de controle para perceber
+                o ambiente e executar tarefas.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                🔴
+            </div>
+
+            <span class="contexto">
+                Automação
+            </span>
+
+            <h3>
+                Sensores Ópticos
+            </h3>
+
+            <p>
+                Sensores podem detectar objetos,
+                posições e movimentos utilizando luz.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                🏭
+            </div>
+
+            <span class="contexto">
+                Indústria
+            </span>
+
+            <h3>
+                Automação Industrial
+            </h3>
+
+            <p>
+                Sistemas automatizados utilizam sensores
+                para controlar máquinas e linhas de produção.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                🧠
+            </div>
+
+            <span class="contexto">
+                Tecnociência
+            </span>
+
+            <h3>
+                Ciência + Tecnologia
+            </h3>
+
+            <p>
+                A tecnociência aproxima o conhecimento
+                científico do desenvolvimento tecnológico.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FAKE NEWS
+===================================================== -->
+
+<section
+    class="secao"
+    id="fakenews"
+>
+
+    <h2 class="titulo-secao">
+        📰 Fake News
+    </h2>
+
+    <div class="curiosidade">
+
+        <h3>
+            🔎 Como identificar uma informação falsa?
+        </h3>
+
+        <p>
+            Antes de acreditar ou compartilhar uma informação,
+            verifique sua origem, procure outras fontes confiáveis
+            e confira quando o conteúdo foi publicado.
+        </p>
+
+    </div>
+
+
+    <div
+        class="grid"
+        style="margin-top:25px;"
+    >
+
+        <article class="card">
+
+            <div class="icone">
+                🚨
+            </div>
+
+            <span class="contexto">
+                Atenção
+            </span>
+
+            <h3>
+                Título sensacionalista
+            </h3>
+
+            <p>
+                Títulos que provocam medo, raiva ou surpresa
+                podem incentivar compartilhamentos sem
+                verificação.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                🔍
+            </div>
+
+            <span class="contexto">
+                Verificação
+            </span>
+
+            <h3>
+                Confira a fonte
+            </h3>
+
+            <p>
+                Procure quem publicou a informação e veja
+                se outras fontes confiáveis apresentam
+                o mesmo fato.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                📅
+            </div>
+
+            <span class="contexto">
+                Contexto
+            </span>
+
+            <h3>
+                Confira a data
+            </h3>
+
+            <p>
+                Uma notícia antiga pode voltar a circular
+                como se fosse um acontecimento recente.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icone">
+                🧠
+            </div>
+
+            <span class="contexto">
+                Pensamento crítico
+            </span>
+
+            <h3>
+                Pense antes de compartilhar
+            </h3>
+
+            <p>
+                Leia o conteúdo completo, procure evidências
+                e só depois decida se deve compartilhá-lo.
+            </p>
 
         </article>
 
@@ -1575,6 +1547,7 @@ footer {
 
     <div class="grid">
 
+
         <div class="curiosidade">
 
             <h3>
@@ -1582,12 +1555,13 @@ footer {
             </h3>
 
             <p>
-                Um único fio de fibra óptica pode ser mais fino
-                que um fio de cabelo humano e ainda transmitir
-                uma enorme quantidade de dados.
+                Um único fio pode ser extremamente fino,
+                mas transportar uma grande quantidade
+                de dados através da luz.
             </p>
 
         </div>
+
 
         <div class="curiosidade">
 
@@ -1596,12 +1570,13 @@ footer {
             </h3>
 
             <p>
-                Nossos olhos não enxergam infravermelho,
-                mas uma câmera de celular consegue detectar
-                a luz emitida por um controle remoto.
+                Uma câmera de celular pode detectar
+                a luz infravermelha emitida por alguns
+                controles remotos.
             </p>
 
         </div>
+
 
         <div class="curiosidade">
 
@@ -1611,21 +1586,22 @@ footer {
 
             <p>
                 Os primeiros microscópios úteis surgiram
-                por volta de 1590 e utilizavam sistemas
+                por volta de 1590 utilizando sistemas
                 simples de lentes.
             </p>
 
         </div>
 
+
         <div class="curiosidade">
 
             <h3>
-                🔴 Sensor Industrial
+                🔴 Sensor
             </h3>
 
             <p>
-                Sensores ópticos conseguem detectar objetos
-                rapidamente em linhas automatizadas de produção.
+                Sensores ópticos podem detectar rapidamente
+                objetos em linhas automatizadas de produção.
             </p>
 
         </div>
@@ -1659,13 +1635,6 @@ footer {
             estruturar e simplificar conceitos científicos,
             auxiliar na organização dos textos e levantar
             informações e curiosidades relacionadas à óptica.
-        </p>
-
-        <br>
-
-        <p>
-            As ferramentas utilizadas no trabalho foram
-            ChatGPT e Gemini.
         </p>
 
     </div>
@@ -1702,15 +1671,19 @@ footer {
         <br>
 
         <p>
-            Sensores ópticos, infravermelho e sistemas de
-            iluminação também podem participar de tecnologias
-            assistivas, contribuindo para autonomia e segurança.
+            Sensores ópticos e infravermelho também podem
+            participar de tecnologias assistivas, contribuindo
+            para autonomia e segurança.
         </p>
 
     </div>
 
 </section>
 
+
+<!-- =====================================================
+     RODAPÉ
+===================================================== -->
 
 <footer>
 
@@ -1728,7 +1701,7 @@ footer {
 
 
 <!-- =====================================================
-     MODAL
+     JANELA DAS FICHAS
 ===================================================== -->
 
 <div id="modal">
@@ -1752,7 +1725,7 @@ footer {
 <script>
 
 /* =====================================================
-   ENTRADA
+   ENTRAR NO SITE
 ===================================================== */
 
 const inicio =
@@ -1777,14 +1750,18 @@ function entrar() {
 
         document.body.style.overflow = "auto";
 
-    }, 500);
+    },500);
 
 }
 
 document.addEventListener(
     "keydown",
-    () => {
-        if (!entrou) entrar();
+    function() {
+
+        if (!entrou) {
+            entrar();
+        }
+
     }
 );
 
@@ -1800,7 +1777,7 @@ inicio.addEventListener(
 
 
 /* =====================================================
-   FICHAS
+   DADOS DAS FICHAS
 ===================================================== */
 
 const fichas = {
@@ -1813,19 +1790,20 @@ const fichas = {
 
         contexto: "Residencial",
 
-        principio: "Reflexão interna total",
+        principio:
+            "Reflexão interna total",
 
         funcionamento:
-        "A fibra óptica residencial transporta dados de internet transformados em pulsos de luz de alta velocidade. Essa luz viaja por um fio de vidro ou plástico ultrafino, rebatendo continuamente nas paredes internas do cabo sem escapar, garantindo uma conexão rápida e estável na sua casa.",
+            "A fibra óptica residencial transporta dados de internet transformados em pulsos de luz de alta velocidade. Essa luz viaja por um fio de vidro ou plástico ultrafino, rebatendo continuamente nas paredes internas do cabo sem escapar, garantindo uma conexão rápida e estável na sua casa.",
 
         onde:
-        "No cabo conectado atrás do modem ou roteador de internet da sua residência.",
+            "No cabo conectado atrás do modem ou roteador de internet da sua residência.",
 
         ia:
-        "A IA simplificou o conceito de reflexão total, explicando de forma clara como a luz faz curvas dentro do cabo.",
+            "A IA simplificou o conceito de reflexão total, explicando de forma clara como a luz faz curvas dentro do cabo.",
 
         fonte:
-        "Caderno de Ciências da Natureza, artigo científico do Instituto de Física da USP e portal de tecnologia Techtudo."
+            "Caderno de Ciências da Natureza, artigo científico do Instituto de Física da USP e portal de tecnologia Techtudo."
 
     },
 
@@ -1839,19 +1817,19 @@ const fichas = {
         contexto: "Comercial",
 
         principio:
-        "Refração da luz nas lentes e reflexão/absorção do infravermelho",
+            "Refração da luz nas lentes e reflexão/absorção do infravermelho",
 
         funcionamento:
-        "A câmera de segurança comercial captura a luz que os objetos refletem no ambiente. À noite, ela emite uma luz infravermelha invisível a olho nu, que bate nas pessoas ou objetos e volta para um sensor digital, gerando imagens nítidas mesmo no escuro total.",
+            "A câmera de segurança comercial captura a luz que os objetos refletem no ambiente. À noite, ela utiliza luz infravermelha invisível a olho nu, que interage com pessoas e objetos e é captada pelo sensor digital, permitindo imagens em ambientes escuros.",
 
         onde:
-        "Em tetos de lojas, vitrines de comércios, supermercados e shoppings.",
+            "Em tetos de lojas, vitrines, comércios, supermercados e shoppings.",
 
         ia:
-        "A IA ajudou a estruturar o texto explicativo sobre o funcionamento da visão noturna infravermelha.",
+            "A IA ajudou a estruturar o texto explicativo sobre o funcionamento da visão noturna infravermelha.",
 
         fonte:
-        "Manual técnico de segurança Intelbras e artigos sobre o espectro eletromagnético da Khan Academy."
+            "Manual técnico de segurança Intelbras e artigos sobre o espectro eletromagnético da Khan Academy."
 
     },
 
@@ -1865,19 +1843,19 @@ const fichas = {
         contexto: "Escolar",
 
         principio:
-        "Refração da luz por meio de lentes convergentes",
+            "Refração da luz por meio de lentes convergentes",
 
         funcionamento:
-        "O microscópio escolar utiliza uma fonte de luz na base que atravessa uma lâmina de vidro transparente. Essa luz passa por duas ou mais lentes curvas, objetiva e ocular, instaladas em sequência, que desviam os raios luminosos e ampliam o tamanho aparente de células ou microrganismos.",
+            "O microscópio escolar utiliza uma fonte de luz na base que atravessa uma lâmina de vidro transparente. Essa luz passa por lentes curvas, como a objetiva e a ocular, que desviam os raios luminosos e ampliam o tamanho aparente de células ou microrganismos.",
 
         onde:
-        "Nas bancadas do laboratório de ciências ou biologia da escola.",
+            "Nas bancadas do laboratório de ciências ou biologia da escola.",
 
         ia:
-        "A IA indicou dados e curiosidades sobre o limite de ampliação de lentes ópticas comuns.",
+            "A IA indicou dados e curiosidades sobre o limite de ampliação de lentes ópticas comuns.",
 
         fonte:
-        "Livro didático de Biologia e Física escolar do Ensino Médio e portal InfoEscola."
+            "Livro didático de Biologia e Física escolar e portal InfoEscola."
 
     },
 
@@ -1891,19 +1869,19 @@ const fichas = {
         contexto: "Industrial",
 
         principio:
-        "Propagação retilínea da luz e absorção/bloqueio da luz",
+            "Propagação retilínea da luz e absorção/bloqueio da luz",
 
         funcionamento:
-        "O sensor óptico de barreira utiliza um emissor que dispara um feixe contínuo de luz em direção a um receptor. Quando uma caixa ou peça passa pela esteira, ela bloqueia essa luz; o receptor percebe a interrupção do sinal e avisa a máquina para contar o produto ou parar o sistema.",
+            "O sensor óptico de barreira utiliza um emissor que dispara um feixe contínuo de luz em direção a um receptor. Quando uma caixa ou peça passa pela esteira, ela bloqueia essa luz; o receptor percebe a interrupção do sinal e avisa a máquina para contar o produto ou parar o sistema.",
 
         onde:
-        "Em esteiras de produção de fábricas, linhas de embalagem e braços robóticos.",
+            "Em esteiras de produção de fábricas, linhas de embalagem e braços robóticos.",
 
         ia:
-        "A IA revisou e padronizou o modelo de escrita técnica curta para o sensor industrial.",
+            "A IA revisou e padronizou o modelo de escrita técnica curta para o sensor industrial.",
 
         fonte:
-        "Catálogos técnicos de automação industrial e Mundo Educação."
+            "Catálogos técnicos de automação industrial e Mundo Educação."
 
     },
 
@@ -1917,19 +1895,19 @@ const fichas = {
         contexto: "Cores e Luz",
 
         principio:
-        "Síntese aditiva e percepção das cores",
+            "Síntese aditiva das cores",
 
         funcionamento:
-        "No sistema RGB, a combinação das luzes vermelha, verde e azul permite formar diversas outras cores. Vermelho mais verde resulta em amarelo; verde mais azul resulta em ciano; vermelho mais azul resulta em magenta; e a combinação das três intensidades máximas produz luz branca.",
+            "No sistema RGB, as luzes vermelha, verde e azul podem ser combinadas em diferentes intensidades para formar diversas outras cores.",
 
         onde:
-        "Em telas de computadores, smartphones, televisores, iluminação e sistemas de sinalização.",
+            "Em telas de computadores, celulares, televisores e sistemas de iluminação.",
 
         ia:
-        "A IA auxiliou na estruturação da lógica de combinação das cores e na explicação dos conceitos de síntese aditiva.",
+            "A IA auxiliou na organização e explicação do conteúdo sobre luz e cores.",
 
         fonte:
-        "Conteúdo de Física e Óptica utilizado na atividade."
+            "Conteúdos de Física e Óptica utilizados no projeto."
 
     },
 
@@ -1943,19 +1921,45 @@ const fichas = {
         contexto: "Tecnologia Assistiva",
 
         principio:
-        "Contraste, iluminação e percepção visual",
+            "Contraste, iluminação e percepção visual",
 
         funcionamento:
-        "A iluminação adequada aumenta o contraste entre objetos e fundos. Isso facilita a percepção de contornos, formas e obstáculos. Tecnologias ópticas também podem utilizar câmeras, sensores, filtros e iluminação adaptativa para auxiliar pessoas com baixa visão.",
+            "A iluminação adequada aumenta o contraste entre objetos e fundos. Isso pode facilitar a percepção de contornos, formas e obstáculos para pessoas com baixa visão.",
 
         onde:
-        "Em ambientes, sinalizações, dispositivos digitais e tecnologias assistivas.",
+            "Em ambientes, sinalizações, dispositivos digitais e tecnologias assistivas.",
 
         ia:
-        "A IA ajudou a organizar os conceitos de óptica e suas relações com acessibilidade.",
+            "A IA ajudou a organizar os conceitos de óptica e suas relações com acessibilidade.",
 
         fonte:
-        "Materiais de Física, Biologia, acessibilidade e tecnologias assistivas utilizados no projeto."
+            "Materiais de Física, Biologia, acessibilidade e tecnologias assistivas utilizados no projeto."
+
+    },
+
+
+    ia: {
+
+        icone: "🤖",
+
+        titulo: "Inteligência Artificial",
+
+        contexto: "Pesquisa",
+
+        principio:
+            "IA aplicada à pesquisa e organização",
+
+        funcionamento:
+            "A Inteligência Artificial pode auxiliar na organização de informações, simplificação de conceitos e estruturação de textos.",
+
+        onde:
+            "Durante as etapas de pesquisa e preparação do projeto.",
+
+        ia:
+            "A própria IA foi utilizada como ferramenta de apoio para organizar e revisar os conteúdos.",
+
+        fonte:
+            "Ferramentas de Inteligência Artificial utilizadas pelo grupo."
 
     }
 
@@ -1968,7 +1972,8 @@ const fichas = {
 
 function abrirFicha(nome) {
 
-    const ficha = fichas[nome];
+    const ficha =
+        fichas[nome];
 
     if (!ficha) return;
 
@@ -2009,6 +2014,7 @@ function abrirFicha(nome) {
 
             </div>
 
+
             <div class="bloco">
 
                 <h4>
@@ -2020,6 +2026,7 @@ function abrirFicha(nome) {
                 </p>
 
             </div>
+
 
             <div class="bloco principio">
 
@@ -2033,6 +2040,7 @@ function abrirFicha(nome) {
 
             </div>
 
+
             <div class="bloco">
 
                 <h4>
@@ -2044,6 +2052,7 @@ function abrirFicha(nome) {
                 </p>
 
             </div>
+
 
             <div class="bloco">
 
@@ -2072,7 +2081,7 @@ function abrirFicha(nome) {
 
 
 /* =====================================================
-   FECHAR
+   FECHAR FICHA
 ===================================================== */
 
 function fecharFicha() {
@@ -2095,16 +2104,13 @@ document
             if (
                 event.target === this
             ) {
+
                 fecharFicha();
+
             }
 
         }
     );
-
-
-/* =====================================================
-   ESC FECHA
-===================================================== */
 
 document.addEventListener(
     "keydown",
@@ -2113,7 +2119,9 @@ document.addEventListener(
         if (
             event.key === "Escape"
         ) {
+
             fecharFicha();
+
         }
 
     }
@@ -2125,7 +2133,9 @@ document.addEventListener(
 ===================================================== */
 
 const pesquisa =
-    document.getElementById("pesquisa");
+    document.getElementById(
+        "pesquisa"
+    );
 
 pesquisa.addEventListener(
     "input",
@@ -2136,56 +2146,53 @@ pesquisa.addEventListener(
 
         const cards =
             document.querySelectorAll(
-                ".card"
+                "#assuntos .card"
             );
 
-        cards.forEach(card => {
+        cards.forEach(
+            card => {
 
-            const dados =
-                card.dataset.search
-                .toLowerCase();
+                const dados =
+                    (
+                        card.dataset.search ||
+                        ""
+                    ).toLowerCase();
 
-            if (
-                dados.includes(texto)
-            ) {
+                if (
+                    dados.includes(texto)
+                ) {
 
-                card.style.display =
-                    "";
+                    card.style.display =
+                        "";
 
-            } else {
+                } else {
 
-                card.style.display =
-                    "none";
+                    card.style.display =
+                        "none";
+
+                }
 
             }
-
-        });
+        );
 
     }
-===================================================== */
-
-function irPara(id) {
-
-    document
-        .getElementById(id)
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
 );
 
 
 /* =====================================================
-   NAVEGAÇÃO
+   NAVEGAÇÃO DO MENU
 ===================================================== */
 
 function irPara(id) {
 
-    document
-        .getElementById(id)
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    const elemento =
+        document.getElementById(id);
+
+    if (!elemento) return;
+
+    elemento.scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 
@@ -2193,4 +2200,3 @@ function irPara(id) {
 
 </body>
 </html>
-```

@@ -1,2202 +1,1326 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pokédex da Óptica</title>
+    <title>PokéÓptica | Luz, Física e Tecnologia</title>
 
-<style>
+    <link rel="stylesheet" href="style.css">
 
-/* =====================================================
-   CONFIGURAÇÕES
-===================================================== */
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #081018;
-    color: white;
-    overflow-x: hidden;
-}
-
-:root {
-    --vermelho: #e63946;
-    --vermelho-escuro: #8e1520;
-    --azul: #49a9e8;
-    --fundo: #081018;
-    --painel: #101d29;
-    --painel2: #172838;
-    --texto: #f5f7fa;
-    --cinza: #aebdcc;
-}
-
-/* =====================================================
-   TELA INICIAL
-===================================================== */
-
-#inicio {
-    position: fixed;
-    inset: 0;
-
-    z-index: 999;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #e63946 0%,
-            #9d111b 45%,
-            #210407 100%
-        );
-
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-}
-
-#inicio.saindo {
-    opacity: 0;
-    transform: scale(1.5);
-    pointer-events: none;
-}
-
-.brilho {
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.08);
-
-    filter: blur(50px);
-}
-
-/* =====================================================
-   POKÉBOLA
-===================================================== */
-
-.pokebola {
-    position: relative;
-
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #ef233c 0%,
-            #ef233c 47%,
-            #111 47%,
-            #111 53%,
-            #f5f5f5 53%,
-            #f5f5f5 100%
-        );
-
-    border: 8px solid #111;
-
-    box-shadow:
-        0 20px 40px rgba(0,0,0,.5),
-        inset 0 0 20px rgba(255,255,255,.2);
-
-    animation:
-        pulo 1.8s ease-in-out infinite,
-        aproxima 4s ease-in-out forwards;
-}
-
-.pokebola::before {
-    content: "";
-
-    position: absolute;
-
-    width: 55px;
-    height: 55px;
-
-    background: #111;
-
-    border-radius: 50%;
-
-    top: 50%;
-    left: 50%;
-
-    transform:
-        translate(-50%,-50%);
-}
-
-.pokebola::after {
-    content: "";
-
-    position: absolute;
-
-    width: 32px;
-    height: 32px;
-
-    background: white;
-
-    border: 5px solid #111;
-
-    border-radius: 50%;
-
-    top: 50%;
-    left: 50%;
-
-    transform:
-        translate(-50%,-50%);
-}
-
-@keyframes pulo {
-
-    0%,100% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-35px)
-            rotate(8deg);
-    }
-
-}
-
-@keyframes aproxima {
-
-    0% {
-        transform: scale(.2);
-    }
-
-    60% {
-        transform: scale(.7);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-
-}
-
-/* =====================================================
-   TEXTO DA ABERTURA
-===================================================== */
-
-.titulo {
-    margin-top: 50px;
-
-    font-size:
-        clamp(30px,5vw,58px);
-
-    font-weight: 900;
-
-    letter-spacing: 5px;
-
-    text-shadow:
-        3px 3px #222,
-        0 0 20px rgba(255,255,255,.4);
-}
-
-.aperte {
-    margin-top: 35px;
-
-    font-size: 18px;
-
-    letter-spacing: 3px;
-
-    animation: piscar 1.2s infinite;
-}
-
-@keyframes piscar {
-
-    0%,100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: .2;
-    }
-
-}
-
-/* =====================================================
-   SITE
-===================================================== */
-
-#site {
-    opacity: 0;
-
-    transform: scale(.96);
-
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-}
-
-#site.visivel {
-    opacity: 1;
-
-    transform: scale(1);
-}
-
-/* =====================================================
-   CABEÇALHO
-===================================================== */
-
-header {
-    position: sticky;
-
-    top: 0;
-
-    z-index: 50;
-
-    padding: 18px 5%;
-
-    background:
-        rgba(8,16,24,.95);
-
-    backdrop-filter:
-        blur(12px);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.1);
-}
-
-.nav {
-    max-width: 1350px;
-
-    margin: auto;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-}
-
-.logo {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 22px;
-
-    font-weight: 900;
-
-    white-space: nowrap;
-}
-
-.logo-bola {
-    width: 35px;
-    height: 35px;
-
-    border-radius: 50%;
-
-    border: 3px solid #111;
-
-    background:
-        linear-gradient(
-            #e63946 0 45%,
-            #111 45% 55%,
-            white 55%
-        );
-}
-
-nav {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    justify-content: flex-end;
-
-    gap: 6px;
-}
-
-nav button {
-    border: none;
-
-    background: transparent;
-
-    color: var(--cinza);
-
-    padding: 9px 12px;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-    transition: .25s;
-}
-
-nav button:hover {
-    color: white;
-
-    background:
-        rgba(230,57,70,.18);
-}
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-    max-width: 1300px;
-
-    margin: auto;
-
-    padding:
-        80px 5% 45px;
-
-    text-align: center;
-}
-
-.hero h1 {
-    font-size:
-        clamp(35px,6vw,70px);
-
-    background:
-        linear-gradient(
-            90deg,
-            white,
-            #73c9ff,
-            white
-        );
-
-    -webkit-background-clip: text;
-
-    color: transparent;
-
-    margin-bottom: 15px;
-}
-
-.linha {
-    width: 100px;
-
-    height: 4px;
-
-    background:
-        var(--vermelho);
-
-    border-radius: 20px;
-
-    margin: 25px auto;
-}
-
-.hero p {
-    max-width: 800px;
-
-    margin: auto;
-
-    color: var(--cinza);
-
-    font-size: 18px;
-
-    line-height: 1.7;
-}
-
-/* =====================================================
-   PESQUISA
-===================================================== */
-
-.pesquisa-area {
-    max-width: 800px;
-
-    margin: 20px auto 50px;
-
-    padding: 0 5%;
-}
-
-.pesquisa {
-    width: 100%;
-
-    padding: 18px 22px;
-
-    border-radius: 40px;
-
-    border: 2px solid
-        rgba(255,255,255,.1);
-
-    outline: none;
-
-    background:
-        #101c27;
-
-    color: white;
-
-    font-size: 16px;
-}
-
-.pesquisa:focus {
-    border-color:
-        var(--vermelho);
-}
-
-/* =====================================================
-   SEÇÕES
-===================================================== */
-
-.secao {
-    max-width: 1350px;
-
-    margin: auto;
-
-    padding:
-        35px 5% 70px;
-}
-
-.titulo-secao {
-    font-size: 30px;
-
-    margin-bottom: 30px;
-}
-
-/* =====================================================
-   GRID
-===================================================== */
-
-.grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(260px,1fr)
-        );
-
-    gap: 22px;
-}
-
-/* =====================================================
-   CARDS
-===================================================== */
-
-.card {
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            var(--painel2),
-            var(--painel)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    border-radius: 22px;
-
-    padding: 27px;
-
-    min-height: 300px;
-
-    cursor: pointer;
-
-    transition:
-        transform .3s,
-        border .3s,
-        box-shadow .3s;
-}
-
-.card:hover {
-    transform:
-        translateY(-8px);
-
-    border-color:
-        rgba(230,57,70,.7);
-
-    box-shadow:
-        0 20px 40px
-        rgba(0,0,0,.35);
-}
-
-.icone {
-    font-size: 48px;
-
-    margin-bottom: 18px;
-}
-
-.card h3 {
-    font-size: 24px;
-
-    margin-bottom: 10px;
-}
-
-.contexto {
-    color:
-        var(--vermelho);
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-.card p {
-    color: var(--cinza);
-
-    line-height: 1.6;
-
-    margin-top: 15px;
-}
-
-.abrir {
-    display: inline-block;
-
-    margin-top: 20px;
-
-    font-weight: bold;
-}
-
-/* =====================================================
-   CURIOSIDADES
-===================================================== */
-
-.curiosidade {
-    background:
-        linear-gradient(
-            135deg,
-            #151f2c,
-            #101820
-        );
-
-    border-radius: 22px;
-
-    padding: 30px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-}
-
-.curiosidade h3 {
-    color:
-        #ffd166;
-
-    margin-bottom: 12px;
-}
-
-.curiosidade p {
-    color: var(--cinza);
-
-    line-height: 1.7;
-}
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-#modal {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 200;
-
-    display: none;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding: 20px;
-
-    background:
-        rgba(0,0,0,.8);
-
-    backdrop-filter:
-        blur(8px);
-}
-
-#modal.aberto {
-    display: flex;
-}
-
-.ficha {
-    width:
-        min(950px,100%);
-
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    padding: 35px;
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #172838,
-            #0c151e
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.6);
-
-    animation:
-        fichaEntrar .35s ease;
-}
-
-@keyframes fichaEntrar {
-
-    from {
-        opacity: 0;
-
-        transform:
-            scale(.9)
-            translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            scale(1)
-            translateY(0);
-    }
-
-}
-
-.fechar {
-    float: right;
-
-    width: 42px;
-    height: 42px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.08);
-
-    color: white;
-
-    font-size: 25px;
-
-    cursor: pointer;
-}
-
-.fechar:hover {
-    background:
-        var(--vermelho);
-}
-
-.ficha-topo {
-    margin-bottom: 30px;
-}
-
-.ficha-topo h2 {
-    font-size: 38px;
-
-    margin-top: 10px;
-}
-
-.tag {
-    display: inline-block;
-
-    padding: 7px 14px;
-
-    border-radius: 20px;
-
-    background:
-        var(--vermelho);
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-.info {
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(250px,1fr)
-        );
-
-    gap: 18px;
-}
-
-.bloco {
-    padding: 20px;
-
-    border-radius: 16px;
-
-    background:
-        rgba(255,255,255,.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,.06);
-}
-
-.bloco h4 {
-    color:
-        var(--azul);
-
-    margin-bottom: 10px;
-
-    font-size: 15px;
-
-    text-transform: uppercase;
-}
-
-.bloco p {
-    color: var(--cinza);
-
-    line-height: 1.65;
-}
-
-.principio {
-    grid-column:
-        1 / -1;
-
-    border-left:
-        4px solid
-        var(--vermelho);
-}
-
-.principio p {
-    color: white;
-
-    font-size: 20px;
-
-    font-weight: bold;
-}
-
-/* =====================================================
-   RODAPÉ
-===================================================== */
-
-footer {
-    text-align: center;
-
-    padding: 40px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.08);
-
-    color: #7f91a1;
-}
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
-
-@media(max-width:900px) {
-
-    .nav {
-        flex-direction: column;
-    }
-
-    nav {
-        justify-content: center;
-    }
-
-}
-
-@media(max-width:600px) {
-
-    .pokebola {
-        width: 140px;
-        height: 140px;
-    }
-
-    .hero {
-        padding-top: 50px;
-    }
-
-    .ficha {
-        padding: 25px;
-    }
-
-    .ficha-topo h2 {
-        font-size: 30px;
-    }
-
-}
-
-</style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+    <!-- =========================
+         FUNDO
+    ========================== -->
 
-<!-- =====================================================
-     TELA INICIAL
-===================================================== -->
+    <div class="background-grid"></div>
 
-<section id="inicio">
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-    <div class="brilho"></div>
-
-    <div class="pokebola"></div>
-
-    <h1 class="titulo">
-        POKÉDEX
-    </h1>
-
-    <p class="aperte">
-        PRESSIONE QUALQUER BOTÃO
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     SITE PRINCIPAL
-===================================================== -->
-
-<div id="site">
-
-
-<!-- =====================================================
-     MENU
-===================================================== -->
-
-<header>
-
-    <div class="nav">
+    <header class="topo">
 
         <div class="logo">
 
-            <div class="logo-bola"></div>
+            <div class="pokeball">
+                <div class="pokeball-center"></div>
+            </div>
 
-            POKÉDEX DA ÓPTICA
+            <div>
+                <span class="logo-mini">PROJETO DE FÍSICA</span>
+                <h1>Poké<span>Óptica</span></h1>
+            </div>
 
         </div>
 
-        <nav>
-
-            <button onclick="irPara('assuntos')">
-                Assuntos
-            </button>
-
-            <button onclick="irPara('fisica')">
-                ⚛️ Física
-            </button>
-
-            <button onclick="irPara('robotica')">
-                🤖 Tecnociência e Robótica
-            </button>
-
-            <button onclick="irPara('fakenews')">
-                📰 Fake News
-            </button>
-
-            <button onclick="irPara('curiosidades')">
-                💡 Curiosidades
-            </button>
-
-            <button onclick="irPara('ia')">
-                🤖 IA
-            </button>
-
-            <button onclick="irPara('acessibilidade')">
-                ♿ Acessibilidade
-            </button>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-<!-- =====================================================
-     APRESENTAÇÃO
-===================================================== -->
-
-<section class="hero">
-
-    <h1>
-        A ÓPTICA NO NOSSO DIA A DIA
-    </h1>
-
-    <div class="linha"></div>
-
-    <p>
-        Explore os equipamentos, fenômenos e tecnologias
-        que mostram como a luz está presente em nossa vida.
-        Escolha um assunto para abrir sua ficha de pesquisa.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     PESQUISA
-===================================================== -->
-
-<div class="pesquisa-area">
-
-    <input
-        id="pesquisa"
-        class="pesquisa"
-        type="text"
-        placeholder="🔎 Pesquisar equipamento ou assunto..."
-    >
-
-</div>
-
-
-<!-- =====================================================
-     ASSUNTOS
-===================================================== -->
-
-<section
-    class="secao"
-    id="assuntos"
->
-
-    <h2 class="titulo-secao">
-        📁 Fichas de Pesquisa
-    </h2>
-
-    <div class="grid">
-
-
-        <article
-            class="card"
-            data-search="fibra óptica residencial reflexão interna total"
-            onclick="abrirFicha('fibra')"
-        >
-
-            <div class="icone">
-                💡
-            </div>
-
-            <span class="contexto">
-                Residencial
-            </span>
-
-            <h3>
-                Fibra Óptica
-            </h3>
-
-            <p>
-                Dados de internet são transportados
-                por pulsos de luz através de uma fibra.
-            </p>
-
-            <span class="abrir">
-                Abrir ficha →
-            </span>
-
-        </article>
-
-
-        <article
-            class="card"
-            data-search="câmera segurança comercial infravermelho"
-            onclick="abrirFicha('camera')"
-        >
-
-            <div class="icone">
-                📷
-            </div>
-
-            <span class="contexto">
-                Comercial
-            </span>
-
-            <h3>
-                Câmera de Segurança
-            </h3>
-
-            <p>
-                Utiliza luz e infravermelho para
-                produzir imagens mesmo no escuro.
-            </p>
-
-            <span class="abrir">
-                Abrir ficha →
-            </span>
-
-        </article>
-
-
-        <article
-            class="card"
-            data-search="microscópio escolar lentes convergentes"
-            onclick="abrirFicha('microscopio')"
-        >
-
-            <div class="icone">
-                🔬
-            </div>
-
-            <span class="contexto">
-                Escolar
-            </span>
-
-            <h3>
-                Microscópio
-            </h3>
-
-            <p>
-                Utiliza lentes para ampliar a imagem
-                de células e microrganismos.
-            </p>
-
-            <span class="abrir">
-                Abrir ficha →
-            </span>
-
-        </article>
-
-
-        <article
-            class="card"
-            data-search="sensor óptico barreira industrial"
-            onclick="abrirFicha('sensor')"
-        >
-
-            <div class="icone">
-                🔴
-            </div>
-
-            <span class="contexto">
-                Industrial
-            </span>
-
-            <h3>
-                Sensor Óptico de Barreira
-            </h3>
-
-            <p>
-                Detecta objetos através da interrupção
-                de um feixe de luz.
-            </p>
-
-            <span class="abrir">
-                Abrir ficha →
-            </span>
-
-        </article>
-
-
-        <article
-            class="card"
-            data-search="cores luz rgb"
-            onclick="abrirFicha('cores')"
-        >
-
-            <div class="icone">
-                🌈
-            </div>
-
-            <span class="contexto">
-                Cores e Luz
-            </span>
-
-            <h3>
-                Cores e Síntese Aditiva
-            </h3>
-
-            <p>
-                Entenda como luzes vermelha, verde e azul
-                podem formar diferentes cores.
-            </p>
-
-            <span class="abrir">
-                Abrir ficha →
-            </span>
-
-        </article>
-
-
-        <article
-            class="card"
-            data-search="acessibilidade baixa visão contraste"
-            onclick="abrirFicha('acessibilidade')"
-        >
-
-            <div class="icone">
-                ♿
-            </div>
-
-            <span class="contexto">
-                Tecnologia Assistiva
-            </span>
-
-            <h3>
-                Óptica e Acessibilidade
-            </h3>
-
-            <p>
-                Aplicações de iluminação, contraste,
-                sensores e tecnologias assistivas.
-            </p>
-
-            <span class="abrir">
-                Abrir ficha →
-            </span>
-
-        </article>
-
-
-        <article
-            class="card"
-            data-search="inteligência artificial IA"
-            onclick="abrirFicha('ia')"
-        >
-
-            <div class="icone">
-                🤖
-            </div>
-
-            <span class="contexto">
-                Pesquisa
-            </span>
-
-            <h3>
-                Inteligência Artificial
-            </h3>
-
-            <p>
-                Como a IA ajudou na organização e
-                explicação dos conteúdos.
-            </p>
-
-            <span class="abrir">
-                Abrir ficha →
-            </span>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     FÍSICA
-===================================================== -->
-
-<section
-    class="secao"
-    id="fisica"
->
-
-    <h2 class="titulo-secao">
-        ⚛️ Física
-    </h2>
-
-    <div class="grid">
-
-        <article class="card">
-
-            <div class="icone">
-                💡
-            </div>
-
-            <span class="contexto">
-                Física
-            </span>
-
-            <h3>
-                Óptica
-            </h3>
-
-            <p>
-                Estudo da luz, sua propagação,
-                reflexão, refração e suas
-                aplicações no cotidiano.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                🌈
-            </div>
-
-            <span class="contexto">
-                Física
-            </span>
-
-            <h3>
-                Luz e Cores
-            </h3>
-
-            <p>
-                Diferentes frequências da luz
-                são percebidas como diferentes cores.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                🔭
-            </div>
-
-            <span class="contexto">
-                Física
-            </span>
-
-            <h3>
-                Fenômenos Ópticos
-            </h3>
-
-            <p>
-                Reflexão, refração, absorção e
-                propagação da luz aparecem em
-                diversas tecnologias.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     TECNOCIÊNCIA E ROBÓTICA
-===================================================== -->
-
-<section
-    class="secao"
-    id="robotica"
->
-
-    <h2 class="titulo-secao">
-        🤖 Tecnociência e Robótica
-    </h2>
-
-    <div class="grid">
-
-
-        <article class="card">
-
-            <div class="icone">
-                🤖
-            </div>
-
-            <span class="contexto">
-                Tecnologia
-            </span>
-
-            <h3>
-                Robótica
-            </h3>
-
-            <p>
-                Robôs utilizam sensores, câmeras
-                e sistemas de controle para perceber
-                o ambiente e executar tarefas.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                🔴
-            </div>
-
-            <span class="contexto">
-                Automação
-            </span>
-
-            <h3>
-                Sensores Ópticos
-            </h3>
-
-            <p>
-                Sensores podem detectar objetos,
-                posições e movimentos utilizando luz.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                🏭
-            </div>
-
-            <span class="contexto">
-                Indústria
-            </span>
-
-            <h3>
-                Automação Industrial
-            </h3>
-
-            <p>
-                Sistemas automatizados utilizam sensores
-                para controlar máquinas e linhas de produção.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                🧠
-            </div>
-
-            <span class="contexto">
-                Tecnociência
-            </span>
-
-            <h3>
-                Ciência + Tecnologia
-            </h3>
-
-            <p>
-                A tecnociência aproxima o conhecimento
-                científico do desenvolvimento tecnológico.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     FAKE NEWS
-===================================================== -->
-
-<section
-    class="secao"
-    id="fakenews"
->
-
-    <h2 class="titulo-secao">
-        📰 Fake News
-    </h2>
-
-    <div class="curiosidade">
-
-        <h3>
-            🔎 Como identificar uma informação falsa?
-        </h3>
-
-        <p>
-            Antes de acreditar ou compartilhar uma informação,
-            verifique sua origem, procure outras fontes confiáveis
-            e confira quando o conteúdo foi publicado.
-        </p>
-
-    </div>
-
-
-    <div
-        class="grid"
-        style="margin-top:25px;"
-    >
-
-        <article class="card">
-
-            <div class="icone">
-                🚨
-            </div>
-
-            <span class="contexto">
-                Atenção
-            </span>
-
-            <h3>
-                Título sensacionalista
-            </h3>
-
-            <p>
-                Títulos que provocam medo, raiva ou surpresa
-                podem incentivar compartilhamentos sem
-                verificação.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                🔍
-            </div>
-
-            <span class="contexto">
-                Verificação
-            </span>
-
-            <h3>
-                Confira a fonte
-            </h3>
-
-            <p>
-                Procure quem publicou a informação e veja
-                se outras fontes confiáveis apresentam
-                o mesmo fato.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                📅
-            </div>
-
-            <span class="contexto">
-                Contexto
-            </span>
-
-            <h3>
-                Confira a data
-            </h3>
-
-            <p>
-                Uma notícia antiga pode voltar a circular
-                como se fosse um acontecimento recente.
-            </p>
-
-        </article>
-
-
-        <article class="card">
-
-            <div class="icone">
-                🧠
-            </div>
-
-            <span class="contexto">
-                Pensamento crítico
-            </span>
-
-            <h3>
-                Pense antes de compartilhar
-            </h3>
-
-            <p>
-                Leia o conteúdo completo, procure evidências
-                e só depois decida se deve compartilhá-lo.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     CURIOSIDADES
-===================================================== -->
-
-<section
-    class="secao"
-    id="curiosidades"
->
-
-    <h2 class="titulo-secao">
-        💡 Curiosidades
-    </h2>
-
-    <div class="grid">
-
-
-        <div class="curiosidade">
-
-            <h3>
-                💡 Fibra Óptica
-            </h3>
-
-            <p>
-                Um único fio pode ser extremamente fino,
-                mas transportar uma grande quantidade
-                de dados através da luz.
-            </p>
-
+        <div class="header-info">
+            <span>⚡ Luz</span>
+            <span>🔬 Ciência</span>
+            <span>🤖 Tecnologia</span>
         </div>
 
-
-        <div class="curiosidade">
-
-            <h3>
-                📷 Câmera
-            </h3>
-
-            <p>
-                Uma câmera de celular pode detectar
-                a luz infravermelha emitida por alguns
-                controles remotos.
-            </p>
-
-        </div>
+    </header>
 
 
-        <div class="curiosidade">
+    <!-- =========================
+         MENU
+    ========================== -->
 
-            <h3>
-                🔬 Microscópio
-            </h3>
+    <nav class="menu">
 
-            <p>
-                Os primeiros microscópios úteis surgiram
-                por volta de 1590 utilizando sistemas
-                simples de lentes.
-            </p>
-
-        </div>
-
-
-        <div class="curiosidade">
-
-            <h3>
-                🔴 Sensor
-            </h3>
-
-            <p>
-                Sensores ópticos podem detectar rapidamente
-                objetos em linhas automatizadas de produção.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     IA
-===================================================== -->
-
-<section
-    class="secao"
-    id="ia"
->
-
-    <h2 class="titulo-secao">
-        🤖 Inteligência Artificial
-    </h2>
-
-    <div class="curiosidade">
-
-        <h3>
-            Como a IA ajudou?
-        </h3>
-
-        <p>
-            A Inteligência Artificial foi utilizada para
-            estruturar e simplificar conceitos científicos,
-            auxiliar na organização dos textos e levantar
-            informações e curiosidades relacionadas à óptica.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     ACESSIBILIDADE
-===================================================== -->
-
-<section
-    class="secao"
-    id="acessibilidade"
->
-
-    <h2 class="titulo-secao">
-        ♿ Óptica e Acessibilidade
-    </h2>
-
-    <div class="curiosidade">
-
-        <h3>
-            Luz, contraste e inclusão
-        </h3>
-
-        <p>
-            A iluminação adequada aumenta o contraste entre
-            objetos e fundos. Isso pode facilitar a identificação
-            de formas, obstáculos, degraus e outras informações
-            visuais para pessoas com baixa visão.
-        </p>
-
-        <br>
-
-        <p>
-            Sensores ópticos e infravermelho também podem
-            participar de tecnologias assistivas, contribuindo
-            para autonomia e segurança.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     RODAPÉ
-===================================================== -->
-
-<footer>
-
-    <p>
-        🔬 Pokédex da Óptica
-    </p>
-
-    <p style="margin-top:8px;">
-        Projeto escolar • Física • Tecnologia • Acessibilidade
-    </p>
-
-</footer>
-
-</div>
-
-
-<!-- =====================================================
-     JANELA DAS FICHAS
-===================================================== -->
-
-<div id="modal">
-
-    <div class="ficha">
-
-        <button
-            class="fechar"
-            onclick="fecharFicha()"
-        >
-            ×
+        <button class="menu-btn active" onclick="abrirAba('optica', this)">
+            🔬
+            <span>Introdução à Óptica</span>
         </button>
 
-        <div id="conteudoFicha"></div>
+        <button class="menu-btn" onclick="abrirAba('tecnociencia', this)">
+            ⚡
+            <span>Física e Tecnociência</span>
+        </button>
 
-    </div>
+        <button class="menu-btn" onclick="abrirAba('robotica', this)">
+            🤖
+            <span>Robótica</span>
+        </button>
 
-</div>
+    </nav>
 
 
-<script>
+    <main>
 
-/* =====================================================
-   ENTRAR NO SITE
-===================================================== */
+        <!-- ======================================================
+             ABA 1 — INTRODUÇÃO À ÓPTICA
+        ======================================================= -->
 
-const inicio =
-    document.getElementById("inicio");
+        <section id="optica" class="aba ativa">
 
-const site =
-    document.getElementById("site");
+            <div class="hero">
 
-let entrou = false;
+                <div class="hero-text">
 
-function entrar() {
+                    <span class="tag">POKÉDEX DA CIÊNCIA</span>
 
-    if (entrou) return;
+                    <h2>
+                        A ÓPTICA
+                        <strong>NO NOSSO DIA A DIA</strong>
+                    </h2>
 
-    entrou = true;
+                    <p>
+                        Descubra como a luz, as cores e a visão fazem parte
+                        da Física e estão presentes em tecnologias que usamos
+                        todos os dias.
+                    </p>
 
-    inicio.classList.add("saindo");
+                    <div class="hero-buttons">
 
-    setTimeout(() => {
+                        <button onclick="scrollPara('newton')">
+                            🔎 Explorar Newton
+                        </button>
 
-        site.classList.add("visivel");
+                        <button class="secondary" onclick="scrollPara('video')">
+                            ▶ Ver vídeo
+                        </button>
 
-        document.body.style.overflow = "auto";
+                    </div>
 
-    },500);
+                </div>
 
-}
 
-document.addEventListener(
-    "keydown",
-    function() {
+                <div class="hero-orbit">
 
-        if (!entrou) {
-            entrar();
-        }
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <div class="orbit orbit-3"></div>
 
-    }
-);
+                    <div class="pokemon-core">
+                        <div class="core-eye"></div>
+                        <div class="core-eye right"></div>
+                        <div class="core-energy"></div>
+                    </div>
 
-inicio.addEventListener(
-    "click",
-    entrar
-);
+                </div>
 
-inicio.addEventListener(
-    "touchstart",
-    entrar
-);
-
-
-/* =====================================================
-   DADOS DAS FICHAS
-===================================================== */
-
-const fichas = {
-
-    fibra: {
-
-        icone: "💡",
-
-        titulo: "Fibra Óptica",
-
-        contexto: "Residencial",
-
-        principio:
-            "Reflexão interna total",
-
-        funcionamento:
-            "A fibra óptica residencial transporta dados de internet transformados em pulsos de luz de alta velocidade. Essa luz viaja por um fio de vidro ou plástico ultrafino, rebatendo continuamente nas paredes internas do cabo sem escapar, garantindo uma conexão rápida e estável na sua casa.",
-
-        onde:
-            "No cabo conectado atrás do modem ou roteador de internet da sua residência.",
-
-        ia:
-            "A IA simplificou o conceito de reflexão total, explicando de forma clara como a luz faz curvas dentro do cabo.",
-
-        fonte:
-            "Caderno de Ciências da Natureza, artigo científico do Instituto de Física da USP e portal de tecnologia Techtudo."
-
-    },
-
-
-    camera: {
-
-        icone: "📷",
-
-        titulo: "Câmera de Segurança",
-
-        contexto: "Comercial",
-
-        principio:
-            "Refração da luz nas lentes e reflexão/absorção do infravermelho",
-
-        funcionamento:
-            "A câmera de segurança comercial captura a luz que os objetos refletem no ambiente. À noite, ela utiliza luz infravermelha invisível a olho nu, que interage com pessoas e objetos e é captada pelo sensor digital, permitindo imagens em ambientes escuros.",
-
-        onde:
-            "Em tetos de lojas, vitrines, comércios, supermercados e shoppings.",
-
-        ia:
-            "A IA ajudou a estruturar o texto explicativo sobre o funcionamento da visão noturna infravermelha.",
-
-        fonte:
-            "Manual técnico de segurança Intelbras e artigos sobre o espectro eletromagnético da Khan Academy."
-
-    },
-
-
-    microscopio: {
-
-        icone: "🔬",
-
-        titulo: "Microscópio",
-
-        contexto: "Escolar",
-
-        principio:
-            "Refração da luz por meio de lentes convergentes",
-
-        funcionamento:
-            "O microscópio escolar utiliza uma fonte de luz na base que atravessa uma lâmina de vidro transparente. Essa luz passa por lentes curvas, como a objetiva e a ocular, que desviam os raios luminosos e ampliam o tamanho aparente de células ou microrganismos.",
-
-        onde:
-            "Nas bancadas do laboratório de ciências ou biologia da escola.",
-
-        ia:
-            "A IA indicou dados e curiosidades sobre o limite de ampliação de lentes ópticas comuns.",
-
-        fonte:
-            "Livro didático de Biologia e Física escolar e portal InfoEscola."
-
-    },
-
-
-    sensor: {
-
-        icone: "🔴",
-
-        titulo: "Sensor Óptico de Barreira",
-
-        contexto: "Industrial",
-
-        principio:
-            "Propagação retilínea da luz e absorção/bloqueio da luz",
-
-        funcionamento:
-            "O sensor óptico de barreira utiliza um emissor que dispara um feixe contínuo de luz em direção a um receptor. Quando uma caixa ou peça passa pela esteira, ela bloqueia essa luz; o receptor percebe a interrupção do sinal e avisa a máquina para contar o produto ou parar o sistema.",
-
-        onde:
-            "Em esteiras de produção de fábricas, linhas de embalagem e braços robóticos.",
-
-        ia:
-            "A IA revisou e padronizou o modelo de escrita técnica curta para o sensor industrial.",
-
-        fonte:
-            "Catálogos técnicos de automação industrial e Mundo Educação."
-
-    },
-
-
-    cores: {
-
-        icone: "🌈",
-
-        titulo: "Cores e Síntese Aditiva",
-
-        contexto: "Cores e Luz",
-
-        principio:
-            "Síntese aditiva das cores",
-
-        funcionamento:
-            "No sistema RGB, as luzes vermelha, verde e azul podem ser combinadas em diferentes intensidades para formar diversas outras cores.",
-
-        onde:
-            "Em telas de computadores, celulares, televisores e sistemas de iluminação.",
-
-        ia:
-            "A IA auxiliou na organização e explicação do conteúdo sobre luz e cores.",
-
-        fonte:
-            "Conteúdos de Física e Óptica utilizados no projeto."
-
-    },
-
-
-    acessibilidade: {
-
-        icone: "♿",
-
-        titulo: "Óptica e Acessibilidade",
-
-        contexto: "Tecnologia Assistiva",
-
-        principio:
-            "Contraste, iluminação e percepção visual",
-
-        funcionamento:
-            "A iluminação adequada aumenta o contraste entre objetos e fundos. Isso pode facilitar a percepção de contornos, formas e obstáculos para pessoas com baixa visão.",
-
-        onde:
-            "Em ambientes, sinalizações, dispositivos digitais e tecnologias assistivas.",
-
-        ia:
-            "A IA ajudou a organizar os conceitos de óptica e suas relações com acessibilidade.",
-
-        fonte:
-            "Materiais de Física, Biologia, acessibilidade e tecnologias assistivas utilizados no projeto."
-
-    },
-
-
-    ia: {
-
-        icone: "🤖",
-
-        titulo: "Inteligência Artificial",
-
-        contexto: "Pesquisa",
-
-        principio:
-            "IA aplicada à pesquisa e organização",
-
-        funcionamento:
-            "A Inteligência Artificial pode auxiliar na organização de informações, simplificação de conceitos e estruturação de textos.",
-
-        onde:
-            "Durante as etapas de pesquisa e preparação do projeto.",
-
-        ia:
-            "A própria IA foi utilizada como ferramenta de apoio para organizar e revisar os conteúdos.",
-
-        fonte:
-            "Ferramentas de Inteligência Artificial utilizadas pelo grupo."
-
-    }
-
-};
-
-
-/* =====================================================
-   ABRIR FICHA
-===================================================== */
-
-function abrirFicha(nome) {
-
-    const ficha =
-        fichas[nome];
-
-    if (!ficha) return;
-
-    const conteudo =
-        document.getElementById(
-            "conteudoFicha"
-        );
-
-    conteudo.innerHTML = `
-
-        <div class="ficha-topo">
-
-            <div class="icone">
-                ${ficha.icone}
             </div>
 
-            <span class="tag">
-                ${ficha.contexto}
-            </span>
 
-            <h2>
-                ${ficha.titulo}
-            </h2>
+            <!-- CONTEXTO HISTÓRICO -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+                    <span>01</span>
+                    <div>
+                        <small>CONTEXTO</small>
+                        <h2>O estudo da luz</h2>
+                    </div>
+                </div>
+
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-icon">XVII</div>
+
+                        <div class="timeline-content">
+
+                            <h3>Revolução Científica</h3>
+
+                            <p>
+                                O estudo de Isaac Newton sobre a luz está situado
+                                principalmente no século XVII, durante o período
+                                conhecido como Revolução Científica.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-icon">💡</div>
+
+                        <div class="timeline-content">
+
+                            <h3>O que se acreditava?</h3>
+
+                            <p>
+                                Na época existiam diferentes explicações para a
+                                natureza da luz. Newton defendia que a luz era
+                                formada por pequenas partículas chamadas
+                                <strong>corpúsculos</strong>.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-icon">🔎</div>
+
+                        <div class="timeline-content">
+
+                            <h3>Qual era o problema?</h3>
+
+                            <p>
+                                Os cientistas buscavam compreender a natureza da
+                                luz e explicar fenômenos como reflexão,
+                                refração e formação das cores.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- NEWTON -->
+
+            <section class="conteudo" id="newton">
+
+                <div class="section-title">
+
+                    <span>02</span>
+
+                    <div>
+                        <small>CIENTISTA</small>
+                        <h2>Isaac Newton</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="scientist-card">
+
+                    <div class="newton-portrait">
+
+                        <div class="portrait-symbol">
+                            N
+                        </div>
+
+                    </div>
+
+
+                    <div class="scientist-info">
+
+                        <span class="badge">FÍSICO • MATEMÁTICO • ASTRÔNOMO</span>
+
+                        <h3>Isaac Newton</h3>
+
+                        <p class="periodo">
+                            1643 — 1727
+                        </p>
+
+                        <p>
+                            Isaac Newton foi um físico, matemático e astrônomo
+                            inglês que realizou importantes estudos sobre a luz.
+                        </p>
+
+                        <p>
+                            Seus experimentos com prismas demonstraram que a
+                            luz branca é composta por diferentes cores.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cards-grid">
+
+                    <article class="info-card red">
+
+                        <div class="card-icon">🔴</div>
+
+                        <h3>Teoria Corpuscular</h3>
+
+                        <p>
+                            Newton defendia que a luz seria constituída por
+                            pequenas partículas que se propagavam em linha reta.
+                        </p>
+
+                    </article>
+
+
+                    <article class="info-card blue">
+
+                        <div class="card-icon">🔵</div>
+
+                        <h3>Refração</h3>
+
+                        <p>
+                            A mudança de direção da luz ao passar de um meio
+                            para outro foi um dos fenômenos estudados por Newton.
+                        </p>
+
+                    </article>
+
+
+                    <article class="info-card yellow">
+
+                        <div class="card-icon">🟡</div>
+
+                        <h3>Dispersão</h3>
+
+                        <p>
+                            O prisma demonstrou que diferentes cores sofrem
+                            diferentes desvios ao atravessar o vidro.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- DISCO DE NEWTON -->
+
+            <section class="conteudo disco-section">
+
+                <div class="section-title">
+
+                    <span>03</span>
+
+                    <div>
+                        <small>EXPERIMENTO</small>
+                        <h2>Disco de Newton</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="disco-layout">
+
+                    <div class="disco-area">
+
+                        <div id="discoNewton">
+
+                            <div class="disco-center"></div>
+
+                        </div>
+
+                        <button onclick="girarDisco()" class="pokemon-button">
+                            ⚡ GIRAR DISCO
+                        </button>
+
+                    </div>
+
+
+                    <div class="disco-text">
+
+                        <span class="badge">EXPERIMENTO DE ÓPTICA</span>
+
+                        <h3>Por que as cores parecem desaparecer?</h3>
+
+                        <p>
+                            O Disco de Newton possui setores com diferentes
+                            cores do espectro visível.
+                        </p>
+
+                        <p>
+                            Quando o disco gira rapidamente, as imagens das
+                            diferentes cores chegam ao nosso sistema visual
+                            em uma sucessão muito rápida.
+                        </p>
+
+                        <p>
+                            O cérebro integra essas informações e percebemos
+                            uma tonalidade próxima do branco ou cinza-claro.
+                        </p>
+
+
+                        <div class="spectrum">
+
+                            <span style="background:#ef233c"></span>
+                            <span style="background:#ff7b00"></span>
+                            <span style="background:#ffd60a"></span>
+                            <span style="background:#38b000"></span>
+                            <span style="background:#0077ff"></span>
+                            <span style="background:#4b0082"></span>
+                            <span style="background:#8f00ff"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- EVIDÊNCIAS -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>04</span>
+
+                    <div>
+                        <small>EVIDÊNCIAS</small>
+                        <h2>Os experimentos</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="experiment-grid">
+
+                    <div class="experiment-card">
+
+                        <span class="number">01</span>
+
+                        <h3>Prisma de vidro</h3>
+
+                        <p>
+                            Newton utilizou prismas para observar a separação
+                            da luz branca em diferentes cores.
+                        </p>
+
+                    </div>
+
+
+                    <div class="experiment-card">
+
+                        <span class="number">02</span>
+
+                        <h3>Recombinação</h3>
+
+                        <p>
+                            As cores separadas também podiam ser reunidas
+                            novamente para produzir luz branca.
+                        </p>
+
+                    </div>
+
+
+                    <div class="experiment-card">
+
+                        <span class="number">03</span>
+
+                        <h3>Disco de Newton</h3>
+
+                        <p>
+                            A rotação rápida do disco permite visualizar
+                            a integração das cores pelo sistema visual.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- VÍDEO -->
+
+            <section class="conteudo" id="video">
+
+                <div class="section-title">
+
+                    <span>05</span>
+
+                    <div>
+                        <small>RECOMENDAÇÃO</small>
+                        <h2>Vídeo sobre o Disco de Newton</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <div class="video-preview">
+
+                        <div class="play-icon">▶</div>
+
+                        <span>EXPERIMENTO DE FÍSICA</span>
+
+                    </div>
+
+
+                    <div class="video-info">
+
+                        <span class="badge">YOUTUBE</span>
+
+                        <h3>
+                            Decomposição da luz branca:
+                            Experimento do Disco de Newton
+                        </h3>
+
+                        <p>
+                            O vídeo apresenta o funcionamento do Disco de Newton
+                            e explica a relação entre luz branca, cores,
+                            refração e dispersão.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=_rmhHcwu93o"
+                            target="_blank"
+                            class="youtube-button"
+                        >
+                            ▶ ASSISTIR NO YOUTUBE
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- IA -->
+
+            <section class="conteudo">
+
+                <div class="ai-box">
+
+                    <div class="ai-icon">🤖</div>
+
+                    <div>
+
+                        <span class="badge">REGISTRO DO USO DA IA</span>
+
+                        <h2>Como a Inteligência Artificial foi utilizada?</h2>
+
+                        <p>
+                            Utilizamos o ChatGPT, uma ferramenta de inteligência
+                            artificial, para auxiliar na compreensão da teoria
+                            corpuscular da luz de Isaac Newton, na organização
+                            das informações e na elaboração das respostas.
+                        </p>
+
+                        <p>
+                            As informações fornecidas pela IA foram analisadas
+                            e comparadas com fontes confiáveis de pesquisa,
+                            a fim de verificar sua precisão antes da publicação
+                            e para desenvolver o próprio código do projeto.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- ======================================================
+             ABA 2 — FÍSICA E TECNOCIÊNCIA
+        ======================================================= -->
+
+        <section id="tecnociencia" class="aba">
+
+            <div class="page-banner">
+
+                <span class="tag">ÁREA 02</span>
+
+                <h2>
+                    FÍSICA E
+                    <strong>TECNOCIÊNCIA</strong>
+                </h2>
+
+                <p>
+                    Da compreensão da luz ao desenvolvimento de tecnologias
+                    que transformam nossa vida.
+                </p>
+
+            </div>
+
+
+            <!-- RELAÇÃO COM FÍSICA ATUAL -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>01</span>
+
+                    <div>
+                        <small>FÍSICA ATUAL</small>
+                        <h2>Do passado ao presente</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="future-card">
+
+                    <div class="future-icon">🌈</div>
+
+                    <div>
+
+                        <h3>A luz na Física moderna</h3>
+
+                        <p>
+                            A teoria corpuscular de Newton não é aceita
+                            atualmente em sua forma original. Porém, seus
+                            experimentos sobre cores, refração e dispersão
+                            foram fundamentais para o desenvolvimento das
+                            teorias modernas sobre a luz.
+                        </p>
+
+                        <div class="connection">
+
+                            <span>Newton</span>
+                            <b>→</b>
+                            <span>Óptica</span>
+                            <b>→</b>
+                            <span>Tecnologia</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- TECNOLOGIAS ASSISTIVAS -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>02</span>
+
+                    <div>
+                        <small>TECNOLOGIA ASSISTIVA</small>
+                        <h2>Luz a favor da acessibilidade</h2>
+                    </div>
+
+                </div>
+
+
+                <p class="intro-text">
+
+                    O conhecimento sobre luz, cores, contraste e percepção
+                    visual permite desenvolver tecnologias que aumentam
+                    a autonomia e a segurança de pessoas com deficiência
+                    visual e baixa visão.
+
+                </p>
+
+
+                <div class="technology-grid">
+
+                    <article class="technology-card">
+
+                        <div class="tech-number">01</div>
+
+                        <div class="tech-icon">📱</div>
+
+                        <h3>Identificador de cores</h3>
+
+                        <p>
+                            Aplicativos utilizam a câmera do celular para
+                            identificar cores e fornecer informações ao usuário.
+                        </p>
+
+                        <span>RGB + PROCESSAMENTO DIGITAL</span>
+
+                    </article>
+
+
+                    <article class="technology-card">
+
+                        <div class="tech-number">02</div>
+
+                        <div class="tech-icon">👓</div>
+
+                        <h3>Óculos eletrônicos</h3>
+
+                        <p>
+                            Câmeras e telas podem ampliar imagens e ajustar
+                            brilho e contraste para pessoas com baixa visão.
+                        </p>
+
+                        <span>ÓPTICA + VISÃO COMPUTACIONAL</span>
+
+                    </article>
+
+
+                    <article class="technology-card">
+
+                        <div class="tech-number">03</div>
+
+                        <div class="tech-icon">🔍</div>
+
+                        <h3>Lupa digital</h3>
+
+                        <p>
+                            Permite ampliar textos e modificar contraste,
+                            facilitando a leitura de documentos.
+                        </p>
+
+                        <span>AMPLIAÇÃO + CONTRASTE</span>
+
+                    </article>
+
+
+                    <article class="technology-card">
+
+                        <div class="tech-number">04</div>
+
+                        <div class="tech-icon">💡</div>
+
+                        <h3>Sinalização luminosa</h3>
+
+                        <p>
+                            LEDs e sistemas luminosos podem aumentar a
+                            visibilidade de sinais e obstáculos.
+                        </p>
+
+                        <span>LUZ + SEGURANÇA</span>
+
+                    </article>
+
+
+                    <article class="technology-card">
+
+                        <div class="tech-number">05</div>
+
+                        <div class="tech-icon">🎨</div>
+
+                        <h3>Filtros de lentes</h3>
+
+                        <p>
+                            Filtros podem controlar determinados comprimentos
+                            de onda e melhorar o conforto visual.
+                        </p>
+
+                        <span>FILTRAGEM ÓPTICA</span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- NOSSA PROPOSTA -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>03</span>
+
+                    <div>
+                        <small>PROJETO</small>
+                        <h2>LumosSense</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="solution">
+
+                    <div class="solution-header">
+
+                        <div class="solution-logo">LS</div>
+
+                        <div>
+
+                            <span>TECNOLOGIA ASSISTIVA</span>
+
+                            <h3>
+                                LumosSense — Óculos Guia de
+                                Contraste e Luz
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="solution-grid">
+
+                        <div>
+
+                            <h4>🎯 Problema</h4>
+
+                            <p>
+                                Dificuldade de pessoas com baixa visão em
+                                identificar obstáculos, degraus e contrastes
+                                de iluminação em ambientes internos.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4>👥 Público-alvo</h4>
+
+                            <p>
+                                Pessoas com baixa visão acentuada, idosos
+                                com perda visual e pessoas com deficiência visual.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4>⚙ Funcionamento</h4>
+
+                            <p>
+                                Uma câmera e sensores analisam a iluminação
+                                e os objetos ao redor. O sistema pode emitir
+                                alertas sonoros, táteis e luminosos.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4>🧠 Inteligência Artificial</h4>
+
+                            <p>
+                                A IA pode analisar imagens, reconhecer
+                                obstáculos e auxiliar na classificação
+                                do contraste do ambiente.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="components">
+
+                        <span>📷 Câmera</span>
+                        <span>💡 LEDs</span>
+                        <span>☀ Sensor de luz</span>
+                        <span>🧠 Microcontrolador</span>
+                        <span>🔋 Bateria</span>
+                        <span>🎧 Áudio</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONCLUSÃO -->
+
+            <section class="conteudo">
+
+                <div class="conclusion">
+
+                    <span>CONCLUSÃO</span>
+
+                    <h2>
+                        A Física transforma
+                        conhecimento em tecnologia.
+                    </h2>
+
+                    <p>
+                        Os estudos da luz realizados por Newton ajudaram
+                        a construir uma base importante para a Óptica.
+                        Atualmente, esses conhecimentos continuam presentes
+                        em câmeras, telas, sensores, sistemas de iluminação
+                        e tecnologias assistivas.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- ======================================================
+             ABA 3 — ROBÓTICA
+        ======================================================= -->
+
+        <section id="robotica" class="aba">
+
+            <div class="page-banner robot-banner">
+
+                <span class="tag">ÁREA 03</span>
+
+                <h2>
+                    FÍSICA +
+                    <strong>ROBÓTICA</strong>
+                </h2>
+
+                <p>
+                    Quando a luz deixa de ser apenas observada e passa
+                    a controlar sistemas inteligentes.
+                </p>
+
+            </div>
+
+
+            <!-- ATIVIDADE 1 -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>01</span>
+
+                    <div>
+
+                        <small>ATIVIDADE 1</small>
+
+                        <h2>Controle de luminosidade</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="robot-project">
+
+                    <div class="robot-visual">
+
+                        <div class="led-simulation"></div>
+
+                        <span>LED</span>
+
+                    </div>
+
+
+                    <div class="robot-info">
+
+                        <span class="badge">TINKERCAD + ARDUINO</span>
+
+                        <h3>Fade-In / Fade-Out</h3>
+
+                        <p>
+                            O objetivo foi simular um circuito eletrônico
+                            capaz de realizar a variação gradual da intensidade
+                            luminosa de um LED.
+                        </p>
+
+                        <p>
+                            Utilizamos uma placa microcontroladora, protoboard,
+                            LED e resistor. A intensidade luminosa foi
+                            controlada através de PWM.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PWM -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>02</span>
+
+                    <div>
+
+                        <small>ELETRÔNICA</small>
+
+                        <h2>Como funciona o PWM?</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pwm-box">
+
+                    <div class="pwm-visual">
+
+                        <div class="wave">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>Pulse Width Modulation</h3>
+
+                        <p>
+                            Em vez de simplesmente ligar ou desligar o LED,
+                            o Arduino controla rapidamente o tempo em que
+                            o sinal permanece ligado.
+                        </p>
+
+                        <p>
+                            Alterando essa proporção, chamada de
+                            <strong>duty cycle</strong>, podemos controlar
+                            a intensidade percebida pelo olho humano.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ATIVIDADE 2 -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>03</span>
+
+                    <div>
+
+                        <small>ATIVIDADE 2</small>
+
+                        <h2>LED RGB</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="rgb-project">
+
+                    <div class="rgb-led">
+
+                        <div class="rgb-glow"></div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="badge">SÍNTESE ADITIVA</span>
+
+                        <h3>Vermelho + Verde + Azul</h3>
+
+                        <p>
+                            Um LED RGB possui três canais independentes:
+                            vermelho, verde e azul.
+                        </p>
+
+                        <div class="rgb-combinations">
+
+                            <div>
+                                <i class="red-light"></i>
+                                <span>Vermelho</span>
+                            </div>
+
+                            <div>
+                                <i class="green-light"></i>
+                                <span>Verde</span>
+                            </div>
+
+                            <div>
+                                <i class="blue-light"></i>
+                                <span>Azul</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mix-grid">
+
+                    <div>
+                        🔴 + 🟢
+                        <strong>Amarelo</strong>
+                    </div>
+
+                    <div>
+                        🟢 + 🔵
+                        <strong>Ciano</strong>
+                    </div>
+
+                    <div>
+                        🔴 + 🔵
+                        <strong>Magenta</strong>
+                    </div>
+
+                    <div>
+                        🔴 + 🟢 + 🔵
+                        <strong>Branco</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHROMASENSE -->
+
+            <section class="conteudo">
+
+                <div class="section-title">
+
+                    <span>04</span>
+
+                    <div>
+
+                        <small>PROPOSTA</small>
+
+                        <h2>ChromaSense</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chroma-card">
+
+                    <div class="chroma-header">
+
+                        <div class="chroma-logo">
+                            RGB
+                        </div>
+
+                        <div>
+
+                            <span>TECNOLOGIA ASSISTIVA</span>
+
+                            <h3>
+                                ChromaSense —
+                                Cabideiro Inteligente
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chroma-grid">
+
+                        <div>
+
+                            <h4>🎯 Problema</h4>
+
+                            <p>
+                                Dificuldade de algumas pessoas com baixa visão
+                                ou daltonismo em identificar cores de roupas.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4>⚙ Funcionamento</h4>
+
+                            <p>
+                                Um sensor de cor identifica a luz refletida
+                                pelo tecido e determina seus valores RGB.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4>🔊 Resposta</h4>
+
+                            <p>
+                                O dispositivo pode iluminar um LED com a
+                                cor detectada e anunciar o nome da cor.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4>🧠 IA</h4>
+
+                            <p>
+                                Uma IA poderia analisar estampas complexas
+                                e auxiliar na combinação de roupas.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="components">
+
+                        <span>Arduino Nano</span>
+                        <span>Sensor TCS3200</span>
+                        <span>LED RGB</span>
+                        <span>Alto-falante</span>
+                        <span>Bateria</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONCLUSÃO ROBÓTICA -->
+
+            <section class="conteudo">
+
+                <div class="robot-conclusion">
+
+                    <div class="pokeball-big">
+
+                        <div></div>
+
+                    </div>
+
+                    <div>
+
+                        <span>CONCLUSÃO DA ROBÓTICA</span>
+
+                        <h2>
+                            Do experimento para
+                            uma solução real.
+                        </h2>
+
+                        <p>
+                            As atividades realizadas no Tinkercad mostram
+                            como conceitos de Física podem ser transformados
+                            em sistemas eletrônicos e tecnologias assistivas.
+                            O controle da luz, das cores e dos sensores permite
+                            desenvolver soluções capazes de melhorar a
+                            autonomia e a acessibilidade.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- REGISTRO IA -->
+
+            <section class="conteudo">
+
+                <div class="ai-box">
+
+                    <div class="ai-icon">⚡</div>
+
+                    <div>
+
+                        <span class="badge">
+                            USO DA INTELIGÊNCIA ARTIFICIAL
+                        </span>
+
+                        <h2>Ferramentas utilizadas</h2>
+
+                        <p>
+                            ChatGPT e Gemini foram utilizados para auxiliar
+                            na organização das explicações, compreensão
+                            dos conceitos de PWM, LED RGB, síntese aditiva,
+                            contraste e tecnologias assistivas.
+                        </p>
+
+                        <p>
+                            As informações foram verificadas com materiais
+                            didáticos, documentação técnica e fontes de
+                            referência.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <div class="pokeball small">
+                <div class="pokeball-center"></div>
+            </div>
+
+            <strong>PokéÓptica</strong>
 
         </div>
 
-        <div class="info">
 
-            <div class="bloco">
+        <p>
+            Projeto de Física • Óptica • Tecnociência • Robótica
+        </p>
 
-                <h4>
-                    ⚙️ Como funciona?
-                </h4>
 
-                <p>
-                    ${ficha.funcionamento}
-                </p>
+        <p class="footer-small">
+            Desenvolvido para fins educacionais.
+        </p>
 
-            </div>
+    </footer>
 
 
-            <div class="bloco">
+    <!-- =========================
+         BOTÃO VOLTAR AO TOPO
+    ========================== -->
 
-                <h4>
-                    📍 Onde aparece?
-                </h4>
+    <button id="topButton" onclick="voltarTopo()">
+        ↑
+    </button>
 
-                <p>
-                    ${ficha.onde}
-                </p>
 
-            </div>
-
-
-            <div class="bloco principio">
-
-                <h4>
-                    🔬 Princípio da óptica
-                </h4>
-
-                <p>
-                    ${ficha.principio}
-                </p>
-
-            </div>
-
-
-            <div class="bloco">
-
-                <h4>
-                    🤖 Como a IA ajudou?
-                </h4>
-
-                <p>
-                    ${ficha.ia}
-                </p>
-
-            </div>
-
-
-            <div class="bloco">
-
-                <h4>
-                    📚 Fonte utilizada
-                </h4>
-
-                <p>
-                    ${ficha.fonte}
-                </p>
-
-            </div>
-
-        </div>
-
-    `;
-
-    document
-        .getElementById("modal")
-        .classList.add("aberto");
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-/* =====================================================
-   FECHAR FICHA
-===================================================== */
-
-function fecharFicha() {
-
-    document
-        .getElementById("modal")
-        .classList.remove("aberto");
-
-    document.body.style.overflow =
-        "auto";
-
-}
-
-document
-    .getElementById("modal")
-    .addEventListener(
-        "click",
-        function(event) {
-
-            if (
-                event.target === this
-            ) {
-
-                fecharFicha();
-
-            }
-
-        }
-    );
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            fecharFicha();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   PESQUISA
-===================================================== */
-
-const pesquisa =
-    document.getElementById(
-        "pesquisa"
-    );
-
-pesquisa.addEventListener(
-    "input",
-    function() {
-
-        const texto =
-            this.value.toLowerCase();
-
-        const cards =
-            document.querySelectorAll(
-                "#assuntos .card"
-            );
-
-        cards.forEach(
-            card => {
-
-                const dados =
-                    (
-                        card.dataset.search ||
-                        ""
-                    ).toLowerCase();
-
-                if (
-                    dados.includes(texto)
-                ) {
-
-                    card.style.display =
-                        "";
-
-                } else {
-
-                    card.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================================
-   NAVEGAÇÃO DO MENU
-===================================================== */
-
-function irPara(id) {
-
-    const elemento =
-        document.getElementById(id);
-
-    if (!elemento) return;
-
-    elemento.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-</script>
+    <script src="script.js"></script>
 
 </body>
 </html>

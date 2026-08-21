@@ -21,18 +21,289 @@ body {
 
 
 /* =========================================================
+   ABERTURA POKÉMON
+========================================================= */
+
+#pokemonIntro {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(239,35,60,.16),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #05070e,
+            #0b1020 50%,
+            #05070e
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+#pokemonIntro::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+}
+
+.intro-content {
+    position: relative;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 2;
+
+    animation: introEntrada 1s ease;
+}
+
+@keyframes introEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+.intro-pokeball {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #ef233c 0%,
+            #ef233c 46%,
+            #080b16 46%,
+            #080b16 54%,
+            #f5f7fb 54%,
+            #f5f7fb 100%
+        );
+
+    position: relative;
+
+    box-shadow:
+        0 0 30px rgba(239,35,60,.4),
+        0 0 90px rgba(239,35,60,.15);
+
+    animation: introPokeball 2s ease-in-out infinite;
+}
+
+@keyframes introPokeball {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+}
+
+.intro-pokeball-center {
+    width: 48px;
+    height: 48px;
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: #080b16;
+
+    border: 9px solid white;
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,.5);
+}
+
+.intro-mini {
+    font-family: "Orbitron";
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #4db8ff;
+
+    margin-top: 35px;
+}
+
+.intro-content h1 {
+    font-family: "Orbitron";
+
+    font-size: clamp(45px, 8vw, 80px);
+
+    margin: 10px 0;
+
+    line-height: 1;
+}
+
+.intro-content h1 span {
+    color: #ef233c;
+}
+
+.intro-content p {
+    color: #9da9c0;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+.intro-loading {
+    display: flex;
+
+    gap: 8px;
+
+    margin: 25px 0;
+}
+
+.intro-loading span {
+    width: 8px;
+    height: 8px;
+
+    background: #ef233c;
+
+    border-radius: 50%;
+
+    animation: introLoading 1s infinite;
+}
+
+.intro-loading span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.intro-loading span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+@keyframes introLoading {
+
+    0%, 100% {
+        opacity: .2;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-6px);
+    }
+
+}
+
+#entrarSite {
+    border: 1px solid rgba(255,255,255,.2);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef233c,
+            #b51735
+        );
+
+    color: white;
+
+    padding: 15px 25px;
+
+    border-radius: 10px;
+
+    font-family: "Orbitron";
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 35px rgba(239,35,60,.25);
+
+    transition: .3s;
+}
+
+#entrarSite:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 15px 45px rgba(239,35,60,.4);
+}
+
+#pokemonIntro.sair {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* =========================================================
    FUNDO
 ========================================================= */
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
 
     background:
-        radial-gradient(circle at 20% 10%, rgba(0, 119, 255, 0.15), transparent 30%),
-        radial-gradient(circle at 80% 30%, rgba(255, 0, 70, 0.12), transparent 30%),
-        radial-gradient(circle at 50% 90%, rgba(0, 255, 180, 0.08), transparent 30%);
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(0,119,255,.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(255,0,70,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(0,255,180,.08),
+            transparent 30%
+        );
 
     pointer-events: none;
     z-index: -2;
@@ -43,12 +314,20 @@ body::before {
     inset: 0;
 
     background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
 
     background-size: 50px 50px;
 
     pointer-events: none;
+
     z-index: -1;
 }
 
@@ -63,10 +342,11 @@ body::before {
     padding: 20px 6%;
 
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
-    background: rgba(5, 8, 18, 0.9);
+    background: rgba(5,8,18,.9);
 
     border-bottom: 1px solid rgba(255,255,255,.08);
 
@@ -80,20 +360,27 @@ body::before {
 
 .logo {
     display: flex;
+
     align-items: center;
+
     gap: 14px;
 }
 
 .logo-mini {
     font-family: "Orbitron";
+
     font-size: 9px;
+
     color: #7f8ba3;
+
     letter-spacing: 2px;
 }
 
 .logo h1 {
     font-family: "Orbitron";
+
     font-size: 25px;
+
     line-height: 1;
 }
 
@@ -103,6 +390,7 @@ body::before {
 
 .header-info {
     display: flex;
+
     gap: 15px;
 }
 
@@ -110,15 +398,17 @@ body::before {
     padding: 7px 12px;
 
     border: 1px solid rgba(255,255,255,.1);
+
     border-radius: 20px;
 
     font-size: 11px;
+
     color: #aab5cc;
 }
 
 
 /* =========================================================
-   POKEBALL
+   POKÉBALL
 ========================================================= */
 
 .pokeball {
@@ -140,7 +430,8 @@ body::before {
 
     position: relative;
 
-    box-shadow: 0 0 25px rgba(239,35,60,.3);
+    box-shadow:
+        0 0 25px rgba(239,35,60,.3);
 }
 
 .pokeball-center {
@@ -169,6 +460,7 @@ body::before {
 .pokeball.small .pokeball-center {
     width: 10px;
     height: 10px;
+
     border-width: 2px;
 }
 
@@ -181,16 +473,19 @@ body::before {
     display: flex;
 
     justify-content: center;
+
     gap: 12px;
 
     padding: 20px 5%;
 
     position: sticky;
+
     top: 90px;
 
     z-index: 999;
 
-    background: rgba(8, 11, 22, .82);
+    background: rgba(8,11,22,.82);
+
     backdrop-filter: blur(15px);
 
     border-bottom: 1px solid rgba(255,255,255,.06);
@@ -212,7 +507,9 @@ body::before {
     font-family: "Poppins";
 
     display: flex;
+
     align-items: center;
+
     gap: 9px;
 
     transition: .3s;
@@ -220,161 +517,58 @@ body::before {
 
 .menu-btn:hover {
     border-color: #ff3152;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.menu-btn.active {
-    background: linear-gradient(135deg, #ef233c, #b51735);
-    border-color: transparent;
-
-    color: white;
-
-    box-shadow: 0 8px 30px rgba(239,35,60,.25);
-}
-
-
-/* =========================================================
-   SISTEMA DE ABAS
-========================================================= */
-
-/* Todas as abas começam escondidas */
-.aba {
-    display: none;
-    width: 100%;
-}
-
-/* Somente a aba selecionada aparece */
-.aba.ativa {
-    display: block;
-    animation: aparecer 0.45s ease;
-}
-
-/* Animação ao trocar de página */
-@keyframes aparecer {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* =========================================================
-   BOTÕES DO MENU
-========================================================= */
-
-.menu-btn {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    background: rgba(255, 255, 255, 0.025);
-
-    color: #9da9c0;
-
-    padding: 13px 24px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    font-family: "Poppins", sans-serif;
-
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    transition: 0.3s;
-}
-
-
-/* Efeito quando passa o mouse */
-.menu-btn:hover {
-    border-color: #ff3152;
 
     color: white;
 
     transform: translateY(-2px);
 }
 
-
-/* Botão da página atual */
 .menu-btn.active {
-
-    background: linear-gradient(
-        135deg,
-        #ef233c,
-        #b51735
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #ef233c,
+            #b51735
+        );
 
     border-color: transparent;
 
     color: white;
 
     box-shadow:
-        0 10px 25px rgba(239, 35, 60, 0.25);
-
+        0 8px 30px rgba(239,35,60,.25);
 }
 
 
 /* =========================================================
-   BOTÃO VOLTAR AO TOPO
+   ABAS
 ========================================================= */
 
-#topButton {
+.aba {
+    display: none;
 
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    width: 48px;
-    height: 48px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #ef233c;
-
-    color: white;
-
-    font-size: 22px;
-
-    cursor: pointer;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(20px);
-
-    transition: 0.3s;
-
-    z-index: 1000;
-
+    width: 100%;
 }
 
+.aba.ativa {
+    display: block;
 
-#topButton.mostrar {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: translateY(0);
-
+    animation: aparecer .45s ease;
 }
 
+@keyframes aparecer {
 
-#topButton:hover {
+    from {
+        opacity: 0;
 
-    transform: translateY(-4px);
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
 
 }
 
@@ -389,6 +583,7 @@ body::before {
     padding: 90px 8%;
 
     display: grid;
+
     grid-template-columns: 1.1fr .9fr;
 
     align-items: center;
@@ -418,7 +613,7 @@ body::before {
 .hero h2 {
     font-family: "Orbitron";
 
-    font-size: clamp(35px, 6vw, 70px);
+    font-size: clamp(35px,6vw,70px);
 
     line-height: 1.05;
 
@@ -464,7 +659,12 @@ body::before {
 
     color: white;
 
-    background: linear-gradient(135deg, #ef233c, #b51735);
+    background:
+        linear-gradient(
+            135deg,
+            #ef233c,
+            #b51735
+        );
 
     transition: .3s;
 
@@ -478,7 +678,8 @@ body::before {
 .youtube-button:hover {
     transform: translateY(-3px);
 
-    box-shadow: 0 10px 30px rgba(239,35,60,.3);
+    box-shadow:
+        0 10px 30px rgba(239,35,60,.3);
 }
 
 .hero-buttons .secondary {
@@ -511,9 +712,10 @@ body::before {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
 
-    animation: orbitar 12s linear infinite;
+    animation:
+        orbitar 12s linear infinite;
 }
 
 .orbit-1 {
@@ -536,9 +738,13 @@ body::before {
 }
 
 @keyframes orbitar {
+
     to {
-        transform: translate(-50%, -50%) rotate(360deg);
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg);
     }
+
 }
 
 .pokemon-core {
@@ -550,12 +756,17 @@ body::before {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
 
     border-radius: 50%;
 
     background:
-        radial-gradient(circle at 35% 30%, #ff5d73, #ef233c 40%, #7d0d22);
+        radial-gradient(
+            circle at 35% 30%,
+            #ff5d73,
+            #ef233c 40%,
+            #7d0d22
+        );
 
     box-shadow:
         0 0 40px rgba(239,35,60,.5),
@@ -596,7 +807,8 @@ body::before {
 
     transform: translateX(-50%);
 
-    box-shadow: 0 0 25px #fff;
+    box-shadow:
+        0 0 25px #fff;
 }
 
 
@@ -608,14 +820,22 @@ body::before {
     padding: 90px 8% 70px;
 
     background:
-        linear-gradient(90deg, rgba(0,119,255,.12), transparent),
-        radial-gradient(circle at 80% 30%, rgba(255,49,82,.12), transparent 30%);
+        linear-gradient(
+            90deg,
+            rgba(0,119,255,.12),
+            transparent
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(255,49,82,.12),
+            transparent 30%
+        );
 }
 
 .page-banner h2 {
     font-family: "Orbitron";
 
-    font-size: clamp(40px, 6vw, 70px);
+    font-size: clamp(40px,6vw,70px);
 
     line-height: 1.05;
 
@@ -624,6 +844,7 @@ body::before {
 
 .page-banner h2 strong {
     color: #4db8ff;
+
     display: block;
 }
 
@@ -641,7 +862,7 @@ body::before {
 ========================================================= */
 
 .conteudo {
-    width: min(1150px, 90%);
+    width: min(1150px,90%);
 
     margin: auto;
 
@@ -679,7 +900,7 @@ body::before {
 .section-title h2 {
     font-family: "Orbitron";
 
-    font-size: clamp(25px, 4vw, 40px);
+    font-size: clamp(25px,4vw,40px);
 
     margin-top: 5px;
 }
@@ -701,16 +922,18 @@ body::before {
     position: absolute;
 
     left: 11px;
+
     top: 0;
     bottom: 0;
 
     width: 2px;
 
-    background: linear-gradient(
-        #ef233c,
-        #4db8ff,
-        transparent
-    );
+    background:
+        linear-gradient(
+            #ef233c,
+            #4db8ff,
+            transparent
+        );
 }
 
 .timeline-item {
@@ -736,6 +959,7 @@ body::before {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     font-size: 8px;
@@ -796,8 +1020,16 @@ body::before {
     place-items: center;
 
     background:
-        radial-gradient(circle, rgba(255,255,255,.12), transparent 50%),
-        linear-gradient(135deg, #151c2e, #080b16);
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.12),
+            transparent 50%
+        ),
+        linear-gradient(
+            135deg,
+            #151c2e,
+            #080b16
+        );
 }
 
 .portrait-symbol {
@@ -807,6 +1039,7 @@ body::before {
     border-radius: 50%;
 
     display: grid;
+
     place-items: center;
 
     font-family: "Orbitron";
@@ -817,7 +1050,8 @@ body::before {
 
     color: #4db8ff;
 
-    box-shadow: 0 0 50px rgba(77,184,255,.15);
+    box-shadow:
+        0 0 50px rgba(77,184,255,.15);
 }
 
 .scientist-info {
@@ -856,7 +1090,7 @@ body::before {
 .cards-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
 
     gap: 20px;
 
@@ -877,10 +1111,12 @@ body::before {
 
 .info-card:hover,
 .experiment-card:hover,
-.technology-card:hover {
+.technology-card:hover,
+.robot-image-card:hover {
     transform: translateY(-6px);
 
-    border-color: rgba(77,184,255,.4);
+    border-color:
+        rgba(77,184,255,.4);
 }
 
 .card-icon {
@@ -901,7 +1137,7 @@ body::before {
 
 
 /* =========================================================
-   DISCO
+   DISCO DE NEWTON
 ========================================================= */
 
 .disco-layout {
@@ -930,15 +1166,16 @@ body::before {
 
     border-radius: 50%;
 
-    background: conic-gradient(
-        #ef233c 0deg 51.42deg,
-        #ff7b00 51.42deg 102.84deg,
-        #ffd60a 102.84deg 154.26deg,
-        #38b000 154.26deg 205.68deg,
-        #0077ff 205.68deg 257.1deg,
-        #4b0082 257.1deg 308.52deg,
-        #8f00ff 308.52deg 360deg
-    );
+    background:
+        conic-gradient(
+            #ef233c 0deg 51.42deg,
+            #ff7b00 51.42deg 102.84deg,
+            #ffd60a 102.84deg 154.26deg,
+            #38b000 154.26deg 205.68deg,
+            #0077ff 205.68deg 257.1deg,
+            #4b0082 257.1deg 308.52deg,
+            #8f00ff 308.52deg 360deg
+        );
 
     border: 8px solid #171c2c;
 
@@ -947,6 +1184,26 @@ body::before {
         inset 0 0 30px rgba(0,0,0,.25);
 
     position: relative;
+}
+
+
+/* CORRIGIDO */
+
+#discoNewton.girando {
+    animation:
+        discoGirar .08s linear infinite;
+}
+
+@keyframes discoGirar {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
 }
 
 .disco-center {
@@ -964,17 +1221,7 @@ body::before {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%, -50%);
-}
-
-..girando {
-    animation: discoGirar 0.05s linear infinite;
-}
-
-@keyframes discoGirar {
-    to {
-        transform: rotate(360deg);
-    }
+    transform: translate(-50%,-50%);
 }
 
 .disco-text h3 {
@@ -1017,7 +1264,7 @@ body::before {
 .experiment-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
 
     gap: 20px;
 }
@@ -1077,6 +1324,7 @@ body::before {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     flex-direction: column;
@@ -1084,8 +1332,16 @@ body::before {
     gap: 20px;
 
     background:
-        radial-gradient(circle, rgba(255,49,82,.25), transparent 40%),
-        linear-gradient(135deg, #151b2c, #070910);
+        radial-gradient(
+            circle,
+            rgba(255,49,82,.25),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #151b2c,
+            #070910
+        );
 }
 
 .play-icon {
@@ -1093,6 +1349,7 @@ body::before {
     height: 80px;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 50%;
@@ -1103,7 +1360,8 @@ body::before {
 
     padding-left: 5px;
 
-    box-shadow: 0 0 40px rgba(239,35,60,.4);
+    box-shadow:
+        0 0 40px rgba(239,35,60,.4);
 }
 
 .video-preview span {
@@ -1172,7 +1430,8 @@ body::before {
 
     font-size: 35px;
 
-    background: rgba(77,184,255,.1);
+    background:
+        rgba(77,184,255,.1);
 
     border-radius: 20px;
 
@@ -1280,7 +1539,7 @@ body::before {
 .technology-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
 
     gap: 18px;
 }
@@ -1342,7 +1601,7 @@ body::before {
 
 
 /* =========================================================
-   SOLUÇÃO
+   SOLUÇÃO / CHROMASENSE
 ========================================================= */
 
 .solution,
@@ -1380,11 +1639,17 @@ body::before {
     height: 70px;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 16px;
 
-    background: linear-gradient(135deg, #0077ff, #00d4ff);
+    background:
+        linear-gradient(
+            135deg,
+            #0077ff,
+            #00d4ff
+        );
 
     font-family: "Orbitron";
 
@@ -1415,7 +1680,7 @@ body::before {
 .chroma-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
 
     gap: 1px;
 
@@ -1526,7 +1791,7 @@ body::before {
 .robot-project {
     display: grid;
 
-    grid-template-columns: .7fr 1.3fr;
+    grid-template-columns: .9fr 1.1fr;
 
     gap: 40px;
 
@@ -1541,76 +1806,81 @@ body::before {
     border: 1px solid rgba(255,255,255,.08);
 }
 
-.robot-visual {
-    height: 260px;
+
+/* =========================================================
+   NOVAS IMAGENS FADE-IN / FADE-OUT
+========================================================= */
+
+.robot-images {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.robot-image-card {
+    background: #070910;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    transition: .3s;
+}
+
+.robot-image-card img {
+    display: block;
+
+    width: 100%;
+
+    height: 210px;
+
+    object-fit: contain;
+
+    background: #f4f4f4;
+}
+
+.robot-image-title {
+    padding: 12px 15px;
 
     display: flex;
 
-    flex-direction: column;
-
     align-items: center;
-    justify-content: center;
 
-    gap: 20px;
+    gap: 10px;
 
-    background: #070910;
-
-    border-radius: 15px;
-}
-
-.led-simulation {
-    width: 90px;
-    height: 90px;
-
-    border-radius: 50%;
-
-    background: #ff3152;
-
-    box-shadow:
-        0 0 30px #ff3152,
-        0 0 80px rgba(255,49,82,.5);
-
-    animation: pulseLED 2s ease-in-out infinite;
-}
-
-@keyframes pulseLED {
-
-    0%,100% {
-        opacity: .25;
-        transform: scale(.85);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-}
-
-.robot-visual span {
     font-family: "Orbitron";
 
-    font-size: 10px;
+    font-size: 11px;
 
-    color: #69758c;
-
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
-.robot-info h3 {
-    font-family: "Orbitron";
+.robot-image-title span {
+    font-size: 9px;
 
-    font-size: 30px;
-
-    margin: 20px 0;
+    color: #7d899f;
 }
 
-.robot-info p {
-    color: #9da9c0;
+.fade-in-title {
+    color: #ff4fb3;
+}
 
-    line-height: 1.8;
+.fade-out-title {
+    color: #ff3152;
+}
 
-    margin-bottom: 15px;
+.robot-image-card p {
+    padding: 12px 15px 16px;
+
+    color: #8f9ab0;
+
+    font-size: 11px;
+
+    line-height: 1.5;
 }
 
 
@@ -1667,9 +1937,11 @@ body::before {
 
     background: #4db8ff;
 
-    box-shadow: 0 0 15px rgba(77,184,255,.5);
+    box-shadow:
+        0 0 15px rgba(77,184,255,.5);
 
-    animation: pwm 1s infinite alternate;
+    animation:
+        pwm 1s infinite alternate;
 }
 
 .wave span:nth-child(1) {
@@ -1693,9 +1965,11 @@ body::before {
 }
 
 @keyframes pwm {
+
     to {
         opacity: .4;
     }
+
 }
 
 .pwm-box h3 {
@@ -1892,7 +2166,8 @@ body::before {
 
     position: relative;
 
-    box-shadow: 0 0 50px rgba(239,35,60,.3);
+    box-shadow:
+        0 0 50px rgba(239,35,60,.3);
 }
 
 .pokeball-big div {
@@ -1910,7 +2185,7 @@ body::before {
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
 }
 
 .robot-conclusion h2 {
@@ -1981,8 +2256,8 @@ footer p {
     right: 25px;
     bottom: 25px;
 
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
 
     border-radius: 50%;
 
@@ -1996,17 +2271,29 @@ footer p {
 
     opacity: 0;
 
+    visibility: hidden;
+
     pointer-events: none;
+
+    transform: translateY(20px);
 
     transition: .3s;
 
     z-index: 1000;
 }
 
-#topButton.visible {
+#topButton.mostrar {
     opacity: 1;
 
+    visibility: visible;
+
     pointer-events: auto;
+
+    transform: translateY(0);
+}
+
+#topButton:hover {
+    transform: translateY(-4px);
 }
 
 
@@ -2014,7 +2301,7 @@ footer p {
    RESPONSIVIDADE
 ========================================================= */
 
-@media(max-width: 900px) {
+@media(max-width:900px) {
 
     .header-info {
         display: none;
@@ -2029,6 +2316,10 @@ footer p {
         grid-template-columns: 1fr;
     }
 
+    .robot-images {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .hero {
         text-align: center;
     }
@@ -2039,6 +2330,7 @@ footer p {
 
     .hero-buttons {
         justify-content: center;
+
         flex-wrap: wrap;
     }
 
@@ -2067,12 +2359,14 @@ footer p {
 
     .robot-conclusion {
         grid-template-columns: 1fr;
+
         text-align: center;
     }
+
 }
 
 
-@media(max-width: 650px) {
+@media(max-width:650px) {
 
     .topo {
         padding: 15px 5%;
@@ -2122,6 +2416,14 @@ footer p {
         grid-template-columns: 1fr;
     }
 
+    .robot-images {
+        grid-template-columns: 1fr;
+    }
+
+    .robot-image-card img {
+        height: 240px;
+    }
+
     .ai-box {
         grid-template-columns: 1fr;
 
@@ -2166,6 +2468,16 @@ footer p {
 
     .mix-grid {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .intro-pokeball {
+        width: 120px;
+        height: 120px;
+    }
+
+    .intro-pokeball-center {
+        width: 40px;
+        height: 40px;
     }
 
 }

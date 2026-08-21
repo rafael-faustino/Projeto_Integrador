@@ -235,20 +235,24 @@ body::before {
 
 
 /* =========================================================
-   ABAS
+   SISTEMA DE ABAS
 ========================================================= */
 
+/* Todas as abas começam escondidas */
 .aba {
     display: none;
+    width: 100%;
 }
 
+/* Somente a aba selecionada aparece */
 .aba.ativa {
     display: block;
-
-    animation: aparecer .45s ease;
+    animation: aparecer 0.45s ease;
 }
 
+/* Animação ao trocar de página */
 @keyframes aparecer {
+
     from {
         opacity: 0;
         transform: translateY(15px);
@@ -258,6 +262,120 @@ body::before {
         opacity: 1;
         transform: translateY(0);
     }
+
+}
+
+
+/* =========================================================
+   BOTÕES DO MENU
+========================================================= */
+
+.menu-btn {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: #9da9c0;
+
+    padding: 13px 24px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-family: "Poppins", sans-serif;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    transition: 0.3s;
+}
+
+
+/* Efeito quando passa o mouse */
+.menu-btn:hover {
+    border-color: #ff3152;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* Botão da página atual */
+.menu-btn.active {
+
+    background: linear-gradient(
+        135deg,
+        #ef233c,
+        #b51735
+    );
+
+    border-color: transparent;
+
+    color: white;
+
+    box-shadow:
+        0 10px 25px rgba(239, 35, 60, 0.25);
+
+}
+
+
+/* =========================================================
+   BOTÃO VOLTAR AO TOPO
+========================================================= */
+
+#topButton {
+
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ef233c;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(20px);
+
+    transition: 0.3s;
+
+    z-index: 1000;
+
+}
+
+
+#topButton.mostrar {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+
+#topButton:hover {
+
+    transform: translateY(-4px);
+
 }
 
 

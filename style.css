@@ -968,7 +968,7 @@ body::before {
 }
 
 .girando {
-    animation: discoGirar .35s linear infinite;
+    animation: discoGirar 0.2s linear infinite;
 }
 
 @keyframes discoGirar {

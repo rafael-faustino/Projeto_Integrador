@@ -967,8 +967,8 @@ body::before {
     transform: translate(-50%, -50%);
 }
 
-.girando {
-    animation: discoGirar 0.1s linear infinite;
+..girando {
+    animation: discoGirar 0.05s linear infinite;
 }
 
 @keyframes discoGirar {

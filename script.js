@@ -1,53 +1,36 @@
- /* =====================================================
+/* =====================================================
    SISTEMA DE ABAS
 ===================================================== */
 
 function abrirAba(id, botao) {
 
-    // Esconde todas as páginas
-    document
-        .querySelectorAll(".aba")
-        .forEach(pagina => {
+    // Esconde todas as abas
+    document.querySelectorAll(".aba").forEach(pagina => {
+        pagina.classList.remove("ativa");
+    });
 
-            pagina.classList.remove("ativa");
+    // Remove o estado ativo dos botões
+    document.querySelectorAll(".menu-btn").forEach(aba => {
+        aba.classList.remove("active");
+    });
 
-        });
-
-
-    // Remove o estado ativo de todos os botões
-    document
-        .querySelectorAll(".menu-btn")
-        .forEach(aba => {
-
-            aba.classList.remove("active");
-
-        });
-
-
-    // Mostra a página selecionada
+    // Mostra a aba escolhida
     const pagina = document.getElementById(id);
 
     if (pagina) {
-
         pagina.classList.add("ativa");
-
     }
 
-
-    // Ativa o botão selecionado
+    // Ativa o botão escolhido
     if (botao) {
-
         botao.classList.add("active");
-
     }
-
 
     // Volta para o topo
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
 }
 
 
@@ -67,6 +50,25 @@ function scrollPara(id) {
         });
 
     }
+}
+
+
+/* =====================================================
+   DISCO DE NEWTON
+===================================================== */
+
+function girarDisco() {
+
+    const disco = document.getElementById("discoNewton");
+
+    // Verifica se o disco existe
+    if (!disco) {
+        console.error("Disco de Newton não encontrado.");
+        return;
+    }
+
+    // Liga/desliga a animação
+    disco.classList.toggle("girando");
 
 }
 
@@ -109,10 +111,14 @@ window.addEventListener("scroll", function () {
 
 
 /* =====================================================
-   GARANTE QUE O SITE COMECE NA PRIMEIRA ABA
+   INICIALIZAÇÃO DO SITE
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    // ---------------------------------------------
+    // PRIMEIRA ABA
+    // ---------------------------------------------
 
     const primeiraPagina = document.getElementById("optica");
 
@@ -121,24 +127,32 @@ document.addEventListener("DOMContentLoaded", function () {
     if (primeiraPagina) {
 
         document.querySelectorAll(".aba").forEach(pagina => {
-
             pagina.classList.remove("ativa");
-
         });
 
         primeiraPagina.classList.add("ativa");
-
     }
 
     if (primeiroBotao) {
 
         document.querySelectorAll(".menu-btn").forEach(botao => {
-
             botao.classList.remove("active");
-
         });
 
         primeiroBotao.classList.add("active");
+    }
+
+
+    // ---------------------------------------------
+    // DISCO DE NEWTON
+    // ---------------------------------------------
+
+    const disco = document.getElementById("discoNewton");
+
+    if (disco) {
+
+        // Garante que o disco comece parado
+        disco.classList.remove("girando");
 
     }
 

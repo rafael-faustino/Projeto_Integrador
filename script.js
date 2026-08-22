@@ -52,6 +52,8 @@ function scrollPara(id) {
    DISCO DE NEWTON
 ===================================================== */
 
+let discoGirando = false;
+
 function girarDisco() {
 
     const disco = document.getElementById("discoNewton");
@@ -61,7 +63,13 @@ function girarDisco() {
         return;
     }
 
-    disco.classList.toggle("girando");
+    discoGirando = !discoGirando;
+
+    if (discoGirando) {
+        disco.classList.add("girando");
+    } else {
+        disco.classList.remove("girando");
+    }
 
 }
 
@@ -99,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             intro.classList.add("sair");
 
-            // Libera a página depois da animação
             setTimeout(function () {
                 intro.style.display = "none";
             }, 700);
@@ -145,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (disco) {
         disco.classList.remove("girando");
+        discoGirando = false;
     }
 
 });

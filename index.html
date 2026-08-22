@@ -2,39 +2,25 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PokéÓptica | Luz, Física e Tecnologia</title>
 
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
+        rel="stylesheet">
 </head>
-
 
 <body>
 
-
 <!-- ======================================================
-     ABERTURA POKÉMON
+     ABERTURA
 ======================================================= -->
 
 <div id="pokemonIntro">
@@ -42,29 +28,21 @@
     <div class="intro-content">
 
         <div class="intro-pokeball">
-
             <div class="intro-pokeball-center"></div>
-
         </div>
 
-        <span class="intro-mini">
-            PROJETO DE FÍSICA
-        </span>
+        <span class="intro-mini">PROJETO DE FÍSICA</span>
 
         <h1>
             Poké<span>Óptica</span>
         </h1>
 
-        <p>
-            Luz • Ciência • Tecnologia • Robótica
-        </p>
+        <p>Luz • Ciência • Tecnologia • Robótica</p>
 
         <div class="intro-loading">
-
             <span></span>
             <span></span>
             <span></span>
-
         </div>
 
         <button id="entrarSite">
@@ -76,13 +54,7 @@
 </div>
 
 
-
-<!-- ======================================================
-     FUNDO
-======================================================= -->
-
 <div class="background-grid"></div>
-
 
 
 <!-- ======================================================
@@ -94,36 +66,26 @@
     <div class="logo">
 
         <div class="pokeball">
-
             <div class="pokeball-center"></div>
-
         </div>
 
         <div>
-
-            <span class="logo-mini">
-                PROJETO DE FÍSICA
-            </span>
+            <span class="logo-mini">PROJETO DE FÍSICA</span>
 
             <h1>
                 Poké<span>Óptica</span>
             </h1>
-
         </div>
 
     </div>
 
-
     <div class="header-info">
-
         <span>⚡ Luz</span>
         <span>🔬 Ciência</span>
         <span>🤖 Tecnologia</span>
-
     </div>
 
 </header>
-
 
 
 <!-- ======================================================
@@ -132,107 +94,63 @@
 
 <nav class="menu">
 
-    <button
-        class="menu-btn active"
-        onclick="abrirAba('optica', this)"
-    >
-
+    <button class="menu-btn active" onclick="abrirAba('optica', this)">
         🔬
-
-        <span>
-            Introdução à Óptica
-        </span>
-
+        <span>Introdução à Óptica</span>
     </button>
 
-
-    <button
-        class="menu-btn"
-        onclick="abrirAba('tecnociencia', this)"
-    >
-
+    <button class="menu-btn" onclick="abrirAba('tecnociencia', this)">
         ⚡
-
-        <span>
-            Física e Tecnociência
-        </span>
-
+        <span>Física e Tecnociência</span>
     </button>
 
-
-    <button
-        class="menu-btn"
-        onclick="abrirAba('robotica', this)"
-    >
-
+    <button class="menu-btn" onclick="abrirAba('robotica', this)">
         🤖
+        <span>Robótica</span>
+    </button>
 
-        <span>
-            Robótica
-        </span>
-
+    <button class="menu-btn" onclick="abrirAba('fakenews', this)">
+        📰
+        <span>Fake News</span>
     </button>
 
 </nav>
-
 
 
 <main>
 
 
 <!-- ======================================================
-     ABA 1 — INTRODUÇÃO À ÓPTICA
+     ABA 1 — ÓPTICA
 ======================================================= -->
 
-<section
-    id="optica"
-    class="aba ativa"
->
-
-
-    <!-- HERO -->
+<section id="optica" class="aba ativa">
 
     <div class="hero">
 
         <div class="hero-text">
 
-            <span class="tag">
-                POKÉDEX DA CIÊNCIA
-            </span>
+            <span class="tag">POKÉDEX DA CIÊNCIA</span>
 
             <h2>
-
                 A ÓPTICA
-
-                <strong>
-                    NO NOSSO DIA A DIA
-                </strong>
-
+                <strong>NO NOSSO DIA A DIA</strong>
             </h2>
 
             <p>
-
                 Descubra como a luz, as cores e a visão fazem parte
                 da Física e estão presentes em tecnologias que usamos
                 todos os dias.
-
             </p>
-
 
             <div class="hero-buttons">
 
-                <button
-                    onclick="scrollPara('newton')"
-                >
+                <button onclick="scrollPara('newton')">
                     🔎 Explorar Newton
                 </button>
 
-
-                <button
-                    class="secondary"
-                    onclick="scrollPara('video')"
-                >
-                    ▶ Ver vídeo
+                <button class="secondary" onclick="scrollPara('video')">
+                    ▶ Ver vídeos
                 </button>
 
             </div>
@@ -249,9 +167,7 @@
             <div class="pokemon-core">
 
                 <div class="core-eye"></div>
-
                 <div class="core-eye right"></div>
-
                 <div class="core-energy"></div>
 
             </div>
@@ -261,8 +177,7 @@
     </div>
 
 
-
-    <!-- CONTEXTO HISTÓRICO -->
+    <!-- CONTEXTO -->
 
     <section class="conteudo">
 
@@ -271,15 +186,8 @@
             <span>01</span>
 
             <div>
-
-                <small>
-                    CONTEXTO
-                </small>
-
-                <h2>
-                    O estudo da luz
-                </h2>
-
+                <small>CONTEXTO</small>
+                <h2>O estudo da luz</h2>
             </div>
 
         </div>
@@ -287,25 +195,20 @@
 
         <div class="timeline">
 
-
             <div class="timeline-item">
 
-                <div class="timeline-icon">
-                    XVII
-                </div>
+                <div class="timeline-icon">XVII</div>
 
                 <div class="timeline-content">
 
-                    <h3>
-                        Revolução Científica
-                    </h3>
+                    <h3>Revolução Científica</h3>
 
                     <p>
-
                         O estudo de Isaac Newton sobre a luz está situado
-                        principalmente no século XVII, durante o período
-                        conhecido como Revolução Científica.
-
+                        principalmente no século XVII, durante a Revolução
+                        Científica. Nesse período, experimentos passaram a
+                        ter um papel cada vez maior na construção do
+                        conhecimento científico.
                     </p>
 
                 </div>
@@ -315,23 +218,17 @@
 
             <div class="timeline-item">
 
-                <div class="timeline-icon">
-                    💡
-                </div>
+                <div class="timeline-icon">💡</div>
 
                 <div class="timeline-content">
 
-                    <h3>
-                        O que se acreditava?
-                    </h3>
+                    <h3>O que se acreditava?</h3>
 
                     <p>
-
-                        Na época existiam diferentes explicações para a
-                        natureza da luz. Newton defendia que a luz era
-                        formada por pequenas partículas chamadas
-                        <strong>corpúsculos</strong>.
-
+                        Existiam diferentes explicações para a natureza da
+                        luz. Newton defendia a teoria corpuscular, segundo
+                        a qual a luz seria formada por pequenas partículas,
+                        chamadas corpúsculos.
                     </p>
 
                 </div>
@@ -341,22 +238,16 @@
 
             <div class="timeline-item">
 
-                <div class="timeline-icon">
-                    🔎
-                </div>
+                <div class="timeline-icon">🔎</div>
 
                 <div class="timeline-content">
 
-                    <h3>
-                        Qual era o problema?
-                    </h3>
+                    <h3>Qual era o problema?</h3>
 
                     <p>
-
-                        Os cientistas buscavam compreender a natureza da
-                        luz e explicar fenômenos como reflexão,
-                        refração e formação das cores.
-
+                        Os cientistas buscavam compreender como a luz se
+                        comportava e explicar fenômenos como reflexão,
+                        refração, cores e formação de sombras.
                     </p>
 
                 </div>
@@ -368,28 +259,17 @@
     </section>
 
 
+    <!-- GRUPO 3 -->
 
-    <!-- NEWTON -->
-
-    <section
-        class="conteudo"
-        id="newton"
-    >
+    <section class="conteudo" id="newton">
 
         <div class="section-title">
 
             <span>02</span>
 
             <div>
-
-                <small>
-                    CIENTISTA
-                </small>
-
-                <h2>
-                    Isaac Newton
-                </h2>
-
+                <small>GRUPO 03 • CIENTISTA</small>
+                <h2>Isaac Newton e a teoria corpuscular</h2>
             </div>
 
         </div>
@@ -412,26 +292,21 @@
                     FÍSICO • MATEMÁTICO • ASTRÔNOMO
                 </span>
 
-                <h3>
-                    Isaac Newton
-                </h3>
+                <h3>Isaac Newton</h3>
 
                 <p class="periodo">
-                    1643 — 1727
+                    1642/1643 — 1727
                 </p>
 
                 <p>
-
-                    Isaac Newton foi um físico, matemático e astrônomo
-                    inglês que realizou importantes estudos sobre a luz.
-
+                    Isaac Newton foi um cientista inglês que realizou
+                    importantes estudos sobre movimento, gravidade,
+                    Matemática, Astronomia e Óptica.
                 </p>
 
                 <p>
-
-                    Seus experimentos com prismas demonstraram que a
-                    luz branca é composta por diferentes cores.
-
+                    No estudo da luz, Newton propôs uma explicação
+                    conhecida como <strong>teoria corpuscular</strong>.
                 </p>
 
             </div>
@@ -441,22 +316,16 @@
 
         <div class="cards-grid">
 
-
             <article class="info-card red">
 
-                <div class="card-icon">
-                    🔴
-                </div>
+                <div class="card-icon">🔴</div>
 
-                <h3>
-                    Teoria Corpuscular
-                </h3>
+                <h3>Teoria Corpuscular</h3>
 
                 <p>
-
-                    Newton defendia que a luz seria constituída por
-                    pequenas partículas que se propagavam em linha reta.
-
+                    Newton defendia que a luz seria formada por pequenas
+                    partículas chamadas corpúsculos, que se propagariam
+                    a partir das fontes luminosas.
                 </p>
 
             </article>
@@ -464,19 +333,14 @@
 
             <article class="info-card blue">
 
-                <div class="card-icon">
-                    🔵
-                </div>
+                <div class="card-icon">🔵</div>
 
-                <h3>
-                    Refração
-                </h3>
+                <h3>Reflexão e refração</h3>
 
                 <p>
-
-                    A mudança de direção da luz ao passar de um meio
-                    para outro foi um dos fenômenos estudados por Newton.
-
+                    A teoria procurava explicar fenômenos como a reflexão
+                    da luz em superfícies e a mudança de direção da luz
+                    quando ela passava de um meio para outro.
                 </p>
 
             </article>
@@ -484,19 +348,13 @@
 
             <article class="info-card yellow">
 
-                <div class="card-icon">
-                    🟡
-                </div>
+                <div class="card-icon">🟡</div>
 
-                <h3>
-                    Dispersão
-                </h3>
+                <h3>Dispersão</h3>
 
                 <p>
-
-                    O prisma demonstrou que diferentes cores sofrem
-                    diferentes desvios ao atravessar o vidro.
-
+                    Newton demonstrou que a luz branca pode ser separada
+                    em diferentes cores ao atravessar um prisma.
                 </p>
 
             </article>
@@ -506,25 +364,62 @@
     </section>
 
 
+    <!-- EXPLICAÇÃO -->
 
-    <!-- DISCO DE NEWTON -->
-
-    <section class="conteudo disco-section">
+    <section class="conteudo">
 
         <div class="section-title">
 
             <span>03</span>
 
             <div>
+                <small>IDEIA SOBRE A LUZ</small>
+                <h2>Como Newton imaginava a luz?</h2>
+            </div>
 
-                <small>
-                    EXPERIMENTO
-                </small>
+        </div>
 
-                <h2>
-                    Disco de Newton
-                </h2>
 
+        <div class="future-card">
+
+            <div class="future-icon">💡</div>
+
+            <div>
+
+                <h3>A luz como partículas</h3>
+
+                <p>
+                    Para Newton, a luz poderia ser entendida como um fluxo
+                    de pequenas partículas emitidas pelas fontes luminosas.
+                    Essas partículas ajudariam a explicar por que a luz
+                    aparentemente se propagava em linha reta e por que
+                    podia ser refletida ou refratada.
+                </p>
+
+                <p>
+                    Essa explicação foi muito importante historicamente,
+                    mas não conseguiu explicar todos os fenômenos ópticos
+                    descobertos posteriormente.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DISCO -->
+
+    <section class="conteudo disco-section">
+
+        <div class="section-title">
+
+            <span>04</span>
+
+            <div>
+                <small>EXPERIMENTO</small>
+                <h2>Disco de Newton</h2>
             </div>
 
         </div>
@@ -532,20 +427,13 @@
 
         <div class="disco-layout">
 
-
             <div class="disco-area">
 
                 <div id="discoNewton">
-
                     <div class="disco-center"></div>
-
                 </div>
 
-
-                <button
-                    onclick="girarDisco()"
-                    class="pokemon-button"
-                >
+                <button onclick="girarDisco()" class="pokemon-button">
                     ⚡ GIRAR DISCO
                 </button>
 
@@ -554,39 +442,28 @@
 
             <div class="disco-text">
 
-                <span class="badge">
-                    EXPERIMENTO DE ÓPTICA
-                </span>
+                <span class="badge">EXPERIMENTO DE ÓPTICA</span>
 
                 <h3>
-                    Por que as cores parecem desaparecer?
+                    Por que as cores parecem se misturar?
                 </h3>
 
                 <p>
-
-                    O Disco de Newton possui setores com diferentes
-                    cores do espectro visível.
-
+                    O Disco de Newton possui setores com diferentes cores
+                    do espectro visível.
                 </p>
 
                 <p>
-
-                    Quando o disco gira rapidamente, as imagens das
-                    diferentes cores chegam ao nosso sistema visual
-                    em uma sucessão muito rápida.
-
+                    Quando o disco gira rapidamente, as diferentes cores
+                    chegam ao sistema visual em uma sucessão muito rápida.
                 </p>
 
                 <p>
-
-                    O cérebro integra essas informações e percebemos
-                    uma tonalidade próxima do branco ou cinza-claro.
-
+                    O sistema visual integra essas informações e podemos
+                    perceber uma tonalidade próxima do branco ou cinza-claro.
                 </p>
-
 
                 <div class="spectrum">
-
                     <span style="background:#ef233c"></span>
                     <span style="background:#ff7b00"></span>
                     <span style="background:#ffd60a"></span>
@@ -594,7 +471,6 @@
                     <span style="background:#0077ff"></span>
                     <span style="background:#4b0082"></span>
                     <span style="background:#8f00ff"></span>
-
                 </div>
 
             </div>
@@ -602,7 +478,6 @@
         </div>
 
     </section>
-
 
 
     <!-- EVIDÊNCIAS -->
@@ -611,18 +486,11 @@
 
         <div class="section-title">
 
-            <span>04</span>
+            <span>05</span>
 
             <div>
-
-                <small>
-                    EVIDÊNCIAS
-                </small>
-
-                <h2>
-                    Os experimentos
-                </h2>
-
+                <small>EVIDÊNCIAS</small>
+                <h2>Os experimentos</h2>
             </div>
 
         </div>
@@ -630,22 +498,15 @@
 
         <div class="experiment-grid">
 
-
             <div class="experiment-card">
 
-                <span class="number">
-                    01
-                </span>
+                <span class="number">01</span>
 
-                <h3>
-                    Prisma de vidro
-                </h3>
+                <h3>Prisma de vidro</h3>
 
                 <p>
-
-                    Newton utilizou prismas para observar a separação
-                    da luz branca em diferentes cores.
-
+                    Newton utilizou prismas para estudar a separação
+                    das cores presentes na luz branca.
                 </p>
 
             </div>
@@ -653,19 +514,13 @@
 
             <div class="experiment-card">
 
-                <span class="number">
-                    02
-                </span>
+                <span class="number">02</span>
 
-                <h3>
-                    Recombinação
-                </h3>
+                <h3>Recombinação</h3>
 
                 <p>
-
-                    As cores separadas também podiam ser reunidas
-                    novamente para produzir luz branca.
-
+                    Newton também mostrou que as cores separadas podiam
+                    ser reunidas novamente para formar luz branca.
                 </p>
 
             </div>
@@ -673,19 +528,14 @@
 
             <div class="experiment-card">
 
-                <span class="number">
-                    03
-                </span>
+                <span class="number">03</span>
 
-                <h3>
-                    Disco de Newton
-                </h3>
+                <h3>Novas evidências</h3>
 
                 <p>
-
-                    A rotação rápida do disco permite visualizar
-                    a integração das cores pelo sistema visual.
-
+                    Experimentos posteriores com interferência e difração
+                    deram fortes evidências para o comportamento ondulatório
+                    da luz.
                 </p>
 
             </div>
@@ -695,77 +545,121 @@
     </section>
 
 
+    <!-- IMPORTÂNCIA -->
 
-    <!-- VÍDEO -->
-
-    <section
-        class="conteudo"
-        id="video"
-    >
+    <section class="conteudo">
 
         <div class="section-title">
 
-            <span>05</span>
+            <span>06</span>
 
             <div>
-
-                <small>
-                    RECOMENDAÇÃO
-                </small>
-
-                <h2>
-                    Vídeo sobre o Disco de Newton
-                </h2>
-
+                <small>IMPORTÂNCIA PARA A FÍSICA</small>
+                <h2>Por que Newton foi importante?</h2>
             </div>
 
         </div>
 
 
-        <div class="video-card">
+        <div class="cards-grid">
 
-            <div class="video-preview">
+            <article class="info-card">
 
-                <div class="play-icon">
-                    ▶
-                </div>
+                <div class="card-icon">🔬</div>
 
-                <span>
-                    EXPERIMENTO DE FÍSICA
-                </span>
-
-            </div>
-
-
-            <div class="video-info">
-
-                <span class="badge">
-                    YOUTUBE
-                </span>
-
-                <h3>
-
-                    Decomposição da luz branca:
-                    Experimento do Disco de Newton
-
-                </h3>
+                <h3>Experimentação</h3>
 
                 <p>
-
-                    O vídeo apresenta o funcionamento do Disco de Newton
-                    e explica a relação entre luz branca, cores,
-                    refração e dispersão.
-
+                    Newton utilizou experimentos para investigar fenômenos
+                    ópticos, fortalecendo a importância da observação
+                    experimental na Física.
                 </p>
 
+            </article>
 
-                <a
-                    href="https://www.youtube.com/watch?v=_rmhHcwu93o"
-                    target="_blank"
-                    class="youtube-button"
-                >
-                    ▶ ASSISTIR NO YOUTUBE
-                </a>
+
+            <article class="info-card">
+
+                <div class="card-icon">🌈</div>
+
+                <h3>Estudo das cores</h3>
+
+                <p>
+                    Seus experimentos contribuíram para compreender que
+                    a luz branca é composta por diferentes componentes
+                    relacionados às cores.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="card-icon">🚀</div>
+
+                <h3>Avanço científico</h3>
+
+                <p>
+                    A teoria corpuscular também estimulou debates e novas
+                    pesquisas que ajudaram a construir explicações mais
+                    completas sobre a natureza da luz.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- FÍSICA ATUAL -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>07</span>
+
+            <div>
+                <small>CONEXÃO COM A FÍSICA ATUAL</small>
+                <h2>O que sabemos hoje?</h2>
+            </div>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="future-icon">🌌</div>
+
+            <div>
+
+                <h3>Dualidade onda-partícula</h3>
+
+                <p>
+                    Atualmente, a Física descreve a luz por meio da
+                    mecânica quântica. A luz apresenta comportamentos
+                    associados tanto a ondas quanto a partículas.
+                </p>
+
+                <p>
+                    A luz pode ser descrita em termos de <strong>fótons</strong>
+                    quando analisamos determinados fenômenos, enquanto
+                    outros experimentos revelam características
+                    ondulatórias, como interferência e difração.
+                </p>
+
+                <div class="connection">
+
+                    <span>Newton</span>
+                    <b>→</b>
+                    <span>Ondas</span>
+                    <b>→</b>
+                    <span>Fótons</span>
+                    <b>→</b>
+                    <span>Física moderna</span>
+
+                </div>
 
             </div>
 
@@ -773,6 +667,328 @@
 
     </section>
 
+
+    <!-- CURIOSIDADE -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>08</span>
+
+            <div>
+                <small>CURIOSIDADE</small>
+                <h2>Você sabia?</h2>
+            </div>
+
+        </div>
+
+
+        <div class="ai-box">
+
+            <div class="ai-icon">💡</div>
+
+            <div>
+
+                <h2>
+                    Newton estudou a luz há mais de 300 anos
+                </h2>
+
+                <p>
+                    Mesmo depois de séculos, seus experimentos continuam
+                    sendo utilizados para explicar conceitos básicos de
+                    Óptica. A história da luz mostra que uma teoria pode
+                    ser muito importante mesmo quando novas evidências
+                    levam a explicações mais completas.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- APLICAÇÕES DA ÓPTICA -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>09</span>
+
+            <div>
+                <small>ÓPTICA APLICADA</small>
+                <h2>4 aplicações em diferentes contextos</h2>
+            </div>
+
+        </div>
+
+
+        <p class="intro-text">
+            A Óptica está presente em equipamentos residenciais,
+            comerciais, escolares e industriais. Cada aplicação utiliza
+            propriedades da luz para resolver problemas do cotidiano.
+        </p>
+
+
+        <div class="technology-grid">
+
+
+            <article class="technology-card">
+
+                <div class="tech-number">RESIDENCIAL</div>
+
+                <div class="tech-icon">📱</div>
+
+                <h3>Câmera do celular</h3>
+
+                <p>
+                    Lentes direcionam a luz para um sensor de imagem.
+                    O sensor transforma a luz recebida em sinais digitais
+                    que formam a fotografia.
+                </p>
+
+                <span>
+                    REFRAÇÃO + LENTES + SENSOR
+                </span>
+
+            </article>
+
+
+            <article class="technology-card">
+
+                <div class="tech-number">COMERCIAL</div>
+
+                <div class="tech-icon">🏷️</div>
+
+                <h3>Leitor de código de barras</h3>
+
+                <p>
+                    Um feixe de luz ilumina o código. As regiões claras
+                    e escuras refletem quantidades diferentes de luz,
+                    permitindo que o sensor interprete o padrão.
+                </p>
+
+                <span>
+                    REFLEXÃO + SENSOR ÓPTICO
+                </span>
+
+            </article>
+
+
+            <article class="technology-card">
+
+                <div class="tech-number">ESCOLAR</div>
+
+                <div class="tech-icon">🔬</div>
+
+                <h3>Microscópio</h3>
+
+                <p>
+                    Lentes aumentam a imagem de objetos muito pequenos.
+                    O sistema óptico utiliza refração para produzir
+                    uma imagem ampliada.
+                </p>
+
+                <span>
+                    LENTES + REFRAÇÃO + AMPLIAÇÃO
+                </span>
+
+            </article>
+
+
+            <article class="technology-card">
+
+                <div class="tech-number">INDUSTRIAL</div>
+
+                <div class="tech-icon">🔴</div>
+
+                <h3>Inspeção por câmera</h3>
+
+                <p>
+                    Câmeras industriais capturam imagens de peças e
+                    produtos. Sistemas de processamento podem identificar
+                    defeitos, formas, cores e dimensões.
+                </p>
+
+                <span>
+                    LUZ + CÂMERA + VISÃO COMPUTACIONAL
+                </span>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- VÍDEOS -->
+
+    <section class="conteudo" id="video">
+
+        <div class="section-title">
+
+            <span>10</span>
+
+            <div>
+                <small>VÍDEOS</small>
+                <h2>Conteúdos utilizados no projeto</h2>
+            </div>
+
+        </div>
+
+
+        <div class="video-list">
+
+
+            <div class="video-card">
+
+                <div class="video-preview">
+                    <div class="play-icon">▶</div>
+                    <span>VÍDEO 01</span>
+                </div>
+
+                <div class="video-info">
+
+                    <span class="badge">YOUTUBE</span>
+
+                    <h3>
+                        Experimento e estudo da luz
+                    </h3>
+
+                    <p>
+                        Material utilizado como apoio para a pesquisa
+                        sobre Óptica.
+                    </p>
+
+                    <a
+                        href="https://www.youtube.com/watch?v=UHMslvOE9E8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="youtube-button"
+                    >
+                        ▶ ASSISTIR
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="video-card">
+
+                <div class="video-preview">
+                    <div class="play-icon">▶</div>
+                    <span>VÍDEO 02</span>
+                </div>
+
+                <div class="video-info">
+
+                    <span class="badge">YOUTUBE</span>
+
+                    <h3>
+                        Conteúdo sobre a natureza da luz
+                    </h3>
+
+                    <p>
+                        Vídeo utilizado como material complementar
+                        para compreender os conceitos estudados.
+                    </p>
+
+                    <a
+                        href="https://www.youtube.com/watch?v=cTvsyzcuw78"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="youtube-button"
+                    >
+                        ▶ ASSISTIR
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="video-card">
+
+                <div class="video-preview">
+                    <div class="play-icon">▶</div>
+                    <span>VÍDEO 03</span>
+                </div>
+
+                <div class="video-info">
+
+                    <span class="badge">YOUTUBE</span>
+
+                    <h3>
+                        Vídeo complementar de Física
+                    </h3>
+
+                    <p>
+                        Material utilizado para complementar a pesquisa
+                        e revisar os conceitos apresentados no projeto.
+                    </p>
+
+                    <a
+                        href="https://www.youtube.com/watch?v=m3BnFeQMOeM"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="youtube-button"
+                    >
+                        ▶ ASSISTIR
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FONTES -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>11</span>
+
+            <div>
+                <small>FONTES</small>
+                <h2>Fontes consultadas</h2>
+            </div>
+
+        </div>
+
+
+        <div class="source-box">
+
+            <p>
+                📚 Royal Society — materiais históricos relacionados
+                aos estudos de Newton sobre luz e cores.
+            </p>
+
+            <p>
+                📚 Encyclopaedia Britannica — conteúdos sobre a história
+                e natureza da luz.
+            </p>
+
+            <p>
+                📚 Materiais didáticos de Física e Óptica utilizados
+                durante a pesquisa escolar.
+            </p>
+
+            <p>
+                🎥 Vídeos do YouTube utilizados como materiais
+                complementares de pesquisa.
+            </p>
+
+        </div>
+
+    </section>
 
 
     <!-- IA -->
@@ -781,9 +997,7 @@
 
         <div class="ai-box">
 
-            <div class="ai-icon">
-                🤖
-            </div>
+            <div class="ai-icon">🤖</div>
 
             <div>
 
@@ -796,21 +1010,22 @@
                 </h2>
 
                 <p>
-
-                    Utilizamos o ChatGPT, uma ferramenta de inteligência
-                    artificial, para auxiliar na compreensão da teoria
-                    corpuscular da luz de Isaac Newton, na organização
-                    das informações e na elaboração das respostas.
-
+                    Utilizamos o ChatGPT como ferramenta de apoio para
+                    compreender a teoria corpuscular de Isaac Newton,
+                    organizar as informações, melhorar a clareza dos
+                    textos e estruturar o conteúdo da página.
                 </p>
 
                 <p>
+                    A IA também auxiliou na organização do código do
+                    site e na revisão das explicações.
+                </p>
 
-                    As informações fornecidas pela IA foram analisadas
-                    e comparadas com fontes confiáveis de pesquisa,
-                    a fim de verificar sua precisão antes da publicação
-                    e para desenvolver o próprio código do projeto.
-
+                <p>
+                    As informações foram analisadas e comparadas com
+                    outras fontes antes da publicação. A IA foi utilizada
+                    como ferramenta de apoio, e não como substituta da
+                    pesquisa e da verificação das informações.
                 </p>
 
             </div>
@@ -822,45 +1037,28 @@
 </section>
 
 
-
 <!-- ======================================================
      ABA 2 — FÍSICA E TECNOCIÊNCIA
 ======================================================= -->
 
-<section
-    id="tecnociencia"
-    class="aba"
->
-
+<section id="tecnociencia" class="aba">
 
     <div class="page-banner">
 
-        <span class="tag">
-            ÁREA 02
-        </span>
+        <span class="tag">ÁREA 02</span>
 
         <h2>
-
             FÍSICA E
-
-            <strong>
-                TECNOCIÊNCIA
-            </strong>
-
+            <strong>TECNOCIÊNCIA</strong>
         </h2>
 
         <p>
-
             Da compreensão da luz ao desenvolvimento de tecnologias
             que transformam nossa vida.
-
         </p>
 
     </div>
 
-
-
-    <!-- FÍSICA ATUAL -->
 
     <section class="conteudo">
 
@@ -869,15 +1067,8 @@
             <span>01</span>
 
             <div>
-
-                <small>
-                    FÍSICA ATUAL
-                </small>
-
-                <h2>
-                    Do passado ao presente
-                </h2>
-
+                <small>FÍSICA ATUAL</small>
+                <h2>Do passado ao presente</h2>
             </div>
 
         </div>
@@ -885,48 +1076,26 @@
 
         <div class="future-card">
 
-            <div class="future-icon">
-                🌈
-            </div>
+            <div class="future-icon">🌈</div>
 
             <div>
 
-                <h3>
-                    A luz na Física moderna
-                </h3>
+                <h3>A luz na Física moderna</h3>
 
                 <p>
-
-                    A teoria corpuscular de Newton não é aceita
-                    atualmente em sua forma original. Porém, seus
-                    experimentos sobre cores, refração e dispersão
-                    foram fundamentais para o desenvolvimento das
-                    teorias modernas sobre a luz.
-
+                    A teoria corpuscular de Newton não é aceita atualmente
+                    em sua forma original. Porém, seus experimentos sobre
+                    cores, refração e dispersão foram fundamentais para
+                    o desenvolvimento da Óptica.
                 </p>
-
 
                 <div class="connection">
 
-                    <span>
-                        Newton
-                    </span>
-
-                    <b>
-                        →
-                    </b>
-
-                    <span>
-                        Óptica
-                    </span>
-
-                    <b>
-                        →
-                    </b>
-
-                    <span>
-                        Tecnologia
-                    </span>
+                    <span>Newton</span>
+                    <b>→</b>
+                    <span>Óptica</span>
+                    <b>→</b>
+                    <span>Tecnologia</span>
 
                 </div>
 
@@ -936,9 +1105,6 @@
 
     </section>
 
-
-
-    <!-- TECNOLOGIAS ASSISTIVAS -->
 
     <section class="conteudo">
 
@@ -947,169 +1113,103 @@
             <span>02</span>
 
             <div>
-
-                <small>
-                    TECNOLOGIA ASSISTIVA
-                </small>
-
-                <h2>
-                    Luz a favor da acessibilidade
-                </h2>
-
+                <small>TECNOLOGIA ASSISTIVA</small>
+                <h2>Luz a favor da acessibilidade</h2>
             </div>
 
         </div>
 
 
         <p class="intro-text">
-
-            O conhecimento sobre luz, cores, contraste e percepção
-            visual permite desenvolver tecnologias que aumentam
-            a autonomia e a segurança de pessoas com deficiência
-            visual e baixa visão.
-
+            O conhecimento sobre luz, cores, contraste e percepção visual
+            permite desenvolver tecnologias que aumentam a autonomia e
+            a segurança de pessoas com deficiência visual e baixa visão.
         </p>
 
 
         <div class="technology-grid">
 
-
             <article class="technology-card">
 
-                <div class="tech-number">
-                    01
-                </div>
+                <div class="tech-number">01</div>
+                <div class="tech-icon">📱</div>
 
-                <div class="tech-icon">
-                    📱
-                </div>
-
-                <h3>
-                    Identificador de cores
-                </h3>
+                <h3>Identificador de cores</h3>
 
                 <p>
-
                     Aplicativos utilizam a câmera do celular para
                     identificar cores e fornecer informações ao usuário.
-
                 </p>
 
-                <span>
-                    RGB + PROCESSAMENTO DIGITAL
-                </span>
+                <span>RGB + PROCESSAMENTO DIGITAL</span>
 
             </article>
 
 
             <article class="technology-card">
 
-                <div class="tech-number">
-                    02
-                </div>
+                <div class="tech-number">02</div>
+                <div class="tech-icon">👓</div>
 
-                <div class="tech-icon">
-                    👓
-                </div>
-
-                <h3>
-                    Óculos eletrônicos
-                </h3>
+                <h3>Óculos eletrônicos</h3>
 
                 <p>
-
                     Câmeras e telas podem ampliar imagens e ajustar
                     brilho e contraste para pessoas com baixa visão.
-
                 </p>
 
-                <span>
-                    ÓPTICA + VISÃO COMPUTACIONAL
-                </span>
+                <span>ÓPTICA + VISÃO COMPUTACIONAL</span>
 
             </article>
 
 
             <article class="technology-card">
 
-                <div class="tech-number">
-                    03
-                </div>
+                <div class="tech-number">03</div>
+                <div class="tech-icon">🔍</div>
 
-                <div class="tech-icon">
-                    🔍
-                </div>
-
-                <h3>
-                    Lupa digital
-                </h3>
+                <h3>Lupa digital</h3>
 
                 <p>
-
                     Permite ampliar textos e modificar contraste,
                     facilitando a leitura de documentos.
-
                 </p>
 
-                <span>
-                    AMPLIAÇÃO + CONTRASTE
-                </span>
+                <span>AMPLIAÇÃO + CONTRASTE</span>
 
             </article>
 
 
             <article class="technology-card">
 
-                <div class="tech-number">
-                    04
-                </div>
+                <div class="tech-number">04</div>
+                <div class="tech-icon">💡</div>
 
-                <div class="tech-icon">
-                    💡
-                </div>
-
-                <h3>
-                    Sinalização luminosa
-                </h3>
+                <h3>Sinalização luminosa</h3>
 
                 <p>
-
                     LEDs e sistemas luminosos podem aumentar a
                     visibilidade de sinais e obstáculos.
-
                 </p>
 
-                <span>
-                    LUZ + SEGURANÇA
-                </span>
+                <span>LUZ + SEGURANÇA</span>
 
             </article>
 
 
             <article class="technology-card">
 
-                <div class="tech-number">
-                    05
-                </div>
+                <div class="tech-number">05</div>
+                <div class="tech-icon">🎨</div>
 
-                <div class="tech-icon">
-                    🎨
-                </div>
-
-                <h3>
-                    Filtros de lentes
-                </h3>
+                <h3>Filtros de lentes</h3>
 
                 <p>
-
                     Filtros podem controlar determinados comprimentos
                     de onda e melhorar o conforto visual.
-
                 </p>
 
-                <span>
-                    FILTRAGEM ÓPTICA
-                </span>
+                <span>FILTRAGEM ÓPTICA</span>
 
             </article>
 
@@ -1118,9 +1218,6 @@
     </section>
 
 
-
-    <!-- LUMOSSENSE -->
-
     <section class="conteudo">
 
         <div class="section-title">
@@ -1128,15 +1225,8 @@
             <span>03</span>
 
             <div>
-
-                <small>
-                    PROJETO
-                </small>
-
-                <h2>
-                    LumosSense
-                </h2>
-
+                <small>PROJETO</small>
+                <h2>LumosSense</h2>
             </div>
 
         </div>
@@ -1146,21 +1236,14 @@
 
             <div class="solution-header">
 
-                <div class="solution-logo">
-                    LS
-                </div>
+                <div class="solution-logo">LS</div>
 
                 <div>
 
-                    <span>
-                        TECNOLOGIA ASSISTIVA
-                    </span>
+                    <span>TECNOLOGIA ASSISTIVA</span>
 
                     <h3>
-
-                        LumosSense — Óculos Guia de
-                        Contraste e Luz
-
+                        LumosSense — Óculos Guia de Contraste e Luz
                     </h3>
 
                 </div>
@@ -1170,19 +1253,14 @@
 
             <div class="solution-grid">
 
-
                 <div>
 
-                    <h4>
-                        🎯 Problema
-                    </h4>
+                    <h4>🎯 Problema</h4>
 
                     <p>
-
                         Dificuldade de pessoas com baixa visão em
                         identificar obstáculos, degraus e contrastes
-                        de iluminação em ambientes internos.
-
+                        de iluminação.
                     </p>
 
                 </div>
@@ -1190,15 +1268,11 @@
 
                 <div>
 
-                    <h4>
-                        👥 Público-alvo
-                    </h4>
+                    <h4>👥 Público-alvo</h4>
 
                     <p>
-
-                        Pessoas com baixa visão acentuada, idosos
-                        com perda visual e pessoas com deficiência visual.
-
+                        Pessoas com baixa visão, idosos com perda visual
+                        e pessoas com deficiência visual.
                     </p>
 
                 </div>
@@ -1206,16 +1280,12 @@
 
                 <div>
 
-                    <h4>
-                        ⚙ Funcionamento
-                    </h4>
+                    <h4>⚙ Funcionamento</h4>
 
                     <p>
-
                         Uma câmera e sensores analisam a iluminação
                         e os objetos ao redor. O sistema pode emitir
                         alertas sonoros, táteis e luminosos.
-
                     </p>
 
                 </div>
@@ -1223,16 +1293,11 @@
 
                 <div>
 
-                    <h4>
-                        🧠 Inteligência Artificial
-                    </h4>
+                    <h4>🧠 Inteligência Artificial</h4>
 
                     <p>
-
-                        A IA pode analisar imagens, reconhecer
-                        obstáculos e auxiliar na classificação
-                        do contraste do ambiente.
-
+                        A IA pode analisar imagens, reconhecer obstáculos
+                        e auxiliar na classificação do contraste.
                     </p>
 
                 </div>
@@ -1256,32 +1321,22 @@
     </section>
 
 
-
-    <!-- CONCLUSÃO -->
-
     <section class="conteudo">
 
         <div class="conclusion">
 
-            <span>
-                CONCLUSÃO
-            </span>
+            <span>CONCLUSÃO</span>
 
             <h2>
-
-                A Física transforma
-                conhecimento em tecnologia.
-
+                A Física transforma conhecimento em tecnologia.
             </h2>
 
             <p>
-
                 Os estudos da luz realizados por Newton ajudaram
                 a construir uma base importante para a Óptica.
                 Atualmente, esses conhecimentos continuam presentes
                 em câmeras, telas, sensores, sistemas de iluminação
                 e tecnologias assistivas.
-
             </p>
 
         </div>
@@ -1291,45 +1346,28 @@
 </section>
 
 
-
 <!-- ======================================================
      ABA 3 — ROBÓTICA
 ======================================================= -->
 
-<section
-    id="robotica"
-    class="aba"
->
-
+<section id="robotica" class="aba">
 
     <div class="page-banner robot-banner">
 
-        <span class="tag">
-            ÁREA 03
-        </span>
+        <span class="tag">ÁREA 03</span>
 
         <h2>
-
             FÍSICA +
-
-            <strong>
-                ROBÓTICA
-            </strong>
-
+            <strong>ROBÓTICA</strong>
         </h2>
 
         <p>
-
             Quando a luz deixa de ser apenas observada e passa
             a controlar sistemas inteligentes.
-
         </p>
 
     </div>
 
-
-
-    <!-- ATIVIDADE 1 -->
 
     <section class="conteudo">
 
@@ -1338,15 +1376,8 @@
             <span>01</span>
 
             <div>
-
-                <small>
-                    ATIVIDADE 1
-                </small>
-
-                <h2>
-                    Controle de luminosidade
-                </h2>
-
+                <small>ATIVIDADE 1</small>
+                <h2>Controle de luminosidade</h2>
             </div>
 
         </div>
@@ -1354,70 +1385,39 @@
 
         <div class="robot-project">
 
-
-            <!-- NOVAS IMAGENS -->
-
             <div class="robot-images">
-
-
-                <!-- FADE-IN — CABO ROSA -->
 
                 <div class="robot-image-card">
 
                     <div class="robot-image-title fade-in-title">
-
-                        <span>
-                            01
-                        </span>
-
+                        <span>01</span>
                         FADE-IN
-
                     </div>
-
 
                     <img
                         src="assets/led-fade-in-rosa.png"
-                        alt="Circuito Arduino do LED Fade-In com cabo rosa"
-                    >
-
-
+                        alt="Circuito Arduino do LED Fade-In">
+                    
                     <p>
-
-                        Cabo rosa — aumento gradual
-                        da luminosidade.
-
+                        Cabo rosa — aumento gradual da luminosidade.
                     </p>
 
                 </div>
 
 
-
-                <!-- FADE-OUT — CABO VERMELHO -->
-
                 <div class="robot-image-card">
 
                     <div class="robot-image-title fade-out-title">
-
-                        <span>
-                            02
-                        </span>
-
+                        <span>02</span>
                         FADE-OUT
-
                     </div>
-
 
                     <img
                         src="assets/led-fade-out-vermelho.png"
-                        alt="Circuito Arduino do LED Fade-Out com cabo vermelho"
-                    >
-
+                        alt="Circuito Arduino do LED Fade-Out">
 
                     <p>
-
-                        Cabo vermelho — diminuição gradual
-                        da luminosidade.
-
+                        Cabo vermelho — diminuição gradual da luminosidade.
                     </p>
 
                 </div>
@@ -1425,33 +1425,22 @@
             </div>
 
 
-
-            <!-- TEXTO -->
-
             <div class="robot-info">
 
-                <span class="badge">
-                    TINKERCAD + ARDUINO
-                </span>
+                <span class="badge">TINKERCAD + ARDUINO</span>
 
-                <h3>
-                    Fade-In / Fade-Out
-                </h3>
+                <h3>Fade-In / Fade-Out</h3>
 
                 <p>
-
                     O objetivo foi simular um circuito eletrônico
                     capaz de realizar a variação gradual da intensidade
                     luminosa de um LED.
-
                 </p>
 
                 <p>
-
                     Utilizamos uma placa microcontroladora, protoboard,
-                    LED e resistor. A intensidade luminosa foi
-                    controlada através de PWM.
-
+                    LED e resistor. A intensidade luminosa foi controlada
+                    através de PWM.
                 </p>
 
             </div>
@@ -1461,9 +1450,6 @@
     </section>
 
 
-
-    <!-- PWM -->
-
     <section class="conteudo">
 
         <div class="section-title">
@@ -1471,15 +1457,8 @@
             <span>02</span>
 
             <div>
-
-                <small>
-                    ELETRÔNICA
-                </small>
-
-                <h2>
-                    Como funciona o PWM?
-                </h2>
-
+                <small>ELETRÔNICA</small>
+                <h2>Como funciona o PWM?</h2>
             </div>
 
         </div>
@@ -1490,13 +1469,11 @@
             <div class="pwm-visual">
 
                 <div class="wave">
-
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-
                 </div>
 
             </div>
@@ -1504,24 +1481,18 @@
 
             <div>
 
-                <h3>
-                    Pulse Width Modulation
-                </h3>
+                <h3>Pulse Width Modulation</h3>
 
                 <p>
-
                     Em vez de simplesmente ligar ou desligar o LED,
                     o Arduino controla rapidamente o tempo em que
                     o sinal permanece ligado.
-
                 </p>
 
                 <p>
-
                     Alterando essa proporção, chamada de
                     <strong>duty cycle</strong>, podemos controlar
                     a intensidade percebida pelo olho humano.
-
                 </p>
 
             </div>
@@ -1531,9 +1502,6 @@
     </section>
 
 
-
-    <!-- ATIVIDADE 2 -->
-
     <section class="conteudo">
 
         <div class="section-title">
@@ -1541,15 +1509,8 @@
             <span>03</span>
 
             <div>
-
-                <small>
-                    ATIVIDADE 2
-                </small>
-
-                <h2>
-                    LED RGB
-                </h2>
-
+                <small>ATIVIDADE 2</small>
+                <h2>LED RGB</h2>
             </div>
 
         </div>
@@ -1558,63 +1519,37 @@
         <div class="rgb-project">
 
             <div class="rgb-led">
-
                 <div class="rgb-glow"></div>
-
             </div>
 
 
             <div>
 
-                <span class="badge">
-                    SÍNTESE ADITIVA
-                </span>
+                <span class="badge">SÍNTESE ADITIVA</span>
 
-                <h3>
-                    Vermelho + Verde + Azul
-                </h3>
+                <h3>Vermelho + Verde + Azul</h3>
 
                 <p>
-
                     Um LED RGB possui três canais independentes:
                     vermelho, verde e azul.
-
                 </p>
 
 
                 <div class="rgb-combinations">
 
-
                     <div>
-
                         <i class="red-light"></i>
-
-                        <span>
-                            Vermelho
-                        </span>
-
+                        <span>Vermelho</span>
                     </div>
 
-
                     <div>
-
                         <i class="green-light"></i>
-
-                        <span>
-                            Verde
-                        </span>
-
+                        <span>Verde</span>
                     </div>
 
-
                     <div>
-
                         <i class="blue-light"></i>
-
-                        <span>
-                            Azul
-                        </span>
-
+                        <span>Azul</span>
                     </div>
 
                 </div>
@@ -1626,57 +1561,15 @@
 
         <div class="mix-grid">
 
-
-            <div>
-
-                🔴 + 🟢
-
-                <strong>
-                    Amarelo
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                🟢 + 🔵
-
-                <strong>
-                    Ciano
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                🔴 + 🔵
-
-                <strong>
-                    Magenta
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                🔴 + 🟢 + 🔵
-
-                <strong>
-                    Branco
-                </strong>
-
-            </div>
+            <div>🔴 + 🟢 <strong>Amarelo</strong></div>
+            <div>🟢 + 🔵 <strong>Ciano</strong></div>
+            <div>🔴 + 🔵 <strong>Magenta</strong></div>
+            <div>🔴 + 🟢 + 🔵 <strong>Branco</strong></div>
 
         </div>
 
     </section>
 
-
-
-    <!-- CHROMASENSE -->
 
     <section class="conteudo">
 
@@ -1685,15 +1578,8 @@
             <span>04</span>
 
             <div>
-
-                <small>
-                    PROPOSTA
-                </small>
-
-                <h2>
-                    ChromaSense
-                </h2>
-
+                <small>PROPOSTA</small>
+                <h2>ChromaSense</h2>
             </div>
 
         </div>
@@ -1703,21 +1589,14 @@
 
             <div class="chroma-header">
 
-                <div class="chroma-logo">
-                    RGB
-                </div>
+                <div class="chroma-logo">RGB</div>
 
                 <div>
 
-                    <span>
-                        TECNOLOGIA ASSISTIVA
-                    </span>
+                    <span>TECNOLOGIA ASSISTIVA</span>
 
                     <h3>
-
-                        ChromaSense —
-                        Cabideiro Inteligente
-
+                        ChromaSense — Cabideiro Inteligente
                     </h3>
 
                 </div>
@@ -1727,18 +1606,13 @@
 
             <div class="chroma-grid">
 
-
                 <div>
 
-                    <h4>
-                        🎯 Problema
-                    </h4>
+                    <h4>🎯 Problema</h4>
 
                     <p>
-
                         Dificuldade de algumas pessoas com baixa visão
                         ou daltonismo em identificar cores de roupas.
-
                     </p>
 
                 </div>
@@ -1746,15 +1620,11 @@
 
                 <div>
 
-                    <h4>
-                        ⚙ Funcionamento
-                    </h4>
+                    <h4>⚙ Funcionamento</h4>
 
                     <p>
-
                         Um sensor de cor identifica a luz refletida
                         pelo tecido e determina seus valores RGB.
-
                     </p>
 
                 </div>
@@ -1762,15 +1632,11 @@
 
                 <div>
 
-                    <h4>
-                        🔊 Resposta
-                    </h4>
+                    <h4>🔊 Resposta</h4>
 
                     <p>
-
                         O dispositivo pode iluminar um LED com a
                         cor detectada e anunciar o nome da cor.
-
                     </p>
 
                 </div>
@@ -1778,15 +1644,12 @@
 
                 <div>
 
-                    <h4>
-                        🧠 IA
-                    </h4>
+                    <h4>🧠 IA</h4>
 
                     <p>
-
                         Uma IA poderia analisar estampas complexas
-                        e auxiliar na combinação de roupas.
-
+                        e auxiliar na identificação e combinação
+                        das cores.
                     </p>
 
                 </div>
@@ -1796,25 +1659,11 @@
 
             <div class="components">
 
-                <span>
-                    Arduino Nano
-                </span>
-
-                <span>
-                    Sensor TCS3200
-                </span>
-
-                <span>
-                    LED RGB
-                </span>
-
-                <span>
-                    Alto-falante
-                </span>
-
-                <span>
-                    Bateria
-                </span>
+                <span>Arduino Nano</span>
+                <span>Sensor TCS3200</span>
+                <span>LED RGB</span>
+                <span>Alto-falante</span>
+                <span>Bateria</span>
 
             </div>
 
@@ -1823,42 +1672,26 @@
     </section>
 
 
-
-    <!-- CONCLUSÃO ROBÓTICA -->
-
     <section class="conteudo">
 
         <div class="robot-conclusion">
 
             <div class="pokeball-big">
-
                 <div></div>
-
             </div>
-
 
             <div>
 
-                <span>
-                    CONCLUSÃO DA ROBÓTICA
-                </span>
+                <span>CONCLUSÃO DA ROBÓTICA</span>
 
                 <h2>
-
-                    Do experimento para
-                    uma solução real.
-
+                    Do experimento para uma solução real.
                 </h2>
 
                 <p>
-
                     As atividades realizadas no Tinkercad mostram
                     como conceitos de Física podem ser transformados
                     em sistemas eletrônicos e tecnologias assistivas.
-                    O controle da luz, das cores e dos sensores permite
-                    desenvolver soluções capazes de melhorar a
-                    autonomia e a acessibilidade.
-
                 </p>
 
             </div>
@@ -1868,16 +1701,11 @@
     </section>
 
 
-
-    <!-- REGISTRO IA -->
-
     <section class="conteudo">
 
         <div class="ai-box">
 
-            <div class="ai-icon">
-                ⚡
-            </div>
+            <div class="ai-icon">⚡</div>
 
             <div>
 
@@ -1885,25 +1713,476 @@
                     USO DA INTELIGÊNCIA ARTIFICIAL
                 </span>
 
-                <h2>
-                    Ferramentas utilizadas
-                </h2>
+                <h2>Ferramentas utilizadas</h2>
 
                 <p>
-
                     ChatGPT e Gemini foram utilizados para auxiliar
                     na organização das explicações, compreensão
                     dos conceitos de PWM, LED RGB, síntese aditiva,
                     contraste e tecnologias assistivas.
-
                 </p>
 
                 <p>
-
                     As informações foram verificadas com materiais
                     didáticos, documentação técnica e fontes de
                     referência.
+                </p>
 
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<!-- ======================================================
+     ABA 4 — FAKE NEWS
+======================================================= -->
+
+<section id="fakenews" class="aba">
+
+    <div class="page-banner fake-banner">
+
+        <span class="tag">ÁREA 04</span>
+
+        <h2>
+            FAKE NEWS E
+            <strong>INTELIGÊNCIA ARTIFICIAL</strong>
+        </h2>
+
+        <p>
+            Aprenda a analisar informações, identificar sinais de
+            desinformação e utilizar a tecnologia com responsabilidade.
+        </p>
+
+    </div>
+
+
+    <!-- O QUE É -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>01</span>
+
+            <div>
+                <small>CONCEITO</small>
+                <h2>O que são Fake News?</h2>
+            </div>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="future-icon">📰</div>
+
+            <div>
+
+                <h3>Informação falsa ou enganosa</h3>
+
+                <p>
+                    O termo Fake News é usado para falar de conteúdos
+                    falsos ou enganosos apresentados de maneira que
+                    possam parecer verdadeiros.
+                </p>
+
+                <p>
+                    Esses conteúdos podem aparecer como textos,
+                    imagens, vídeos, áudios ou publicações em redes
+                    sociais e aplicativos de mensagens.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- IA -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>02</span>
+
+            <div>
+                <small>TECNOLOGIA</small>
+                <h2>IA e desinformação</h2>
+            </div>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+            <article class="info-card">
+
+                <div class="card-icon">🖼️</div>
+
+                <h3>Imagens artificiais</h3>
+
+                <p>
+                    Ferramentas de IA podem gerar imagens que parecem
+                    fotografias reais, por isso é importante verificar
+                    a origem de uma imagem.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="card-icon">🎥</div>
+
+                <h3>Vídeos manipulados</h3>
+
+                <p>
+                    Recursos digitais podem modificar imagens e vídeos.
+                    O contexto e a fonte original devem ser conferidos.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="card-icon">✍️</div>
+
+                <h3>Textos convincentes</h3>
+
+                <p>
+                    Uma IA pode produzir textos com aparência profissional,
+                    mas isso não significa que todas as informações
+                    apresentadas sejam verdadeiras.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMO IDENTIFICAR -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>03</span>
+
+            <div>
+                <small>VERIFICAÇÃO</small>
+                <h2>Como identificar uma possível Fake News?</h2>
+            </div>
+
+        </div>
+
+
+        <div class="experiment-grid">
+
+            <div class="experiment-card">
+
+                <span class="number">01</span>
+
+                <h3>Verifique a fonte</h3>
+
+                <p>
+                    Descubra quem publicou a informação e se a fonte
+                    é identificável e confiável.
+                </p>
+
+            </div>
+
+
+            <div class="experiment-card">
+
+                <span class="number">02</span>
+
+                <h3>Confira a data</h3>
+
+                <p>
+                    Uma notícia antiga pode voltar a circular como
+                    se fosse um acontecimento atual.
+                </p>
+
+            </div>
+
+
+            <div class="experiment-card">
+
+                <span class="number">03</span>
+
+                <h3>Compare informações</h3>
+
+                <p>
+                    Procure outras fontes confiáveis para verificar
+                    se a mesma informação foi confirmada.
+                </p>
+
+            </div>
+
+
+            <div class="experiment-card">
+
+                <span class="number">04</span>
+
+                <h3>Procure a origem</h3>
+
+                <p>
+                    Tente encontrar a publicação ou documento original
+                    antes de acreditar ou compartilhar.
+                </p>
+
+            </div>
+
+
+            <div class="experiment-card">
+
+                <span class="number">05</span>
+
+                <h3>Observe o título</h3>
+
+                <p>
+                    Títulos muito exagerados ou que tentam provocar
+                    medo e raiva merecem atenção especial.
+                </p>
+
+            </div>
+
+
+            <div class="experiment-card">
+
+                <span class="number">06</span>
+
+                <h3>Não compartilhe imediatamente</h3>
+
+                <p>
+                    Pare, pense e verifique a informação antes
+                    de encaminhá-la para outras pessoas.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- IA COMO FERRAMENTA -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>04</span>
+
+            <div>
+                <small>USO RESPONSÁVEL</small>
+                <h2>IA: ferramenta ou problema?</h2>
+            </div>
+
+        </div>
+
+
+        <div class="solution">
+
+            <div class="solution-grid">
+
+                <div>
+
+                    <h4>✅ Pode ajudar</h4>
+
+                    <p>
+                        A IA pode auxiliar na pesquisa, organização,
+                        revisão e compreensão de conteúdos.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>⚠️ Precisa de verificação</h4>
+
+                    <p>
+                        Uma resposta produzida por IA pode conter erros,
+                        informações incompletas ou interpretações
+                        incorretas.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>🔎 Compare fontes</h4>
+
+                    <p>
+                        Informações importantes devem ser comparadas
+                        com fontes confiáveis antes da publicação.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>🧠 Use o pensamento crítico</h4>
+
+                    <p>
+                        A tecnologia deve apoiar o raciocínio humano,
+                        e não substituir a análise das informações.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CURIOSIDADE -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>05</span>
+
+            <div>
+                <small>CURIOSIDADE</small>
+                <h2>Nem toda informação falsa é totalmente inventada</h2>
+            </div>
+
+        </div>
+
+
+        <div class="ai-box">
+
+            <div class="ai-icon">🧠</div>
+
+            <div>
+
+                <h2>
+                    O contexto também importa
+                </h2>
+
+                <p>
+                    Uma informação verdadeira pode ser retirada do contexto,
+                    uma imagem antiga pode ser apresentada como atual ou
+                    uma frase pode ser atribuída à pessoa errada.
+                </p>
+
+                <p>
+                    Por isso, verificar apenas uma frase não é suficiente.
+                    É importante analisar a fonte, a data, o contexto
+                    e as evidências.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REGRA -->
+
+    <section class="conteudo">
+
+        <div class="conclusion fake-conclusion">
+
+            <span>REGRA DE OURO</span>
+
+            <h2>
+                Pare. Pense. Verifique. Só depois compartilhe.
+            </h2>
+
+            <p>
+                A melhor defesa contra a desinformação é desenvolver
+                pensamento crítico e verificar as informações antes
+                de divulgá-las.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FONTES FAKE NEWS -->
+
+    <section class="conteudo">
+
+        <div class="section-title">
+
+            <span>06</span>
+
+            <div>
+                <small>FONTES</small>
+                <h2>Fontes consultadas</h2>
+            </div>
+
+        </div>
+
+
+        <div class="source-box">
+
+            <p>
+                📚 UNESCO — materiais sobre Inteligência Artificial,
+                educação e uso responsável da IA.
+            </p>
+
+            <p>
+                📚 Senado Federal — conteúdos de educação midiática
+                e combate à desinformação.
+            </p>
+
+            <p>
+                📚 Materiais educacionais utilizados para compreender
+                desinformação e verificação de informações.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- IA -->
+
+    <section class="conteudo">
+
+        <div class="ai-box">
+
+            <div class="ai-icon">🤖</div>
+
+            <div>
+
+                <span class="badge">
+                    COMO A IA AUXILIOU
+                </span>
+
+                <h2>
+                    Registro do uso da Inteligência Artificial
+                </h2>
+
+                <p>
+                    Utilizamos o ChatGPT como ferramenta de apoio para
+                    compreender o conceito de Fake News, organizar
+                    as informações e revisar a clareza do texto.
+                </p>
+
+                <p>
+                    As informações foram analisadas e comparadas com
+                    fontes externas antes de serem utilizadas no site.
                 </p>
 
             </div>
@@ -1917,7 +2196,6 @@
 </main>
 
 
-
 <!-- ======================================================
      FOOTER
 ======================================================= -->
@@ -1927,22 +2205,16 @@
     <div class="footer-logo">
 
         <div class="pokeball small">
-
             <div class="pokeball-center"></div>
-
         </div>
 
-        <strong>
-            PokéÓptica
-        </strong>
+        <strong>PokéÓptica</strong>
 
     </div>
 
-
     <p>
-        Projeto de Física • Óptica • Tecnociência • Robótica
+        Projeto de Física • Óptica • Tecnociência • Robótica • Fake News
     </p>
-
 
     <p class="footer-small">
         Desenvolvido para fins educacionais.
@@ -1951,22 +2223,12 @@
 </footer>
 
 
-
-<!-- ======================================================
-     BOTÃO VOLTAR AO TOPO
-======================================================= -->
-
-<button
-    id="topButton"
-    onclick="voltarTopo()"
->
+<button id="topButton" onclick="voltarTopo()">
     ↑
 </button>
-
 
 
 <script src="script.js"></script>
 
 </body>
-
 </html>

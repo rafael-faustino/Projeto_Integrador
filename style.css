@@ -1,2234 +1,2503 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #080b16;
+    color: #f4f7ff;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   ABERTURA POKÉMON
+========================================================= */
+
+#pokemonIntro {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(239,35,60,.16),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #05070e,
+            #0b1020 50%,
+            #05070e
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+#pokemonIntro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+}
+
+.intro-content {
+    position: relative;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 2;
+
+    animation: introEntrada 1s ease;
+}
+
+@keyframes introEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.intro-pokeball {
+    width: 150px;
+    height: 150px;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    border-radius: 50%;
 
-    <title>PokéÓptica | Luz, Física e Tecnologia</title>
+    background:
+        linear-gradient(
+            to bottom,
+            #ef233c 0%,
+            #ef233c 46%,
+            #080b16 46%,
+            #080b16 54%,
+            #f5f7fb 54%,
+            #f5f7fb 100%
+        );
 
-    <link rel="stylesheet" href="style.css">
+    position: relative;
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    box-shadow:
+        0 0 30px rgba(239,35,60,.4),
+        0 0 90px rgba(239,35,60,.15);
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-</head>
+    animation: introPokeball 2s ease-in-out infinite;
+}
 
-<body>
+@keyframes introPokeball {
 
-<!-- ======================================================
-     ABERTURA
-======================================================= -->
+    0%, 100% {
+        transform: scale(1);
+    }
 
-<div id="pokemonIntro">
+    50% {
+        transform: scale(1.06);
+    }
+}
 
-    <div class="intro-content">
+.intro-pokeball-center {
+    width: 48px;
+    height: 48px;
 
-        <div class="intro-pokeball">
-            <div class="intro-pokeball-center"></div>
-        </div>
+    position: absolute;
 
-        <span class="intro-mini">PROJETO DE FÍSICA</span>
+    left: 50%;
+    top: 50%;
 
-        <h1>
-            Poké<span>Óptica</span>
-        </h1>
+    transform: translate(-50%, -50%);
 
-        <p>Luz • Ciência • Tecnologia • Robótica</p>
+    border-radius: 50%;
 
-        <div class="intro-loading">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    background: #080b16;
+    border: 9px solid white;
 
-        <button id="entrarSite">
-            ⚡ ENTRAR NA POKÉDEX
-        </button>
+    box-shadow:
+        0 0 20px rgba(255,255,255,.5);
+}
 
-    </div>
+.intro-mini {
+    font-family: "Orbitron";
+    font-size: 11px;
+    letter-spacing: 4px;
 
-</div>
+    color: #4db8ff;
 
+    margin-top: 35px;
+}
 
-<div class="background-grid"></div>
+.intro-content h1 {
+    font-family: "Orbitron";
 
+    font-size: clamp(45px, 8vw, 80px);
 
-<!-- ======================================================
-     HEADER
-======================================================= -->
+    margin: 10px 0;
+    line-height: 1;
+}
 
-<header class="topo">
+.intro-content h1 span {
+    color: #ef233c;
+}
 
-    <div class="logo">
+.intro-content p {
+    color: #9da9c0;
 
-        <div class="pokeball">
-            <div class="pokeball-center"></div>
-        </div>
+    font-size: 14px;
+    letter-spacing: 2px;
+}
 
-        <div>
-            <span class="logo-mini">PROJETO DE FÍSICA</span>
+.intro-loading {
+    display: flex;
+    gap: 8px;
 
-            <h1>
-                Poké<span>Óptica</span>
-            </h1>
-        </div>
+    margin: 25px 0;
+}
 
-    </div>
+.intro-loading span {
+    width: 8px;
+    height: 8px;
 
-    <div class="header-info">
-        <span>⚡ Luz</span>
-        <span>🔬 Ciência</span>
-        <span>🤖 Tecnologia</span>
-    </div>
+    background: #ef233c;
+    border-radius: 50%;
 
-</header>
+    animation: introLoading 1s infinite;
+}
 
+.intro-loading span:nth-child(2) {
+    animation-delay: .15s;
+}
 
-<!-- ======================================================
-     MENU
-======================================================= -->
+.intro-loading span:nth-child(3) {
+    animation-delay: .3s;
+}
 
-<nav class="menu">
+@keyframes introLoading {
 
-    <button class="menu-btn active" onclick="abrirAba('optica', this)">
-        🔬
-        <span>Introdução à Óptica</span>
-    </button>
+    0%, 100% {
+        opacity: .2;
+        transform: translateY(0);
+    }
 
-    <button class="menu-btn" onclick="abrirAba('tecnociencia', this)">
-        ⚡
-        <span>Física e Tecnociência</span>
-    </button>
+    50% {
+        opacity: 1;
+        transform: translateY(-6px);
+    }
+}
 
-    <button class="menu-btn" onclick="abrirAba('robotica', this)">
-        🤖
-        <span>Robótica</span>
-    </button>
+#entrarSite {
+    border: 1px solid rgba(255,255,255,.2);
 
-    <button class="menu-btn" onclick="abrirAba('fakenews', this)">
-        📰
-        <span>Fake News</span>
-    </button>
+    background:
+        linear-gradient(
+            135deg,
+            #ef233c,
+            #b51735
+        );
 
-</nav>
+    color: white;
 
+    padding: 15px 25px;
 
-<main>
+    border-radius: 10px;
 
+    font-family: "Orbitron";
 
-<!-- ======================================================
-     ABA 1 — ÓPTICA
-======================================================= -->
+    font-size: 11px;
+    letter-spacing: 1px;
 
-<section id="optica" class="aba ativa">
+    cursor: pointer;
 
-    <div class="hero">
+    box-shadow:
+        0 10px 35px rgba(239,35,60,.25);
 
-        <div class="hero-text">
+    transition: .3s;
+}
 
-            <span class="tag">POKÉDEX DA CIÊNCIA</span>
+#entrarSite:hover {
+    transform: translateY(-4px) scale(1.03);
 
-            <h2>
-                A ÓPTICA
-                <strong>NO NOSSO DIA A DIA</strong>
-            </h2>
+    box-shadow:
+        0 15px 45px rgba(239,35,60,.4);
+}
 
-            <p>
-                Descubra como a luz, as cores e a visão fazem parte
-                da Física e estão presentes em tecnologias que usamos
-                todos os dias.
-            </p>
+#pokemonIntro.sair {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
-            <div class="hero-buttons">
 
-                <button onclick="scrollPara('newton')">
-                    🔎 Explorar Newton
-                </button>
+/* =========================================================
+   FUNDO
+========================================================= */
 
-                <button class="secondary" onclick="scrollPara('video')">
-                    ▶ Ver vídeos
-                </button>
+body::before {
+    content: "";
 
-            </div>
+    position: fixed;
+    inset: 0;
 
-        </div>
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(0,119,255,.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(255,0,70,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(0,255,180,.08),
+            transparent 30%
+        );
 
+    pointer-events: none;
+    z-index: -2;
+}
 
-        <div class="hero-orbit">
+.background-grid {
+    position: fixed;
+    inset: 0;
 
-            <div class="orbit orbit-1"></div>
-            <div class="orbit orbit-2"></div>
-            <div class="orbit orbit-3"></div>
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
 
-            <div class="pokemon-core">
+    background-size: 50px 50px;
 
-                <div class="core-eye"></div>
-                <div class="core-eye right"></div>
-                <div class="core-energy"></div>
+    pointer-events: none;
+    z-index: -1;
+}
 
-            </div>
 
-        </div>
+/* =========================================================
+   TOPO
+========================================================= */
 
-    </div>
+.topo {
+    min-height: 90px;
 
+    padding: 20px 6%;
 
-    <!-- CONTEXTO -->
+    display: flex;
 
-    <section class="conteudo">
+    justify-content: space-between;
+    align-items: center;
 
-        <div class="section-title">
+    background: rgba(5,8,18,.9);
 
-            <span>01</span>
+    border-bottom: 1px solid rgba(255,255,255,.08);
 
-            <div>
-                <small>CONTEXTO</small>
-                <h2>O estudo da luz</h2>
-            </div>
+    position: sticky;
+    top: 0;
 
-        </div>
+    z-index: 1000;
 
+    backdrop-filter: blur(15px);
+}
 
-        <div class="timeline">
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
-            <div class="timeline-item">
+.logo-mini {
+    font-family: "Orbitron";
 
-                <div class="timeline-icon">XVII</div>
+    font-size: 9px;
 
-                <div class="timeline-content">
+    color: #7f8ba3;
 
-                    <h3>Revolução Científica</h3>
+    letter-spacing: 2px;
+}
 
-                    <p>
-                        O estudo de Isaac Newton sobre a luz está situado
-                        principalmente no século XVII, durante a Revolução
-                        Científica. Nesse período, experimentos passaram a
-                        ter um papel cada vez maior na construção do
-                        conhecimento científico.
-                    </p>
+.logo h1 {
+    font-family: "Orbitron";
 
-                </div>
+    font-size: 25px;
 
-            </div>
+    line-height: 1;
+}
 
+.logo h1 span {
+    color: #ff3152;
+}
 
-            <div class="timeline-item">
+.header-info {
+    display: flex;
+    gap: 15px;
+}
 
-                <div class="timeline-icon">💡</div>
+.header-info span {
+    padding: 7px 12px;
 
-                <div class="timeline-content">
+    border: 1px solid rgba(255,255,255,.1);
 
-                    <h3>O que se acreditava?</h3>
+    border-radius: 20px;
 
-                    <p>
-                        Existiam diferentes explicações para a natureza da
-                        luz. Newton defendia a teoria corpuscular, segundo
-                        a qual a luz seria formada por pequenas partículas,
-                        chamadas corpúsculos.
-                    </p>
+    font-size: 11px;
 
-                </div>
+    color: #aab5cc;
+}
 
-            </div>
 
+/* =========================================================
+   POKÉBALL
+========================================================= */
 
-            <div class="timeline-item">
+.pokeball {
+    width: 45px;
+    height: 45px;
 
-                <div class="timeline-icon">🔎</div>
+    border-radius: 50%;
 
-                <div class="timeline-content">
+    background:
+        linear-gradient(
+            to bottom,
+            #ef233c 0%,
+            #ef233c 46%,
+            #111827 46%,
+            #111827 54%,
+            #f5f7fb 54%,
+            #f5f7fb 100%
+        );
 
-                    <h3>Qual era o problema?</h3>
+    position: relative;
 
-                    <p>
-                        Os cientistas buscavam compreender como a luz se
-                        comportava e explicar fenômenos como reflexão,
-                        refração, cores e formação de sombras.
-                    </p>
+    box-shadow:
+        0 0 25px rgba(239,35,60,.3);
+}
 
-                </div>
+.pokeball-center {
+    width: 15px;
+    height: 15px;
 
-            </div>
+    background: #080b16;
 
-        </div>
+    border: 4px solid #f5f7fb;
 
-    </section>
+    border-radius: 50%;
 
+    position: absolute;
 
-    <!-- GRUPO 3 -->
+    left: 50%;
+    top: 50%;
 
-    <section class="conteudo" id="newton">
+    transform: translate(-50%, -50%);
+}
 
-        <div class="section-title">
+.pokeball.small {
+    width: 30px;
+    height: 30px;
+}
 
-            <span>02</span>
+.pokeball.small .pokeball-center {
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+}
 
-            <div>
-                <small>GRUPO 03 • CIENTISTA</small>
-                <h2>Isaac Newton e a teoria corpuscular</h2>
-            </div>
 
-        </div>
+/* =========================================================
+   MENU
+========================================================= */
 
+.menu {
+    display: flex;
 
-        <div class="scientist-card">
+    justify-content: center;
 
-            <div class="newton-portrait">
+    gap: 12px;
 
-                <div class="portrait-symbol">
-                    N
-                </div>
+    padding: 20px 5%;
 
-            </div>
+    position: sticky;
 
+    top: 90px;
 
-            <div class="scientist-info">
+    z-index: 999;
 
-                <span class="badge">
-                    FÍSICO • MATEMÁTICO • ASTRÔNOMO
-                </span>
+    background: rgba(8,11,22,.82);
 
-                <h3>Isaac Newton</h3>
+    backdrop-filter: blur(15px);
 
-                <p class="periodo">
-                    1642/1643 — 1727
-                </p>
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
 
-                <p>
-                    Isaac Newton foi um cientista inglês que realizou
-                    importantes estudos sobre movimento, gravidade,
-                    Matemática, Astronomia e Óptica.
-                </p>
+.menu-btn {
+    border: 1px solid rgba(255,255,255,.1);
 
-                <p>
-                    No estudo da luz, Newton propôs uma explicação
-                    conhecida como <strong>teoria corpuscular</strong>.
-                </p>
+    background: rgba(255,255,255,.025);
 
-            </div>
+    color: #9da9c0;
 
-        </div>
+    padding: 13px 20px;
 
+    border-radius: 12px;
 
-        <div class="cards-grid">
+    cursor: pointer;
 
-            <article class="info-card red">
+    font-family: "Poppins";
 
-                <div class="card-icon">🔴</div>
+    display: flex;
 
-                <h3>Teoria Corpuscular</h3>
+    align-items: center;
 
-                <p>
-                    Newton defendia que a luz seria formada por pequenas
-                    partículas chamadas corpúsculos, que se propagariam
-                    a partir das fontes luminosas.
-                </p>
+    gap: 9px;
 
-            </article>
+    transition: .3s;
+}
 
+.menu-btn:hover {
+    border-color: #ff3152;
 
-            <article class="info-card blue">
+    color: white;
 
-                <div class="card-icon">🔵</div>
+    transform: translateY(-2px);
+}
 
-                <h3>Reflexão e refração</h3>
+.menu-btn.active {
+    background:
+        linear-gradient(
+            135deg,
+            #ef233c,
+            #b51735
+        );
 
-                <p>
-                    A teoria procurava explicar fenômenos como a reflexão
-                    da luz em superfícies e a mudança de direção da luz
-                    quando ela passava de um meio para outro.
-                </p>
+    border-color: transparent;
 
-            </article>
+    color: white;
 
+    box-shadow:
+        0 8px 30px rgba(239,35,60,.25);
+}
 
-            <article class="info-card yellow">
 
-                <div class="card-icon">🟡</div>
+/* =========================================================
+   ABAS
+========================================================= */
 
-                <h3>Dispersão</h3>
+.aba {
+    display: none;
+    width: 100%;
+}
 
-                <p>
-                    Newton demonstrou que a luz branca pode ser separada
-                    em diferentes cores ao atravessar um prisma.
-                </p>
+.aba.ativa {
+    display: block;
 
-            </article>
+    animation: aparecer .45s ease;
+}
 
-        </div>
+@keyframes aparecer {
 
-    </section>
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
 
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-    <!-- EXPLICAÇÃO -->
 
-    <section class="conteudo">
+/* =========================================================
+   HERO
+========================================================= */
 
-        <div class="section-title">
+.hero {
+    min-height: 620px;
 
-            <span>03</span>
+    padding: 90px 8%;
 
-            <div>
-                <small>IDEIA SOBRE A LUZ</small>
-                <h2>Como Newton imaginava a luz?</h2>
-            </div>
+    display: grid;
 
-        </div>
+    grid-template-columns: 1.1fr .9fr;
 
+    align-items: center;
 
-        <div class="future-card">
+    gap: 50px;
+}
 
-            <div class="future-icon">💡</div>
+.tag,
+.badge {
+    font-family: "Orbitron";
 
-            <div>
+    font-size: 10px;
 
-                <h3>A luz como partículas</h3>
+    letter-spacing: 2px;
 
-                <p>
-                    Para Newton, a luz poderia ser entendida como um fluxo
-                    de pequenas partículas emitidas pelas fontes luminosas.
-                    Essas partículas ajudariam a explicar por que a luz
-                    aparentemente se propagava em linha reta e por que
-                    podia ser refletida ou refratada.
-                </p>
+    color: #4db8ff;
 
-                <p>
-                    Essa explicação foi muito importante historicamente,
-                    mas não conseguiu explicar todos os fenômenos ópticos
-                    descobertos posteriormente.
-                </p>
+    padding: 7px 11px;
 
-            </div>
+    border: 1px solid rgba(77,184,255,.3);
 
-        </div>
+    border-radius: 5px;
 
-    </section>
+    display: inline-block;
+}
 
+.hero h2 {
+    font-family: "Orbitron";
 
-    <!-- DISCO -->
+    font-size: clamp(35px,6vw,70px);
 
-    <section class="conteudo disco-section">
+    line-height: 1.05;
 
-        <div class="section-title">
+    margin: 20px 0;
+}
 
-            <span>04</span>
+.hero h2 strong {
+    display: block;
+    color: #ff3152;
+}
 
-            <div>
-                <small>EXPERIMENTO</small>
-                <h2>Disco de Newton</h2>
-            </div>
+.hero p {
+    max-width: 650px;
 
-        </div>
+    color: #9da9c0;
 
+    line-height: 1.8;
 
-        <div class="disco-layout">
+    font-size: 16px;
+}
 
-            <div class="disco-area">
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
 
-                <div id="discoNewton">
-                    <div class="disco-center"></div>
-                </div>
+.hero-buttons button,
+.pokemon-button,
+.youtube-button {
+    border: none;
 
-                <button onclick="girarDisco()" class="pokemon-button">
-                    ⚡ GIRAR DISCO
-                </button>
+    padding: 14px 22px;
 
-            </div>
+    border-radius: 10px;
 
+    cursor: pointer;
 
-            <div class="disco-text">
+    font-weight: 700;
 
-                <span class="badge">EXPERIMENTO DE ÓPTICA</span>
+    color: white;
 
-                <h3>
-                    Por que as cores parecem se misturar?
-                </h3>
+    background:
+        linear-gradient(
+            135deg,
+            #ef233c,
+            #b51735
+        );
 
-                <p>
-                    O Disco de Newton possui setores com diferentes cores
-                    do espectro visível.
-                </p>
+    transition: .3s;
 
-                <p>
-                    Quando o disco gira rapidamente, as diferentes cores
-                    chegam ao sistema visual em uma sucessão muito rápida.
-                </p>
+    text-decoration: none;
 
-                <p>
-                    O sistema visual integra essas informações e podemos
-                    perceber uma tonalidade próxima do branco ou cinza-claro.
-                </p>
+    display: inline-block;
+}
 
-                <div class="spectrum">
-                    <span style="background:#ef233c"></span>
-                    <span style="background:#ff7b00"></span>
-                    <span style="background:#ffd60a"></span>
-                    <span style="background:#38b000"></span>
-                    <span style="background:#0077ff"></span>
-                    <span style="background:#4b0082"></span>
-                    <span style="background:#8f00ff"></span>
-                </div>
+.hero-buttons button:hover,
+.pokemon-button:hover,
+.youtube-button:hover {
+    transform: translateY(-3px);
 
-            </div>
+    box-shadow:
+        0 10px 30px rgba(239,35,60,.3);
+}
 
-        </div>
+.hero-buttons .secondary {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.15);
+}
 
-    </section>
 
+/* =========================================================
+   ORBIT
+========================================================= */
 
-    <!-- EVIDÊNCIAS -->
+.hero-orbit {
+    width: 360px;
+    height: 360px;
 
-    <section class="conteudo">
+    margin: auto;
 
-        <div class="section-title">
+    position: relative;
+}
 
-            <span>05</span>
+.orbit {
+    position: absolute;
 
-            <div>
-                <small>EVIDÊNCIAS</small>
-                <h2>Os experimentos</h2>
-            </div>
+    border: 1px solid rgba(77,184,255,.25);
 
-        </div>
+    border-radius: 50%;
 
+    left: 50%;
+    top: 50%;
 
-        <div class="experiment-grid">
+    transform: translate(-50%,-50%);
 
-            <div class="experiment-card">
+    animation:
+        orbitar 12s linear infinite;
+}
 
-                <span class="number">01</span>
+.orbit-1 {
+    width: 220px;
+    height: 220px;
+}
 
-                <h3>Prisma de vidro</h3>
+.orbit-2 {
+    width: 290px;
+    height: 290px;
 
-                <p>
-                    Newton utilizou prismas para estudar a separação
-                    das cores presentes na luz branca.
-                </p>
+    animation-duration: 18s;
+}
 
-            </div>
+.orbit-3 {
+    width: 350px;
+    height: 350px;
 
+    animation-duration: 25s;
+}
 
-            <div class="experiment-card">
+@keyframes orbitar {
 
-                <span class="number">02</span>
+    to {
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg);
+    }
+}
 
-                <h3>Recombinação</h3>
+.pokemon-core {
+    width: 130px;
+    height: 130px;
 
-                <p>
-                    Newton também mostrou que as cores separadas podiam
-                    ser reunidas novamente para formar luz branca.
-                </p>
+    position: absolute;
 
-            </div>
+    left: 50%;
+    top: 50%;
 
+    transform: translate(-50%,-50%);
 
-            <div class="experiment-card">
+    border-radius: 50%;
 
-                <span class="number">03</span>
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ff5d73,
+            #ef233c 40%,
+            #7d0d22
+        );
 
-                <h3>Novas evidências</h3>
+    box-shadow:
+        0 0 40px rgba(239,35,60,.5),
+        inset 0 -15px 30px rgba(0,0,0,.3);
+}
 
-                <p>
-                    Experimentos posteriores com interferência e difração
-                    deram fortes evidências para o comportamento ondulatório
-                    da luz.
-                </p>
+.core-eye {
+    position: absolute;
 
-            </div>
+    width: 18px;
+    height: 25px;
 
-        </div>
+    background: #10131f;
 
-    </section>
+    border-radius: 50%;
 
+    left: 35px;
+    top: 40px;
+}
 
-    <!-- IMPORTÂNCIA -->
+.core-eye.right {
+    left: auto;
+    right: 35px;
+}
 
-    <section class="conteudo">
+.core-energy {
+    position: absolute;
 
-        <div class="section-title">
+    width: 35px;
+    height: 35px;
 
-            <span>06</span>
+    background: white;
 
-            <div>
-                <small>IMPORTÂNCIA PARA A FÍSICA</small>
-                <h2>Por que Newton foi importante?</h2>
-            </div>
+    border-radius: 50%;
 
-        </div>
+    left: 50%;
+    bottom: 20px;
 
+    transform: translateX(-50%);
 
-        <div class="cards-grid">
+    box-shadow:
+        0 0 25px #fff;
+}
 
-            <article class="info-card">
 
-                <div class="card-icon">🔬</div>
+/* =========================================================
+   BANNERS
+========================================================= */
 
-                <h3>Experimentação</h3>
+.page-banner {
+    padding: 90px 8% 70px;
 
-                <p>
-                    Newton utilizou experimentos para investigar fenômenos
-                    ópticos, fortalecendo a importância da observação
-                    experimental na Física.
-                </p>
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,119,255,.12),
+            transparent
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(255,49,82,.12),
+            transparent 30%
+        );
+}
 
-            </article>
+.page-banner h2 {
+    font-family: "Orbitron";
 
+    font-size: clamp(40px,6vw,70px);
 
-            <article class="info-card">
+    line-height: 1.05;
 
-                <div class="card-icon">🌈</div>
+    margin: 20px 0;
+}
 
-                <h3>Estudo das cores</h3>
+.page-banner h2 strong {
+    color: #4db8ff;
+    display: block;
+}
 
-                <p>
-                    Seus experimentos contribuíram para compreender que
-                    a luz branca é composta por diferentes componentes
-                    relacionados às cores.
-                </p>
+.page-banner p {
+    color: #9da9c0;
 
-            </article>
+    max-width: 700px;
 
+    line-height: 1.8;
+}
 
-            <article class="info-card">
+.fake-banner {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239,35,60,.13),
+            transparent
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(77,184,255,.1),
+            transparent 30%
+        );
+}
 
-                <div class="card-icon">🚀</div>
+.fake-banner h2 strong {
+    color: #ff3152;
+}
 
-                <h3>Avanço científico</h3>
 
-                <p>
-                    A teoria corpuscular também estimulou debates e novas
-                    pesquisas que ajudaram a construir explicações mais
-                    completas sobre a natureza da luz.
-                </p>
+/* =========================================================
+   CONTEÚDO
+========================================================= */
 
-            </article>
+.conteudo {
+    width: min(1150px,90%);
 
-        </div>
+    margin: auto;
 
-    </section>
+    padding: 80px 0;
+}
 
+.section-title {
+    display: flex;
 
-    <!-- FÍSICA ATUAL -->
+    align-items: center;
 
-    <section class="conteudo">
+    gap: 20px;
 
-        <div class="section-title">
+    margin-bottom: 45px;
+}
 
-            <span>07</span>
+.section-title > span {
+    font-family: "Orbitron";
 
-            <div>
-                <small>CONEXÃO COM A FÍSICA ATUAL</small>
-                <h2>O que sabemos hoje?</h2>
-            </div>
+    font-size: 24px;
 
-        </div>
+    color: #ff3152;
+}
 
+.section-title small {
+    color: #4db8ff;
 
-        <div class="future-card">
+    font-family: "Orbitron";
 
-            <div class="future-icon">🌌</div>
+    font-size: 10px;
 
-            <div>
+    letter-spacing: 2px;
+}
 
-                <h3>Dualidade onda-partícula</h3>
+.section-title h2 {
+    font-family: "Orbitron";
 
-                <p>
-                    Atualmente, a Física descreve a luz por meio da
-                    mecânica quântica. A luz apresenta comportamentos
-                    associados tanto a ondas quanto a partículas.
-                </p>
+    font-size: clamp(25px,4vw,40px);
 
-                <p>
-                    A luz pode ser descrita em termos de <strong>fótons</strong>
-                    quando analisamos determinados fenômenos, enquanto
-                    outros experimentos revelam características
-                    ondulatórias, como interferência e difração.
-                </p>
+    margin-top: 5px;
+}
 
-                <div class="connection">
 
-                    <span>Newton</span>
-                    <b>→</b>
-                    <span>Ondas</span>
-                    <b>→</b>
-                    <span>Fótons</span>
-                    <b>→</b>
-                    <span>Física moderna</span>
+/* =========================================================
+   TIMELINE
+========================================================= */
 
-                </div>
+.timeline {
+    position: relative;
+    padding-left: 35px;
+}
 
-            </div>
+.timeline::before {
+    content: "";
 
-        </div>
+    position: absolute;
 
-    </section>
+    left: 11px;
 
+    top: 0;
+    bottom: 0;
 
-    <!-- CURIOSIDADE -->
+    width: 2px;
 
-    <section class="conteudo">
+    background:
+        linear-gradient(
+            #ef233c,
+            #4db8ff,
+            transparent
+        );
+}
 
-        <div class="section-title">
+.timeline-item {
+    display: flex;
 
-            <span>08</span>
+    gap: 20px;
 
-            <div>
-                <small>CURIOSIDADE</small>
-                <h2>Você sabia?</h2>
-            </div>
+    margin-bottom: 35px;
 
-        </div>
+    position: relative;
+}
 
+.timeline-icon {
+    width: 25px;
+    height: 25px;
 
-        <div class="ai-box">
+    border-radius: 50%;
 
-            <div class="ai-icon">💡</div>
+    background: #111827;
 
-            <div>
+    border: 2px solid #4db8ff;
 
-                <h2>
-                    Newton estudou a luz há mais de 300 anos
-                </h2>
+    display: flex;
 
-                <p>
-                    Mesmo depois de séculos, seus experimentos continuam
-                    sendo utilizados para explicar conceitos básicos de
-                    Óptica. A história da luz mostra que uma teoria pode
-                    ser muito importante mesmo quando novas evidências
-                    levam a explicações mais completas.
-                </p>
+    align-items: center;
+    justify-content: center;
 
-            </div>
+    font-size: 8px;
 
-        </div>
+    position: absolute;
 
-    </section>
+    left: -35px;
 
+    color: #4db8ff;
+}
 
-    <!-- APLICAÇÕES DA ÓPTICA -->
+.timeline-content {
+    background: rgba(255,255,255,.035);
 
-    <section class="conteudo">
+    border: 1px solid rgba(255,255,255,.08);
 
-        <div class="section-title">
+    padding: 25px;
 
-            <span>09</span>
+    border-radius: 14px;
 
-            <div>
-                <small>ÓPTICA APLICADA</small>
-                <h2>4 aplicações em diferentes contextos</h2>
-            </div>
+    width: 100%;
+}
 
-        </div>
+.timeline-content h3 {
+    margin-bottom: 10px;
+}
 
+.timeline-content p {
+    color: #9da9c0;
 
-        <p class="intro-text">
-            A Óptica está presente em equipamentos residenciais,
-            comerciais, escolares e industriais. Cada aplicação utiliza
-            propriedades da luz para resolver problemas do cotidiano.
-        </p>
+    line-height: 1.7;
+}
 
 
-        <div class="technology-grid">
+/* =========================================================
+   NEWTON
+========================================================= */
 
+.scientist-card {
+    display: grid;
 
-            <article class="technology-card">
+    grid-template-columns: 260px 1fr;
 
-                <div class="tech-number">RESIDENCIAL</div>
+    border: 1px solid rgba(255,255,255,.08);
 
-                <div class="tech-icon">📱</div>
+    background: rgba(255,255,255,.035);
 
-                <h3>Câmera do celular</h3>
+    border-radius: 20px;
 
-                <p>
-                    Lentes direcionam a luz para um sensor de imagem.
-                    O sensor transforma a luz recebida em sinais digitais
-                    que formam a fotografia.
-                </p>
+    overflow: hidden;
+}
 
-                <span>
-                    REFRAÇÃO + LENTES + SENSOR
-                </span>
+.newton-portrait {
+    min-height: 300px;
 
-            </article>
+    display: grid;
 
+    place-items: center;
 
-            <article class="technology-card">
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.12),
+            transparent 50%
+        ),
+        linear-gradient(
+            135deg,
+            #151c2e,
+            #080b16
+        );
+}
 
-                <div class="tech-number">COMERCIAL</div>
+.portrait-symbol {
+    width: 150px;
+    height: 150px;
 
-                <div class="tech-icon">🏷️</div>
+    border-radius: 50%;
 
-                <h3>Leitor de código de barras</h3>
+    display: grid;
+    place-items: center;
 
-                <p>
-                    Um feixe de luz ilumina o código. As regiões claras
-                    e escuras refletem quantidades diferentes de luz,
-                    permitindo que o sensor interprete o padrão.
-                </p>
+    font-family: "Orbitron";
 
-                <span>
-                    REFLEXÃO + SENSOR ÓPTICO
-                </span>
+    font-size: 70px;
 
-            </article>
+    border: 2px solid #4db8ff;
 
+    color: #4db8ff;
 
-            <article class="technology-card">
+    box-shadow:
+        0 0 50px rgba(77,184,255,.15);
+}
 
-                <div class="tech-number">ESCOLAR</div>
+.scientist-info {
+    padding: 40px;
+}
 
-                <div class="tech-icon">🔬</div>
+.scientist-info h3 {
+    font-family: "Orbitron";
 
-                <h3>Microscópio</h3>
+    font-size: 38px;
 
-                <p>
-                    Lentes aumentam a imagem de objetos muito pequenos.
-                    O sistema óptico utiliza refração para produzir
-                    uma imagem ampliada.
-                </p>
+    margin: 20px 0 5px;
+}
 
-                <span>
-                    LENTES + REFRAÇÃO + AMPLIAÇÃO
-                </span>
+.periodo {
+    color: #ff3152 !important;
 
-            </article>
+    font-family: "Orbitron";
 
+    margin-bottom: 20px;
+}
 
-            <article class="technology-card">
+.scientist-info p {
+    color: #aab5cc;
 
-                <div class="tech-number">INDUSTRIAL</div>
+    line-height: 1.8;
 
-                <div class="tech-icon">🔴</div>
+    margin-bottom: 15px;
+}
 
-                <h3>Inspeção por câmera</h3>
 
-                <p>
-                    Câmeras industriais capturam imagens de peças e
-                    produtos. Sistemas de processamento podem identificar
-                    defeitos, formas, cores e dimensões.
-                </p>
+/* =========================================================
+   CARDS
+========================================================= */
 
-                <span>
-                    LUZ + CÂMERA + VISÃO COMPUTACIONAL
-                </span>
+.cards-grid {
+    display: grid;
 
-            </article>
+    grid-template-columns: repeat(3,1fr);
 
-        </div>
+    gap: 20px;
 
-    </section>
+    margin-top: 25px;
+}
 
+.info-card {
+    padding: 30px;
 
-    <!-- VÍDEOS -->
+    border-radius: 16px;
 
-    <section class="conteudo" id="video">
+    border: 1px solid rgba(255,255,255,.08);
 
-        <div class="section-title">
+    background: rgba(255,255,255,.035);
 
-            <span>10</span>
+    transition: .3s;
+}
 
-            <div>
-                <small>VÍDEOS</small>
-                <h2>Conteúdos utilizados no projeto</h2>
-            </div>
+.info-card:hover,
+.experiment-card:hover,
+.technology-card:hover,
+.robot-image-card:hover {
+    transform: translateY(-6px);
 
-        </div>
+    border-color:
+        rgba(77,184,255,.4);
+}
 
+.card-icon {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
 
-        <div class="video-list">
+.info-card h3 {
+    margin-bottom: 12px;
+}
 
+.info-card p {
+    color: #98a4bb;
+    line-height: 1.7;
+}
 
-            <div class="video-card">
 
-                <div class="video-preview">
-                    <div class="play-icon">▶</div>
-                    <span>VÍDEO 01</span>
-                </div>
+/* =========================================================
+   DISCO
+========================================================= */
 
-                <div class="video-info">
+.disco-layout {
+    display: grid;
 
-                    <span class="badge">YOUTUBE</span>
+    grid-template-columns: .8fr 1.2fr;
 
-                    <h3>
-                        Experimento e estudo da luz
-                    </h3>
+    gap: 50px;
 
-                    <p>
-                        Material utilizado como apoio para a pesquisa
-                        sobre Óptica.
-                    </p>
+    align-items: center;
+}
 
-                    <a
-                        href="https://www.youtube.com/watch?v=UHMslvOE9E8"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="youtube-button"
-                    >
-                        ▶ ASSISTIR
-                    </a>
+.disco-area {
+    display: flex;
 
-                </div>
+    flex-direction: column;
 
-            </div>
+    align-items: center;
 
+    gap: 30px;
+}
 
-            <div class="video-card">
+#discoNewton {
+    width: 260px;
+    height: 260px;
 
-                <div class="video-preview">
-                    <div class="play-icon">▶</div>
-                    <span>VÍDEO 02</span>
-                </div>
+    border-radius: 50%;
 
-                <div class="video-info">
+    background:
+        conic-gradient(
+            #ef233c 0deg 51.42deg,
+            #ff7b00 51.42deg 102.84deg,
+            #ffd60a 102.84deg 154.26deg,
+            #38b000 154.26deg 205.68deg,
+            #0077ff 205.68deg 257.1deg,
+            #4b0082 257.1deg 308.52deg,
+            #8f00ff 308.52deg 360deg
+        );
 
-                    <span class="badge">YOUTUBE</span>
+    border: 8px solid #171c2c;
 
-                    <h3>
-                        Conteúdo sobre a natureza da luz
-                    </h3>
+    box-shadow:
+        0 0 50px rgba(255,255,255,.08),
+        inset 0 0 30px rgba(0,0,0,.25);
 
-                    <p>
-                        Vídeo utilizado como material complementar
-                        para compreender os conceitos estudados.
-                    </p>
+    position: relative;
+}
 
-                    <a
-                        href="https://www.youtube.com/watch?v=cTvsyzcuw78"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="youtube-button"
-                    >
-                        ▶ ASSISTIR
-                    </a>
+#discoNewton.girando {
+    animation:
+        discoGirar .08s linear infinite;
+}
 
-                </div>
+@keyframes discoGirar {
 
-            </div>
+    from {
+        transform: rotate(0deg);
+    }
 
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-            <div class="video-card">
+.disco-center {
+    width: 40px;
+    height: 40px;
 
-                <div class="video-preview">
-                    <div class="play-icon">▶</div>
-                    <span>VÍDEO 03</span>
-                </div>
+    background: #111827;
 
-                <div class="video-info">
+    border: 5px solid #f3f4f6;
 
-                    <span class="badge">YOUTUBE</span>
+    border-radius: 50%;
 
-                    <h3>
-                        Vídeo complementar de Física
-                    </h3>
+    position: absolute;
 
-                    <p>
-                        Material utilizado para complementar a pesquisa
-                        e revisar os conceitos apresentados no projeto.
-                    </p>
+    left: 50%;
+    top: 50%;
 
-                    <a
-                        href="https://www.youtube.com/watch?v=m3BnFeQMOeM"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="youtube-button"
-                    >
-                        ▶ ASSISTIR
-                    </a>
+    transform: translate(-50%,-50%);
+}
 
-                </div>
+.disco-text h3 {
+    font-family: "Orbitron";
 
-            </div>
+    font-size: 27px;
 
-        </div>
+    margin: 20px 0;
+}
 
-    </section>
+.disco-text p {
+    color: #9da9c0;
 
+    line-height: 1.8;
 
-    <!-- FONTES -->
+    margin-bottom: 15px;
+}
 
-    <section class="conteudo">
+.spectrum {
+    display: flex;
 
-        <div class="section-title">
+    margin-top: 25px;
 
-            <span>11</span>
+    height: 15px;
 
-            <div>
-                <small>FONTES</small>
-                <h2>Fontes consultadas</h2>
-            </div>
+    border-radius: 20px;
 
-        </div>
+    overflow: hidden;
+}
 
+.spectrum span {
+    flex: 1;
+}
 
-        <div class="source-box">
 
-            <p>
-                📚 Royal Society — materiais históricos relacionados
-                aos estudos de Newton sobre luz e cores.
-            </p>
+/* =========================================================
+   EXPERIMENTOS
+========================================================= */
 
-            <p>
-                📚 Encyclopaedia Britannica — conteúdos sobre a história
-                e natureza da luz.
-            </p>
+.experiment-grid {
+    display: grid;
 
-            <p>
-                📚 Materiais didáticos de Física e Óptica utilizados
-                durante a pesquisa escolar.
-            </p>
+    grid-template-columns: repeat(3,1fr);
 
-            <p>
-                🎥 Vídeos do YouTube utilizados como materiais
-                complementares de pesquisa.
-            </p>
+    gap: 20px;
+}
 
-        </div>
+.experiment-card {
+    padding: 30px;
 
-    </section>
+    background: rgba(255,255,255,.035);
 
+    border: 1px solid rgba(255,255,255,.08);
 
-    <!-- IA -->
+    border-radius: 16px;
 
-    <section class="conteudo">
+    transition: .3s;
+}
 
-        <div class="ai-box">
+.number {
+    color: #ff3152;
 
-            <div class="ai-icon">🤖</div>
+    font-family: "Orbitron";
 
-            <div>
+    font-size: 13px;
+}
 
-                <span class="badge">
-                    REGISTRO DO USO DA IA
-                </span>
+.experiment-card h3 {
+    margin: 15px 0;
+}
 
-                <h2>
-                    Como a Inteligência Artificial foi utilizada?
-                </h2>
+.experiment-card p {
+    color: #98a4bb;
+    line-height: 1.7;
+}
 
-                <p>
-                    Utilizamos o ChatGPT como ferramenta de apoio para
-                    compreender a teoria corpuscular de Isaac Newton,
-                    organizar as informações, melhorar a clareza dos
-                    textos e estruturar o conteúdo da página.
-                </p>
 
-                <p>
-                    A IA também auxiliou na organização do código do
-                    site e na revisão das explicações.
-                </p>
+/* =========================================================
+   VÍDEOS
+========================================================= */
 
-                <p>
-                    As informações foram analisadas e comparadas com
-                    outras fontes antes da publicação. A IA foi utilizada
-                    como ferramenta de apoio, e não como substituta da
-                    pesquisa e da verificação das informações.
-                </p>
+.video-list {
+    display: grid;
 
-            </div>
+    gap: 25px;
+}
 
-        </div>
+.video-card {
+    display: grid;
 
-    </section>
+    grid-template-columns: .9fr 1.1fr;
 
-</section>
+    border: 1px solid rgba(255,255,255,.08);
 
+    border-radius: 18px;
 
-<!-- ======================================================
-     ABA 2 — FÍSICA E TECNOCIÊNCIA
-======================================================= -->
+    overflow: hidden;
 
-<section id="tecnociencia" class="aba">
+    background: rgba(255,255,255,.035);
+}
 
-    <div class="page-banner">
+.video-preview {
+    min-height: 260px;
 
-        <span class="tag">ÁREA 02</span>
+    display: flex;
 
-        <h2>
-            FÍSICA E
-            <strong>TECNOCIÊNCIA</strong>
-        </h2>
+    align-items: center;
+    justify-content: center;
 
-        <p>
-            Da compreensão da luz ao desenvolvimento de tecnologias
-            que transformam nossa vida.
-        </p>
+    flex-direction: column;
 
-    </div>
+    gap: 20px;
 
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,49,82,.25),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #151b2c,
+            #070910
+        );
+}
 
-    <section class="conteudo">
+.play-icon {
+    width: 80px;
+    height: 80px;
 
-        <div class="section-title">
+    display: grid;
+    place-items: center;
 
-            <span>01</span>
+    border-radius: 50%;
 
-            <div>
-                <small>FÍSICA ATUAL</small>
-                <h2>Do passado ao presente</h2>
-            </div>
+    background: #ef233c;
 
-        </div>
+    font-size: 25px;
 
+    padding-left: 5px;
 
-        <div class="future-card">
+    box-shadow:
+        0 0 40px rgba(239,35,60,.4);
+}
 
-            <div class="future-icon">🌈</div>
+.video-preview span {
+    font-family: "Orbitron";
 
-            <div>
+    font-size: 10px;
 
-                <h3>A luz na Física moderna</h3>
+    color: #9da9c0;
 
-                <p>
-                    A teoria corpuscular de Newton não é aceita atualmente
-                    em sua forma original. Porém, seus experimentos sobre
-                    cores, refração e dispersão foram fundamentais para
-                    o desenvolvimento da Óptica.
-                </p>
+    letter-spacing: 2px;
+}
 
-                <div class="connection">
+.video-info {
+    padding: 40px;
+}
 
-                    <span>Newton</span>
-                    <b>→</b>
-                    <span>Óptica</span>
-                    <b>→</b>
-                    <span>Tecnologia</span>
+.video-info h3 {
+    font-family: "Orbitron";
 
-                </div>
+    font-size: 25px;
 
-            </div>
+    margin: 20px 0;
+}
 
-        </div>
+.video-info p {
+    color: #9da9c0;
 
-    </section>
+    line-height: 1.8;
 
+    margin-bottom: 25px;
+}
 
-    <section class="conteudo">
 
-        <div class="section-title">
+/* =========================================================
+   IA
+========================================================= */
 
-            <span>02</span>
+.ai-box {
+    display: grid;
 
-            <div>
-                <small>TECNOLOGIA ASSISTIVA</small>
-                <h2>Luz a favor da acessibilidade</h2>
-            </div>
+    grid-template-columns: 100px 1fr;
 
-        </div>
+    gap: 30px;
 
+    padding: 40px;
 
-        <p class="intro-text">
-            O conhecimento sobre luz, cores, contraste e percepção visual
-            permite desenvolver tecnologias que aumentam a autonomia e
-            a segurança de pessoas com deficiência visual e baixa visão.
-        </p>
+    border-radius: 20px;
 
+    border: 1px solid rgba(77,184,255,.2);
 
-        <div class="technology-grid">
+    background:
+        linear-gradient(
+            135deg,
+            rgba(77,184,255,.07),
+            rgba(239,35,60,.04)
+        );
+}
 
-            <article class="technology-card">
+.ai-icon {
+    width: 80px;
+    height: 80px;
 
-                <div class="tech-number">01</div>
-                <div class="tech-icon">📱</div>
+    display: grid;
 
-                <h3>Identificador de cores</h3>
+    place-items: center;
 
-                <p>
-                    Aplicativos utilizam a câmera do celular para
-                    identificar cores e fornecer informações ao usuário.
-                </p>
+    font-size: 35px;
 
-                <span>RGB + PROCESSAMENTO DIGITAL</span>
+    background:
+        rgba(77,184,255,.1);
 
-            </article>
+    border-radius: 20px;
 
+    border: 1px solid rgba(77,184,255,.25);
+}
 
-            <article class="technology-card">
+.ai-box h2 {
+    font-family: "Orbitron";
 
-                <div class="tech-number">02</div>
-                <div class="tech-icon">👓</div>
+    margin: 15px 0;
+}
 
-                <h3>Óculos eletrônicos</h3>
+.ai-box p {
+    color: #9da9c0;
 
-                <p>
-                    Câmeras e telas podem ampliar imagens e ajustar
-                    brilho e contraste para pessoas com baixa visão.
-                </p>
+    line-height: 1.8;
 
-                <span>ÓPTICA + VISÃO COMPUTACIONAL</span>
+    margin-bottom: 12px;
+}
 
-            </article>
 
+/* =========================================================
+   FONTES
+========================================================= */
 
-            <article class="technology-card">
+.source-box {
+    display: grid;
 
-                <div class="tech-number">03</div>
-                <div class="tech-icon">🔍</div>
+    gap: 15px;
 
-                <h3>Lupa digital</h3>
+    padding: 30px;
 
-                <p>
-                    Permite ampliar textos e modificar contraste,
-                    facilitando a leitura de documentos.
-                </p>
+    border-radius: 18px;
 
-                <span>AMPLIAÇÃO + CONTRASTE</span>
+    border: 1px solid rgba(255,255,255,.08);
 
-            </article>
+    background: rgba(255,255,255,.035);
+}
 
+.source-box p {
+    color: #aab5cc;
 
-            <article class="technology-card">
+    line-height: 1.7;
 
-                <div class="tech-number">04</div>
-                <div class="tech-icon">💡</div>
+    padding: 15px;
 
-                <h3>Sinalização luminosa</h3>
+    border-left: 3px solid #4db8ff;
 
-                <p>
-                    LEDs e sistemas luminosos podem aumentar a
-                    visibilidade de sinais e obstáculos.
-                </p>
+    background: rgba(255,255,255,.025);
+}
 
-                <span>LUZ + SEGURANÇA</span>
 
-            </article>
+/* =========================================================
+   TECNOCIÊNCIA
+========================================================= */
 
+.future-card {
+    display: grid;
 
-            <article class="technology-card">
+    grid-template-columns: 120px 1fr;
 
-                <div class="tech-number">05</div>
-                <div class="tech-icon">🎨</div>
+    gap: 30px;
 
-                <h3>Filtros de lentes</h3>
+    padding: 40px;
 
-                <p>
-                    Filtros podem controlar determinados comprimentos
-                    de onda e melhorar o conforto visual.
-                </p>
+    border-radius: 20px;
 
-                <span>FILTRAGEM ÓPTICA</span>
+    background: rgba(255,255,255,.035);
 
-            </article>
+    border: 1px solid rgba(255,255,255,.08);
+}
 
-        </div>
+.future-icon {
+    font-size: 70px;
 
-    </section>
+    display: grid;
+    place-items: center;
+}
 
+.future-card h3 {
+    font-family: "Orbitron";
 
-    <section class="conteudo">
+    font-size: 25px;
 
-        <div class="section-title">
+    margin-bottom: 15px;
+}
 
-            <span>03</span>
+.future-card p {
+    color: #9da9c0;
 
-            <div>
-                <small>PROJETO</small>
-                <h2>LumosSense</h2>
-            </div>
+    line-height: 1.8;
 
-        </div>
+    margin-bottom: 15px;
+}
 
+.connection {
+    display: flex;
 
-        <div class="solution">
+    gap: 15px;
 
-            <div class="solution-header">
+    align-items: center;
 
-                <div class="solution-logo">LS</div>
+    margin-top: 25px;
 
-                <div>
+    flex-wrap: wrap;
+}
 
-                    <span>TECNOLOGIA ASSISTIVA</span>
+.connection span {
+    padding: 10px 15px;
 
-                    <h3>
-                        LumosSense — Óculos Guia de Contraste e Luz
-                    </h3>
+    border-radius: 10px;
 
-                </div>
+    background: #111827;
 
-            </div>
+    border: 1px solid rgba(255,255,255,.1);
+}
 
+.connection b {
+    color: #4db8ff;
+}
 
-            <div class="solution-grid">
 
-                <div>
+/* =========================================================
+   TECNOLOGIAS
+========================================================= */
 
-                    <h4>🎯 Problema</h4>
+.intro-text {
+    color: #9da9c0;
 
-                    <p>
-                        Dificuldade de pessoas com baixa visão em
-                        identificar obstáculos, degraus e contrastes
-                        de iluminação.
-                    </p>
+    line-height: 1.8;
 
-                </div>
+    margin-bottom: 30px;
 
+    max-width: 850px;
+}
 
-                <div>
+.technology-grid {
+    display: grid;
 
-                    <h4>👥 Público-alvo</h4>
+    grid-template-columns: repeat(3,1fr);
 
-                    <p>
-                        Pessoas com baixa visão, idosos com perda visual
-                        e pessoas com deficiência visual.
-                    </p>
+    gap: 18px;
+}
 
-                </div>
+.technology-card {
+    padding: 25px;
 
+    background: rgba(255,255,255,.035);
 
-                <div>
+    border: 1px solid rgba(255,255,255,.08);
 
-                    <h4>⚙ Funcionamento</h4>
+    border-radius: 16px;
 
-                    <p>
-                        Uma câmera e sensores analisam a iluminação
-                        e os objetos ao redor. O sistema pode emitir
-                        alertas sonoros, táteis e luminosos.
-                    </p>
+    transition: .3s;
 
-                </div>
+    position: relative;
+}
 
+.tech-number {
+    position: absolute;
 
-                <div>
+    top: 20px;
+    right: 20px;
 
-                    <h4>🧠 Inteligência Artificial</h4>
+    font-family: "Orbitron";
 
-                    <p>
-                        A IA pode analisar imagens, reconhecer obstáculos
-                        e auxiliar na classificação do contraste.
-                    </p>
+    font-size: 9px;
 
-                </div>
+    color: #58647b;
+}
 
-            </div>
+.tech-icon {
+    font-size: 35px;
 
+    margin-bottom: 20px;
+}
 
-            <div class="components">
+.technology-card h3 {
+    margin-bottom: 12px;
+}
 
-                <span>📷 Câmera</span>
-                <span>💡 LEDs</span>
-                <span>☀ Sensor de luz</span>
-                <span>🧠 Microcontrolador</span>
-                <span>🔋 Bateria</span>
-                <span>🎧 Áudio</span>
+.technology-card p {
+    color: #9da9c0;
 
-            </div>
+    line-height: 1.7;
 
-        </div>
+    margin-bottom: 20px;
+}
 
-    </section>
+.technology-card > span {
+    font-size: 9px;
 
+    color: #4db8ff;
 
-    <section class="conteudo">
+    font-family: "Orbitron";
 
-        <div class="conclusion">
+    letter-spacing: 1px;
+}
 
-            <span>CONCLUSÃO</span>
 
-            <h2>
-                A Física transforma conhecimento em tecnologia.
-            </h2>
+/* =========================================================
+   SOLUÇÃO
+========================================================= */
 
-            <p>
-                Os estudos da luz realizados por Newton ajudaram
-                a construir uma base importante para a Óptica.
-                Atualmente, esses conhecimentos continuam presentes
-                em câmeras, telas, sensores, sistemas de iluminação
-                e tecnologias assistivas.
-            </p>
+.solution,
+.chroma-card {
+    border-radius: 22px;
 
-        </div>
+    border: 1px solid rgba(77,184,255,.2);
 
-    </section>
+    background:
+        linear-gradient(
+            135deg,
+            rgba(77,184,255,.08),
+            rgba(255,255,255,.02)
+        );
 
-</section>
+    overflow: hidden;
+}
 
+.solution-header,
+.chroma-header {
+    display: flex;
 
-<!-- ======================================================
-     ABA 3 — ROBÓTICA
-======================================================= -->
+    align-items: center;
 
-<section id="robotica" class="aba">
+    gap: 20px;
 
-    <div class="page-banner robot-banner">
+    padding: 35px;
 
-        <span class="tag">ÁREA 03</span>
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
 
-        <h2>
-            FÍSICA +
-            <strong>ROBÓTICA</strong>
-        </h2>
+.solution-logo,
+.chroma-logo {
+    width: 70px;
+    height: 70px;
 
-        <p>
-            Quando a luz deixa de ser apenas observada e passa
-            a controlar sistemas inteligentes.
-        </p>
+    display: grid;
 
-    </div>
+    place-items: center;
 
+    border-radius: 16px;
 
-    <section class="conteudo">
+    background:
+        linear-gradient(
+            135deg,
+            #0077ff,
+            #00d4ff
+        );
 
-        <div class="section-title">
+    font-family: "Orbitron";
 
-            <span>01</span>
+    font-weight: bold;
+}
 
-            <div>
-                <small>ATIVIDADE 1</small>
-                <h2>Controle de luminosidade</h2>
-            </div>
+.solution-header span,
+.chroma-header span {
+    font-family: "Orbitron";
 
-        </div>
+    font-size: 9px;
 
+    color: #4db8ff;
 
-        <div class="robot-project">
+    letter-spacing: 1px;
+}
 
-            <div class="robot-images">
+.solution-header h3,
+.chroma-header h3 {
+    font-family: "Orbitron";
 
-                <div class="robot-image-card">
+    font-size: 23px;
 
-                    <div class="robot-image-title fade-in-title">
-                        <span>01</span>
-                        FADE-IN
-                    </div>
+    margin-top: 7px;
+}
 
-                    <img
-                        src="assets/led-fade-in-rosa.png"
-                        alt="Circuito Arduino do LED Fade-In">
-                    
-                    <p>
-                        Cabo rosa — aumento gradual da luminosidade.
-                    </p>
+.solution-grid,
+.chroma-grid {
+    display: grid;
 
-                </div>
+    grid-template-columns: repeat(2,1fr);
 
+    gap: 1px;
 
-                <div class="robot-image-card">
+    background: rgba(255,255,255,.07);
+}
 
-                    <div class="robot-image-title fade-out-title">
-                        <span>02</span>
-                        FADE-OUT
-                    </div>
+.solution-grid > div,
+.chroma-grid > div {
+    padding: 30px;
 
-                    <img
-                        src="assets/led-fade-out-vermelho.png"
-                        alt="Circuito Arduino do LED Fade-Out">
+    background: #0b0f1b;
+}
 
-                    <p>
-                        Cabo vermelho — diminuição gradual da luminosidade.
-                    </p>
+.solution-grid h4,
+.chroma-grid h4 {
+    margin-bottom: 12px;
+}
 
-                </div>
+.solution-grid p,
+.chroma-grid p {
+    color: #9da9c0;
 
-            </div>
+    line-height: 1.7;
+}
 
+.components {
+    display: flex;
 
-            <div class="robot-info">
+    gap: 10px;
 
-                <span class="badge">TINKERCAD + ARDUINO</span>
+    flex-wrap: wrap;
 
-                <h3>Fade-In / Fade-Out</h3>
+    padding: 25px 35px;
+}
 
-                <p>
-                    O objetivo foi simular um circuito eletrônico
-                    capaz de realizar a variação gradual da intensidade
-                    luminosa de um LED.
-                </p>
+.components span {
+    padding: 9px 13px;
 
-                <p>
-                    Utilizamos uma placa microcontroladora, protoboard,
-                    LED e resistor. A intensidade luminosa foi controlada
-                    através de PWM.
-                </p>
+    border-radius: 20px;
 
-            </div>
+    background: rgba(255,255,255,.05);
 
-        </div>
+    border: 1px solid rgba(255,255,255,.08);
 
-    </section>
+    color: #aab5cc;
 
+    font-size: 12px;
+}
 
-    <section class="conteudo">
 
-        <div class="section-title">
+/* =========================================================
+   CONCLUSÃO
+========================================================= */
 
-            <span>02</span>
+.conclusion {
+    padding: 60px;
 
-            <div>
-                <small>ELETRÔNICA</small>
-                <h2>Como funciona o PWM?</h2>
-            </div>
+    text-align: center;
 
-        </div>
+    border-radius: 25px;
 
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(239,35,60,.15),
+            transparent 60%
+        );
 
-        <div class="pwm-box">
+    border: 1px solid rgba(239,35,60,.15);
+}
 
-            <div class="pwm-visual">
+.conclusion > span,
+.robot-conclusion > div > span {
+    font-family: "Orbitron";
 
-                <div class="wave">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+    color: #ff3152;
 
-            </div>
+    font-size: 10px;
 
+    letter-spacing: 2px;
+}
 
-            <div>
+.conclusion h2 {
+    font-family: "Orbitron";
 
-                <h3>Pulse Width Modulation</h3>
+    font-size: 35px;
 
-                <p>
-                    Em vez de simplesmente ligar ou desligar o LED,
-                    o Arduino controla rapidamente o tempo em que
-                    o sinal permanece ligado.
-                </p>
+    max-width: 850px;
 
-                <p>
-                    Alterando essa proporção, chamada de
-                    <strong>duty cycle</strong>, podemos controlar
-                    a intensidade percebida pelo olho humano.
-                </p>
+    margin: 20px auto;
+}
 
-            </div>
+.conclusion p {
+    max-width: 750px;
 
-        </div>
+    margin: auto;
 
-    </section>
+    color: #9da9c0;
 
+    line-height: 1.8;
+}
 
-    <section class="conteudo">
+.fake-conclusion {
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,49,82,.15),
+            transparent 60%
+        );
+}
 
-        <div class="section-title">
 
-            <span>03</span>
+/* =========================================================
+   ROBÓTICA
+========================================================= */
 
-            <div>
-                <small>ATIVIDADE 2</small>
-                <h2>LED RGB</h2>
-            </div>
+.robot-project {
+    display: grid;
 
-        </div>
+    grid-template-columns: .9fr 1.1fr;
 
+    gap: 40px;
 
-        <div class="rgb-project">
+    align-items: center;
 
-            <div class="rgb-led">
-                <div class="rgb-glow"></div>
-            </div>
+    padding: 35px;
 
+    border-radius: 20px;
 
-            <div>
+    background: rgba(255,255,255,.035);
 
-                <span class="badge">SÍNTESE ADITIVA</span>
+    border: 1px solid rgba(255,255,255,.08);
+}
 
-                <h3>Vermelho + Verde + Azul</h3>
+.robot-images {
+    display: grid;
 
-                <p>
-                    Um LED RGB possui três canais independentes:
-                    vermelho, verde e azul.
-                </p>
+    grid-template-columns: 1fr 1fr;
 
+    gap: 15px;
+}
 
-                <div class="rgb-combinations">
+.robot-image-card {
+    background: #070910;
 
-                    <div>
-                        <i class="red-light"></i>
-                        <span>Vermelho</span>
-                    </div>
+    border: 1px solid rgba(255,255,255,.08);
 
-                    <div>
-                        <i class="green-light"></i>
-                        <span>Verde</span>
-                    </div>
+    border-radius: 15px;
 
-                    <div>
-                        <i class="blue-light"></i>
-                        <span>Azul</span>
-                    </div>
+    overflow: hidden;
 
-                </div>
+    transition: .3s;
+}
 
-            </div>
+.robot-image-card img {
+    display: block;
 
-        </div>
+    width: 100%;
 
+    height: 210px;
 
-        <div class="mix-grid">
+    object-fit: contain;
 
-            <div>🔴 + 🟢 <strong>Amarelo</strong></div>
-            <div>🟢 + 🔵 <strong>Ciano</strong></div>
-            <div>🔴 + 🔵 <strong>Magenta</strong></div>
-            <div>🔴 + 🟢 + 🔵 <strong>Branco</strong></div>
+    background: #f4f4f4;
+}
 
-        </div>
+.robot-image-title {
+    padding: 12px 15px;
 
-    </section>
+    display: flex;
 
+    align-items: center;
 
-    <section class="conteudo">
+    gap: 10px;
 
-        <div class="section-title">
+    font-family: "Orbitron";
 
-            <span>04</span>
+    font-size: 11px;
 
-            <div>
-                <small>PROPOSTA</small>
-                <h2>ChromaSense</h2>
-            </div>
+    letter-spacing: 1px;
+}
 
-        </div>
+.robot-image-title span {
+    font-size: 9px;
+    color: #7d899f;
+}
 
+.fade-in-title {
+    color: #ff4fb3;
+}
 
-        <div class="chroma-card">
+.fade-out-title {
+    color: #ff3152;
+}
 
-            <div class="chroma-header">
+.robot-image-card p {
+    padding: 12px 15px 16px;
 
-                <div class="chroma-logo">RGB</div>
+    color: #8f9ab0;
 
-                <div>
+    font-size: 11px;
 
-                    <span>TECNOLOGIA ASSISTIVA</span>
+    line-height: 1.5;
+}
 
-                    <h3>
-                        ChromaSense — Cabideiro Inteligente
-                    </h3>
 
-                </div>
+/* =========================================================
+   PWM
+========================================================= */
 
-            </div>
+.pwm-box {
+    display: grid;
 
+    grid-template-columns: 1fr 1fr;
 
-            <div class="chroma-grid">
+    gap: 40px;
 
-                <div>
+    align-items: center;
 
-                    <h4>🎯 Problema</h4>
+    padding: 35px;
 
-                    <p>
-                        Dificuldade de algumas pessoas com baixa visão
-                        ou daltonismo em identificar cores de roupas.
-                    </p>
+    border-radius: 20px;
 
-                </div>
+    border: 1px solid rgba(255,255,255,.08);
 
+    background: rgba(255,255,255,.035);
+}
 
-                <div>
+.pwm-visual {
+    min-height: 200px;
 
-                    <h4>⚙ Funcionamento</h4>
+    display: flex;
 
-                    <p>
-                        Um sensor de cor identifica a luz refletida
-                        pelo tecido e determina seus valores RGB.
-                    </p>
+    align-items: center;
+    justify-content: center;
 
-                </div>
+    background: #070910;
 
+    border-radius: 15px;
 
-                <div>
+    overflow: hidden;
+}
 
-                    <h4>🔊 Resposta</h4>
+.wave {
+    display: flex;
 
-                    <p>
-                        O dispositivo pode iluminar um LED com a
-                        cor detectada e anunciar o nome da cor.
-                    </p>
+    align-items: center;
 
-                </div>
+    gap: 15px;
 
+    height: 100px;
+}
 
-                <div>
+.wave span {
+    width: 20px;
 
-                    <h4>🧠 IA</h4>
+    background: #4db8ff;
 
-                    <p>
-                        Uma IA poderia analisar estampas complexas
-                        e auxiliar na identificação e combinação
-                        das cores.
-                    </p>
+    box-shadow:
+        0 0 15px rgba(77,184,255,.5);
 
-                </div>
+    animation:
+        pwm 1s infinite alternate;
+}
 
-            </div>
+.wave span:nth-child(1) {
+    height: 40px;
+}
 
+.wave span:nth-child(2) {
+    height: 90px;
+}
 
-            <div class="components">
+.wave span:nth-child(3) {
+    height: 60px;
+}
 
-                <span>Arduino Nano</span>
-                <span>Sensor TCS3200</span>
-                <span>LED RGB</span>
-                <span>Alto-falante</span>
-                <span>Bateria</span>
+.wave span:nth-child(4) {
+    height: 95px;
+}
 
-            </div>
+.wave span:nth-child(5) {
+    height: 45px;
+}
 
-        </div>
+@keyframes pwm {
 
-    </section>
+    to {
+        opacity: .4;
+    }
+}
 
+.pwm-box h3 {
+    font-family: "Orbitron";
+    margin-bottom: 15px;
+}
 
-    <section class="conteudo">
+.pwm-box p {
+    color: #9da9c0;
 
-        <div class="robot-conclusion">
+    line-height: 1.8;
 
-            <div class="pokeball-big">
-                <div></div>
-            </div>
+    margin-bottom: 15px;
+}
 
-            <div>
 
-                <span>CONCLUSÃO DA ROBÓTICA</span>
+/* =========================================================
+   RGB
+========================================================= */
 
-                <h2>
-                    Do experimento para uma solução real.
-                </h2>
+.rgb-project {
+    display: grid;
 
-                <p>
-                    As atividades realizadas no Tinkercad mostram
-                    como conceitos de Física podem ser transformados
-                    em sistemas eletrônicos e tecnologias assistivas.
-                </p>
+    grid-template-columns: .7fr 1.3fr;
 
-            </div>
+    gap: 40px;
 
-        </div>
+    align-items: center;
 
-    </section>
+    padding: 40px;
 
+    border-radius: 20px;
 
-    <section class="conteudo">
+    background: rgba(255,255,255,.035);
 
-        <div class="ai-box">
+    border: 1px solid rgba(255,255,255,.08);
+}
 
-            <div class="ai-icon">⚡</div>
+.rgb-led {
+    width: 180px;
+    height: 180px;
 
-            <div>
+    margin: auto;
 
-                <span class="badge">
-                    USO DA INTELIGÊNCIA ARTIFICIAL
-                </span>
+    border-radius: 50%;
 
-                <h2>Ferramentas utilizadas</h2>
+    background:
+        radial-gradient(
+            circle,
+            white,
+            #4db8ff 25%,
+            #ef233c 50%,
+            transparent 70%
+        );
 
-                <p>
-                    ChatGPT e Gemini foram utilizados para auxiliar
-                    na organização das explicações, compreensão
-                    dos conceitos de PWM, LED RGB, síntese aditiva,
-                    contraste e tecnologias assistivas.
-                </p>
+    box-shadow:
+        0 0 80px rgba(77,184,255,.5);
+}
 
-                <p>
-                    As informações foram verificadas com materiais
-                    didáticos, documentação técnica e fontes de
-                    referência.
-                </p>
+.rgb-project h3 {
+    font-family: "Orbitron";
 
-            </div>
+    font-size: 28px;
 
-        </div>
+    margin: 20px 0;
+}
 
-    </section>
+.rgb-project p {
+    color: #9da9c0;
 
-</section>
+    line-height: 1.8;
+}
 
+.rgb-combinations {
+    display: flex;
 
-<!-- ======================================================
-     ABA 4 — FAKE NEWS
-======================================================= -->
+    gap: 15px;
 
-<section id="fakenews" class="aba">
+    flex-wrap: wrap;
 
-    <div class="page-banner fake-banner">
+    margin-top: 25px;
+}
 
-        <span class="tag">ÁREA 04</span>
+.rgb-combinations div {
+    display: flex;
 
-        <h2>
-            FAKE NEWS E
-            <strong>INTELIGÊNCIA ARTIFICIAL</strong>
-        </h2>
+    align-items: center;
 
-        <p>
-            Aprenda a analisar informações, identificar sinais de
-            desinformação e utilizar a tecnologia com responsabilidade.
-        </p>
+    gap: 8px;
 
-    </div>
+    color: #aab5cc;
 
+    font-size: 12px;
+}
 
-    <!-- O QUE É -->
+.rgb-combinations i {
+    width: 15px;
+    height: 15px;
 
-    <section class="conteudo">
+    border-radius: 50%;
+}
 
-        <div class="section-title">
+.red-light {
+    background: red;
+}
 
-            <span>01</span>
+.green-light {
+    background: lime;
+}
 
-            <div>
-                <small>CONCEITO</small>
-                <h2>O que são Fake News?</h2>
-            </div>
+.blue-light {
+    background: blue;
+}
 
-        </div>
+.mix-grid {
+    display: grid;
 
+    grid-template-columns: repeat(4,1fr);
 
-        <div class="future-card">
+    gap: 15px;
 
-            <div class="future-icon">📰</div>
+    margin-top: 20px;
+}
 
-            <div>
+.mix-grid div {
+    padding: 20px;
 
-                <h3>Informação falsa ou enganosa</h3>
+    border-radius: 12px;
 
-                <p>
-                    O termo Fake News é usado para falar de conteúdos
-                    falsos ou enganosos apresentados de maneira que
-                    possam parecer verdadeiros.
-                </p>
+    background: rgba(255,255,255,.035);
 
-                <p>
-                    Esses conteúdos podem aparecer como textos,
-                    imagens, vídeos, áudios ou publicações em redes
-                    sociais e aplicativos de mensagens.
-                </p>
+    border: 1px solid rgba(255,255,255,.08);
 
-            </div>
+    text-align: center;
 
-        </div>
+    color: #aab5cc;
+}
 
-    </section>
+.mix-grid strong {
+    display: block;
 
+    margin-top: 7px;
 
-    <!-- IA -->
+    color: white;
+}
 
-    <section class="conteudo">
 
-        <div class="section-title">
+/* =========================================================
+   ROBOT CONCLUSION
+========================================================= */
 
-            <span>02</span>
+.robot-conclusion {
+    display: grid;
 
-            <div>
-                <small>TECNOLOGIA</small>
-                <h2>IA e desinformação</h2>
-            </div>
+    grid-template-columns: 180px 1fr;
 
-        </div>
+    align-items: center;
 
+    gap: 40px;
 
-        <div class="cards-grid">
+    padding: 45px;
 
-            <article class="info-card">
+    border-radius: 22px;
 
-                <div class="card-icon">🖼️</div>
+    background:
+        linear-gradient(
+            135deg,
+            rgba(239,35,60,.08),
+            rgba(77,184,255,.08)
+        );
 
-                <h3>Imagens artificiais</h3>
+    border: 1px solid rgba(255,255,255,.08);
+}
 
-                <p>
-                    Ferramentas de IA podem gerar imagens que parecem
-                    fotografias reais, por isso é importante verificar
-                    a origem de uma imagem.
-                </p>
+.pokeball-big {
+    width: 150px;
+    height: 150px;
 
-            </article>
+    border-radius: 50%;
 
+    margin: auto;
 
-            <article class="info-card">
+    background:
+        linear-gradient(
+            to bottom,
+            #ef233c 0%,
+            #ef233c 46%,
+            #080b16 46%,
+            #080b16 54%,
+            #f7f7f7 54%,
+            #f7f7f7 100%
+        );
 
-                <div class="card-icon">🎥</div>
+    position: relative;
 
-                <h3>Vídeos manipulados</h3>
+    box-shadow:
+        0 0 50px rgba(239,35,60,.3);
+}
 
-                <p>
-                    Recursos digitais podem modificar imagens e vídeos.
-                    O contexto e a fonte original devem ser conferidos.
-                </p>
+.pokeball-big div {
+    width: 40px;
+    height: 40px;
 
-            </article>
+    background: #080b16;
 
+    border: 8px solid white;
 
-            <article class="info-card">
+    border-radius: 50%;
 
-                <div class="card-icon">✍️</div>
+    position: absolute;
 
-                <h3>Textos convincentes</h3>
+    top: 50%;
+    left: 50%;
 
-                <p>
-                    Uma IA pode produzir textos com aparência profissional,
-                    mas isso não significa que todas as informações
-                    apresentadas sejam verdadeiras.
-                </p>
+    transform: translate(-50%,-50%);
+}
 
-            </article>
+.robot-conclusion h2 {
+    font-family: "Orbitron";
 
-        </div>
+    font-size: 32px;
 
-    </section>
+    margin: 15px 0;
+}
 
+.robot-conclusion p {
+    color: #9da9c0;
 
-    <!-- COMO IDENTIFICAR -->
+    line-height: 1.8;
+}
 
-    <section class="conteudo">
 
-        <div class="section-title">
+/* =========================================================
+   FOOTER
+========================================================= */
 
-            <span>03</span>
+footer {
+    padding: 50px 8%;
 
-            <div>
-                <small>VERIFICAÇÃO</small>
-                <h2>Como identificar uma possível Fake News?</h2>
-            </div>
+    border-top: 1px solid rgba(255,255,255,.08);
 
-        </div>
+    text-align: center;
 
+    background: #05070e;
+}
 
-        <div class="experiment-grid">
+.footer-logo {
+    display: flex;
 
-            <div class="experiment-card">
+    align-items: center;
 
-                <span class="number">01</span>
+    justify-content: center;
 
-                <h3>Verifique a fonte</h3>
+    gap: 10px;
 
-                <p>
-                    Descubra quem publicou a informação e se a fonte
-                    é identificável e confiável.
-                </p>
+    margin-bottom: 15px;
+}
 
-            </div>
+.footer-logo strong {
+    font-family: "Orbitron";
+}
 
+footer p {
+    color: #7d899f;
 
-            <div class="experiment-card">
+    font-size: 13px;
+}
 
-                <span class="number">02</span>
+.footer-small {
+    margin-top: 8px;
 
-                <h3>Confira a data</h3>
+    font-size: 10px;
+}
 
-                <p>
-                    Uma notícia antiga pode voltar a circular como
-                    se fosse um acontecimento atual.
-                </p>
 
-            </div>
+/* =========================================================
+   BOTÃO TOPO
+========================================================= */
 
+#topButton {
+    position: fixed;
 
-            <div class="experiment-card">
+    right: 25px;
+    bottom: 25px;
 
-                <span class="number">03</span>
+    width: 48px;
+    height: 48px;
 
-                <h3>Compare informações</h3>
+    border-radius: 50%;
 
-                <p>
-                    Procure outras fontes confiáveis para verificar
-                    se a mesma informação foi confirmada.
-                </p>
+    border: 1px solid rgba(255,255,255,.15);
 
-            </div>
+    background: #111827;
 
+    color: white;
 
-            <div class="experiment-card">
+    cursor: pointer;
 
-                <span class="number">04</span>
+    opacity: 0;
 
-                <h3>Procure a origem</h3>
+    visibility: hidden;
 
-                <p>
-                    Tente encontrar a publicação ou documento original
-                    antes de acreditar ou compartilhar.
-                </p>
+    pointer-events: none;
 
-            </div>
+    transform: translateY(20px);
 
+    transition: .3s;
 
-            <div class="experiment-card">
+    z-index: 1000;
+}
 
-                <span class="number">05</span>
+#topButton.mostrar {
+    opacity: 1;
 
-                <h3>Observe o título</h3>
+    visibility: visible;
 
-                <p>
-                    Títulos muito exagerados ou que tentam provocar
-                    medo e raiva merecem atenção especial.
-                </p>
+    pointer-events: auto;
 
-            </div>
+    transform: translateY(0);
+}
 
+#topButton:hover {
+    transform: translateY(-4px);
+}
 
-            <div class="experiment-card">
 
-                <span class="number">06</span>
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
 
-                <h3>Não compartilhe imediatamente</h3>
+@media(max-width:900px) {
 
-                <p>
-                    Pare, pense e verifique a informação antes
-                    de encaminhá-la para outras pessoas.
-                </p>
+    .header-info {
+        display: none;
+    }
 
-            </div>
+    .hero,
+    .disco-layout,
+    .video-card,
+    .robot-project,
+    .pwm-box,
+    .rgb-project {
+        grid-template-columns: 1fr;
+    }
 
-        </div>
+    .robot-images {
+        grid-template-columns: 1fr 1fr;
+    }
 
-    </section>
+    .hero {
+        text-align: center;
+    }
 
+    .hero p {
+        margin: auto;
+    }
 
-    <!-- IA COMO FERRAMENTA -->
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-    <section class="conteudo">
+    .hero-orbit {
+        width: 300px;
+        height: 300px;
+    }
 
-        <div class="section-title">
+    .cards-grid,
+    .experiment-grid,
+    .technology-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 
-            <span>04</span>
+    .mix-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 
-            <div>
-                <small>USO RESPONSÁVEL</small>
-                <h2>IA: ferramenta ou problema?</h2>
-            </div>
+    .scientist-card {
+        grid-template-columns: 1fr;
+    }
 
-        </div>
+    .future-card {
+        grid-template-columns: 1fr;
+    }
 
+    .robot-conclusion {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-        <div class="solution">
+}
 
-            <div class="solution-grid">
 
-                <div>
+@media(max-width:650px) {
 
-                    <h4>✅ Pode ajudar</h4>
+    .topo {
+        padding: 15px 5%;
+    }
 
-                    <p>
-                        A IA pode auxiliar na pesquisa, organização,
-                        revisão e compreensão de conteúdos.
-                    </p>
+    .logo h1 {
+        font-size: 20px;
+    }
 
-                </div>
+    .menu {
+        overflow-x: auto;
 
+        justify-content: flex-start;
 
-                <div>
+        padding: 12px;
+    }
 
-                    <h4>⚠️ Precisa de verificação</h4>
+    .menu-btn {
+        white-space: nowrap;
 
-                    <p>
-                        Uma resposta produzida por IA pode conter erros,
-                        informações incompletas ou interpretações
-                        incorretas.
-                    </p>
+        padding: 11px 15px;
+    }
 
-                </div>
+    .menu-btn span {
+        font-size: 11px;
+    }
 
+    .hero {
+        padding: 60px 5%;
+    }
 
-                <div>
+    .hero h2 {
+        font-size: 38px;
+    }
 
-                    <h4>🔎 Compare fontes</h4>
+    .conteudo {
+        width: 90%;
 
-                    <p>
-                        Informações importantes devem ser comparadas
-                        com fontes confiáveis antes da publicação.
-                    </p>
+        padding: 60px 0;
+    }
 
-                </div>
+    .cards-grid,
+    .experiment-grid,
+    .technology-grid,
+    .solution-grid,
+    .chroma-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .robot-images {
+        grid-template-columns: 1fr;
+    }
 
-                <div>
+    .robot-image-card img {
+        height: 240px;
+    }
 
-                    <h4>🧠 Use o pensamento crítico</h4>
+    .ai-box {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-                    <p>
-                        A tecnologia deve apoiar o raciocínio humano,
-                        e não substituir a análise das informações.
-                    </p>
+    .ai-icon {
+        margin: auto;
+    }
 
-                </div>
+    .solution-header,
+    .chroma-header {
+        flex-direction: column;
+        text-align: center;
+    }
 
-            </div>
+    .scientist-info {
+        padding: 30px;
+    }
 
-        </div>
+    .disco-layout {
+        gap: 30px;
+    }
 
-    </section>
+    #discoNewton {
+        width: 220px;
+        height: 220px;
+    }
 
+    .video-info {
+        padding: 30px;
+    }
 
-    <!-- CURIOSIDADE -->
+    .future-card,
+    .robot-project,
+    .pwm-box,
+    .rgb-project,
+    .robot-conclusion {
+        padding: 25px;
+    }
 
-    <section class="conteudo">
+    .mix-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 
-        <div class="section-title">
+    .intro-pokeball {
+        width: 120px;
+        height: 120px;
+    }
 
-            <span>05</span>
+    .intro-pokeball-center {
+        width: 40px;
+        height: 40px;
+    }
 
-            <div>
-                <small>CURIOSIDADE</small>
-                <h2>Nem toda informação falsa é totalmente inventada</h2>
-            </div>
+    .section-title {
+        align-items: flex-start;
+    }
 
-        </div>
+    .section-title h2 {
+        line-height: 1.2;
+    }
 
-
-        <div class="ai-box">
-
-            <div class="ai-icon">🧠</div>
-
-            <div>
-
-                <h2>
-                    O contexto também importa
-                </h2>
-
-                <p>
-                    Uma informação verdadeira pode ser retirada do contexto,
-                    uma imagem antiga pode ser apresentada como atual ou
-                    uma frase pode ser atribuída à pessoa errada.
-                </p>
-
-                <p>
-                    Por isso, verificar apenas uma frase não é suficiente.
-                    É importante analisar a fonte, a data, o contexto
-                    e as evidências.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- REGRA -->
-
-    <section class="conteudo">
-
-        <div class="conclusion fake-conclusion">
-
-            <span>REGRA DE OURO</span>
-
-            <h2>
-                Pare. Pense. Verifique. Só depois compartilhe.
-            </h2>
-
-            <p>
-                A melhor defesa contra a desinformação é desenvolver
-                pensamento crítico e verificar as informações antes
-                de divulgá-las.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FONTES FAKE NEWS -->
-
-    <section class="conteudo">
-
-        <div class="section-title">
-
-            <span>06</span>
-
-            <div>
-                <small>FONTES</small>
-                <h2>Fontes consultadas</h2>
-            </div>
-
-        </div>
-
-
-        <div class="source-box">
-
-            <p>
-                📚 UNESCO — materiais sobre Inteligência Artificial,
-                educação e uso responsável da IA.
-            </p>
-
-            <p>
-                📚 Senado Federal — conteúdos de educação midiática
-                e combate à desinformação.
-            </p>
-
-            <p>
-                📚 Materiais educacionais utilizados para compreender
-                desinformação e verificação de informações.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- IA -->
-
-    <section class="conteudo">
-
-        <div class="ai-box">
-
-            <div class="ai-icon">🤖</div>
-
-            <div>
-
-                <span class="badge">
-                    COMO A IA AUXILIOU
-                </span>
-
-                <h2>
-                    Registro do uso da Inteligência Artificial
-                </h2>
-
-                <p>
-                    Utilizamos o ChatGPT como ferramenta de apoio para
-                    compreender o conceito de Fake News, organizar
-                    as informações e revisar a clareza do texto.
-                </p>
-
-                <p>
-                    As informações foram analisadas e comparadas com
-                    fontes externas antes de serem utilizadas no site.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</section>
-
-</main>
-
-
-<!-- ======================================================
-     FOOTER
-======================================================= -->
-
-<footer>
-
-    <div class="footer-logo">
-
-        <div class="pokeball small">
-            <div class="pokeball-center"></div>
-        </div>
-
-        <strong>PokéÓptica</strong>
-
-    </div>
-
-    <p>
-        Projeto de Física • Óptica • Tecnociência • Robótica • Fake News
-    </p>
-
-    <p class="footer-small">
-        Desenvolvido para fins educacionais.
-    </p>
-
-</footer>
-
-
-<button id="topButton" onclick="voltarTopo()">
-    ↑
-</button>
-
-
-<script src="script.js"></script>
-
-</body>
-</html>
+}

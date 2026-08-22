@@ -1,17 +1,3 @@
-Claro, mn 👍 Pode me passar os códigos que eu arrumo pra você.
-
-Manda de preferência os 3 arquivos:
-
-HTML
-CSS
-JavaScript
-
-Eu vou tirar a parte dos vídeos de onde ela está agora e colocar dentro da aba 🤖 Robótica, sem mexer no resto do site. Depois te devolvo todos os códigos inteiros, separados e prontos para copiar e colar.
-
-Código colado(2).html
-Arquivo
-Código colado (2)(2).css
-Arquivo
 /* =====================================================
    SISTEMA DE ABAS
 ===================================================== */

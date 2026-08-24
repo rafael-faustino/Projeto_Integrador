@@ -4,24 +4,29 @@
 
 function abrirAba(id, botao) {
 
+    // Esconde todas as abas
     document.querySelectorAll(".aba").forEach(pagina => {
         pagina.classList.remove("ativa");
     });
 
+    // Remove o destaque de todos os botões
     document.querySelectorAll(".menu-btn").forEach(aba => {
         aba.classList.remove("active");
     });
 
+    // Mostra a aba selecionada
     const pagina = document.getElementById(id);
 
     if (pagina) {
         pagina.classList.add("ativa");
     }
 
+    // Destaca o botão selecionado
     if (botao) {
         botao.classList.add("active");
     }
 
+    // Volta para o topo
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -63,6 +68,7 @@ function girarDisco() {
         return;
     }
 
+    // Alterna entre girando e parado
     discoGirando = !discoGirando;
 
     if (discoGirando) {
@@ -70,7 +76,6 @@ function girarDisco() {
     } else {
         disco.classList.remove("girando");
     }
-
 }
 
 
@@ -151,8 +156,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const disco = document.getElementById("discoNewton");
 
     if (disco) {
+
         disco.classList.remove("girando");
+
         discoGirando = false;
+
     }
 
 });

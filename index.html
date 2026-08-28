@@ -20,32 +20,142 @@
 <body>
 
 <!-- ======================================================
+     LINK DE ACESSIBILIDADE
+======================================================= -->
+
+<a href="#conteudo-principal" class="skip-link">
+    Pular para o conteúdo principal
+</a>
+
+
+<!-- ======================================================
+     PAINEL DE ACESSIBILIDADE
+======================================================= -->
+
+<aside
+    id="painelAcessibilidade"
+    class="accessibility-panel"
+    aria-label="Ferramentas de acessibilidade"
+>
+
+    <strong>♿ ACESSIBILIDADE</strong>
+
+    <div class="accessibility-controls">
+
+        <button
+            type="button"
+            id="diminuirFonte"
+            aria-label="Diminuir tamanho da fonte"
+            title="Diminuir fonte"
+        >
+            A−
+        </button>
+
+        <span
+            id="nivelFonte"
+            aria-live="polite"
+            aria-label="Tamanho atual da fonte"
+        >
+            100%
+        </span>
+
+        <button
+            type="button"
+            id="aumentarFonte"
+            aria-label="Aumentar tamanho da fonte"
+            title="Aumentar fonte"
+        >
+            A+
+        </button>
+
+        <button
+            type="button"
+            id="contrasteBtn"
+            aria-pressed="false"
+            aria-label="Ativar contraste elevado"
+            title="Contraste acessível"
+        >
+            👁️ Contraste
+        </button>
+
+        <button
+            type="button"
+            id="animacaoBtn"
+            aria-pressed="false"
+            aria-label="Reduzir animações"
+            title="Reduzir animações"
+        >
+            🎞️ Animações
+        </button>
+
+        <button
+            type="button"
+            id="resetAcessibilidade"
+            aria-label="Restaurar configurações de acessibilidade"
+            title="Restaurar configurações"
+        >
+            ↺ Restaurar
+        </button>
+
+    </div>
+
+</aside>
+
+
+<div
+    id="a11yStatus"
+    class="sr-only"
+    aria-live="polite"
+    aria-atomic="true"
+></div>
+
+
+<!-- ======================================================
      ABERTURA
 ======================================================= -->
 
-<div id="pokemonIntro">
+<div
+    id="pokemonIntro"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Tela inicial do projeto PokéÓptica"
+>
 
     <div class="intro-content">
 
-        <div class="intro-pokeball">
+        <div
+            class="intro-pokeball"
+            aria-hidden="true"
+        >
             <div class="intro-pokeball-center"></div>
         </div>
 
-        <span class="intro-mini">PROJETO DE FÍSICA</span>
+        <span class="intro-mini">
+            PROJETO DE FÍSICA
+        </span>
 
         <h1>
             Poké<span>Óptica</span>
         </h1>
 
-        <p>Luz • Ciência • Tecnologia • Robótica</p>
+        <p>
+            Luz • Ciência • Tecnologia • Robótica
+        </p>
 
-        <div class="intro-loading">
+        <div
+            class="intro-loading"
+            aria-hidden="true"
+        >
             <span></span>
             <span></span>
             <span></span>
         </div>
 
-        <button id="entrarSite">
+        <button
+            id="entrarSite"
+            type="button"
+            aria-label="Entrar na Pokédex"
+        >
             ⚡ ENTRAR NA POKÉDEX
         </button>
 
@@ -54,7 +164,10 @@
 </div>
 
 
-<div class="background-grid"></div>
+<div
+    class="background-grid"
+    aria-hidden="true"
+></div>
 
 
 <!-- ======================================================
@@ -65,21 +178,31 @@
 
     <div class="logo">
 
-        <div class="pokeball">
+        <div
+            class="pokeball"
+            aria-hidden="true"
+        >
             <div class="pokeball-center"></div>
         </div>
 
         <div>
-            <span class="logo-mini">PROJETO DE FÍSICA</span>
+
+            <span class="logo-mini">
+                PROJETO DE FÍSICA
+            </span>
 
             <h1>
                 Poké<span>Óptica</span>
             </h1>
+
         </div>
 
     </div>
 
-    <div class="header-info">
+    <div
+        class="header-info"
+        aria-label="Temas do projeto"
+    >
         <span>⚡ Luz</span>
         <span>🔬 Ciência</span>
         <span>🤖 Tecnologia</span>
@@ -92,24 +215,63 @@
      MENU
 ======================================================= -->
 
-<nav class="menu">
+<nav
+    class="menu"
+    aria-label="Navegação principal"
+>
 
-    <button class="menu-btn active" onclick="abrirAba('optica', this)">
+    <button
+        type="button"
+        class="menu-btn active"
+        id="tab-optica"
+        onclick="abrirAba('optica', this)"
+        aria-controls="optica"
+        aria-selected="true"
+        role="tab"
+        tabindex="0"
+    >
         🔬
         <span>Introdução à Óptica</span>
     </button>
 
-    <button class="menu-btn" onclick="abrirAba('tecnociencia', this)">
+    <button
+        type="button"
+        class="menu-btn"
+        id="tab-tecnociencia"
+        onclick="abrirAba('tecnociencia', this)"
+        aria-controls="tecnociencia"
+        aria-selected="false"
+        role="tab"
+        tabindex="-1"
+    >
         ⚡
         <span>Física e Tecnociência</span>
     </button>
 
-    <button class="menu-btn" onclick="abrirAba('robotica', this)">
+    <button
+        type="button"
+        class="menu-btn"
+        id="tab-robotica"
+        onclick="abrirAba('robotica', this)"
+        aria-controls="robotica"
+        aria-selected="false"
+        role="tab"
+        tabindex="-1"
+    >
         🤖
         <span>Robótica</span>
     </button>
 
-    <button class="menu-btn" onclick="abrirAba('fakenews', this)">
+    <button
+        type="button"
+        class="menu-btn"
+        id="tab-fakenews"
+        onclick="abrirAba('fakenews', this)"
+        aria-controls="fakenews"
+        aria-selected="false"
+        role="tab"
+        tabindex="-1"
+    >
         📰
         <span>Fake News</span>
     </button>
@@ -117,20 +279,30 @@
 </nav>
 
 
-<main>
+<main
+    id="conteudo-principal"
+    tabindex="-1"
+>
 
 
 <!-- ======================================================
      ABA 1 — ÓPTICA
 ======================================================= -->
 
-<section id="optica" class="aba ativa">
+<section
+    id="optica"
+    class="aba ativa"
+    role="tabpanel"
+    aria-labelledby="tab-optica"
+>
 
     <div class="hero">
 
         <div class="hero-text">
 
-            <span class="tag">POKÉDEX DA CIÊNCIA</span>
+            <span class="tag">
+                POKÉDEX DA CIÊNCIA
+            </span>
 
             <h2>
                 A ÓPTICA
@@ -145,11 +317,18 @@
 
             <div class="hero-buttons">
 
-                <button onclick="scrollPara('newton')">
+                <button
+                    type="button"
+                    onclick="scrollPara('newton')"
+                >
                     🔎 Explorar Newton
                 </button>
 
-                <button class="secondary" onclick="scrollPara('video')">
+                <button
+                    type="button"
+                    class="secondary"
+                    onclick="abrirAba('robotica', document.getElementById('tab-robotica')); scrollPara('video')"
+                >
                     ▶ Ver vídeos
                 </button>
 
@@ -158,7 +337,11 @@
         </div>
 
 
-        <div class="hero-orbit">
+        <div
+            class="hero-orbit"
+            aria-label="Animação decorativa"
+            role="img"
+        >
 
             <div class="orbit orbit-1"></div>
             <div class="orbit orbit-2"></div>
@@ -197,7 +380,12 @@
 
             <div class="timeline-item">
 
-                <div class="timeline-icon">XVII</div>
+                <div
+                    class="timeline-icon"
+                    aria-hidden="true"
+                >
+                    XVII
+                </div>
 
                 <div class="timeline-content">
 
@@ -218,7 +406,12 @@
 
             <div class="timeline-item">
 
-                <div class="timeline-icon">💡</div>
+                <div
+                    class="timeline-icon"
+                    aria-hidden="true"
+                >
+                    💡
+                </div>
 
                 <div class="timeline-content">
 
@@ -238,7 +431,12 @@
 
             <div class="timeline-item">
 
-                <div class="timeline-icon">🔎</div>
+                <div
+                    class="timeline-icon"
+                    aria-hidden="true"
+                >
+                    🔎
+                </div>
 
                 <div class="timeline-content">
 
@@ -261,7 +459,10 @@
 
     <!-- GRUPO 3 -->
 
-    <section class="conteudo" id="newton">
+    <section
+        class="conteudo"
+        id="newton"
+    >
 
         <div class="section-title">
 
@@ -279,7 +480,11 @@
 
             <div class="newton-portrait">
 
-                <div class="portrait-symbol">
+                <div
+                    class="portrait-symbol"
+                    aria-label="Símbolo N representando Newton"
+                    role="img"
+                >
                     N
                 </div>
 
@@ -318,7 +523,12 @@
 
             <article class="info-card red">
 
-                <div class="card-icon">🔴</div>
+                <div
+                    class="card-icon"
+                    aria-hidden="true"
+                >
+                    🔴
+                </div>
 
                 <h3>Teoria Corpuscular</h3>
 
@@ -333,7 +543,12 @@
 
             <article class="info-card blue">
 
-                <div class="card-icon">🔵</div>
+                <div
+                    class="card-icon"
+                    aria-hidden="true"
+                >
+                    🔵
+                </div>
 
                 <h3>Reflexão e refração</h3>
 
@@ -348,7 +563,12 @@
 
             <article class="info-card yellow">
 
-                <div class="card-icon">🟡</div>
+                <div
+                    class="card-icon"
+                    aria-hidden="true"
+                >
+                    🟡
+                </div>
 
                 <h3>Dispersão</h3>
 
@@ -382,7 +602,12 @@
 
         <div class="future-card">
 
-            <div class="future-icon">💡</div>
+            <div
+                class="future-icon"
+                aria-hidden="true"
+            >
+                💡
+            </div>
 
             <div>
 
@@ -429,20 +654,59 @@
 
             <div class="disco-area">
 
-                <div id="discoNewton">
+                <div
+                    id="discoNewton"
+                    role="img"
+                    aria-label="Disco de Newton com sete cores do espectro visível. O disco pode ser girado usando os controles abaixo."
+                >
                     <div class="disco-center"></div>
                 </div>
 
-                <button onclick="girarDisco()" class="pokemon-button">
-                    ⚡ GIRAR DISCO
-                </button>
+
+                <div
+                    class="disco-controls"
+                    aria-label="Controles do Disco de Newton"
+                >
+
+                    <button
+                        type="button"
+                        onclick="girarDisco()"
+                        id="girarDiscoBtn"
+                        class="pokemon-button"
+                        aria-pressed="false"
+                        aria-label="Iniciar rotação do Disco de Newton"
+                    >
+                        ⚡ GIRAR DISCO
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="pararDisco()"
+                        class="pokemon-button disco-stop"
+                        aria-label="Parar o Disco de Newton"
+                    >
+                        ⏹️ PARAR
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="discoStatus"
+                    class="disco-status"
+                    aria-live="polite"
+                >
+                    Disco parado.
+                </p>
 
             </div>
 
 
             <div class="disco-text">
 
-                <span class="badge">EXPERIMENTO DE ÓPTICA</span>
+                <span class="badge">
+                    EXPERIMENTO DE ÓPTICA
+                </span>
 
                 <h3>
                     Por que as cores parecem se misturar?
@@ -463,7 +727,11 @@
                     perceber uma tonalidade próxima do branco ou cinza-claro.
                 </p>
 
-                <div class="spectrum">
+                <div
+                    class="spectrum"
+                    role="img"
+                    aria-label="Espectro com vermelho, laranja, amarelo, verde, azul, índigo e violeta"
+                >
                     <span style="background:#ef233c"></span>
                     <span style="background:#ff7b00"></span>
                     <span style="background:#ffd60a"></span>
@@ -471,6 +739,48 @@
                     <span style="background:#0077ff"></span>
                     <span style="background:#4b0082"></span>
                     <span style="background:#8f00ff"></span>
+                </div>
+
+
+                <div
+                    class="spectrum-legend"
+                    aria-label="Legenda das cores do Disco de Newton"
+                >
+                    <span>
+                        <i class="legend-red"></i>
+                        Vermelho
+                    </span>
+
+                    <span>
+                        <i class="legend-orange"></i>
+                        Laranja
+                    </span>
+
+                    <span>
+                        <i class="legend-yellow"></i>
+                        Amarelo
+                    </span>
+
+                    <span>
+                        <i class="legend-green"></i>
+                        Verde
+                    </span>
+
+                    <span>
+                        <i class="legend-blue"></i>
+                        Azul
+                    </span>
+
+                    <span>
+                        <i class="legend-indigo"></i>
+                        Índigo
+                    </span>
+
+                    <span>
+                        <i class="legend-violet"></i>
+                        Violeta
+                    </span>
+
                 </div>
 
             </div>
@@ -652,11 +962,11 @@
                 <div class="connection">
 
                     <span>Newton</span>
-                    <b>→</b>
+                    <b aria-hidden="true">→</b>
                     <span>Ondas</span>
-                    <b>→</b>
+                    <b aria-hidden="true">→</b>
                     <span>Fótons</span>
-                    <b>→</b>
+                    <b aria-hidden="true">→</b>
                     <span>Física moderna</span>
 
                 </div>
@@ -733,7 +1043,6 @@
 
 
         <div class="technology-grid">
-
 
             <article class="technology-card">
 
@@ -916,7 +1225,13 @@
      ABA 2 — FÍSICA E TECNOCIÊNCIA
 ======================================================= -->
 
-<section id="tecnociencia" class="aba">
+<section
+    id="tecnociencia"
+    class="aba"
+    role="tabpanel"
+    aria-labelledby="tab-tecnociencia"
+    hidden
+>
 
     <div class="page-banner">
 
@@ -967,9 +1282,9 @@
                 <div class="connection">
 
                     <span>Newton</span>
-                    <b>→</b>
+                    <b aria-hidden="true">→</b>
                     <span>Óptica</span>
-                    <b>→</b>
+                    <b aria-hidden="true">→</b>
                     <span>Tecnologia</span>
 
                 </div>
@@ -1225,7 +1540,13 @@
      ABA 3 — ROBÓTICA
 ======================================================= -->
 
-<section id="robotica" class="aba">
+<section
+    id="robotica"
+    class="aba"
+    role="tabpanel"
+    aria-labelledby="tab-robotica"
+    hidden
+>
 
     <div class="page-banner robot-banner">
 
@@ -1262,7 +1583,9 @@
 
             <div class="robot-info">
 
-                <span class="badge">TINKERCAD + ARDUINO</span>
+                <span class="badge">
+                    TINKERCAD + ARDUINO
+                </span>
 
                 <h3>Fade-In / Fade-Out</h3>
 
@@ -1301,14 +1624,20 @@
 
         <div class="pwm-box">
 
-            <div class="pwm-visual">
+            <div
+                class="pwm-visual"
+                aria-label="Representação visual do sinal PWM"
+                role="img"
+            >
 
                 <div class="wave">
+
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
+
                 </div>
 
             </div>
@@ -1353,16 +1682,24 @@
 
         <div class="rgb-project">
 
-            <div class="rgb-led">
+            <div
+                class="rgb-led"
+                role="img"
+                aria-label="Representação de um LED RGB"
+            >
                 <div class="rgb-glow"></div>
             </div>
 
 
             <div>
 
-                <span class="badge">SÍNTESE ADITIVA</span>
+                <span class="badge">
+                    SÍNTESE ADITIVA
+                </span>
 
-                <h3>Vermelho + Verde + Azul</h3>
+                <h3>
+                    Vermelho + Verde + Azul
+                </h3>
 
                 <p>
                     Um LED RGB possui três canais independentes:
@@ -1396,10 +1733,25 @@
 
         <div class="mix-grid">
 
-            <div>🔴 + 🟢 <strong>Amarelo</strong></div>
-            <div>🟢 + 🔵 <strong>Ciano</strong></div>
-            <div>🔴 + 🔵 <strong>Magenta</strong></div>
-            <div>🔴 + 🟢 + 🔵 <strong>Branco</strong></div>
+            <div>
+                🔴 + 🟢
+                <strong>Amarelo</strong>
+            </div>
+
+            <div>
+                🟢 + 🔵
+                <strong>Ciano</strong>
+            </div>
+
+            <div>
+                🔴 + 🔵
+                <strong>Magenta</strong>
+            </div>
+
+            <div>
+                🔴 + 🟢 + 🔵
+                <strong>Branco</strong>
+            </div>
 
         </div>
 
@@ -1424,7 +1776,9 @@
 
             <div class="chroma-header">
 
-                <div class="chroma-logo">RGB</div>
+                <div class="chroma-logo">
+                    RGB
+                </div>
 
                 <div>
 
@@ -1507,9 +1861,12 @@
     </section>
 
 
-    <!-- VÍDEOS MOVIDOS PARA ROBÓTICA -->
+    <!-- VÍDEOS -->
 
-    <section class="conteudo" id="video">
+    <section
+        class="conteudo"
+        id="video"
+    >
 
         <div class="section-title">
 
@@ -1525,17 +1882,31 @@
 
         <div class="video-list">
 
-
             <div class="video-card">
 
-                <div class="video-preview">
-                    <div class="play-icon">▶</div>
-                    <span>VÍDEO 01</span>
+                <div
+                    class="video-preview"
+                    aria-label="Vídeo 01"
+                    role="img"
+                >
+                    <div
+                        class="play-icon"
+                        aria-hidden="true"
+                    >
+                        ▶
+                    </div>
+
+                    <span>
+                        VÍDEO 01
+                    </span>
+
                 </div>
 
                 <div class="video-info">
 
-                    <span class="badge">YOUTUBE</span>
+                    <span class="badge">
+                        YOUTUBE
+                    </span>
 
                     <h3>
                         Experimento e estudo da luz
@@ -1551,6 +1922,7 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         class="youtube-button"
+                        aria-label="Assistir ao vídeo 01 sobre experimento e estudo da luz no YouTube"
                     >
                         ▶ ASSISTIR
                     </a>
@@ -1562,14 +1934,29 @@
 
             <div class="video-card">
 
-                <div class="video-preview">
-                    <div class="play-icon">▶</div>
-                    <span>VÍDEO 02</span>
+                <div
+                    class="video-preview"
+                    aria-label="Vídeo 02"
+                    role="img"
+                >
+                    <div
+                        class="play-icon"
+                        aria-hidden="true"
+                    >
+                        ▶
+                    </div>
+
+                    <span>
+                        VÍDEO 02
+                    </span>
+
                 </div>
 
                 <div class="video-info">
 
-                    <span class="badge">YOUTUBE</span>
+                    <span class="badge">
+                        YOUTUBE
+                    </span>
 
                     <h3>
                         Conteúdo sobre a natureza da luz
@@ -1585,6 +1972,7 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         class="youtube-button"
+                        aria-label="Assistir ao vídeo 02 sobre a natureza da luz no YouTube"
                     >
                         ▶ ASSISTIR
                     </a>
@@ -1596,14 +1984,29 @@
 
             <div class="video-card">
 
-                <div class="video-preview">
-                    <div class="play-icon">▶</div>
-                    <span>VÍDEO 03</span>
+                <div
+                    class="video-preview"
+                    aria-label="Vídeo 03"
+                    role="img"
+                >
+                    <div
+                        class="play-icon"
+                        aria-hidden="true"
+                    >
+                        ▶
+                    </div>
+
+                    <span>
+                        VÍDEO 03
+                    </span>
+
                 </div>
 
                 <div class="video-info">
 
-                    <span class="badge">YOUTUBE</span>
+                    <span class="badge">
+                        YOUTUBE
+                    </span>
 
                     <h3>
                         Vídeo complementar de Física
@@ -1619,6 +2022,7 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         class="youtube-button"
+                        aria-label="Assistir ao vídeo 03 complementar de Física no YouTube"
                     >
                         ▶ ASSISTIR
                     </a>
@@ -1626,7 +2030,6 @@
                 </div>
 
             </div>
-
 
         </div>
 
@@ -1637,13 +2040,18 @@
 
         <div class="robot-conclusion">
 
-            <div class="pokeball-big">
+            <div
+                class="pokeball-big"
+                aria-hidden="true"
+            >
                 <div></div>
             </div>
 
             <div>
 
-                <span>CONCLUSÃO DA ROBÓTICA</span>
+                <span>
+                    CONCLUSÃO DA ROBÓTICA
+                </span>
 
                 <h2>
                     Do experimento para uma solução real.
@@ -1702,7 +2110,13 @@
      ABA 4 — FAKE NEWS
 ======================================================= -->
 
-<section id="fakenews" class="aba">
+<section
+    id="fakenews"
+    class="aba"
+    role="tabpanel"
+    aria-labelledby="tab-fakenews"
+    hidden
+>
 
     <div class="page-banner fake-banner">
 
@@ -2165,7 +2579,10 @@
 
     <div class="footer-logo">
 
-        <div class="pokeball small">
+        <div
+            class="pokeball small"
+            aria-hidden="true"
+        >
             <div class="pokeball-center"></div>
         </div>
 
@@ -2174,7 +2591,8 @@
     </div>
 
     <p>
-        Projeto de Física • Óptica • Tecnociência • Robótica • Fake News, Rafael, Luan, Marlon e Ennzo
+        Projeto de Física • Óptica • Tecnociência • Robótica • Fake News,
+        Rafael, Luan, Marlon e Ennzo
     </p>
 
     <p class="footer-small">
@@ -2184,12 +2602,1005 @@
 </footer>
 
 
-<button id="topButton" onclick="voltarTopo()">
+<!-- ======================================================
+     BOTÃO VOLTAR AO TOPO
+======================================================= -->
+
+<button
+    id="topButton"
+    type="button"
+    onclick="voltarTopo()"
+    aria-label="Voltar ao topo da página"
+    title="Voltar ao topo"
+    aria-hidden="true"
+>
     ↑
 </button>
 
 
-<script src="script.js"></script>
+<!-- ======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script>
+
+(() => {
+
+    "use strict";
+
+
+    /* =====================================================
+       ELEMENTOS
+    ===================================================== */
+
+    const intro =
+        document.getElementById("pokemonIntro");
+
+    const entrarSite =
+        document.getElementById("entrarSite");
+
+    const status =
+        document.getElementById("a11yStatus");
+
+    const aumentarFonte =
+        document.getElementById("aumentarFonte");
+
+    const diminuirFonte =
+        document.getElementById("diminuirFonte");
+
+    const contrasteBtn =
+        document.getElementById("contrasteBtn");
+
+    const animacaoBtn =
+        document.getElementById("animacaoBtn");
+
+    const resetAcessibilidade =
+        document.getElementById("resetAcessibilidade");
+
+    const nivelFonte =
+        document.getElementById("nivelFonte");
+
+    const topButton =
+        document.getElementById("topButton");
+
+    const disco =
+        document.getElementById("discoNewton");
+
+    const discoBtn =
+        document.getElementById("girarDiscoBtn");
+
+    const discoStatus =
+        document.getElementById("discoStatus");
+
+    const menuButtons =
+        Array.from(
+            document.querySelectorAll(".menu-btn")
+        );
+
+    const abas =
+        Array.from(
+            document.querySelectorAll(".aba")
+        );
+
+
+    /* =====================================================
+       LEITOR DE TELA
+    ===================================================== */
+
+    function anunciar(mensagem) {
+
+        if (!status) {
+            return;
+        }
+
+        status.textContent = "";
+
+        window.setTimeout(() => {
+
+            status.textContent = mensagem;
+
+        }, 50);
+
+    }
+
+
+    /* =====================================================
+       ENTRADA NA POKÉDEX
+    ===================================================== */
+
+    function entrarNaPokedex() {
+
+        if (!intro) {
+            return;
+        }
+
+        intro.classList.add("sair");
+
+        document.body.classList.remove(
+            "intro-aberta"
+        );
+
+        window.setTimeout(() => {
+
+            const principal =
+                document.getElementById(
+                    "conteudo-principal"
+                );
+
+            if (principal) {
+
+                principal.focus();
+
+            }
+
+        }, 300);
+
+        anunciar(
+            "Pokédex aberta. Use Tab para navegar pelos elementos."
+        );
+
+    }
+
+
+    if (entrarSite) {
+
+        entrarSite.addEventListener(
+            "click",
+            entrarNaPokedex
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                intro &&
+                !intro.classList.contains("sair") &&
+                event.key === "Escape"
+            ) {
+
+                event.preventDefault();
+
+                entrarNaPokedex();
+
+            }
+
+        }
+    );
+
+
+    if (intro) {
+
+        window.setTimeout(() => {
+
+            if (entrarSite) {
+
+                entrarSite.focus();
+
+            }
+
+        }, 100);
+
+    }
+
+
+    /* =====================================================
+       ABAS
+    ===================================================== */
+
+    window.abrirAba = function (id, botao) {
+
+        const abaEscolhida =
+            document.getElementById(id);
+
+        if (!abaEscolhida) {
+            return;
+        }
+
+
+        abas.forEach((aba) => {
+
+            const ativa =
+                aba.id === id;
+
+            aba.classList.toggle(
+                "ativa",
+                ativa
+            );
+
+            aba.hidden = !ativa;
+
+        });
+
+
+        menuButtons.forEach((btn) => {
+
+            const ativo =
+                btn === botao ||
+                btn.getAttribute(
+                    "aria-controls"
+                ) === id;
+
+            btn.classList.toggle(
+                "active",
+                ativo
+            );
+
+            btn.setAttribute(
+                "aria-selected",
+                ativo
+                    ? "true"
+                    : "false"
+            );
+
+            btn.setAttribute(
+                "tabindex",
+                ativo
+                    ? "0"
+                    : "-1"
+            );
+
+        });
+
+
+        abaEscolhida.scrollIntoView({
+            behavior:
+                document.body.classList.contains(
+                    "sem-animacao"
+                )
+                    ? "auto"
+                    : "smooth",
+            block: "start"
+        });
+
+
+        anunciar(
+            `Seção aberta: ${
+                botao
+                    ? botao.innerText.trim()
+                    : id
+            }`
+        );
+
+    };
+
+
+    /* =====================================================
+       NAVEGAÇÃO POR SETAS
+    ===================================================== */
+
+    menuButtons.forEach(
+        (botao, index) => {
+
+            botao.addEventListener(
+                "keydown",
+                (event) => {
+
+                    let novoIndex =
+                        index;
+
+                    if (
+                        event.key ===
+                        "ArrowRight"
+                    ) {
+
+                        novoIndex =
+                            (index + 1) %
+                            menuButtons.length;
+
+                    }
+
+                    if (
+                        event.key ===
+                        "ArrowLeft"
+                    ) {
+
+                        novoIndex =
+                            (
+                                index -
+                                1 +
+                                menuButtons.length
+                            ) %
+                            menuButtons.length;
+
+                    }
+
+                    if (
+                        event.key === "Home"
+                    ) {
+
+                        novoIndex = 0;
+
+                    }
+
+                    if (
+                        event.key === "End"
+                    ) {
+
+                        novoIndex =
+                            menuButtons.length - 1;
+
+                    }
+
+                    if (
+                        novoIndex !== index
+                    ) {
+
+                        event.preventDefault();
+
+                        const novoBotao =
+                            menuButtons[novoIndex];
+
+                        novoBotao.focus();
+
+                        abrirAba(
+                            novoBotao.getAttribute(
+                                "aria-controls"
+                            ),
+                            novoBotao
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       ROLAGEM
+    ===================================================== */
+
+    window.scrollPara = function (id) {
+
+        const elemento =
+            document.getElementById(id);
+
+        if (!elemento) {
+            return;
+        }
+
+        elemento.scrollIntoView({
+            behavior:
+                document.body.classList.contains(
+                    "sem-animacao"
+                )
+                    ? "auto"
+                    : "smooth",
+            block: "start"
+        });
+
+        window.setTimeout(() => {
+
+            elemento.setAttribute(
+                "tabindex",
+                "-1"
+            );
+
+            elemento.focus({
+                preventScroll: true
+            });
+
+        }, 400);
+
+    };
+
+
+    /* =====================================================
+       TOPO
+    ===================================================== */
+
+    function atualizarTopButton() {
+
+        if (!topButton) {
+            return;
+        }
+
+        if (window.scrollY > 400) {
+
+            topButton.classList.add(
+                "mostrar"
+            );
+
+            topButton.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+        } else {
+
+            topButton.classList.remove(
+                "mostrar"
+            );
+
+            topButton.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        atualizarTopButton,
+        { passive: true }
+    );
+
+
+    atualizarTopButton();
+
+
+    window.voltarTopo = function () {
+
+        window.scrollTo({
+            top: 0,
+            behavior:
+                document.body.classList.contains(
+                    "sem-animacao"
+                )
+                    ? "auto"
+                    : "smooth"
+        });
+
+        window.setTimeout(() => {
+
+            const principal =
+                document.getElementById(
+                    "conteudo-principal"
+                );
+
+            if (principal) {
+
+                principal.focus();
+
+            }
+
+        }, 400);
+
+        anunciar(
+            "Voltamos ao topo da página."
+        );
+
+    };
+
+
+    /* =====================================================
+       DISCO DE NEWTON
+    ===================================================== */
+
+    window.girarDisco = function () {
+
+        if (!disco) {
+            return;
+        }
+
+        if (
+            document.body.classList.contains(
+                "sem-animacao"
+            )
+        ) {
+
+            anunciar(
+                "As animações estão reduzidas. Ative as animações para girar o Disco de Newton."
+            );
+
+            return;
+
+        }
+
+        disco.classList.add(
+            "girando"
+        );
+
+        if (discoBtn) {
+
+            discoBtn.setAttribute(
+                "aria-pressed",
+                "true"
+            );
+
+            discoBtn.setAttribute(
+                "aria-label",
+                "Parar rotação do Disco de Newton"
+            );
+
+            discoBtn.textContent =
+                "⏸️ GIRANDO...";
+
+        }
+
+        if (discoStatus) {
+
+            discoStatus.textContent =
+                "O Disco de Newton está girando.";
+
+        }
+
+        anunciar(
+            "O Disco de Newton está girando."
+        );
+
+    };
+
+
+    window.pararDisco = function () {
+
+        if (!disco) {
+            return;
+        }
+
+        disco.classList.remove(
+            "girando"
+        );
+
+        if (discoBtn) {
+
+            discoBtn.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+            discoBtn.setAttribute(
+                "aria-label",
+                "Iniciar rotação do Disco de Newton"
+            );
+
+            discoBtn.textContent =
+                "⚡ GIRAR DISCO";
+
+        }
+
+        if (discoStatus) {
+
+            discoStatus.textContent =
+                "O Disco de Newton está parado.";
+
+        }
+
+        anunciar(
+            "O Disco de Newton está parado."
+        );
+
+    };
+
+
+    /* =====================================================
+       TAMANHO DA FONTE
+    ===================================================== */
+
+    let escalaFonte =
+        Number(
+            localStorage.getItem(
+                "pokeopticaFonte"
+            )
+        ) || 1;
+
+
+    function atualizarFonte(
+        anunciarMudanca = true
+    ) {
+
+        escalaFonte =
+            Math.max(
+                0.8,
+                Math.min(
+                    1.3,
+                    escalaFonte
+                )
+            );
+
+
+        document.documentElement.style.setProperty(
+            "--page-scale",
+            escalaFonte
+        );
+
+
+        document.body.style.setProperty(
+            "--page-scale",
+            escalaFonte
+        );
+
+
+        const porcentagem =
+            Math.round(
+                escalaFonte * 100
+            );
+
+
+        if (nivelFonte) {
+
+            nivelFonte.textContent =
+                `${porcentagem}%`;
+
+        }
+
+
+        localStorage.setItem(
+            "pokeopticaFonte",
+            escalaFonte
+        );
+
+
+        if (anunciarMudanca) {
+
+            anunciar(
+                `Tamanho da fonte em ${porcentagem} por cento.`
+            );
+
+        }
+
+    }
+
+
+    if (aumentarFonte) {
+
+        aumentarFonte.addEventListener(
+            "click",
+            () => {
+
+                escalaFonte += 0.1;
+
+                atualizarFonte();
+
+            }
+        );
+
+    }
+
+
+    if (diminuirFonte) {
+
+        diminuirFonte.addEventListener(
+            "click",
+            () => {
+
+                escalaFonte -= 0.1;
+
+                atualizarFonte();
+
+            }
+        );
+
+    }
+
+
+    atualizarFonte(false);
+
+
+    /* =====================================================
+       CONTRASTE
+    ===================================================== */
+
+    let contrasteAtivo =
+        localStorage.getItem(
+            "pokeopticaContraste"
+        ) === "true";
+
+
+    function atualizarContraste(
+        anunciarMudanca = true
+    ) {
+
+        document.body.classList.toggle(
+            "alto-contraste",
+            contrasteAtivo
+        );
+
+
+        if (contrasteBtn) {
+
+            contrasteBtn.setAttribute(
+                "aria-pressed",
+                contrasteAtivo
+                    ? "true"
+                    : "false"
+            );
+
+            contrasteBtn.setAttribute(
+                "aria-label",
+                contrasteAtivo
+                    ? "Desativar contraste elevado"
+                    : "Ativar contraste elevado"
+            );
+
+        }
+
+
+        localStorage.setItem(
+            "pokeopticaContraste",
+            contrasteAtivo
+        );
+
+
+        if (anunciarMudanca) {
+
+            anunciar(
+                contrasteAtivo
+                    ? "Contraste elevado ativado."
+                    : "Contraste elevado desativado."
+            );
+
+        }
+
+    }
+
+
+    if (contrasteBtn) {
+
+        contrasteBtn.addEventListener(
+            "click",
+            () => {
+
+                contrasteAtivo =
+                    !contrasteAtivo;
+
+                atualizarContraste();
+
+            }
+        );
+
+    }
+
+
+    atualizarContraste(false);
+
+
+    /* =====================================================
+       ANIMAÇÕES
+    ===================================================== */
+
+    let animacoesReduzidas =
+        localStorage.getItem(
+            "pokeopticaAnimacoes"
+        ) === "true";
+
+
+    const preferenciaSistema =
+        window.matchMedia &&
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    if (
+        !localStorage.getItem(
+            "pokeopticaAnimacoes"
+        ) &&
+        preferenciaSistema
+    ) {
+
+        animacoesReduzidas = true;
+
+    }
+
+
+    function atualizarAnimacoes(
+        anunciarMudanca = true
+    ) {
+
+        document.body.classList.toggle(
+            "sem-animacao",
+            animacoesReduzidas
+        );
+
+
+        if (animacaoBtn) {
+
+            animacaoBtn.setAttribute(
+                "aria-pressed",
+                animacoesReduzidas
+                    ? "true"
+                    : "false"
+            );
+
+            animacaoBtn.setAttribute(
+                "aria-label",
+                animacoesReduzidas
+                    ? "Ativar animações"
+                    : "Reduzir animações"
+            );
+
+        }
+
+
+        localStorage.setItem(
+            "pokeopticaAnimacoes",
+            animacoesReduzidas
+        );
+
+
+        if (
+            animacoesReduzidas &&
+            disco
+        ) {
+
+            disco.classList.remove(
+                "girando"
+            );
+
+            if (discoBtn) {
+
+                discoBtn.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+                discoBtn.setAttribute(
+                    "aria-label",
+                    "Iniciar rotação do Disco de Newton"
+                );
+
+                discoBtn.textContent =
+                    "⚡ GIRAR DISCO";
+
+            }
+
+            if (discoStatus) {
+
+                discoStatus.textContent =
+                    "Animações reduzidas. Disco parado.";
+
+            }
+
+        }
+
+
+        if (anunciarMudanca) {
+
+            anunciar(
+                animacoesReduzidas
+                    ? "Animações reduzidas."
+                    : "Animações restauradas."
+            );
+
+        }
+
+    }
+
+
+    if (animacaoBtn) {
+
+        animacaoBtn.addEventListener(
+            "click",
+            () => {
+
+                animacoesReduzidas =
+                    !animacoesReduzidas;
+
+                atualizarAnimacoes();
+
+            }
+        );
+
+    }
+
+
+    atualizarAnimacoes(false);
+
+
+    /* =====================================================
+       RESTAURAR CONFIGURAÇÕES
+    ===================================================== */
+
+    if (resetAcessibilidade) {
+
+        resetAcessibilidade.addEventListener(
+            "click",
+            () => {
+
+                escalaFonte = 1;
+                contrasteAtivo = false;
+                animacoesReduzidas = false;
+
+                atualizarFonte(false);
+                atualizarContraste(false);
+                atualizarAnimacoes(false);
+
+                anunciar(
+                    "Configurações de acessibilidade restauradas."
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       FOCO POR TECLADO
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                event.key === "Tab"
+            ) {
+
+                document.body.classList.add(
+                    "usando-teclado"
+                );
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "mousedown",
+        () => {
+
+            document.body.classList.remove(
+                "usando-teclado"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       CORREÇÃO DE LINKS EXTERNOS
+    ===================================================== */
+
+    document
+        .querySelectorAll(
+            'a[target="_blank"]'
+        )
+        .forEach((link) => {
+
+            link.setAttribute(
+                "rel",
+                "noopener noreferrer"
+            );
+
+        });
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+    ===================================================== */
+
+    abas.forEach((aba) => {
+
+        if (
+            aba.classList.contains("ativa")
+        ) {
+
+            aba.hidden = false;
+
+        } else {
+
+            aba.hidden = true;
+
+        }
+
+        aba.setAttribute(
+            "tabindex",
+            "-1"
+        );
+
+    });
+
+
+    document.body.classList.add(
+        "intro-aberta"
+    );
+
+
+})();
+
+</script>
 
 </body>
 </html>

@@ -14,9 +14,14 @@ html {
 
 body {
     font-family: "Poppins", sans-serif;
+
     background: #080b16;
+
     color: #f4f7ff;
+
     overflow-x: hidden;
+
+    --page-scale: 1;
 }
 
 
@@ -26,6 +31,7 @@ body {
 
 #pokemonIntro {
     position: fixed;
+
     inset: 0;
 
     background:
@@ -42,7 +48,9 @@ body {
         );
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     z-index: 99999;
@@ -54,7 +62,9 @@ body {
 
 #pokemonIntro::before {
     content: "";
+
     position: absolute;
+
     inset: 0;
 
     background-image:
@@ -69,31 +79,41 @@ body {
         );
 
     background-size: 45px 45px;
+
+    pointer-events: none;
 }
 
 .intro-content {
     position: relative;
+
     text-align: center;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     z-index: 2;
 
-    animation: introEntrada 1s ease;
+    animation:
+        introEntrada 1s ease;
 }
 
 @keyframes introEntrada {
 
     from {
         opacity: 0;
-        transform: translateY(30px) scale(.9);
+        transform:
+            translateY(30px)
+            scale(.9);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
@@ -120,18 +140,21 @@ body {
         0 0 30px rgba(239,35,60,.4),
         0 0 90px rgba(239,35,60,.15);
 
-    animation: introPokeball 2s ease-in-out infinite;
+    animation:
+        introPokeball 2s ease-in-out infinite;
 }
 
 @keyframes introPokeball {
 
-    0%, 100% {
+    0%,
+    100% {
         transform: scale(1);
     }
 
     50% {
         transform: scale(1.06);
     }
+
 }
 
 .intro-pokeball-center {
@@ -143,11 +166,13 @@ body {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
     border-radius: 50%;
 
     background: #080b16;
+
     border: 9px solid white;
 
     box-shadow:
@@ -156,7 +181,9 @@ body {
 
 .intro-mini {
     font-family: "Orbitron";
+
     font-size: 11px;
+
     letter-spacing: 4px;
 
     color: #4db8ff;
@@ -167,9 +194,15 @@ body {
 .intro-content h1 {
     font-family: "Orbitron";
 
-    font-size: clamp(45px, 8vw, 80px);
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            80px
+        );
 
     margin: 10px 0;
+
     line-height: 1;
 }
 
@@ -181,11 +214,13 @@ body {
     color: #9da9c0;
 
     font-size: 14px;
+
     letter-spacing: 2px;
 }
 
 .intro-loading {
     display: flex;
+
     gap: 8px;
 
     margin: 25px 0;
@@ -196,9 +231,11 @@ body {
     height: 8px;
 
     background: #ef233c;
+
     border-radius: 50%;
 
-    animation: introLoading 1s infinite;
+    animation:
+        introLoading 1s infinite;
 }
 
 .intro-loading span:nth-child(2) {
@@ -211,19 +248,26 @@ body {
 
 @keyframes introLoading {
 
-    0%, 100% {
+    0%,
+    100% {
         opacity: .2;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 
     50% {
         opacity: 1;
-        transform: translateY(-6px);
+
+        transform:
+            translateY(-6px);
     }
+
 }
 
 #entrarSite {
-    border: 1px solid rgba(255,255,255,.2);
+    border: 1px solid
+        rgba(255,255,255,.2);
 
     background:
         linear-gradient(
@@ -236,31 +280,40 @@ body {
 
     padding: 15px 25px;
 
+    min-height: 48px;
+
     border-radius: 10px;
 
     font-family: "Orbitron";
 
     font-size: 11px;
+
     letter-spacing: 1px;
 
     cursor: pointer;
 
     box-shadow:
-        0 10px 35px rgba(239,35,60,.25);
+        0 10px 35px
+        rgba(239,35,60,.25);
 
     transition: .3s;
 }
 
 #entrarSite:hover {
-    transform: translateY(-4px) scale(1.03);
+    transform:
+        translateY(-4px)
+        scale(1.03);
 
     box-shadow:
-        0 15px 45px rgba(239,35,60,.4);
+        0 15px 45px
+        rgba(239,35,60,.4);
 }
 
 #pokemonIntro.sair {
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 }
 
@@ -273,6 +326,7 @@ body::before {
     content: "";
 
     position: fixed;
+
     inset: 0;
 
     background:
@@ -293,11 +347,13 @@ body::before {
         );
 
     pointer-events: none;
+
     z-index: -2;
 }
 
 .background-grid {
     position: fixed;
+
     inset: 0;
 
     background-image:
@@ -314,6 +370,7 @@ body::before {
     background-size: 50px 50px;
 
     pointer-events: none;
+
     z-index: -1;
 }
 
@@ -330,13 +387,18 @@ body::before {
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
-    background: rgba(5,8,18,.9);
+    background:
+        rgba(5,8,18,.9);
 
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
 
     position: sticky;
+
     top: 0;
 
     z-index: 1000;
@@ -346,7 +408,9 @@ body::before {
 
 .logo {
     display: flex;
+
     align-items: center;
+
     gap: 14px;
 }
 
@@ -374,13 +438,16 @@ body::before {
 
 .header-info {
     display: flex;
+
     gap: 15px;
 }
 
 .header-info span {
     padding: 7px 12px;
 
-    border: 1px solid rgba(255,255,255,.1);
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
     border-radius: 20px;
 
@@ -414,7 +481,8 @@ body::before {
     position: relative;
 
     box-shadow:
-        0 0 25px rgba(239,35,60,.3);
+        0 0 25px
+        rgba(239,35,60,.3);
 }
 
 .pokeball-center {
@@ -432,7 +500,8 @@ body::before {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 }
 
 .pokeball.small {
@@ -443,6 +512,7 @@ body::before {
 .pokeball.small .pokeball-center {
     width: 10px;
     height: 10px;
+
     border-width: 2px;
 }
 
@@ -466,21 +536,29 @@ body::before {
 
     z-index: 999;
 
-    background: rgba(8,11,22,.82);
+    background:
+        rgba(8,11,22,.82);
 
     backdrop-filter: blur(15px);
 
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
 }
 
 .menu-btn {
-    border: 1px solid rgba(255,255,255,.1);
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
-    background: rgba(255,255,255,.025);
+    background:
+        rgba(255,255,255,.025);
 
     color: #9da9c0;
 
     padding: 13px 20px;
+
+    min-height: 48px;
 
     border-radius: 12px;
 
@@ -502,7 +580,8 @@ body::before {
 
     color: white;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 .menu-btn.active {
@@ -518,7 +597,8 @@ body::before {
     color: white;
 
     box-shadow:
-        0 8px 30px rgba(239,35,60,.25);
+        0 8px 30px
+        rgba(239,35,60,.25);
 }
 
 
@@ -528,26 +608,33 @@ body::before {
 
 .aba {
     display: none;
+
     width: 100%;
 }
 
 .aba.ativa {
     display: block;
 
-    animation: aparecer .45s ease;
+    animation:
+        aparecer .45s ease;
 }
 
 @keyframes aparecer {
 
     from {
         opacity: 0;
-        transform: translateY(15px);
+
+        transform:
+            translateY(15px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
+
 }
 
 
@@ -562,7 +649,8 @@ body::before {
 
     display: grid;
 
-    grid-template-columns: 1.1fr .9fr;
+    grid-template-columns:
+        1.1fr .9fr;
 
     align-items: center;
 
@@ -581,7 +669,9 @@ body::before {
 
     padding: 7px 11px;
 
-    border: 1px solid rgba(77,184,255,.3);
+    border:
+        1px solid
+        rgba(77,184,255,.3);
 
     border-radius: 5px;
 
@@ -591,7 +681,12 @@ body::before {
 .hero h2 {
     font-family: "Orbitron";
 
-    font-size: clamp(35px,6vw,70px);
+    font-size:
+        clamp(
+            35px,
+            6vw,
+            70px
+        );
 
     line-height: 1.05;
 
@@ -600,6 +695,7 @@ body::before {
 
 .hero h2 strong {
     display: block;
+
     color: #ff3152;
 }
 
@@ -615,7 +711,9 @@ body::before {
 
 .hero-buttons {
     display: flex;
+
     gap: 12px;
+
     margin-top: 30px;
 }
 
@@ -625,6 +723,8 @@ body::before {
     border: none;
 
     padding: 14px 22px;
+
+    min-height: 48px;
 
     border-radius: 10px;
 
@@ -651,15 +751,20 @@ body::before {
 .hero-buttons button:hover,
 .pokemon-button:hover,
 .youtube-button:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 
     box-shadow:
-        0 10px 30px rgba(239,35,60,.3);
+        0 10px 30px
+        rgba(239,35,60,.3);
 }
 
 .hero-buttons .secondary {
     background: transparent;
-    border: 1px solid rgba(255,255,255,.15);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
 }
 
 
@@ -679,14 +784,17 @@ body::before {
 .orbit {
     position: absolute;
 
-    border: 1px solid rgba(77,184,255,.25);
+    border:
+        1px solid
+        rgba(77,184,255,.25);
 
     border-radius: 50%;
 
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     animation:
         orbitar 12s linear infinite;
@@ -714,10 +822,13 @@ body::before {
 @keyframes orbitar {
 
     to {
+
         transform:
             translate(-50%,-50%)
             rotate(360deg);
+
     }
+
 }
 
 .pokemon-core {
@@ -729,7 +840,8 @@ body::before {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     border-radius: 50%;
 
@@ -742,8 +854,12 @@ body::before {
         );
 
     box-shadow:
-        0 0 40px rgba(239,35,60,.5),
-        inset 0 -15px 30px rgba(0,0,0,.3);
+        0 0 40px
+        rgba(239,35,60,.5),
+
+        inset
+        0 -15px 30px
+        rgba(0,0,0,.3);
 }
 
 .core-eye {
@@ -762,6 +878,7 @@ body::before {
 
 .core-eye.right {
     left: auto;
+
     right: 35px;
 }
 
@@ -778,7 +895,8 @@ body::before {
     left: 50%;
     bottom: 20px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     box-shadow:
         0 0 25px #fff;
@@ -798,6 +916,7 @@ body::before {
             rgba(0,119,255,.12),
             transparent
         ),
+
         radial-gradient(
             circle at 80% 30%,
             rgba(255,49,82,.12),
@@ -808,7 +927,12 @@ body::before {
 .page-banner h2 {
     font-family: "Orbitron";
 
-    font-size: clamp(40px,6vw,70px);
+    font-size:
+        clamp(
+            40px,
+            6vw,
+            70px
+        );
 
     line-height: 1.05;
 
@@ -817,6 +941,7 @@ body::before {
 
 .page-banner h2 strong {
     color: #4db8ff;
+
     display: block;
 }
 
@@ -835,6 +960,7 @@ body::before {
             rgba(239,35,60,.13),
             transparent
         ),
+
         radial-gradient(
             circle at 80% 30%,
             rgba(77,184,255,.1),
@@ -852,7 +978,11 @@ body::before {
 ========================================================= */
 
 .conteudo {
-    width: min(1150px,90%);
+    width:
+        min(
+            1150px,
+            90%
+        );
 
     margin: auto;
 
@@ -890,7 +1020,12 @@ body::before {
 .section-title h2 {
     font-family: "Orbitron";
 
-    font-size: clamp(25px,4vw,40px);
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            40px
+        );
 
     margin-top: 5px;
 }
@@ -902,6 +1037,7 @@ body::before {
 
 .timeline {
     position: relative;
+
     padding-left: 35px;
 }
 
@@ -913,6 +1049,7 @@ body::before {
     left: 11px;
 
     top: 0;
+
     bottom: 0;
 
     width: 2px;
@@ -943,11 +1080,14 @@ body::before {
 
     background: #111827;
 
-    border: 2px solid #4db8ff;
+    border:
+        2px solid
+        #4db8ff;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     font-size: 8px;
@@ -960,9 +1100,12 @@ body::before {
 }
 
 .timeline-content {
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     padding: 25px;
 
@@ -989,11 +1132,15 @@ body::before {
 .scientist-card {
     display: grid;
 
-    grid-template-columns: 260px 1fr;
+    grid-template-columns:
+        260px 1fr;
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
     border-radius: 20px;
 
@@ -1013,6 +1160,7 @@ body::before {
             rgba(255,255,255,.12),
             transparent 50%
         ),
+
         linear-gradient(
             135deg,
             #151c2e,
@@ -1027,18 +1175,22 @@ body::before {
     border-radius: 50%;
 
     display: grid;
+
     place-items: center;
 
     font-family: "Orbitron";
 
     font-size: 70px;
 
-    border: 2px solid #4db8ff;
+    border:
+        2px solid
+        #4db8ff;
 
     color: #4db8ff;
 
     box-shadow:
-        0 0 50px rgba(77,184,255,.15);
+        0 0 50px
+        rgba(77,184,255,.15);
 }
 
 .scientist-info {
@@ -1077,7 +1229,8 @@ body::before {
 .cards-grid {
     display: grid;
 
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap: 20px;
 
@@ -1089,9 +1242,12 @@ body::before {
 
     border-radius: 16px;
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
     transition: .3s;
 }
@@ -1100,7 +1256,8 @@ body::before {
 .experiment-card:hover,
 .technology-card:hover,
 .robot-image-card:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-6px);
 
     border-color:
         rgba(77,184,255,.4);
@@ -1108,6 +1265,7 @@ body::before {
 
 .card-icon {
     font-size: 30px;
+
     margin-bottom: 20px;
 }
 
@@ -1117,6 +1275,7 @@ body::before {
 
 .info-card p {
     color: #98a4bb;
+
     line-height: 1.7;
 }
 
@@ -1128,7 +1287,8 @@ body::before {
 .disco-layout {
     display: grid;
 
-    grid-template-columns: .8fr 1.2fr;
+    grid-template-columns:
+        .8fr 1.2fr;
 
     gap: 50px;
 
@@ -1162,29 +1322,41 @@ body::before {
             #8f00ff 308.52deg 360deg
         );
 
-    border: 8px solid #171c2c;
+    border:
+        8px solid
+        #171c2c;
 
     box-shadow:
-        0 0 50px rgba(255,255,255,.08),
-        inset 0 0 30px rgba(0,0,0,.25);
+        0 0 50px
+        rgba(255,255,255,.08),
+
+        inset
+        0 0 30px
+        rgba(0,0,0,.25);
 
     position: relative;
 }
 
 #discoNewton.girando {
     animation:
-        discoGirar .08s linear infinite;
+        discoGirar
+        .08s
+        linear
+        infinite;
 }
 
 @keyframes discoGirar {
 
     from {
-        transform: rotate(0deg);
+        transform:
+            rotate(0deg);
     }
 
     to {
-        transform: rotate(360deg);
+        transform:
+            rotate(360deg);
     }
+
 }
 
 .disco-center {
@@ -1193,7 +1365,9 @@ body::before {
 
     background: #111827;
 
-    border: 5px solid #f3f4f6;
+    border:
+        5px solid
+        #f3f4f6;
 
     border-radius: 50%;
 
@@ -1202,7 +1376,8 @@ body::before {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 }
 
 .disco-text h3 {
@@ -1221,6 +1396,43 @@ body::before {
     margin-bottom: 15px;
 }
 
+.disco-controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.disco-stop {
+    background:
+        linear-gradient(
+            135deg,
+            #20283c,
+            #111827
+        ) !important;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2) !important;
+}
+
+.disco-status {
+    width: 100%;
+
+    text-align: center;
+
+    color: #9da9c0;
+
+    font-size: 13px;
+
+    margin-top: -15px;
+}
+
 .spectrum {
     display: flex;
 
@@ -1237,6 +1449,78 @@ body::before {
     flex: 1;
 }
 
+.spectrum-legend {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                100px,
+                1fr
+            )
+        );
+
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+.spectrum-legend span {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #c4ccda;
+
+    font-size: 11px;
+}
+
+.spectrum-legend i {
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    border:
+        1px solid
+        #fff;
+
+    flex-shrink: 0;
+}
+
+.legend-red {
+    background: #ef233c;
+}
+
+.legend-orange {
+    background: #ff7b00;
+}
+
+.legend-yellow {
+    background: #ffd60a;
+}
+
+.legend-green {
+    background: #38b000;
+}
+
+.legend-blue {
+    background: #0077ff;
+}
+
+.legend-indigo {
+    background: #4b0082;
+}
+
+.legend-violet {
+    background: #8f00ff;
+}
+
 
 /* =========================================================
    EXPERIMENTOS
@@ -1245,7 +1529,8 @@ body::before {
 .experiment-grid {
     display: grid;
 
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap: 20px;
 }
@@ -1253,9 +1538,12 @@ body::before {
 .experiment-card {
     padding: 30px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     border-radius: 16px;
 
@@ -1276,6 +1564,7 @@ body::before {
 
 .experiment-card p {
     color: #98a4bb;
+
     line-height: 1.7;
 }
 
@@ -1293,15 +1582,19 @@ body::before {
 .video-card {
     display: grid;
 
-    grid-template-columns: .9fr 1.1fr;
+    grid-template-columns:
+        .9fr 1.1fr;
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     border-radius: 18px;
 
     overflow: hidden;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 }
 
 .video-preview {
@@ -1310,6 +1603,7 @@ body::before {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     flex-direction: column;
@@ -1322,6 +1616,7 @@ body::before {
             rgba(255,49,82,.25),
             transparent 40%
         ),
+
         linear-gradient(
             135deg,
             #151b2c,
@@ -1334,6 +1629,7 @@ body::before {
     height: 80px;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 50%;
@@ -1345,7 +1641,8 @@ body::before {
     padding-left: 5px;
 
     box-shadow:
-        0 0 40px rgba(239,35,60,.4);
+        0 0 40px
+        rgba(239,35,60,.4);
 }
 
 .video-preview span {
@@ -1386,7 +1683,8 @@ body::before {
 .ai-box {
     display: grid;
 
-    grid-template-columns: 100px 1fr;
+    grid-template-columns:
+        100px 1fr;
 
     gap: 30px;
 
@@ -1394,7 +1692,9 @@ body::before {
 
     border-radius: 20px;
 
-    border: 1px solid rgba(77,184,255,.2);
+    border:
+        1px solid
+        rgba(77,184,255,.2);
 
     background:
         linear-gradient(
@@ -1419,7 +1719,9 @@ body::before {
 
     border-radius: 20px;
 
-    border: 1px solid rgba(77,184,255,.25);
+    border:
+        1px solid
+        rgba(77,184,255,.25);
 }
 
 .ai-box h2 {
@@ -1450,9 +1752,12 @@ body::before {
 
     border-radius: 18px;
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 }
 
 .source-box p {
@@ -1462,9 +1767,12 @@ body::before {
 
     padding: 15px;
 
-    border-left: 3px solid #4db8ff;
+    border-left:
+        3px solid
+        #4db8ff;
 
-    background: rgba(255,255,255,.025);
+    background:
+        rgba(255,255,255,.025);
 }
 
 
@@ -1475,7 +1783,8 @@ body::before {
 .future-card {
     display: grid;
 
-    grid-template-columns: 120px 1fr;
+    grid-template-columns:
+        120px 1fr;
 
     gap: 30px;
 
@@ -1483,15 +1792,19 @@ body::before {
 
     border-radius: 20px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .future-icon {
     font-size: 70px;
 
     display: grid;
+
     place-items: center;
 }
 
@@ -1530,7 +1843,9 @@ body::before {
 
     background: #111827;
 
-    border: 1px solid rgba(255,255,255,.1);
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 }
 
 .connection b {
@@ -1555,7 +1870,8 @@ body::before {
 .technology-grid {
     display: grid;
 
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap: 18px;
 }
@@ -1563,9 +1879,12 @@ body::before {
 .technology-card {
     padding: 25px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     border-radius: 16px;
 
@@ -1578,6 +1897,7 @@ body::before {
     position: absolute;
 
     top: 20px;
+
     right: 20px;
 
     font-family: "Orbitron";
@@ -1624,7 +1944,9 @@ body::before {
 .chroma-card {
     border-radius: 22px;
 
-    border: 1px solid rgba(77,184,255,.2);
+    border:
+        1px solid
+        rgba(77,184,255,.2);
 
     background:
         linear-gradient(
@@ -1646,7 +1968,9 @@ body::before {
 
     padding: 35px;
 
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .solution-logo,
@@ -1696,11 +2020,13 @@ body::before {
 .chroma-grid {
     display: grid;
 
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns:
+        repeat(2,1fr);
 
     gap: 1px;
 
-    background: rgba(255,255,255,.07);
+    background:
+        rgba(255,255,255,.07);
 }
 
 .solution-grid > div,
@@ -1737,9 +2063,12 @@ body::before {
 
     border-radius: 20px;
 
-    background: rgba(255,255,255,.05);
+    background:
+        rgba(255,255,255,.05);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     color: #aab5cc;
 
@@ -1765,7 +2094,9 @@ body::before {
             transparent 60%
         );
 
-    border: 1px solid rgba(239,35,60,.15);
+    border:
+        1px solid
+        rgba(239,35,60,.15);
 }
 
 .conclusion > span,
@@ -1816,7 +2147,8 @@ body::before {
 .robot-project {
     display: grid;
 
-    grid-template-columns: .9fr 1.1fr;
+    grid-template-columns:
+        .9fr 1.1fr;
 
     gap: 40px;
 
@@ -1826,15 +2158,19 @@ body::before {
 
     border-radius: 20px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .robot-images {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 15px;
 }
@@ -1842,7 +2178,9 @@ body::before {
 .robot-image-card {
     background: #070910;
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     border-radius: 15px;
 
@@ -1881,6 +2219,7 @@ body::before {
 
 .robot-image-title span {
     font-size: 9px;
+
     color: #7d899f;
 }
 
@@ -1893,7 +2232,8 @@ body::before {
 }
 
 .robot-image-card p {
-    padding: 12px 15px 16px;
+    padding:
+        12px 15px 16px;
 
     color: #8f9ab0;
 
@@ -1910,7 +2250,8 @@ body::before {
 .pwm-box {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 40px;
 
@@ -1920,9 +2261,12 @@ body::before {
 
     border-radius: 20px;
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 }
 
 .pwm-visual {
@@ -1931,6 +2275,7 @@ body::before {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     background: #070910;
@@ -1956,7 +2301,8 @@ body::before {
     background: #4db8ff;
 
     box-shadow:
-        0 0 15px rgba(77,184,255,.5);
+        0 0 15px
+        rgba(77,184,255,.5);
 
     animation:
         pwm 1s infinite alternate;
@@ -1987,10 +2333,12 @@ body::before {
     to {
         opacity: .4;
     }
+
 }
 
 .pwm-box h3 {
     font-family: "Orbitron";
+
     margin-bottom: 15px;
 }
 
@@ -2010,7 +2358,8 @@ body::before {
 .rgb-project {
     display: grid;
 
-    grid-template-columns: .7fr 1.3fr;
+    grid-template-columns:
+        .7fr 1.3fr;
 
     gap: 40px;
 
@@ -2020,9 +2369,12 @@ body::before {
 
     border-radius: 20px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .rgb-led {
@@ -2043,7 +2395,8 @@ body::before {
         );
 
     box-shadow:
-        0 0 80px rgba(77,184,255,.5);
+        0 0 80px
+        rgba(77,184,255,.5);
 }
 
 .rgb-project h3 {
@@ -2104,7 +2457,8 @@ body::before {
 .mix-grid {
     display: grid;
 
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap: 15px;
 
@@ -2116,9 +2470,12 @@ body::before {
 
     border-radius: 12px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     text-align: center;
 
@@ -2141,7 +2498,8 @@ body::before {
 .robot-conclusion {
     display: grid;
 
-    grid-template-columns: 180px 1fr;
+    grid-template-columns:
+        180px 1fr;
 
     align-items: center;
 
@@ -2158,7 +2516,9 @@ body::before {
             rgba(77,184,255,.08)
         );
 
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .pokeball-big {
@@ -2183,7 +2543,8 @@ body::before {
     position: relative;
 
     box-shadow:
-        0 0 50px rgba(239,35,60,.3);
+        0 0 50px
+        rgba(239,35,60,.3);
 }
 
 .pokeball-big div {
@@ -2192,7 +2553,9 @@ body::before {
 
     background: #080b16;
 
-    border: 8px solid white;
+    border:
+        8px solid
+        white;
 
     border-radius: 50%;
 
@@ -2201,7 +2564,8 @@ body::before {
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 }
 
 .robot-conclusion h2 {
@@ -2226,7 +2590,9 @@ body::before {
 footer {
     padding: 50px 8%;
 
-    border-top: 1px solid rgba(255,255,255,.08);
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
 
     text-align: center;
 
@@ -2270,14 +2636,17 @@ footer p {
     position: fixed;
 
     right: 25px;
+
     bottom: 25px;
 
-    width: 48px;
-    height: 48px;
+    width: 54px;
+    height: 54px;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,.15);
+    border:
+        1px solid
+        rgba(255,255,255,.15);
 
     background: #111827;
 
@@ -2291,11 +2660,16 @@ footer p {
 
     pointer-events: none;
 
-    transform: translateY(20px);
+    transform:
+        translateY(20px);
 
     transition: .3s;
 
     z-index: 1000;
+
+    font-size: 22px;
+
+    font-weight: 700;
 }
 
 #topButton.mostrar {
@@ -2305,16 +2679,401 @@ footer p {
 
     pointer-events: auto;
 
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 #topButton:hover {
-    transform: translateY(-4px);
+    transform:
+        translateY(-4px);
 }
 
 
 /* =========================================================
-   RESPONSIVIDADE
+   ACESSIBILIDADE
+========================================================= */
+
+.skip-link {
+    position: fixed;
+
+    top: 10px;
+
+    left: 10px;
+
+    z-index: 100000;
+
+    background: #ffffff;
+
+    color: #080b16;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transform:
+        translateY(-150px);
+
+    transition:
+        transform .2s ease;
+}
+
+.skip-link:focus {
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   PAINEL DE ACESSIBILIDADE
+========================================================= */
+
+.accessibility-panel {
+    position: fixed;
+
+    left: 15px;
+
+    bottom: 15px;
+
+    z-index: 9998;
+
+    max-width:
+        calc(100vw - 30px);
+
+    padding: 12px 15px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(8,11,22,.96);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.35);
+
+    backdrop-filter: blur(15px);
+
+    color: white;
+}
+
+.accessibility-panel > strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: "Orbitron";
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    color: #4db8ff;
+}
+
+.accessibility-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+.accessibility-controls button,
+.accessibility-controls #nivelFonte {
+    min-height: 40px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    background: #111827;
+
+    color: white;
+
+    padding: 8px 11px;
+
+    font-family: "Poppins";
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.accessibility-controls button:hover {
+    border-color: #4db8ff;
+
+    transform:
+        translateY(-1px);
+}
+
+.accessibility-controls #nivelFonte {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 55px;
+
+    cursor: default;
+
+    color: #4db8ff;
+}
+
+
+/* =========================================================
+   FOCO VISÍVEL
+========================================================= */
+
+:focus {
+    outline:
+        3px solid
+        #ffffff;
+
+    outline-offset: 4px;
+}
+
+body.usando-teclado :focus {
+    outline:
+        3px solid
+        #ffffff;
+
+    outline-offset: 5px;
+
+    box-shadow:
+        0 0 0 5px
+        #0077ff;
+}
+
+.menu-btn:focus-visible,
+.hero-buttons button:focus-visible,
+.pokemon-button:focus-visible,
+.youtube-button:focus-visible,
+#entrarSite:focus-visible,
+#topButton:focus-visible,
+.accessibility-controls button:focus-visible {
+    outline:
+        3px solid
+        #fff;
+
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   LEITOR DE TELA
+========================================================= */
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+
+    height: 1px;
+
+    padding: 0;
+
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0,0,0,0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   CONTRASTE ELEVADO
+========================================================= */
+
+body.alto-contraste {
+    background: #000 !important;
+
+    color: #fff !important;
+}
+
+body.alto-contraste::before {
+    display: none;
+}
+
+body.alto-contraste .background-grid {
+    display: none;
+}
+
+body.alto-contraste .topo,
+body.alto-contraste .menu,
+body.alto-contraste footer {
+    background: #000 !important;
+
+    border-color: #fff !important;
+
+    backdrop-filter: none;
+}
+
+body.alto-contraste .menu-btn,
+body.alto-contraste .info-card,
+body.alto-contraste .experiment-card,
+body.alto-contraste .technology-card,
+body.alto-contraste .timeline-content,
+body.alto-contraste .future-card,
+body.alto-contraste .source-box,
+body.alto-contraste .video-card,
+body.alto-contraste .scientist-card,
+body.alto-contraste .ai-box,
+body.alto-contraste .robot-project,
+body.alto-contraste .pwm-box,
+body.alto-contraste .rgb-project,
+body.alto-contraste .solution,
+body.alto-contraste .chroma-card,
+body.alto-contraste .robot-conclusion,
+body.alto-contraste .mix-grid div {
+    background: #000 !important;
+
+    color: #fff !important;
+
+    border:
+        2px solid
+        #fff !important;
+
+    box-shadow: none !important;
+}
+
+body.alto-contraste p,
+body.alto-contraste .hero p,
+body.alto-contraste .future-card p,
+body.alto-contraste .info-card p,
+body.alto-contraste .experiment-card p,
+body.alto-contraste .technology-card p,
+body.alto-contraste .source-box p,
+body.alto-contraste .video-info p,
+body.alto-contraste .scientist-info p,
+body.alto-contraste .robot-conclusion p,
+body.alto-contraste footer p {
+    color: #fff !important;
+}
+
+body.alto-contraste .menu-btn.active,
+body.alto-contraste .hero-buttons button:not(.secondary),
+body.alto-contraste .pokemon-button,
+body.alto-contraste .youtube-button {
+    background: #fff !important;
+
+    color: #000 !important;
+
+    border:
+        2px solid
+        #fff !important;
+}
+
+body.alto-contraste .hero-buttons .secondary {
+    background: #000 !important;
+
+    color: #fff !important;
+
+    border:
+        2px solid
+        #fff !important;
+}
+
+body.alto-contraste .tag,
+body.alto-contraste .badge {
+    color: #fff !important;
+
+    background: #000 !important;
+
+    border:
+        2px solid
+        #fff !important;
+}
+
+body.alto-contraste .section-title > span,
+body.alto-contraste .section-title small,
+body.alto-contraste .number,
+body.alto-contraste .tech-number {
+    color: #fff !important;
+}
+
+body.alto-contraste .connection span,
+body.alto-contraste .components span {
+    background: #000 !important;
+
+    color: #fff !important;
+
+    border:
+        1px solid
+        #fff !important;
+}
+
+body.alto-contraste .connection b {
+    color: #fff !important;
+}
+
+body.alto-contraste .accessibility-panel {
+    background: #000 !important;
+
+    border:
+        2px solid
+        #fff !important;
+}
+
+body.alto-contraste .accessibility-panel > strong {
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   REDUÇÃO/DESATIVAÇÃO DE ANIMAÇÕES
+========================================================= */
+
+body.sem-animacao *,
+body.sem-animacao *::before,
+body.sem-animacao *::after {
+
+    animation-duration:
+        0.001ms !important;
+
+    animation-iteration-count:
+        1 !important;
+
+    transition-duration:
+        0.001ms !important;
+
+    scroll-behavior:
+        auto !important;
+}
+
+body.sem-animacao .orbit,
+body.sem-animacao #discoNewton.girando {
+    animation: none !important;
+}
+
+body.sem-animacao .menu-btn:hover,
+body.sem-animacao .info-card:hover,
+body.sem-animacao .experiment-card:hover,
+body.sem-animacao .technology-card:hover,
+body.sem-animacao .hero-buttons button:hover,
+body.sem-animacao .pokemon-button:hover,
+body.sem-animacao .youtube-button:hover {
+    transform: none !important;
+}
+
+
+/* =========================================================
+   MOBILE
 ========================================================= */
 
 @media(max-width:900px) {
@@ -2333,7 +3092,8 @@ footer p {
     }
 
     .robot-images {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .hero {
@@ -2346,6 +3106,7 @@ footer p {
 
     .hero-buttons {
         justify-content: center;
+
         flex-wrap: wrap;
     }
 
@@ -2357,23 +3118,29 @@ footer p {
     .cards-grid,
     .experiment-grid,
     .technology-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .mix-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .scientist-card {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .future-card {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .robot-conclusion {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
+
         text-align: center;
     }
 
@@ -2383,7 +3150,8 @@ footer p {
 @media(max-width:650px) {
 
     .topo {
-        padding: 15px 5%;
+        padding:
+            15px 5%;
     }
 
     .logo h1 {
@@ -2393,7 +3161,8 @@ footer p {
     .menu {
         overflow-x: auto;
 
-        justify-content: flex-start;
+        justify-content:
+            flex-start;
 
         padding: 12px;
     }
@@ -2401,7 +3170,8 @@ footer p {
     .menu-btn {
         white-space: nowrap;
 
-        padding: 11px 15px;
+        padding:
+            11px 15px;
     }
 
     .menu-btn span {
@@ -2409,7 +3179,8 @@ footer p {
     }
 
     .hero {
-        padding: 60px 5%;
+        padding:
+            60px 5%;
     }
 
     .hero h2 {
@@ -2419,7 +3190,8 @@ footer p {
     .conteudo {
         width: 90%;
 
-        padding: 60px 0;
+        padding:
+            60px 0;
     }
 
     .cards-grid,
@@ -2427,11 +3199,13 @@ footer p {
     .technology-grid,
     .solution-grid,
     .chroma-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .robot-images {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .robot-image-card img {
@@ -2439,7 +3213,9 @@ footer p {
     }
 
     .ai-box {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
+
         text-align: center;
     }
 
@@ -2450,6 +3226,7 @@ footer p {
     .solution-header,
     .chroma-header {
         flex-direction: column;
+
         text-align: center;
     }
 
@@ -2479,7 +3256,8 @@ footer p {
     }
 
     .mix-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .intro-pokeball {
@@ -2493,11 +3271,90 @@ footer p {
     }
 
     .section-title {
-        align-items: flex-start;
+        align-items:
+            flex-start;
     }
 
     .section-title h2 {
         line-height: 1.2;
+    }
+
+    .accessibility-panel {
+        left: 8px;
+
+        right: 8px;
+
+        bottom: 8px;
+
+        max-width: none;
+
+        padding: 10px;
+    }
+
+    .accessibility-panel > strong {
+        text-align: center;
+    }
+
+    .accessibility-controls {
+        justify-content: center;
+    }
+
+    .accessibility-controls button,
+    .accessibility-controls #nivelFonte {
+        min-height: 44px;
+    }
+
+    .spectrum-legend {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    120px,
+                    1fr
+                )
+            );
+    }
+
+    .disco-controls {
+        width: 100%;
+    }
+
+    .disco-controls button {
+        width: 100%;
+
+        max-width: 260px;
+    }
+
+    #topButton {
+        right: 15px;
+
+        bottom: 135px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO DO SISTEMA
+========================================================= */
+
+@media(prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.001ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.001ms !important;
     }
 
 }

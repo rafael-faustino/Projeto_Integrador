@@ -20,20 +20,14 @@
 <body>
 
 <!-- ======================================================
-     LINK DE ACESSIBILIDADE
+     ACESSIBILIDADE
 ======================================================= -->
 
 <a href="#conteudo-principal" class="skip-link">
     Pular para o conteúdo principal
 </a>
 
-
-<!-- ======================================================
-     PAINEL DE ACESSIBILIDADE
-======================================================= -->
-
 <aside
-    id="painelAcessibilidade"
     class="accessibility-panel"
     aria-label="Ferramentas de acessibilidade"
 >
@@ -82,10 +76,29 @@
             type="button"
             id="animacaoBtn"
             aria-pressed="false"
-            aria-label="Reduzir animações"
-            title="Reduzir animações"
+            aria-label="Desativar animações"
+            title="Reduzir ou desativar animações"
         >
             🎞️ Animações
+        </button>
+
+        <button
+            type="button"
+            id="lerPaginaBtn"
+            aria-pressed="false"
+            aria-label="Ler o conteúdo da página em voz alta"
+            title="Ler página em voz alta"
+        >
+            🔊 Ler página
+        </button>
+
+        <button
+            type="button"
+            id="pararLeituraBtn"
+            aria-label="Parar leitura em voz alta"
+            title="Parar leitura"
+        >
+            ⏹️ Parar leitura
         </button>
 
         <button
@@ -100,7 +113,6 @@
     </div>
 
 </aside>
-
 
 <div
     id="a11yStatus"
@@ -118,7 +130,7 @@
     id="pokemonIntro"
     role="dialog"
     aria-modal="true"
-    aria-label="Tela inicial do projeto PokéÓptica"
+    aria-label="Tela inicial da PokéÓptica"
 >
 
     <div class="intro-content">
@@ -339,7 +351,7 @@
 
         <div
             class="hero-orbit"
-            aria-label="Animação decorativa"
+            aria-label="Elemento visual decorativo"
             role="img"
         >
 
@@ -482,8 +494,8 @@
 
                 <div
                     class="portrait-symbol"
-                    aria-label="Símbolo N representando Newton"
                     role="img"
+                    aria-label="Símbolo N representando Newton"
                 >
                     N
                 </div>
@@ -657,7 +669,7 @@
                 <div
                     id="discoNewton"
                     role="img"
-                    aria-label="Disco de Newton com sete cores do espectro visível. O disco pode ser girado usando os controles abaixo."
+                    aria-label="Disco de Newton com vermelho, laranja, amarelo, verde, azul, índigo e violeta"
                 >
                     <div class="disco-center"></div>
                 </div>
@@ -741,46 +753,17 @@
                     <span style="background:#8f00ff"></span>
                 </div>
 
-
                 <div
                     class="spectrum-legend"
-                    aria-label="Legenda das cores do Disco de Newton"
+                    aria-label="Legenda das cores"
                 >
-                    <span>
-                        <i class="legend-red"></i>
-                        Vermelho
-                    </span>
-
-                    <span>
-                        <i class="legend-orange"></i>
-                        Laranja
-                    </span>
-
-                    <span>
-                        <i class="legend-yellow"></i>
-                        Amarelo
-                    </span>
-
-                    <span>
-                        <i class="legend-green"></i>
-                        Verde
-                    </span>
-
-                    <span>
-                        <i class="legend-blue"></i>
-                        Azul
-                    </span>
-
-                    <span>
-                        <i class="legend-indigo"></i>
-                        Índigo
-                    </span>
-
-                    <span>
-                        <i class="legend-violet"></i>
-                        Violeta
-                    </span>
-
+                    <span><i class="legend-red"></i> Vermelho</span>
+                    <span><i class="legend-orange"></i> Laranja</span>
+                    <span><i class="legend-yellow"></i> Amarelo</span>
+                    <span><i class="legend-green"></i> Verde</span>
+                    <span><i class="legend-blue"></i> Azul</span>
+                    <span><i class="legend-indigo"></i> Índigo</span>
+                    <span><i class="legend-violet"></i> Violeta</span>
                 </div>
 
             </div>
@@ -1426,7 +1409,9 @@
 
             <div class="solution-header">
 
-                <div class="solution-logo">LS</div>
+                <div class="solution-logo">
+                    LS
+                </div>
 
                 <div>
 
@@ -1626,7 +1611,7 @@
 
             <div
                 class="pwm-visual"
-                aria-label="Representação visual do sinal PWM"
+                aria-label="Representação visual do PWM"
                 role="img"
             >
 
@@ -1886,13 +1871,10 @@
 
                 <div
                     class="video-preview"
-                    aria-label="Vídeo 01"
                     role="img"
+                    aria-label="Vídeo 01"
                 >
-                    <div
-                        class="play-icon"
-                        aria-hidden="true"
-                    >
+                    <div class="play-icon" aria-hidden="true">
                         ▶
                     </div>
 
@@ -1904,9 +1886,7 @@
 
                 <div class="video-info">
 
-                    <span class="badge">
-                        YOUTUBE
-                    </span>
+                    <span class="badge">YOUTUBE</span>
 
                     <h3>
                         Experimento e estudo da luz
@@ -1936,13 +1916,10 @@
 
                 <div
                     class="video-preview"
-                    aria-label="Vídeo 02"
                     role="img"
+                    aria-label="Vídeo 02"
                 >
-                    <div
-                        class="play-icon"
-                        aria-hidden="true"
-                    >
+                    <div class="play-icon" aria-hidden="true">
                         ▶
                     </div>
 
@@ -1954,9 +1931,7 @@
 
                 <div class="video-info">
 
-                    <span class="badge">
-                        YOUTUBE
-                    </span>
+                    <span class="badge">YOUTUBE</span>
 
                     <h3>
                         Conteúdo sobre a natureza da luz
@@ -1986,13 +1961,10 @@
 
                 <div
                     class="video-preview"
-                    aria-label="Vídeo 03"
                     role="img"
+                    aria-label="Vídeo 03"
                 >
-                    <div
-                        class="play-icon"
-                        aria-hidden="true"
-                    >
+                    <div class="play-icon" aria-hidden="true">
                         ▶
                     </div>
 
@@ -2004,9 +1976,7 @@
 
                 <div class="video-info">
 
-                    <span class="badge">
-                        YOUTUBE
-                    </span>
+                    <span class="badge">YOUTUBE</span>
 
                     <h3>
                         Vídeo complementar de Física
@@ -2082,7 +2052,9 @@
                     USO DA INTELIGÊNCIA ARTIFICIAL
                 </span>
 
-                <h2>Ferramentas utilizadas</h2>
+                <h2>
+                    Ferramentas utilizadas
+                </h2>
 
                 <p>
                     ChatGPT e Gemini foram utilizados para auxiliar
@@ -2135,8 +2107,6 @@
     </div>
 
 
-    <!-- O QUE É -->
-
     <section class="conteudo">
 
         <div class="section-title">
@@ -2177,8 +2147,6 @@
 
     </section>
 
-
-    <!-- IA -->
 
     <section class="conteudo">
 
@@ -2244,8 +2212,6 @@
     </section>
 
 
-    <!-- COMO IDENTIFICAR -->
-
     <section class="conteudo">
 
         <div class="section-title">
@@ -2263,94 +2229,63 @@
         <div class="experiment-grid">
 
             <div class="experiment-card">
-
                 <span class="number">01</span>
-
                 <h3>Verifique a fonte</h3>
-
                 <p>
                     Descubra quem publicou a informação e se a fonte
                     é identificável e confiável.
                 </p>
-
             </div>
 
-
             <div class="experiment-card">
-
                 <span class="number">02</span>
-
                 <h3>Confira a data</h3>
-
                 <p>
                     Uma notícia antiga pode voltar a circular como
                     se fosse um acontecimento atual.
                 </p>
-
             </div>
 
-
             <div class="experiment-card">
-
                 <span class="number">03</span>
-
                 <h3>Compare informações</h3>
-
                 <p>
                     Procure outras fontes confiáveis para verificar
                     se a mesma informação foi confirmada.
                 </p>
-
             </div>
 
-
             <div class="experiment-card">
-
                 <span class="number">04</span>
-
                 <h3>Procure a origem</h3>
-
                 <p>
                     Tente encontrar a publicação ou documento original
                     antes de acreditar ou compartilhar.
                 </p>
-
             </div>
 
-
             <div class="experiment-card">
-
                 <span class="number">05</span>
-
                 <h3>Observe o título</h3>
-
                 <p>
                     Títulos muito exagerados ou que tentam provocar
                     medo e raiva merecem atenção especial.
                 </p>
-
             </div>
 
-
             <div class="experiment-card">
-
                 <span class="number">06</span>
-
                 <h3>Não compartilhe imediatamente</h3>
-
                 <p>
                     Pare, pense e verifique a informação antes
                     de encaminhá-la para outras pessoas.
                 </p>
-
             </div>
 
         </div>
 
     </section>
 
-
-    <!-- IA COMO FERRAMENTA -->
 
     <section class="conteudo">
 
@@ -2425,8 +2360,6 @@
     </section>
 
 
-    <!-- CURIOSIDADE -->
-
     <section class="conteudo">
 
         <div class="section-title">
@@ -2470,8 +2403,6 @@
     </section>
 
 
-    <!-- REGRA -->
-
     <section class="conteudo">
 
         <div class="conclusion fake-conclusion">
@@ -2492,8 +2423,6 @@
 
     </section>
 
-
-    <!-- FONTES FAKE NEWS -->
 
     <section class="conteudo">
 
@@ -2530,8 +2459,6 @@
 
     </section>
 
-
-    <!-- IA -->
 
     <section class="conteudo">
 
@@ -2619,917 +2546,619 @@
 
 
 <!-- ======================================================
-     JAVASCRIPT
+     JAVASCRIPT EMBUTIDO
 ======================================================= -->
 
 <script>
 
-(() => {
-
-    "use strict";
+"use strict";
 
 
-    /* =====================================================
-       ELEMENTOS
-    ===================================================== */
+/* =========================================================
+   ELEMENTOS
+========================================================= */
 
-    const intro =
-        document.getElementById("pokemonIntro");
+const intro =
+    document.getElementById("pokemonIntro");
 
-    const entrarSite =
-        document.getElementById("entrarSite");
+const entrarSite =
+    document.getElementById("entrarSite");
 
-    const status =
-        document.getElementById("a11yStatus");
+const status =
+    document.getElementById("a11yStatus");
 
-    const aumentarFonte =
-        document.getElementById("aumentarFonte");
+const aumentarFonte =
+    document.getElementById("aumentarFonte");
 
-    const diminuirFonte =
-        document.getElementById("diminuirFonte");
+const diminuirFonte =
+    document.getElementById("diminuirFonte");
 
-    const contrasteBtn =
-        document.getElementById("contrasteBtn");
+const nivelFonte =
+    document.getElementById("nivelFonte");
 
-    const animacaoBtn =
-        document.getElementById("animacaoBtn");
+const contrasteBtn =
+    document.getElementById("contrasteBtn");
 
-    const resetAcessibilidade =
-        document.getElementById("resetAcessibilidade");
+const animacaoBtn =
+    document.getElementById("animacaoBtn");
 
-    const nivelFonte =
-        document.getElementById("nivelFonte");
+const lerPaginaBtn =
+    document.getElementById("lerPaginaBtn");
 
-    const topButton =
-        document.getElementById("topButton");
+const pararLeituraBtn =
+    document.getElementById("pararLeituraBtn");
 
-    const disco =
-        document.getElementById("discoNewton");
+const resetAcessibilidade =
+    document.getElementById("resetAcessibilidade");
 
-    const discoBtn =
-        document.getElementById("girarDiscoBtn");
+const topButton =
+    document.getElementById("topButton");
 
-    const discoStatus =
-        document.getElementById("discoStatus");
+const disco =
+    document.getElementById("discoNewton");
 
-    const menuButtons =
-        Array.from(
-            document.querySelectorAll(".menu-btn")
-        );
+const discoBtn =
+    document.getElementById("girarDiscoBtn");
 
-    const abas =
-        Array.from(
-            document.querySelectorAll(".aba")
-        );
+const discoStatus =
+    document.getElementById("discoStatus");
 
+const menuButtons =
+    Array.from(
+        document.querySelectorAll(".menu-btn")
+    );
 
-    /* =====================================================
-       LEITOR DE TELA
-    ===================================================== */
-
-    function anunciar(mensagem) {
-
-        if (!status) {
-            return;
-        }
-
-        status.textContent = "";
-
-        window.setTimeout(() => {
-
-            status.textContent = mensagem;
-
-        }, 50);
-
-    }
-
-
-    /* =====================================================
-       ENTRADA NA POKÉDEX
-    ===================================================== */
-
-    function entrarNaPokedex() {
-
-        if (!intro) {
-            return;
-        }
-
-        intro.classList.add("sair");
-
-        document.body.classList.remove(
-            "intro-aberta"
-        );
-
-        window.setTimeout(() => {
-
-            const principal =
-                document.getElementById(
-                    "conteudo-principal"
-                );
-
-            if (principal) {
-
-                principal.focus();
-
-            }
-
-        }, 300);
-
-        anunciar(
-            "Pokédex aberta. Use Tab para navegar pelos elementos."
-        );
-
-    }
-
-
-    if (entrarSite) {
-
-        entrarSite.addEventListener(
-            "click",
-            entrarNaPokedex
-        );
-
-    }
-
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                intro &&
-                !intro.classList.contains("sair") &&
-                event.key === "Escape"
-            ) {
-
-                event.preventDefault();
-
-                entrarNaPokedex();
-
-            }
-
-        }
+const abas =
+    Array.from(
+        document.querySelectorAll(".aba")
     );
 
 
-    if (intro) {
+/* =========================================================
+   AVISO PARA LEITOR DE TELA
+========================================================= */
 
-        window.setTimeout(() => {
+function anunciar(mensagem) {
 
-            if (entrarSite) {
+    if (!status) return;
 
-                entrarSite.focus();
+    status.textContent = "";
 
-            }
+    setTimeout(() => {
 
-        }, 100);
+        status.textContent = mensagem;
 
-    }
+    }, 50);
+
+}
 
 
-    /* =====================================================
-       ABAS
-    ===================================================== */
+/* =========================================================
+   TELA INICIAL
+========================================================= */
 
-    window.abrirAba = function (id, botao) {
+function entrarNaPokedex() {
 
-        const abaEscolhida =
-            document.getElementById(id);
+    if (!intro) return;
 
-        if (!abaEscolhida) {
-            return;
+    intro.classList.add("sair");
+
+    setTimeout(() => {
+
+        const principal =
+            document.getElementById(
+                "conteudo-principal"
+            );
+
+        if (principal) {
+
+            principal.focus();
+
         }
 
+    }, 350);
 
-        abas.forEach((aba) => {
-
-            const ativa =
-                aba.id === id;
-
-            aba.classList.toggle(
-                "ativa",
-                ativa
-            );
-
-            aba.hidden = !ativa;
-
-        });
-
-
-        menuButtons.forEach((btn) => {
-
-            const ativo =
-                btn === botao ||
-                btn.getAttribute(
-                    "aria-controls"
-                ) === id;
-
-            btn.classList.toggle(
-                "active",
-                ativo
-            );
-
-            btn.setAttribute(
-                "aria-selected",
-                ativo
-                    ? "true"
-                    : "false"
-            );
-
-            btn.setAttribute(
-                "tabindex",
-                ativo
-                    ? "0"
-                    : "-1"
-            );
-
-        });
-
-
-        abaEscolhida.scrollIntoView({
-            behavior:
-                document.body.classList.contains(
-                    "sem-animacao"
-                )
-                    ? "auto"
-                    : "smooth",
-            block: "start"
-        });
-
-
-        anunciar(
-            `Seção aberta: ${
-                botao
-                    ? botao.innerText.trim()
-                    : id
-            }`
-        );
-
-    };
-
-
-    /* =====================================================
-       NAVEGAÇÃO POR SETAS
-    ===================================================== */
-
-    menuButtons.forEach(
-        (botao, index) => {
-
-            botao.addEventListener(
-                "keydown",
-                (event) => {
-
-                    let novoIndex =
-                        index;
-
-                    if (
-                        event.key ===
-                        "ArrowRight"
-                    ) {
-
-                        novoIndex =
-                            (index + 1) %
-                            menuButtons.length;
-
-                    }
-
-                    if (
-                        event.key ===
-                        "ArrowLeft"
-                    ) {
-
-                        novoIndex =
-                            (
-                                index -
-                                1 +
-                                menuButtons.length
-                            ) %
-                            menuButtons.length;
-
-                    }
-
-                    if (
-                        event.key === "Home"
-                    ) {
-
-                        novoIndex = 0;
-
-                    }
-
-                    if (
-                        event.key === "End"
-                    ) {
-
-                        novoIndex =
-                            menuButtons.length - 1;
-
-                    }
-
-                    if (
-                        novoIndex !== index
-                    ) {
-
-                        event.preventDefault();
-
-                        const novoBotao =
-                            menuButtons[novoIndex];
-
-                        novoBotao.focus();
-
-                        abrirAba(
-                            novoBotao.getAttribute(
-                                "aria-controls"
-                            ),
-                            novoBotao
-                        );
-
-                    }
-
-                }
-            );
-
-        }
+    anunciar(
+        "Pokédex aberta. Use Tab para navegar."
     );
 
-
-    /* =====================================================
-       ROLAGEM
-    ===================================================== */
-
-    window.scrollPara = function (id) {
-
-        const elemento =
-            document.getElementById(id);
-
-        if (!elemento) {
-            return;
-        }
-
-        elemento.scrollIntoView({
-            behavior:
-                document.body.classList.contains(
-                    "sem-animacao"
-                )
-                    ? "auto"
-                    : "smooth",
-            block: "start"
-        });
-
-        window.setTimeout(() => {
-
-            elemento.setAttribute(
-                "tabindex",
-                "-1"
-            );
-
-            elemento.focus({
-                preventScroll: true
-            });
-
-        }, 400);
-
-    };
+}
 
 
-    /* =====================================================
-       TOPO
-    ===================================================== */
-
-    function atualizarTopButton() {
-
-        if (!topButton) {
-            return;
-        }
-
-        if (window.scrollY > 400) {
-
-            topButton.classList.add(
-                "mostrar"
-            );
-
-            topButton.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-        } else {
-
-            topButton.classList.remove(
-                "mostrar"
-            );
-
-            topButton.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-        }
-
-    }
+entrarSite.addEventListener(
+    "click",
+    entrarNaPokedex
+);
 
 
-    window.addEventListener(
-        "scroll",
-        atualizarTopButton,
-        { passive: true }
-    );
-
-
-    atualizarTopButton();
-
-
-    window.voltarTopo = function () {
-
-        window.scrollTo({
-            top: 0,
-            behavior:
-                document.body.classList.contains(
-                    "sem-animacao"
-                )
-                    ? "auto"
-                    : "smooth"
-        });
-
-        window.setTimeout(() => {
-
-            const principal =
-                document.getElementById(
-                    "conteudo-principal"
-                );
-
-            if (principal) {
-
-                principal.focus();
-
-            }
-
-        }, 400);
-
-        anunciar(
-            "Voltamos ao topo da página."
-        );
-
-    };
-
-
-    /* =====================================================
-       DISCO DE NEWTON
-    ===================================================== */
-
-    window.girarDisco = function () {
-
-        if (!disco) {
-            return;
-        }
+document.addEventListener(
+    "keydown",
+    (event) => {
 
         if (
+            intro &&
+            !intro.classList.contains("sair") &&
+            event.key === "Escape"
+        ) {
+
+            entrarNaPokedex();
+
+        }
+
+    }
+);
+
+
+setTimeout(() => {
+
+    if (
+        intro &&
+        !intro.classList.contains("sair")
+    ) {
+
+        entrarSite.focus();
+
+    }
+
+}, 150);
+
+
+/* =========================================================
+   ABAS
+========================================================= */
+
+window.abrirAba = function (
+    id,
+    botao
+) {
+
+    abas.forEach((aba) => {
+
+        const ativa =
+            aba.id === id;
+
+        aba.classList.toggle(
+            "ativa",
+            ativa
+        );
+
+        aba.hidden =
+            !ativa;
+
+    });
+
+
+    menuButtons.forEach((btn) => {
+
+        const ativo =
+            btn === botao ||
+            btn.getAttribute(
+                "aria-controls"
+            ) === id;
+
+        btn.classList.toggle(
+            "active",
+            ativo
+        );
+
+        btn.setAttribute(
+            "aria-selected",
+            ativo
+                ? "true"
+                : "false"
+        );
+
+        btn.setAttribute(
+            "tabindex",
+            ativo
+                ? "0"
+                : "-1"
+        );
+
+    });
+
+
+    const destino =
+        document.getElementById(id);
+
+    if (destino) {
+
+        destino.scrollIntoView({
+            behavior:
+                document.body.classList.contains(
+                    "sem-animacao"
+                )
+                    ? "auto"
+                    : "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    anunciar(
+        "Seção aberta: " +
+        (
+            botao
+                ? botao.innerText.trim()
+                : id
+        )
+    );
+
+};
+
+
+/* =========================================================
+   MENU COM TECLADO
+========================================================= */
+
+menuButtons.forEach(
+    (botao, index) => {
+
+        botao.addEventListener(
+            "keydown",
+            (event) => {
+
+                let novoIndex =
+                    index;
+
+                if (
+                    event.key === "ArrowRight"
+                ) {
+
+                    novoIndex =
+                        (
+                            index + 1
+                        ) %
+                        menuButtons.length;
+
+                }
+
+                if (
+                    event.key === "ArrowLeft"
+                ) {
+
+                    novoIndex =
+                        (
+                            index - 1 +
+                            menuButtons.length
+                        ) %
+                        menuButtons.length;
+
+                }
+
+                if (
+                    event.key === "Home"
+                ) {
+
+                    novoIndex = 0;
+
+                }
+
+                if (
+                    event.key === "End"
+                ) {
+
+                    novoIndex =
+                        menuButtons.length - 1;
+
+                }
+
+                if (
+                    novoIndex !== index
+                ) {
+
+                    event.preventDefault();
+
+                    const novoBotao =
+                        menuButtons[
+                            novoIndex
+                        ];
+
+                    novoBotao.focus();
+
+                    abrirAba(
+                        novoBotao.getAttribute(
+                            "aria-controls"
+                        ),
+                        novoBotao
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ROLAGEM
+========================================================= */
+
+window.scrollPara = function (id) {
+
+    const elemento =
+        document.getElementById(id);
+
+    if (!elemento) return;
+
+    elemento.scrollIntoView({
+        behavior:
             document.body.classList.contains(
                 "sem-animacao"
             )
-        ) {
+                ? "auto"
+                : "smooth",
+        block: "start"
+    });
 
-            anunciar(
-                "As animações estão reduzidas. Ative as animações para girar o Disco de Newton."
-            );
+    setTimeout(() => {
 
-            return;
-
-        }
-
-        disco.classList.add(
-            "girando"
+        elemento.setAttribute(
+            "tabindex",
+            "-1"
         );
 
-        if (discoBtn) {
+        elemento.focus({
+            preventScroll: true
+        });
 
-            discoBtn.setAttribute(
-                "aria-pressed",
-                "true"
-            );
+    }, 500);
 
-            discoBtn.setAttribute(
-                "aria-label",
-                "Parar rotação do Disco de Newton"
-            );
+};
 
-            discoBtn.textContent =
-                "⏸️ GIRANDO...";
 
-        }
+/* =========================================================
+   VOLTAR AO TOPO
+========================================================= */
 
-        if (discoStatus) {
+function atualizarTopButton() {
 
-            discoStatus.textContent =
-                "O Disco de Newton está girando.";
-
-        }
-
-        anunciar(
-            "O Disco de Newton está girando."
-        );
-
-    };
-
-
-    window.pararDisco = function () {
-
-        if (!disco) {
-            return;
-        }
-
-        disco.classList.remove(
-            "girando"
-        );
-
-        if (discoBtn) {
-
-            discoBtn.setAttribute(
-                "aria-pressed",
-                "false"
-            );
-
-            discoBtn.setAttribute(
-                "aria-label",
-                "Iniciar rotação do Disco de Newton"
-            );
-
-            discoBtn.textContent =
-                "⚡ GIRAR DISCO";
-
-        }
-
-        if (discoStatus) {
-
-            discoStatus.textContent =
-                "O Disco de Newton está parado.";
-
-        }
-
-        anunciar(
-            "O Disco de Newton está parado."
-        );
-
-    };
-
-
-    /* =====================================================
-       TAMANHO DA FONTE
-    ===================================================== */
-
-    let escalaFonte =
-        Number(
-            localStorage.getItem(
-                "pokeopticaFonte"
-            )
-        ) || 1;
-
-
-    function atualizarFonte(
-        anunciarMudanca = true
-    ) {
-
-        escalaFonte =
-            Math.max(
-                0.8,
-                Math.min(
-                    1.3,
-                    escalaFonte
-                )
-            );
-
-
-        document.documentElement.style.setProperty(
-            "--page-scale",
-            escalaFonte
-        );
-
-
-        document.body.style.setProperty(
-            "--page-scale",
-            escalaFonte
-        );
-
-
-        const porcentagem =
-            Math.round(
-                escalaFonte * 100
-            );
-
-
-        if (nivelFonte) {
-
-            nivelFonte.textContent =
-                `${porcentagem}%`;
-
-        }
-
-
-        localStorage.setItem(
-            "pokeopticaFonte",
-            escalaFonte
-        );
-
-
-        if (anunciarMudanca) {
-
-            anunciar(
-                `Tamanho da fonte em ${porcentagem} por cento.`
-            );
-
-        }
-
-    }
-
-
-    if (aumentarFonte) {
-
-        aumentarFonte.addEventListener(
-            "click",
-            () => {
-
-                escalaFonte += 0.1;
-
-                atualizarFonte();
-
-            }
-        );
-
-    }
-
-
-    if (diminuirFonte) {
-
-        diminuirFonte.addEventListener(
-            "click",
-            () => {
-
-                escalaFonte -= 0.1;
-
-                atualizarFonte();
-
-            }
-        );
-
-    }
-
-
-    atualizarFonte(false);
-
-
-    /* =====================================================
-       CONTRASTE
-    ===================================================== */
-
-    let contrasteAtivo =
-        localStorage.getItem(
-            "pokeopticaContraste"
-        ) === "true";
-
-
-    function atualizarContraste(
-        anunciarMudanca = true
-    ) {
-
-        document.body.classList.toggle(
-            "alto-contraste",
-            contrasteAtivo
-        );
-
-
-        if (contrasteBtn) {
-
-            contrasteBtn.setAttribute(
-                "aria-pressed",
-                contrasteAtivo
-                    ? "true"
-                    : "false"
-            );
-
-            contrasteBtn.setAttribute(
-                "aria-label",
-                contrasteAtivo
-                    ? "Desativar contraste elevado"
-                    : "Ativar contraste elevado"
-            );
-
-        }
-
-
-        localStorage.setItem(
-            "pokeopticaContraste",
-            contrasteAtivo
-        );
-
-
-        if (anunciarMudanca) {
-
-            anunciar(
-                contrasteAtivo
-                    ? "Contraste elevado ativado."
-                    : "Contraste elevado desativado."
-            );
-
-        }
-
-    }
-
-
-    if (contrasteBtn) {
-
-        contrasteBtn.addEventListener(
-            "click",
-            () => {
-
-                contrasteAtivo =
-                    !contrasteAtivo;
-
-                atualizarContraste();
-
-            }
-        );
-
-    }
-
-
-    atualizarContraste(false);
-
-
-    /* =====================================================
-       ANIMAÇÕES
-    ===================================================== */
-
-    let animacoesReduzidas =
-        localStorage.getItem(
-            "pokeopticaAnimacoes"
-        ) === "true";
-
-
-    const preferenciaSistema =
-        window.matchMedia &&
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
+    if (!topButton) return;
 
     if (
-        !localStorage.getItem(
-            "pokeopticaAnimacoes"
-        ) &&
-        preferenciaSistema
+        window.scrollY > 400
     ) {
 
-        animacoesReduzidas = true;
+        topButton.classList.add(
+            "mostrar"
+        );
+
+        topButton.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    } else {
+
+        topButton.classList.remove(
+            "mostrar"
+        );
+
+        topButton.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
     }
 
+}
 
-    function atualizarAnimacoes(
-        anunciarMudanca = true
+
+window.addEventListener(
+    "scroll",
+    atualizarTopButton,
+    {
+        passive: true
+    }
+);
+
+
+atualizarTopButton();
+
+
+window.voltarTopo = function () {
+
+    window.scrollTo({
+        top: 0,
+        behavior:
+            document.body.classList.contains(
+                "sem-animacao"
+            )
+                ? "auto"
+                : "smooth"
+    });
+
+    setTimeout(() => {
+
+        const principal =
+            document.getElementById(
+                "conteudo-principal"
+            );
+
+        if (principal) {
+
+            principal.focus();
+
+        }
+
+    }, 450);
+
+    anunciar(
+        "Voltamos ao topo da página."
+    );
+
+};
+
+
+/* =========================================================
+   DISCO DE NEWTON
+========================================================= */
+
+window.girarDisco = function () {
+
+    if (!disco) return;
+
+    if (
+        document.body.classList.contains(
+            "sem-animacao"
+        )
     ) {
 
-        document.body.classList.toggle(
-            "sem-animacao",
-            animacoesReduzidas
+        anunciar(
+            "As animações estão desativadas. Ative as animações para girar o Disco de Newton."
         );
 
-
-        if (animacaoBtn) {
-
-            animacaoBtn.setAttribute(
-                "aria-pressed",
-                animacoesReduzidas
-                    ? "true"
-                    : "false"
-            );
-
-            animacaoBtn.setAttribute(
-                "aria-label",
-                animacoesReduzidas
-                    ? "Ativar animações"
-                    : "Reduzir animações"
-            );
-
-        }
-
-
-        localStorage.setItem(
-            "pokeopticaAnimacoes",
-            animacoesReduzidas
-        );
-
-
-        if (
-            animacoesReduzidas &&
-            disco
-        ) {
-
-            disco.classList.remove(
-                "girando"
-            );
-
-            if (discoBtn) {
-
-                discoBtn.setAttribute(
-                    "aria-pressed",
-                    "false"
-                );
-
-                discoBtn.setAttribute(
-                    "aria-label",
-                    "Iniciar rotação do Disco de Newton"
-                );
-
-                discoBtn.textContent =
-                    "⚡ GIRAR DISCO";
-
-            }
-
-            if (discoStatus) {
-
-                discoStatus.textContent =
-                    "Animações reduzidas. Disco parado.";
-
-            }
-
-        }
-
-
-        if (anunciarMudanca) {
-
-            anunciar(
-                animacoesReduzidas
-                    ? "Animações reduzidas."
-                    : "Animações restauradas."
-            );
-
-        }
+        return;
 
     }
 
+    disco.classList.add(
+        "girando"
+    );
 
-    if (animacaoBtn) {
+    discoBtn.setAttribute(
+        "aria-pressed",
+        "true"
+    );
 
-        animacaoBtn.addEventListener(
-            "click",
-            () => {
+    discoBtn.setAttribute(
+        "aria-label",
+        "Parar rotação do Disco de Newton"
+    );
 
-                animacoesReduzidas =
-                    !animacoesReduzidas;
+    discoBtn.innerHTML =
+        "⏸️ GIRANDO...";
 
-                atualizarAnimacoes();
+    discoStatus.textContent =
+        "O Disco de Newton está girando.";
 
-            }
+    anunciar(
+        "O Disco de Newton está girando."
+    );
+
+};
+
+
+window.pararDisco = function () {
+
+    if (!disco) return;
+
+    disco.classList.remove(
+        "girando"
+    );
+
+    discoBtn.setAttribute(
+        "aria-pressed",
+        "false"
+    );
+
+    discoBtn.setAttribute(
+        "aria-label",
+        "Iniciar rotação do Disco de Newton"
+    );
+
+    discoBtn.innerHTML =
+        "⚡ GIRAR DISCO";
+
+    discoStatus.textContent =
+        "O Disco de Newton está parado.";
+
+    anunciar(
+        "O Disco de Newton está parado."
+    );
+
+};
+
+
+/* =========================================================
+   TAMANHO DA FONTE
+========================================================= */
+
+let escalaFonte =
+    Number(
+        localStorage.getItem(
+            "pokeopticaFonte"
+        )
+    ) || 1;
+
+
+/*
+    Guardamos o tamanho original de cada elemento.
+*/
+
+function guardarTamanhosOriginais() {
+
+    const elementos =
+        document.querySelectorAll(
+            "h1,h2,h3,h4,h5,h6,p,span,button,a,small,strong,b,li"
         );
 
-    }
-
-
-    atualizarAnimacoes(false);
-
-
-    /* =====================================================
-       RESTAURAR CONFIGURAÇÕES
-    ===================================================== */
-
-    if (resetAcessibilidade) {
-
-        resetAcessibilidade.addEventListener(
-            "click",
-            () => {
-
-                escalaFonte = 1;
-                contrasteAtivo = false;
-                animacoesReduzidas = false;
-
-                atualizarFonte(false);
-                atualizarContraste(false);
-                atualizarAnimacoes(false);
-
-                anunciar(
-                    "Configurações de acessibilidade restauradas."
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       FOCO POR TECLADO
-    ===================================================== */
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
+    elementos.forEach(
+        (elemento) => {
 
             if (
-                event.key === "Tab"
+                !elemento.dataset.fontOriginal
             ) {
 
-                document.body.classList.add(
-                    "usando-teclado"
+                elemento.dataset.fontOriginal =
+                    window.getComputedStyle(
+                        elemento
+                    ).fontSize;
+
+            }
+
+        }
+    );
+
+}
+
+
+function atualizarFonte(
+    anunciarMudanca = true
+) {
+
+    escalaFonte =
+        Math.max(
+            0.8,
+            Math.min(
+                1.4,
+                escalaFonte
+            )
+        );
+
+
+    guardarTamanhosOriginais();
+
+
+    const elementos =
+        document.querySelectorAll(
+            "h1,h2,h3,h4,h5,h6,p,span,button,a,small,strong,b,li"
+        );
+
+
+    elementos.forEach(
+        (elemento) => {
+
+            const original =
+                parseFloat(
+                    elemento.dataset.fontOriginal
                 );
+
+            if (
+                Number.isFinite(
+                    original
+                )
+            ) {
+
+                elemento.style.fontSize =
+                    (
+                        original *
+                        escalaFonte
+                    ) +
+                    "px";
 
             }
 
@@ -3537,44 +3166,530 @@
     );
 
 
-    document.addEventListener(
-        "mousedown",
-        () => {
+    const porcentagem =
+        Math.round(
+            escalaFonte * 100
+        );
 
-            document.body.classList.remove(
+
+    nivelFonte.textContent =
+        porcentagem + "%";
+
+
+    localStorage.setItem(
+        "pokeopticaFonte",
+        escalaFonte
+    );
+
+
+    if (anunciarMudanca) {
+
+        anunciar(
+            "Tamanho da fonte em " +
+            porcentagem +
+            " por cento."
+        );
+
+    }
+
+}
+
+
+aumentarFonte.addEventListener(
+    "click",
+    () => {
+
+        escalaFonte += 0.1;
+
+        atualizarFonte();
+
+    }
+);
+
+
+diminuirFonte.addEventListener(
+    "click",
+    () => {
+
+        escalaFonte -= 0.1;
+
+        atualizarFonte();
+
+    }
+);
+
+
+setTimeout(() => {
+
+    atualizarFonte(false);
+
+}, 100);
+
+
+/* =========================================================
+   CONTRASTE
+========================================================= */
+
+let contrasteAtivo =
+    localStorage.getItem(
+        "pokeopticaContraste"
+    ) === "true";
+
+
+function atualizarContraste(
+    anunciarMudanca = true
+) {
+
+    document.body.classList.toggle(
+        "alto-contraste",
+        contrasteAtivo
+    );
+
+
+    contrasteBtn.setAttribute(
+        "aria-pressed",
+        contrasteAtivo
+            ? "true"
+            : "false"
+    );
+
+
+    contrasteBtn.setAttribute(
+        "aria-label",
+        contrasteAtivo
+            ? "Desativar contraste elevado"
+            : "Ativar contraste elevado"
+    );
+
+
+    contrasteBtn.innerHTML =
+        contrasteAtivo
+            ? "👁️ Contraste ON"
+            : "👁️ Contraste";
+
+
+    localStorage.setItem(
+        "pokeopticaContraste",
+        contrasteAtivo
+    );
+
+
+    if (anunciarMudanca) {
+
+        anunciar(
+            contrasteAtivo
+                ? "Contraste elevado ativado."
+                : "Contraste elevado desativado."
+        );
+
+    }
+
+}
+
+
+contrasteBtn.addEventListener(
+    "click",
+    () => {
+
+        contrasteAtivo =
+            !contrasteAtivo;
+
+        atualizarContraste();
+
+    }
+);
+
+
+atualizarContraste(false);
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+let animacoesReduzidas =
+    localStorage.getItem(
+        "pokeopticaAnimacoes"
+    ) === "true";
+
+
+function atualizarAnimacoes(
+    anunciarMudanca = true
+) {
+
+    document.body.classList.toggle(
+        "sem-animacao",
+        animacoesReduzidas
+    );
+
+
+    animacaoBtn.setAttribute(
+        "aria-pressed",
+        animacoesReduzidas
+            ? "true"
+            : "false"
+    );
+
+
+    animacaoBtn.setAttribute(
+        "aria-label",
+        animacoesReduzidas
+            ? "Ativar animações"
+            : "Desativar animações"
+    );
+
+
+    animacaoBtn.innerHTML =
+        animacoesReduzidas
+            ? "🎞️ Animações OFF"
+            : "🎞️ Animações";
+
+
+    localStorage.setItem(
+        "pokeopticaAnimacoes",
+        animacoesReduzidas
+    );
+
+
+    if (
+        animacoesReduzidas
+    ) {
+
+        pararDisco();
+
+    }
+
+
+    if (anunciarMudanca) {
+
+        anunciar(
+            animacoesReduzidas
+                ? "Animações desativadas."
+                : "Animações ativadas."
+        );
+
+    }
+
+}
+
+
+animacaoBtn.addEventListener(
+    "click",
+    () => {
+
+        animacoesReduzidas =
+            !animacoesReduzidas;
+
+        atualizarAnimacoes();
+
+    }
+);
+
+
+atualizarAnimacoes(false);
+
+
+/* =========================================================
+   LEITOR DE TEXTO
+========================================================= */
+
+function obterTextoDaAbaAtual() {
+
+    const abaAtual =
+        document.querySelector(
+            ".aba.ativa"
+        );
+
+    if (!abaAtual) {
+
+        return "";
+
+    }
+
+
+    const clone =
+        abaAtual.cloneNode(true);
+
+
+    clone
+        .querySelectorAll(
+            ".disco-controls, .spectrum, .spectrum-legend, .video-preview"
+        )
+        .forEach(
+            (elemento) => {
+
+                elemento.remove();
+
+            }
+        );
+
+
+    return clone.innerText
+        .replace(
+            /\s+/g,
+            " "
+        )
+        .trim();
+
+}
+
+
+function iniciarLeitura() {
+
+    if (
+        !("speechSynthesis" in window)
+    ) {
+
+        anunciar(
+            "Seu navegador não oferece leitura em voz alta."
+        );
+
+        return;
+
+    }
+
+
+    speechSynthesis.cancel();
+
+
+    const texto =
+        obterTextoDaAbaAtual();
+
+
+    if (!texto) {
+
+        anunciar(
+            "Não foi encontrado conteúdo para leitura."
+        );
+
+        return;
+
+    }
+
+
+    const fala =
+        new SpeechSynthesisUtterance(
+            texto
+        );
+
+
+    fala.lang =
+        "pt-BR";
+
+    fala.rate =
+        0.9;
+
+    fala.pitch =
+        1;
+
+
+    fala.onstart = () => {
+
+        lerPaginaBtn.setAttribute(
+            "aria-pressed",
+            "true"
+        );
+
+        lerPaginaBtn.innerHTML =
+            "🔊 Lendo...";
+
+        anunciar(
+            "Leitura da seção iniciada."
+        );
+
+    };
+
+
+    fala.onend = () => {
+
+        lerPaginaBtn.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
+        lerPaginaBtn.innerHTML =
+            "🔊 Ler página";
+
+    };
+
+
+    fala.onerror = () => {
+
+        lerPaginaBtn.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
+        lerPaginaBtn.innerHTML =
+            "🔊 Ler página";
+
+        anunciar(
+            "Não foi possível continuar a leitura."
+        );
+
+    };
+
+
+    speechSynthesis.speak(
+        fala
+    );
+
+}
+
+
+function pararLeitura() {
+
+    if (
+        "speechSynthesis" in window
+    ) {
+
+        speechSynthesis.cancel();
+
+    }
+
+
+    lerPaginaBtn.setAttribute(
+        "aria-pressed",
+        "false"
+    );
+
+    lerPaginaBtn.innerHTML =
+        "🔊 Ler página";
+
+
+    anunciar(
+        "Leitura interrompida."
+    );
+
+}
+
+
+lerPaginaBtn.addEventListener(
+    "click",
+    iniciarLeitura
+);
+
+
+pararLeituraBtn.addEventListener(
+    "click",
+    pararLeitura
+);
+
+
+/* =========================================================
+   RESTAURAR
+========================================================= */
+
+resetAcessibilidade.addEventListener(
+    "click",
+    () => {
+
+        escalaFonte = 1;
+
+        contrasteAtivo =
+            false;
+
+        animacoesReduzidas =
+            false;
+
+
+        localStorage.removeItem(
+            "pokeopticaFonte"
+        );
+
+        localStorage.removeItem(
+            "pokeopticaContraste"
+        );
+
+        localStorage.removeItem(
+            "pokeopticaAnimacoes"
+        );
+
+
+        atualizarFonte(false);
+
+        atualizarContraste(false);
+
+        atualizarAnimacoes(false);
+
+
+        anunciar(
+            "Configurações de acessibilidade restauradas."
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FOCO DE TECLADO
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Tab"
+        ) {
+
+            document.body.classList.add(
                 "usando-teclado"
             );
 
         }
-    );
+
+    }
+);
 
 
-    /* =====================================================
-       CORREÇÃO DE LINKS EXTERNOS
-    ===================================================== */
+document.addEventListener(
+    "mousedown",
+    () => {
 
-    document
-        .querySelectorAll(
-            'a[target="_blank"]'
-        )
-        .forEach((link) => {
+        document.body.classList.remove(
+            "usando-teclado"
+        );
 
-            link.setAttribute(
-                "rel",
-                "noopener noreferrer"
-            );
-
-        });
+    }
+);
 
 
-    /* =====================================================
-       INICIALIZAÇÃO
-    ===================================================== */
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO DO SISTEMA
+========================================================= */
 
-    abas.forEach((aba) => {
+if (
+    window.matchMedia &&
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches
+) {
+
+    animacoesReduzidas =
+        true;
+
+    atualizarAnimacoes(false);
+
+}
+
+
+/* =========================================================
+   INICIALIZAÇÃO DAS ABAS
+========================================================= */
+
+abas.forEach(
+    (aba) => {
+
+        aba.setAttribute(
+            "role",
+            "tabpanel"
+        );
 
         if (
-            aba.classList.contains("ativa")
+            aba.classList.contains(
+                "ativa"
+            )
         ) {
 
             aba.hidden = false;
@@ -3585,20 +3700,8 @@
 
         }
 
-        aba.setAttribute(
-            "tabindex",
-            "-1"
-        );
-
-    });
-
-
-    document.body.classList.add(
-        "intro-aberta"
-    );
-
-
-})();
+    }
+);
 
 </script>
 

@@ -14,19 +14,178 @@ html {
 
 body {
     font-family: "Poppins", sans-serif;
-
     background: #080b16;
-
     color: #f4f7ff;
-
     overflow-x: hidden;
-
-    --page-scale: 1;
 }
 
 
 /* =========================================================
-   ABERTURA POKÉMON
+   ACESSIBILIDADE
+========================================================= */
+
+.skip-link {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+
+    z-index: 100001;
+
+    padding: 13px 18px;
+
+    background: #ffffff;
+    color: #000000;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transform: translateY(-150px);
+
+    transition: transform .2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   PAINEL DE ACESSIBILIDADE
+========================================================= */
+
+.accessibility-panel {
+    position: fixed;
+
+    left: 15px;
+    bottom: 15px;
+
+    z-index: 10000;
+
+    max-width: calc(100vw - 30px);
+
+    padding: 13px 15px;
+
+    border-radius: 15px;
+
+    background: rgba(8, 11, 22, .97);
+
+    border: 1px solid rgba(255, 255, 255, .17);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .45);
+
+    backdrop-filter: blur(15px);
+
+    color: white;
+}
+
+.accessibility-panel > strong {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #4db8ff;
+
+    font-family: "Orbitron";
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+.accessibility-controls {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.accessibility-controls button,
+.accessibility-controls span {
+    min-height: 42px;
+
+    padding: 9px 12px;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(255, 255, 255, .17);
+
+    background: #111827;
+
+    color: white;
+
+    font-family: "Poppins";
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.accessibility-controls button:hover {
+    border-color: #4db8ff;
+}
+
+.accessibility-controls span {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 56px;
+
+    cursor: default;
+
+    color: #4db8ff;
+}
+
+
+/* =========================================================
+   FOCO VISÍVEL
+========================================================= */
+
+:focus-visible {
+    outline: 3px solid #ffffff !important;
+
+    outline-offset: 4px !important;
+}
+
+body.usando-teclado :focus-visible {
+    box-shadow:
+        0 0 0 5px #0077ff !important;
+}
+
+
+/* =========================================================
+   ABERTURA
 ========================================================= */
 
 #pokemonIntro {
@@ -79,8 +238,6 @@ body {
         );
 
     background-size: 45px 45px;
-
-    pointer-events: none;
 }
 
 .intro-content {
@@ -104,6 +261,7 @@ body {
 
     from {
         opacity: 0;
+
         transform:
             translateY(30px)
             scale(.9);
@@ -111,10 +269,12 @@ body {
 
     to {
         opacity: 1;
+
         transform:
             translateY(0)
             scale(1);
     }
+
 }
 
 .intro-pokeball {
@@ -141,7 +301,10 @@ body {
         0 0 90px rgba(239,35,60,.15);
 
     animation:
-        introPokeball 2s ease-in-out infinite;
+        introPokeball
+        2s
+        ease-in-out
+        infinite;
 }
 
 @keyframes introPokeball {
@@ -195,11 +358,7 @@ body {
     font-family: "Orbitron";
 
     font-size:
-        clamp(
-            45px,
-            8vw,
-            80px
-        );
+        clamp(45px, 8vw, 80px);
 
     margin: 10px 0;
 
@@ -235,7 +394,9 @@ body {
     border-radius: 50%;
 
     animation:
-        introLoading 1s infinite;
+        introLoading
+        1s
+        infinite;
 }
 
 .intro-loading span:nth-child(2) {
@@ -266,7 +427,8 @@ body {
 }
 
 #entrarSite {
-    border: 1px solid
+    border:
+        1px solid
         rgba(255,255,255,.2);
 
     background:
@@ -303,10 +465,6 @@ body {
     transform:
         translateY(-4px)
         scale(1.03);
-
-    box-shadow:
-        0 15px 45px
-        rgba(239,35,60,.4);
 }
 
 #pokemonIntro.sair {
@@ -491,7 +649,9 @@ body::before {
 
     background: #080b16;
 
-    border: 4px solid #f5f7fb;
+    border:
+        4px solid
+        #f5f7fb;
 
     border-radius: 50%;
 
@@ -616,7 +776,9 @@ body::before {
     display: block;
 
     animation:
-        aparecer .45s ease;
+        aparecer
+        .45s
+        ease;
 }
 
 @keyframes aparecer {
@@ -797,7 +959,10 @@ body::before {
         translate(-50%,-50%);
 
     animation:
-        orbitar 12s linear infinite;
+        orbitar
+        12s
+        linear
+        infinite;
 }
 
 .orbit-1 {
@@ -822,11 +987,9 @@ body::before {
 @keyframes orbitar {
 
     to {
-
         transform:
             translate(-50%,-50%)
             rotate(360deg);
-
     }
 
 }
@@ -1187,10 +1350,6 @@ body::before {
         #4db8ff;
 
     color: #4db8ff;
-
-    box-shadow:
-        0 0 50px
-        rgba(77,184,255,.15);
 }
 
 .scientist-info {
@@ -1415,10 +1574,6 @@ body::before {
             #20283c,
             #111827
         ) !important;
-
-    border:
-        1px solid
-        rgba(255,255,255,.2) !important;
 }
 
 .disco-status {
@@ -1429,8 +1584,6 @@ body::before {
     color: #9da9c0;
 
     font-size: 13px;
-
-    margin-top: -15px;
 }
 
 .spectrum {
@@ -1488,7 +1641,7 @@ body::before {
 
     border:
         1px solid
-        #fff;
+        white;
 
     flex-shrink: 0;
 }
@@ -2233,7 +2386,9 @@ body::before {
 
 .robot-image-card p {
     padding:
-        12px 15px 16px;
+        12px
+        15px
+        16px;
 
     color: #8f9ab0;
 
@@ -2305,7 +2460,10 @@ body::before {
         rgba(77,184,255,.5);
 
     animation:
-        pwm 1s infinite alternate;
+        pwm
+        1s
+        infinite
+        alternate;
 }
 
 .wave span:nth-child(1) {
@@ -2636,7 +2794,6 @@ footer p {
     position: fixed;
 
     right: 25px;
-
     bottom: 25px;
 
     width: 54px;
@@ -2690,214 +2847,7 @@ footer p {
 
 
 /* =========================================================
-   ACESSIBILIDADE
-========================================================= */
-
-.skip-link {
-    position: fixed;
-
-    top: 10px;
-
-    left: 10px;
-
-    z-index: 100000;
-
-    background: #ffffff;
-
-    color: #080b16;
-
-    padding: 12px 18px;
-
-    border-radius: 8px;
-
-    font-weight: 700;
-
-    text-decoration: none;
-
-    transform:
-        translateY(-150px);
-
-    transition:
-        transform .2s ease;
-}
-
-.skip-link:focus {
-    transform:
-        translateY(0);
-}
-
-
-/* =========================================================
-   PAINEL DE ACESSIBILIDADE
-========================================================= */
-
-.accessibility-panel {
-    position: fixed;
-
-    left: 15px;
-
-    bottom: 15px;
-
-    z-index: 9998;
-
-    max-width:
-        calc(100vw - 30px);
-
-    padding: 12px 15px;
-
-    border-radius: 14px;
-
-    background:
-        rgba(8,11,22,.96);
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.35);
-
-    backdrop-filter: blur(15px);
-
-    color: white;
-}
-
-.accessibility-panel > strong {
-    display: block;
-
-    margin-bottom: 8px;
-
-    font-family: "Orbitron";
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
-
-    color: #4db8ff;
-}
-
-.accessibility-controls {
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    flex-wrap: wrap;
-}
-
-.accessibility-controls button,
-.accessibility-controls #nivelFonte {
-    min-height: 40px;
-
-    border-radius: 9px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    background: #111827;
-
-    color: white;
-
-    padding: 8px 11px;
-
-    font-family: "Poppins";
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.accessibility-controls button:hover {
-    border-color: #4db8ff;
-
-    transform:
-        translateY(-1px);
-}
-
-.accessibility-controls #nivelFonte {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-width: 55px;
-
-    cursor: default;
-
-    color: #4db8ff;
-}
-
-
-/* =========================================================
-   FOCO VISÍVEL
-========================================================= */
-
-:focus {
-    outline:
-        3px solid
-        #ffffff;
-
-    outline-offset: 4px;
-}
-
-body.usando-teclado :focus {
-    outline:
-        3px solid
-        #ffffff;
-
-    outline-offset: 5px;
-
-    box-shadow:
-        0 0 0 5px
-        #0077ff;
-}
-
-.menu-btn:focus-visible,
-.hero-buttons button:focus-visible,
-.pokemon-button:focus-visible,
-.youtube-button:focus-visible,
-#entrarSite:focus-visible,
-#topButton:focus-visible,
-.accessibility-controls button:focus-visible {
-    outline:
-        3px solid
-        #fff;
-
-    outline-offset: 4px;
-}
-
-
-/* =========================================================
-   LEITOR DE TELA
-========================================================= */
-
-.sr-only {
-    position: absolute;
-
-    width: 1px;
-
-    height: 1px;
-
-    padding: 0;
-
-    margin: -1px;
-
-    overflow: hidden;
-
-    clip: rect(0,0,0,0);
-
-    white-space: nowrap;
-
-    border: 0;
-}
-
-
-/* =========================================================
-   CONTRASTE ELEVADO
+   ALTO CONTRASTE
 ========================================================= */
 
 body.alto-contraste {
@@ -2906,20 +2856,19 @@ body.alto-contraste {
     color: #fff !important;
 }
 
-body.alto-contraste::before {
-    display: none;
-}
-
+body.alto-contraste::before,
 body.alto-contraste .background-grid {
     display: none;
 }
 
 body.alto-contraste .topo,
 body.alto-contraste .menu,
-body.alto-contraste footer {
+body.alto-contraste footer,
+body.alto-contraste .accessibility-panel {
     background: #000 !important;
 
-    border-color: #fff !important;
+    border-color:
+        #fff !important;
 
     backdrop-filter: none;
 }
@@ -2974,8 +2923,7 @@ body.alto-contraste .youtube-button {
 
     color: #000 !important;
 
-    border:
-        2px solid
+    border-color:
         #fff !important;
 }
 
@@ -3018,47 +2966,22 @@ body.alto-contraste .components span {
         #fff !important;
 }
 
-body.alto-contraste .connection b {
-    color: #fff !important;
-}
-
-body.alto-contraste .accessibility-panel {
-    background: #000 !important;
-
-    border:
-        2px solid
-        #fff !important;
-}
-
-body.alto-contraste .accessibility-panel > strong {
-    color: #fff !important;
-}
-
 
 /* =========================================================
-   REDUÇÃO/DESATIVAÇÃO DE ANIMAÇÕES
+   ANIMAÇÕES DESATIVADAS
 ========================================================= */
 
 body.sem-animacao *,
 body.sem-animacao *::before,
 body.sem-animacao *::after {
+    animation: none !important;
 
-    animation-duration:
-        0.001ms !important;
-
-    animation-iteration-count:
-        1 !important;
-
-    transition-duration:
-        0.001ms !important;
-
-    scroll-behavior:
-        auto !important;
+    transition: none !important;
 }
 
-body.sem-animacao .orbit,
-body.sem-animacao #discoNewton.girando {
-    animation: none !important;
+body.sem-animacao,
+body.sem-animacao html {
+    scroll-behavior: auto !important;
 }
 
 body.sem-animacao .menu-btn:hover,
@@ -3067,13 +2990,14 @@ body.sem-animacao .experiment-card:hover,
 body.sem-animacao .technology-card:hover,
 body.sem-animacao .hero-buttons button:hover,
 body.sem-animacao .pokemon-button:hover,
-body.sem-animacao .youtube-button:hover {
+body.sem-animacao .youtube-button:hover,
+body.sem-animacao #topButton:hover {
     transform: none !important;
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVIDADE
 ========================================================= */
 
 @media(max-width:900px) {
@@ -3088,7 +3012,8 @@ body.sem-animacao .youtube-button:hover {
     .robot-project,
     .pwm-box,
     .rgb-project {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .robot-images {
@@ -3225,17 +3150,14 @@ body.sem-animacao .youtube-button:hover {
 
     .solution-header,
     .chroma-header {
-        flex-direction: column;
+        flex-direction:
+            column;
 
         text-align: center;
     }
 
     .scientist-info {
         padding: 30px;
-    }
-
-    .disco-layout {
-        gap: 30px;
     }
 
     #discoNewton {
@@ -3280,15 +3202,14 @@ body.sem-animacao .youtube-button:hover {
     }
 
     .accessibility-panel {
-        left: 8px;
+        left: 6px;
+        right: 6px;
 
-        right: 8px;
-
-        bottom: 8px;
+        bottom: 6px;
 
         max-width: none;
 
-        padding: 10px;
+        padding: 9px;
     }
 
     .accessibility-panel > strong {
@@ -3300,8 +3221,11 @@ body.sem-animacao .youtube-button:hover {
     }
 
     .accessibility-controls button,
-    .accessibility-controls #nivelFonte {
+    .accessibility-controls span {
         min-height: 44px;
+
+        padding:
+            8px 10px;
     }
 
     .spectrum-legend {
@@ -3326,9 +3250,9 @@ body.sem-animacao .youtube-button:hover {
     }
 
     #topButton {
-        right: 15px;
+        right: 14px;
 
-        bottom: 135px;
+        bottom: 180px;
     }
 
 }
@@ -3347,14 +3271,9 @@ body.sem-animacao .youtube-button:hover {
     *,
     *::before,
     *::after {
-        animation-duration:
-            0.001ms !important;
+        animation: none !important;
 
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            0.001ms !important;
+        transition: none !important;
     }
 
 }

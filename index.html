@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,29 +5,253 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Um Novo Dia</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
-    <section id="capa">
-        <div class="teia teia1">🕸</div>
-        <div class="teia teia2">🕸</div>
+    <!-- CAPA -->
+    <section id="capa" class="cover">
 
-        <div class="conteudo">
-            <p class="subtitulo">UMA NOVA ERA COMEÇA</p>
+        <div class="cover-copy">
+            <p class="eyebrow">PROJETO INTEGRADOR</p>
+
             <h1>UM <span>NOVO</span><br>DIA</h1>
-            <p class="descricao">CIÊNCIA • TECNOLOGIA • INOVAÇÃO</p>
-            <button id="entrarBtn">ENTRAR</button>
+
+            <p>Grandes ideias começam com um primeiro movimento.</p>
+
+            <button id="entrarBtn">ENTRAR ↗</button>
+        </div>
+
+        <!-- Pessoa vermelha balançando em um fio -->
+        <svg class="swing-art" viewBox="0 0 700 500">
+            <path class="anchor-thread" d="M510 0 V75"/>
+
+            <g class="swinger">
+                <path class="rope" d="M510 75 L0 0"/>
+
+                <g class="person">
+                    <circle class="head" cx="0" cy="-57" r="17"/>
+
+                    <path class="body"
+                        d="M-14 -39 Q0 -49 14 -37 L17 12 Q0 28 -17 12Z"/>
+
+                    <path class="arm" d="M-9 -31 Q-28 -60 -2 -82"/>
+                    <path class="arm" d="M12 -29 Q45 -48 76 -65"/>
+
+                    <path class="leg" d="M-8 12 Q-43 34 -76 64"/>
+                    <path class="leg" d="M7 12 Q38 34 61 57"/>
+
+                    <path class="hand" d="M-2 -82 l12 -4 M76 -65 l12 -7"/>
+                    <path class="mask" d="M-12 -60 Q0 -66 12 -60"/>
+                </g>
+            </g>
+        </svg>
+
+        <div class="cover-footer">
+            FÍSICA <i></i> ROBÓTICA <i></i> PROGRAMAÇÃO
         </div>
     </section>
 
-    <div id="fio"></div>
-    <div id="aranha">🕷️</div>
 
-    <main id="site">
-        <h2>Bem-vindo a um novo dia!</h2>
-        <p>Explore nosso universo de Física, Robótica e Programação.</p>
+    <!-- CONTEÚDO DO SITE -->
+    <main id="site" class="hidden">
+
+        <header class="topbar">
+
+            <a class="brand" href="#">
+                UM <b>NOVO DIA</b>
+            </a>
+
+            <nav>
+                <button class="tab-button active" data-tab="fisica">
+                    Física e Tecnociência
+                </button>
+
+                <button class="tab-button" data-tab="robotica">
+                    Robótica
+                </button>
+
+                <button class="tab-button" data-tab="programacao">
+                    Programação
+                </button>
+            </nav>
+
+            <div class="access">
+                <button id="diminuirTexto">A−</button>
+                <button id="aumentarTexto">A+</button>
+                <button id="altoContraste">◐</button>
+                <button id="trocarTema">☼</button>
+            </div>
+
+        </header>
+
+
+        <section class="intro">
+            <p class="eyebrow">PROJETO INTEGRADOR</p>
+
+            <h2>Conhecimento em <span>movimento.</span></h2>
+
+            <p>
+                Explore os conteúdos do nosso projeto nas áreas de
+                Física e Tecnociência, Robótica e Programação.
+            </p>
+        </section>
+
+
+        <!-- FÍSICA -->
+        <section id="fisica" class="tab-panel active-panel">
+
+            <p class="eyebrow">01 / FÍSICA E TECNOCIÊNCIA</p>
+
+            <h2>O som ao nosso redor</h2>
+
+            <p class="muted">
+                Registros de medições de intensidade sonora em decibéis (dB).
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medição</th>
+                            <th>Duração</th>
+                            <th>Leitura</th>
+                            <th>Mínimo</th>
+                            <th>Média</th>
+                            <th>Máximo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>1</td><td>13 s</td><td>79,15</td><td>66,16</td><td>76,44</td><td>83,75</td></tr>
+                        <tr><td>2</td><td>2 s</td><td>63,37</td><td>53,68</td><td>60,53</td><td>63,58</td></tr>
+                        <tr><td>3</td><td>4 s</td><td>58,12</td><td>56,67</td><td>62,09</td><td>65,69</td></tr>
+                        <tr><td>4</td><td>4 s</td><td>67,57</td><td>62,21</td><td>70,27</td><td>77,62</td></tr>
+                        <tr><td>5</td><td>4 s</td><td>70,27</td><td>66,16</td><td>75,24</td><td>83,75</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cards">
+                <article>
+                    <small>01</small>
+                    <h3>Maior média</h3>
+                    <p>Medição 1: <b>76,44 dB</b>.</p>
+                </article>
+
+                <article>
+                    <small>02</small>
+                    <h3>Menor média</h3>
+                    <p>Medição 2: <b>60,53 dB</b>.</p>
+                </article>
+
+                <article>
+                    <small>03</small>
+                    <h3>Maior máximo</h3>
+                    <p>Medições 1 e 5: <b>83,75 dB</b>.</p>
+                </article>
+            </div>
+
+            <p class="muted">
+                As medições tiveram durações diferentes. Os dados permitem
+                comparar os registros, mas não afirmar sozinhos qual local
+                é geralmente mais barulhento.
+            </p>
+
+        </section>
+
+
+        <!-- ROBÓTICA -->
+        <section id="robotica" class="tab-panel">
+
+            <p class="eyebrow">02 / ROBÓTICA</p>
+
+            <h2>Ideias que ganham movimento</h2>
+
+            <div class="placeholder">
+                <div>⌁</div>
+                <h3>Conteúdo de Robótica</h3>
+                <p>
+                    Espaço reservado para inserir a explicação,
+                    os componentes, as imagens e os resultados do trabalho.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- PROGRAMAÇÃO -->
+        <section id="programacao" class="tab-panel">
+
+            <p class="eyebrow">03 / PROGRAMAÇÃO</p>
+
+            <h2>Dados que ajudam a entender</h2>
+
+            <p class="muted">Valores aproximados por 100 g de alimento.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Alimento</th>
+                            <th>Calorias</th>
+                            <th>Proteínas</th>
+                            <th>Carboidratos</th>
+                            <th>Fibras</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>Arroz cozido</td><td>130 kcal</td><td>2,7 g</td><td>28 g</td><td>0,4 g</td></tr>
+                        <tr><td>Feijão cozido</td><td>76 kcal</td><td>4,8 g</td><td>13,6 g</td><td>8,5 g</td></tr>
+                        <tr><td>Frango grelhado</td><td>159 kcal</td><td>32 g</td><td>0 g</td><td>0 g</td></tr>
+                        <tr><td>Banana</td><td>89 kcal</td><td>1,1 g</td><td>22,8 g</td><td>2,6 g</td></tr>
+                        <tr><td>Batata-doce cozida</td><td>77 kcal</td><td>0,6 g</td><td>18,4 g</td><td>2,2 g</td></tr>
+                        <tr><td>Ovo cozido</td><td>155 kcal</td><td>13 g</td><td>1,1 g</td><td>0 g</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="calculator">
+
+                <p class="eyebrow">CALCULADORA DEMONSTRATIVA</p>
+
+                <h3>Calcule as calorias</h3>
+
+                <label for="alimento">Alimento</label>
+
+                <select id="alimento">
+                    <option value="130">Arroz cozido</option>
+                    <option value="76">Feijão cozido</option>
+                    <option value="159">Frango grelhado</option>
+                    <option value="89">Banana</option>
+                    <option value="77">Batata-doce cozida</option>
+                    <option value="155">Ovo cozido</option>
+                </select>
+
+                <label for="quantidade">Quantidade em gramas</label>
+
+                <input id="quantidade" type="number" min="0" value="100">
+
+                <button id="calcular">CALCULAR</button>
+
+                <p id="resultado">Resultado: 130 kcal</p>
+
+                <p class="muted">
+                    Os valores podem variar conforme o alimento e o preparo.
+                    Esta calculadora é apenas demonstrativa.
+                </p>
+
+            </div>
+
+        </section>
+
+        <footer>
+            UM NOVO DIA
+            <span>PROJETO INTEGRADOR</span>
+        </footer>
+
     </main>
 
-    <script src="script.js"></script>
 </body>
 </html>

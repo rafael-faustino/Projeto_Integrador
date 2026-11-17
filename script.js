@@ -1,147 +1,156 @@
+/* UM NOVO DIA | UCHIHA EDITION */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const capa = document.getElementById("capa");
   const entrarBtn = document.getElementById("entrarBtn");
+  const capa = document.getElementById("capa");
   const site = document.getElementById("site");
   const transitionScreen = document.getElementById("transitionScreen");
 
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabPanels = document.querySelectorAll(".tab-panel");
-
-  // ENTRADA DO SITE
-  entrarBtn.addEventListener("click", () => {
+  // Entrada do site
+  entrarBtn?.addEventListener("click", () => {
     entrarBtn.disabled = true;
-    transitionScreen.classList.add("show");
-    transitionScreen.setAttribute("aria-hidden", "false");
+    transitionScreen?.classList.add("show");
 
     window.setTimeout(() => {
-      capa.classList.add("hidden");
-      transitionScreen.classList.remove("show");
-      transitionScreen.setAttribute("aria-hidden", "true");
-      site.classList.remove("hidden");
+      capa?.classList.add("hidden");
+      transitionScreen?.classList.remove("show");
+      site?.classList.remove("hidden");
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      document.querySelector(".topbar").focus?.();
+      document.getElementById("inicio")?.scrollIntoView({
+        behavior: "smooth"
+      });
+
+      document.querySelector(".skip-link")?.setAttribute("href", "#inicio");
     }, 2500);
   });
 
-  // NAVEGAÇÃO ENTRE ABAS
-  function abrirAba(nomeAba) {
-    tabPanels.forEach((panel) => {
-      const ativo = panel.id === nomeAba;
+  // Navegação por abas
+  const tabButtons = [...document.querySelectorAll(".tab-button")];
+  const panels = [...document.querySelectorAll(".tab-panel")];
 
-      panel.classList.toggle("active", ativo);
+  function abrirAba(id, button) {
+    panels.forEach(panel => {
+      const ativo = panel.id === id;
       panel.hidden = !ativo;
+      panel.classList.toggle("active", ativo);
     });
 
-    tabButtons.forEach((button) => {
-      const ativo = button.dataset.tab === nomeAba;
-
-      button.classList.toggle("active", ativo);
-      button.setAttribute("aria-selected", String(ativo));
-      button.tabIndex = ativo ? 0 : -1;
+    tabButtons.forEach(tab => {
+      const ativo = tab === button;
+      tab.classList.toggle("active", ativo);
+      tab.setAttribute("aria-selected", String(ativo));
+      tab.setAttribute("tabindex", ativo ? "0" : "-1");
     });
   }
 
-  tabButtons.forEach((button) => {
+  tabButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-      abrirAba(button.dataset.tab);
+      abrirAba(button.dataset.tab, button);
+    });
+
+    button.addEventListener("keydown", event => {
+      if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) {
+        return;
+      }
+
+      event.preventDefault();
+      let next = index;
+
+      if (event.key === "ArrowRight") {
+        next = (index + 1) % tabButtons.length;
+      }
+
+      if (event.key === "ArrowLeft") {
+        next = (index - 1 + tabButtons.length) % tabButtons.length;
+      }
+
+      if (event.key === "Home") next = 0;
+      if (event.key === "End") next = tabButtons.length - 1;
+
+      tabButtons[next].focus();
+      abrirAba(tabButtons[next].dataset.tab, tabButtons[next]);
     });
   });
 
-  // TAMANHO DO TEXTO
-  let tamanhoTexto = 16;
+  // Aumentar e diminuir texto
+  let tamanhoBase = 16;
 
-  const aumentarTexto = document.getElementById("aumentarTexto");
-  const diminuirTexto = document.getElementById("diminuirTexto");
-
-  function atualizarTexto() {
+  const aplicarTamanho = () => {
     document.documentElement.style.setProperty(
       "--base",
-      `${tamanhoTexto}px`
+      `${tamanhoBase}px`
     );
-  }
+  };
 
-  aumentarTexto.addEventListener("click", () => {
-    tamanhoTexto = Math.min(tamanhoTexto + 1, 22);
-    atualizarTexto();
+  document.getElementById("aumentarTexto")?.addEventListener("click", () => {
+    tamanhoBase = Math.min(22, tamanhoBase + 1);
+    aplicarTamanho();
   });
 
-  diminuirTexto.addEventListener("click", () => {
-    tamanhoTexto = Math.max(tamanhoTexto - 1, 12);
-    atualizarTexto();
+  document.getElementById("diminuirTexto")?.addEventListener("click", () => {
+    tamanhoBase = Math.max(13, tamanhoBase - 1);
+    aplicarTamanho();
   });
 
-  // ALTO CONTRASTE
-  const altoContraste = document.getElementById("altoContraste");
+  // Alto contraste
+  const contrasteBtn = document.getElementById("altoContraste");
 
-  altoContraste.addEventListener("click", () => {
+  contrasteBtn?.addEventListener("click", () => {
     const ativo = document.body.classList.toggle("high-contrast");
-    altoContraste.setAttribute("aria-pressed", String(ativo));
+    contrasteBtn.setAttribute("aria-pressed", String(ativo));
   });
 
-  // TEMA CLARO E ESCURO
-  const trocarTema = document.getElementById("trocarTema");
+  // Tema claro e escuro
+  const temaBtn = document.getElementById("trocarTema");
 
-  trocarTema.addEventListener("click", () => {
-    const ativo = document.body.classList.toggle("light-theme");
-    trocarTema.setAttribute("aria-pressed", String(ativo));
+  temaBtn?.addEventListener("click", () => {
+    const claro = document.body.classList.toggle("light-theme");
+
+    temaBtn.setAttribute("aria-pressed", String(claro));
+    temaBtn.setAttribute(
+      "aria-label",
+      claro ? "Ativar tema escuro" : "Ativar tema claro"
+    );
   });
 
-  // CALCULADORA
+  // Calculadora de calorias
+  const calcularBtn = document.getElementById("calcularBtn");
   const alimento = document.getElementById("alimento");
   const quantidade = document.getElementById("quantidade");
-  const calcularBtn = document.getElementById("calcularBtn");
   const resultado = document.getElementById("resultado");
 
-  calcularBtn.addEventListener("click", calcularCalorias);
+  function calcularCalorias() {
+    const gramas = Number(quantidade?.value);
+    const kcalPor100g = Number(alimento?.value);
 
-  quantidade.addEventListener("keydown", (event) => {
+    if (!Number.isFinite(gramas) || gramas <= 0) {
+      resultado.innerHTML = `
+        <span>ATENÇÃO</span>
+        <strong>Informe a quantidade</strong>
+        <small>Digite um valor em gramas maior que zero.</small>
+      `;
+
+      quantidade?.focus();
+      return;
+    }
+
+    const kcal = (kcalPor100g * gramas) / 100;
+    const nome = alimento?.selectedOptions[0]?.textContent ?? "Alimento";
+
+    resultado.innerHTML = `
+      <span>RESULTADO</span>
+      <strong>${kcal.toLocaleString("pt-BR", {
+        maximumFractionDigits: 1
+      })} kcal</strong>
+      <small>${nome} — ${gramas.toLocaleString("pt-BR")} g</small>
+    `;
+  }
+
+  calcularBtn?.addEventListener("click", calcularCalorias);
+
+  quantidade?.addEventListener("keydown", event => {
     if (event.key === "Enter") {
       calcularCalorias();
     }
   });
-
-  function mostrarResultado(titulo, valor, descricao) {
-    resultado.replaceChildren();
-
-    const legenda = document.createElement("span");
-    legenda.textContent = titulo;
-
-    const valorElemento = document.createElement("strong");
-    valorElemento.textContent = valor;
-
-    const detalhe = document.createElement("small");
-    detalhe.textContent = descricao;
-
-    resultado.append(legenda, valorElemento, detalhe);
-  }
-
-  function calcularCalorias() {
-    const caloriasPor100g = Number(alimento.value);
-    const gramas = Number(quantidade.value);
-
-    if (
-      quantidade.value.trim() === "" ||
-      !Number.isFinite(gramas) ||
-      gramas <= 0
-    ) {
-      mostrarResultado(
-        "ATENÇÃO",
-        "Valor inválido",
-        "Informe uma quantidade maior que zero."
-      );
-
-      quantidade.focus();
-      return;
-    }
-
-    const total = (caloriasPor100g * gramas) / 100;
-
-    mostrarResultado(
-      "RESULTADO",
-      `${total.toFixed(1).replace(".", ",")} kcal`,
-      `Estimativa para ${gramas} gramas do alimento selecionado.`
-    );
-  }
 });

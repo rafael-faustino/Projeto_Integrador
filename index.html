@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090609">
+  <meta name="theme-color" content="#080609">
+  <meta name="description" content="Um Novo Dia — conhecimento, tecnologia e criatividade.">
   <title>Um Novo Dia | Uchiha Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,41 +17,65 @@
 
   <a class="skip-link" href="#site">Pular para o conteúdo</a>
 
+  <!-- CAPA -->
   <section class="cover" id="capa">
-    <div class="cover-overlay"></div>
+    <div class="cover-grid"></div>
+    <div class="cover-vignette"></div>
 
     <div class="cover-content">
       <div class="clan-symbol">うちは</div>
-      <p class="eyebrow">CLÃ UCHIHA • SHARINGAN</p>
-      <h1>UM NOVO <span>DIA</span></h1>
+      <p class="eyebrow">CLÃ UCHIHA <span></span> MANGEKYŌ SHARINGAN</p>
+      <h1>UM NOVO<br><span>DIA.</span></h1>
       <p class="cover-subtitle">
         Conhecimento é poder. Enxergue além do que os olhos podem ver.
       </p>
+
       <button class="enter-button" id="entrarBtn">
-        <span>ENTRAR</span>
-        <span class="button-arrow">→</span>
+        <span>INICIAR JORNADA</span>
+        <span class="button-arrow">↗</span>
       </button>
+
       <p class="cover-note">UMA NOVA JORNADA COMEÇA AQUI</p>
     </div>
 
     <div class="cover-eye" aria-hidden="true">
-      <div class="mangekyou">
-        <div class="eye-core"></div>
+      <div class="eye-ring">
+        <svg class="mangekyou" viewBox="0 0 200 200" role="presentation">
+          <circle class="iris" cx="100" cy="100" r="96"/>
+          <circle class="iris-inner" cx="100" cy="100" r="82"/>
+          <g class="tomoe">
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
+          </g>
+          <circle class="pupil" cx="100" cy="100" r="13"/>
+          <circle class="pupil-glint" cx="96" cy="95" r="3"/>
+        </svg>
       </div>
     </div>
 
-    <div class="cover-bottom">火の意志 — VONTADE DO FOGO</div>
+    <div class="cover-side-label">写輪眼 — SHARINGAN</div>
+    <div class="cover-bottom">火の意志 <span>—</span> VONTADE DO FOGO</div>
   </section>
 
+  <!-- TRANSIÇÃO -->
   <div class="transition-screen" id="transitionScreen" aria-hidden="true">
     <div class="transition-eye">
-      <div class="mangekyou">
-        <div class="eye-core"></div>
-      </div>
+      <svg class="mangekyou" viewBox="0 0 200 200" role="presentation">
+        <circle class="iris" cx="100" cy="100" r="96"/>
+        <circle class="iris-inner" cx="100" cy="100" r="82"/>
+        <g class="tomoe">
+          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
+          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
+          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
+        </g>
+        <circle class="pupil" cx="100" cy="100" r="13"/>
+      </svg>
     </div>
     <p>DESPERTANDO O SHARINGAN...</p>
   </div>
 
+  <!-- SITE -->
   <main id="site" class="hidden">
     <header class="topbar">
       <a class="brand" href="#inicio" aria-label="Um Novo Dia - início">
@@ -64,37 +89,44 @@
         <button class="tab-button" data-tab="programacao" aria-selected="false">Programação</button>
       </nav>
 
-      <div class="access-tools">
+      <div class="access-tools" aria-label="Ferramentas de acessibilidade">
         <button id="diminuirTexto" aria-label="Diminuir texto" title="Diminuir texto">A−</button>
         <button id="aumentarTexto" aria-label="Aumentar texto" title="Aumentar texto">A+</button>
-        <button id="altoContraste" aria-label="Ativar alto contraste" title="Alto contraste">◐</button>
-        <button id="trocarTema" aria-label="Alternar tema claro e escuro" title="Alternar tema">☼</button>
+        <button id="altoContraste" aria-label="Ativar alto contraste" aria-pressed="false" title="Alto contraste">◐</button>
+        <button id="trocarTema" aria-label="Alternar tema claro e escuro" aria-pressed="false" title="Alternar tema">☼</button>
       </div>
     </header>
 
     <section class="hero" id="inicio">
+      <div class="hero-background-mark">うちは</div>
       <div class="hero-content">
         <p class="eyebrow">BEM-VINDO À JORNADA</p>
-        <h2>ENXERGUE <span>ALÉM.</span></h2>
+        <h2>ENXERGUE<br><span>ALÉM.</span></h2>
         <p>
           Explore conhecimentos, descubra novas ideias e desenvolva suas habilidades.
           Cada descoberta é um novo passo na sua jornada.
         </p>
         <div class="hero-tags">
-          <span>FÍSICA</span>
-          <span>ROBÓTICA</span>
-          <span>PROGRAMAÇÃO</span>
+          <span>01 / FÍSICA</span>
+          <span>02 / ROBÓTICA</span>
+          <span>03 / PROGRAMAÇÃO</span>
         </div>
       </div>
 
       <div class="hero-decoration" aria-hidden="true">
-        <div class="hero-sharingan">
-          <div class="mangekyou">
-            <div class="eye-core"></div>
-          </div>
-        </div>
+        <svg class="mangekyou" viewBox="0 0 200 200">
+          <circle class="iris" cx="100" cy="100" r="96"/>
+          <circle class="iris-inner" cx="100" cy="100" r="82"/>
+          <g class="tomoe">
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
+          </g>
+          <circle class="pupil" cx="100" cy="100" r="13"/>
+        </svg>
         <span class="hero-kanji">写輪眼</span>
       </div>
+      <div class="hero-index">UCHIHA ARCHIVE <span>— 001</span></div>
     </section>
 
     <section class="welcome-strip">
@@ -105,6 +137,7 @@
 
     <section class="content-area">
 
+      <!-- FÍSICA -->
       <article class="tab-panel active" id="fisica">
         <div class="section-heading">
           <div>
@@ -131,12 +164,8 @@
             <table>
               <thead>
                 <tr>
-                  <th>Medição</th>
-                  <th>Tempo</th>
-                  <th>Leitura</th>
-                  <th>Mínimo</th>
-                  <th>Média</th>
-                  <th>Máximo</th>
+                  <th>Medição</th><th>Tempo</th><th>Leitura</th>
+                  <th>Mínimo</th><th>Média</th><th>Máximo</th>
                 </tr>
               </thead>
               <tbody>
@@ -152,6 +181,7 @@
         </div>
       </article>
 
+      <!-- ROBÓTICA -->
       <article class="tab-panel" id="robotica" hidden>
         <div class="section-heading">
           <div>
@@ -178,6 +208,7 @@
         </div>
       </article>
 
+      <!-- PROGRAMAÇÃO -->
       <article class="tab-panel" id="programacao" hidden>
         <div class="section-heading">
           <div>
@@ -202,11 +233,8 @@
             <table>
               <thead>
                 <tr>
-                  <th>Alimento</th>
-                  <th>Calorias</th>
-                  <th>Proteínas</th>
-                  <th>Carboidratos</th>
-                  <th>Fibras</th>
+                  <th>Alimento</th><th>Calorias</th><th>Proteínas</th>
+                  <th>Carboidratos</th><th>Fibras</th>
                 </tr>
               </thead>
               <tbody>
@@ -232,20 +260,24 @@
           </p>
 
           <div class="calculator-fields">
-            <label for="alimento">Alimento</label>
-            <select id="alimento">
-              <option value="130">Arroz</option>
-              <option value="76">Feijão</option>
-              <option value="159">Frango grelhado</option>
-              <option value="89">Banana</option>
-              <option value="77">Batata-doce</option>
-              <option value="155">Ovo cozido</option>
-            </select>
+            <div class="field">
+              <label for="alimento">Alimento</label>
+              <select id="alimento">
+                <option value="130">Arroz</option>
+                <option value="76">Feijão</option>
+                <option value="159">Frango grelhado</option>
+                <option value="89">Banana</option>
+                <option value="77">Batata-doce</option>
+                <option value="155">Ovo cozido</option>
+              </select>
+            </div>
 
-            <label for="quantidade">Quantidade (gramas)</label>
-            <input type="number" id="quantidade" min="1" placeholder="Ex.: 150">
+            <div class="field">
+              <label for="quantidade">Quantidade (gramas)</label>
+              <input type="number" id="quantidade" min="1" step="any" placeholder="Ex.: 150">
+            </div>
 
-            <button class="calculate-button" id="calcularBtn">CALCULAR</button>
+            <button class="calculate-button" id="calcularBtn">CALCULAR <span>↗</span></button>
           </div>
 
           <div class="result-area" id="resultado" aria-live="polite">
@@ -255,13 +287,12 @@
           </div>
         </div>
       </article>
-
     </section>
 
     <footer class="footer">
       <div class="footer-symbol">う</div>
       <p>UM NOVO DIA</p>
-      <span>CONHECIMENTO • TECNOLOGIA • CRIATIVIDADE</span>
+      <span>CONHECIMENTO <i>•</i> TECNOLOGIA <i>•</i> CRIATIVIDADE</span>
       <small>Projeto escolar</small>
     </footer>
   </main>

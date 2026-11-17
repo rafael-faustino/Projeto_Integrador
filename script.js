@@ -8,31 +8,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabButtons = document.querySelectorAll(".tab-button");
   const tabPanels = document.querySelectorAll(".tab-panel");
 
-  // ENTRADA
+  // ENTRADA DO SITE
   entrarBtn.addEventListener("click", () => {
     entrarBtn.disabled = true;
     transitionScreen.classList.add("show");
+    transitionScreen.setAttribute("aria-hidden", "false");
 
-    setTimeout(() => {
+    window.setTimeout(() => {
       capa.classList.add("hidden");
       transitionScreen.classList.remove("show");
+      transitionScreen.setAttribute("aria-hidden", "true");
       site.classList.remove("hidden");
-      window.scrollTo(0, 0);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      document.querySelector(".topbar").focus?.();
     }, 2500);
   });
 
-  // ABAS
+  // NAVEGAÇÃO ENTRE ABAS
   function abrirAba(nomeAba) {
     tabPanels.forEach((panel) => {
       const ativo = panel.id === nomeAba;
+
       panel.classList.toggle("active", ativo);
       panel.hidden = !ativo;
     });
 
     tabButtons.forEach((button) => {
       const ativo = button.dataset.tab === nomeAba;
+
       button.classList.toggle("active", ativo);
       button.setAttribute("aria-selected", String(ativo));
+      button.tabIndex = ativo ? 0 : -1;
     });
   }
 
@@ -45,24 +52,40 @@ document.addEventListener("DOMContentLoaded", () => {
   // TAMANHO DO TEXTO
   let tamanhoTexto = 16;
 
-  document.getElementById("aumentarTexto").addEventListener("click", () => {
+  const aumentarTexto = document.getElementById("aumentarTexto");
+  const diminuirTexto = document.getElementById("diminuirTexto");
+
+  function atualizarTexto() {
+    document.documentElement.style.setProperty(
+      "--base",
+      `${tamanhoTexto}px`
+    );
+  }
+
+  aumentarTexto.addEventListener("click", () => {
     tamanhoTexto = Math.min(tamanhoTexto + 1, 22);
-    document.documentElement.style.setProperty("--base", `${tamanhoTexto}px`);
+    atualizarTexto();
   });
 
-  document.getElementById("diminuirTexto").addEventListener("click", () => {
+  diminuirTexto.addEventListener("click", () => {
     tamanhoTexto = Math.max(tamanhoTexto - 1, 12);
-    document.documentElement.style.setProperty("--base", `${tamanhoTexto}px`);
+    atualizarTexto();
   });
 
   // ALTO CONTRASTE
-  document.getElementById("altoContraste").addEventListener("click", () => {
-    document.body.classList.toggle("high-contrast");
+  const altoContraste = document.getElementById("altoContraste");
+
+  altoContraste.addEventListener("click", () => {
+    const ativo = document.body.classList.toggle("high-contrast");
+    altoContraste.setAttribute("aria-pressed", String(ativo));
   });
 
-  // TEMA CLARO
-  document.getElementById("trocarTema").addEventListener("click", () => {
-    document.body.classList.toggle("light-theme");
+  // TEMA CLARO E ESCURO
+  const trocarTema = document.getElementById("trocarTema");
+
+  trocarTema.addEventListener("click", () => {
+    const ativo = document.body.classList.toggle("light-theme");
+    trocarTema.setAttribute("aria-pressed", String(ativo));
   });
 
   // CALCULADORA
@@ -79,26 +102,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  function mostrarResultado(titulo, valor, descricao) {
+    resultado.replaceChildren();
+
+    const legenda = document.createElement("span");
+    legenda.textContent = titulo;
+
+    const valorElemento = document.createElement("strong");
+    valorElemento.textContent = valor;
+
+    const detalhe = document.createElement("small");
+    detalhe.textContent = descricao;
+
+    resultado.append(legenda, valorElemento, detalhe);
+  }
+
   function calcularCalorias() {
     const caloriasPor100g = Number(alimento.value);
     const gramas = Number(quantidade.value);
 
-    if (!Number.isFinite(gramas) || gramas <= 0) {
-      resultado.innerHTML = `
-        <span>ATENÇÃO</span>
-        <strong>Valor inválido</strong>
-        <small>Informe uma quantidade maior que zero.</small>
-      `;
+    if (
+      quantidade.value.trim() === "" ||
+      !Number.isFinite(gramas) ||
+      gramas <= 0
+    ) {
+      mostrarResultado(
+        "ATENÇÃO",
+        "Valor inválido",
+        "Informe uma quantidade maior que zero."
+      );
+
       quantidade.focus();
       return;
     }
 
     const total = (caloriasPor100g * gramas) / 100;
 
-    resultado.innerHTML = `
-      <span>RESULTADO</span>
-      <strong>${total.toFixed(1).replace(".", ",")} kcal</strong>
-      <small>Estimativa para ${gramas} gramas do alimento selecionado.</small>
-    `;
+    mostrarResultado(
+      "RESULTADO",
+      `${total.toFixed(1).replace(".", ",")} kcal`,
+      `Estimativa para ${gramas} gramas do alimento selecionado.`
+    );
   }
 });

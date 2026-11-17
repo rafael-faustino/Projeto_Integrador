@@ -1,9 +1,7 @@
 
-/* =====================================
-   ACESSIBILIDADE - UM NOVO DIA
-===================================== */
+/* ACESSIBILIDADE ADICIONAL */
 
-/* Link para pular direto ao conteúdo */
+/* Pular para o conteúdo */
 .skip-link {
     position: absolute;
     top: -100px;
@@ -11,17 +9,14 @@
     z-index: 1000;
     background: var(--red);
     color: white;
-    padding: 14px 18px;
-    border-radius: 4px;
-    font-weight: 700;
-    text-decoration: none;
+    padding: 14px;
 }
 
 .skip-link:focus {
     top: 15px;
 }
 
-/* Conteúdo apenas para leitores de tela */
+/* Texto para leitores de tela */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -34,46 +29,13 @@
     border: 0;
 }
 
-/* Destaque de foco para teclado */
+/* Destaque ao navegar pelo teclado */
 :focus-visible {
-    outline: 3px solid #ff6572 !important;
+    outline: 3px solid #ff6572;
     outline-offset: 4px;
 }
 
-/* Botões de acessibilidade */
-.access {
-    align-items: center;
-}
-
-.access button {
-    min-height: 42px;
-    min-width: 42px;
-    transition: background .2s ease, color .2s ease;
-}
-
-.access button:hover:not(:disabled) {
-    background: #ed263826;
-    color: white;
-    border-color: var(--red);
-}
-
-.access button:disabled {
-    opacity: .4;
-    cursor: not-allowed;
-}
-
-/* Botões de leitura */
-#lerPagina {
-    border-color: var(--red);
-    color: white;
-}
-
-#pausarLeitura,
-#pararLeitura {
-    border-color: var(--line);
-}
-
-/* Espaçamento ampliado */
+/* Espaçamento de leitura */
 body.wide-spacing {
     letter-spacing: .06em;
     word-spacing: .12em;
@@ -81,23 +43,32 @@ body.wide-spacing {
 }
 
 body.wide-spacing p,
-body.wide-spacing li,
 body.wide-spacing td,
 body.wide-spacing th {
     line-height: 1.9;
 }
 
-/* Melhor leitura das tabelas */
-table caption {
-    text-align: left;
-    padding: 12px;
-    color: var(--muted);
+/* Redução de animações */
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+}
+
+/* Botões de acessibilidade */
+.access button {
+    min-height: 42px;
+}
+
+.access button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
 }
 
 /* Contraste reforçado */
 body.high-contrast {
-    background: #000 !important;
-    color: #fff !important;
     --bg: #000;
     --panel: #000;
     --txt: #fff;
@@ -105,63 +76,24 @@ body.high-contrast {
     --line: #fff;
 }
 
-body.high-contrast .topbar,
-body.high-contrast .cards article,
-body.high-contrast .placeholder,
-body.high-contrast .calculator,
-body.high-contrast .table-wrap {
-    background: #000 !important;
-    border-color: #fff !important;
-}
-
 body.high-contrast p,
 body.high-contrast td,
 body.high-contrast th,
 body.high-contrast h2,
 body.high-contrast h3,
-body.high-contrast label,
-body.high-contrast .brand,
-body.high-contrast nav button,
-body.high-contrast .access button {
-    color: #fff !important;
+body.high-contrast label {
+    color: #fff;
 }
 
-body.high-contrast button {
-    border: 2px solid #fff;
+body.high-contrast .table-wrap,
+body.high-contrast .calculator,
+body.high-contrast .cards article,
+body.high-contrast .placeholder {
+    background: #000;
+    border-color: #fff;
 }
 
-body.high-contrast .eyebrow,
-body.high-contrast .intro h2 span,
-body.high-contrast .cover h1 span {
-    color: #ffff00 !important;
-}
-
-/* Redução de movimentos */
-body.reduce-motion *,
-body.reduce-motion *::before,
-body.reduce-motion *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
-}
-
-/* Respeita a preferência do próprio dispositivo */
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto !important;
-    }
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-    }
-}
-
-/* Melhor organização em telas pequenas */
+/* Celulares */
 @media (max-width: 800px) {
     .access {
         width: 100%;
@@ -170,9 +102,4 @@ body.reduce-motion *::after {
     .access button {
         flex: 1 1 auto;
     }
-}
-
-/* Evita que o conteúdo fique escondido atrás do cabeçalho */
-#conteudoPrincipal {
-    scroll-margin-top: 100px;
 }

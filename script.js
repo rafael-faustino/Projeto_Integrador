@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Inicia a animação
             spiders.classList.add("active");
 
-            // Aguarda as aranhas atravessarem a tela
+            // Aguarda todas as aranhas atravessarem
             setTimeout(() => {
 
                 cover.classList.add("hidden");
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     behavior: "smooth"
                 });
 
-            }, 2200);
+            }, 2900);
 
         });
 

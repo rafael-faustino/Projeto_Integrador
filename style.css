@@ -126,7 +126,7 @@ button {
     background: var(--red);
 }
 
-/* ANIMAÇÃO DAS ARANHAS */
+/* ANIMAÇÃO DAS 8 ARANHAS */
 
 .spider-transition {
     position: fixed;
@@ -139,86 +139,78 @@ button {
 
 .spider {
     position: absolute;
-    font-size: clamp(40px, 7vw, 65px);
+    left: -100px;
+    font-size: clamp(35px, 5vw, 65px);
     opacity: 0;
     filter: drop-shadow(0 0 8px #ed2638);
 }
 
-.spider-one {
-    top: -100px;
-    left: 12%;
-}
-
-.spider-two {
-    top: -120px;
-    left: 48%;
-}
-
-.spider-three {
-    top: -100px;
-    left: 82%;
-}
+.spider-one { top: 10%; }
+.spider-two { top: 22%; }
+.spider-three { top: 35%; }
+.spider-four { top: 48%; }
+.spider-five { top: 60%; }
+.spider-six { top: 72%; }
+.spider-seven { top: 82%; }
+.spider-eight { top: 43%; }
 
 .spider-transition.active {
     visibility: visible;
 }
 
 .spider-transition.active .spider-one {
-    animation: spiderOne 2.1s ease-in forwards;
+    animation: atravessar 2.2s linear forwards;
 }
 
 .spider-transition.active .spider-two {
-    animation: spiderTwo 2.1s ease-in forwards;
+    animation: atravessar 2.5s linear .1s forwards;
 }
 
 .spider-transition.active .spider-three {
-    animation: spiderThree 2.1s ease-in forwards;
+    animation: atravessar 2.1s linear .2s forwards;
 }
 
-@keyframes spiderOne {
+.spider-transition.active .spider-four {
+    animation: atravessar 2.6s linear .15s forwards;
+}
+
+.spider-transition.active .spider-five {
+    animation: atravessar 2.3s linear .3s forwards;
+}
+
+.spider-transition.active .spider-six {
+    animation: atravessar 2.5s linear .2s forwards;
+}
+
+.spider-transition.active .spider-seven {
+    animation: atravessar 2.2s linear .4s forwards;
+}
+
+.spider-transition.active .spider-eight {
+    animation: atravessar 2.4s linear .1s forwards;
+}
+
+@keyframes atravessar {
     0% {
-        transform: translate(0, -50px) rotate(0);
+        transform: translateX(0) rotate(0deg);
         opacity: 0;
     }
 
-    15% {
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateX(55vw) rotate(180deg);
+        opacity: 1;
+    }
+
+    90% {
         opacity: 1;
     }
 
     100% {
-        transform: translate(40vw, 110vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-@keyframes spiderTwo {
-    0% {
-        transform: translate(0, -50px) rotate(0);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(-10vw, 110vh) rotate(-360deg);
-        opacity: 0;
-    }
-}
-
-@keyframes spiderThree {
-    0% {
-        transform: translate(0, -50px) rotate(0);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(-45vw, 110vh) rotate(360deg);
+        transform: translateX(115vw) rotate(360deg);
         opacity: 0;
     }
 }

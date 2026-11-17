@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,22 +15,23 @@
 
         <div class="cover-copy">
             <p class="eyebrow">PROJETO INTEGRADOR</p>
-
             <h1>UM <span>NOVO</span><br>DIA</h1>
-
             <p>Grandes ideias começam com um primeiro movimento.</p>
-
             <button id="entrarBtn">ENTRAR ↗</button>
         </div>
 
-        <!-- Pessoa vermelha balançando em um fio -->
-        <svg class="swing-art" viewBox="0 0 700 500">
-            <path class="anchor-thread" d="M510 0 V75"/>
+        <!-- PERSONAGEM DA TRANSIÇÃO -->
+        <svg class="swing-art" viewBox="0 0 700 500"
+             aria-hidden="true">
 
             <g class="swinger">
-                <path class="rope" d="M510 75 L0 0"/>
 
+                <!-- Fio branco -->
+                <path class="rope" d="M510 0 L510 75"/>
+
+                <!-- Personagem vermelho original -->
                 <g class="person">
+
                     <circle class="head" cx="0" cy="-57" r="17"/>
 
                     <path class="body"
@@ -42,7 +44,9 @@
                     <path class="leg" d="M7 12 Q38 34 61 57"/>
 
                     <path class="hand" d="M-2 -82 l12 -4 M76 -65 l12 -7"/>
+
                     <path class="mask" d="M-12 -60 Q0 -66 12 -60"/>
+
                 </g>
             </g>
         </svg>
@@ -215,7 +219,6 @@
             <div class="calculator">
 
                 <p class="eyebrow">CALCULADORA DEMONSTRATIVA</p>
-
                 <h3>Calcule as calorias</h3>
 
                 <label for="alimento">Alimento</label>
@@ -230,7 +233,6 @@
                 </select>
 
                 <label for="quantidade">Quantidade em gramas</label>
-
                 <input id="quantidade" type="number" min="0" value="100">
 
                 <button id="calcular">CALCULAR</button>

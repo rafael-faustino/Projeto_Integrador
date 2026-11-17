@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // ELEMENTOS DA CAPA
@@ -15,11 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             enter.disabled = true;
 
-            // Espera a animação da pessoa terminar
+            // Inicia a animação do personagem
+            cover.classList.add("animating");
+
+            // Espera a animação terminar
             setTimeout(() => {
 
                 cover.classList.add("hidden");
-
                 site.classList.remove("hidden");
 
                 window.scrollTo({
@@ -27,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     behavior: "smooth"
                 });
 
-            }, 2450);
+            }, 2300);
 
         });
 
@@ -137,9 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         calc.addEventListener("click", calculate);
-
         food.addEventListener("change", calculate);
-
         grams.addEventListener("input", calculate);
 
     }

@@ -1,341 +1,110 @@
-
 document.addEventListener("DOMContentLoaded", () => {
+  // ELEMENTOS
+  const capa = document.getElementById("capa");
+  const entrarBtn = document.getElementById("entrarBtn");
+  const site = document.getElementById("site");
+  const transitionScreen = document.getElementById("transitionScreen");
 
-    // ELEMENTOS DA CAPA
-    const cover = document.getElementById("capa");
-    const enter = document.getElementById("entrarBtn");
-    const site = document.getElementById("site");
-    const spiders = document.getElementById("spiderTransition");
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabPanels = document.querySelectorAll(".tab-panel");
 
+  // ENTRADA DO SITE
+  entrarBtn.addEventListener("click", () => {
+    entrarBtn.disabled = true;
+    transitionScreen.classList.add("show");
 
-    // ANIMAÇÃO DAS ARANHAS
-    if (cover && enter && site && spiders) {
+    setTimeout(() => {
+      capa.classList.add("hidden");
+      transitionScreen.classList.remove("show");
+      site.classList.remove("hidden");
 
-        enter.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+    }, 2500);
+  });
 
-            if (enter.disabled) return;
+  // NAVEGAÇÃO ENTRE AS ABAS
+  function abrirAba(nomeAba) {
+    tabPanels.forEach((panel) => {
+      const ativo = panel.id === nomeAba;
 
-            enter.disabled = true;
-            spiders.classList.add("active");
+      panel.classList.toggle("active", ativo);
+      panel.hidden = !ativo;
+    });
 
-            setTimeout(() => {
+    tabButtons.forEach((button) => {
+      const ativo = button.dataset.tab === nomeAba;
 
-                cover.classList.add("hidden");
-                site.classList.remove("hidden");
-                spiders.classList.remove("active");
+      button.classList.toggle("active", ativo);
+      button.setAttribute("aria-selected", String(ativo));
+    });
+  }
 
-                document.getElementById("conteudoPrincipal")?.focus();
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      abrirAba(button.dataset.tab);
+    });
+  });
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+  // ACESSIBILIDADE: TAMANHO DO TEXTO
+  let tamanhoTexto = 16;
 
-            }, 2900);
+  document.getElementById("aumentarTexto").addEventListener("click", () => {
+    tamanhoTexto = Math.min(tamanhoTexto + 1, 22);
+    document.documentElement.style.setProperty("--base", `${tamanhoTexto}px`);
+  });
 
-        });
+  document.getElementById("diminuirTexto").addEventListener("click", () => {
+    tamanhoTexto = Math.max(tamanhoTexto - 1, 12);
+    document.documentElement.style.setProperty("--base", `${tamanhoTexto}px`);
+  });
 
+  // ALTO CONTRASTE
+  document.getElementById("altoContraste").addEventListener("click", () => {
+    document.body.classList.toggle("high-contrast");
+  });
+
+  // TEMA CLARO E ESCURO
+  document.getElementById("trocarTema").addEventListener("click", () => {
+    document.body.classList.toggle("light-theme");
+  });
+
+  // CALCULADORA DE CALORIAS
+  const alimento = document.getElementById("alimento");
+  const quantidade = document.getElementById("quantidade");
+  const calcularBtn = document.getElementById("calcularBtn");
+  const resultado = document.getElementById("resultado");
+
+  calcularBtn.addEventListener("click", calcularCalorias);
+
+  quantidade.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      calcularCalorias();
+    }
+  });
+
+  function calcularCalorias() {
+    const caloriasPor100g = Number(alimento.value);
+    const gramas = Number(quantidade.value);
+
+    if (!Number.isFinite(gramas) || gramas <= 0) {
+      resultado.innerHTML = `
+        <span>ATENÇÃO</span>
+        <strong>Valor inválido</strong>
+        <small>Informe uma quantidade maior que zero.</small>
+      `;
+      quantidade.focus();
+      return;
     }
 
-
-    // NAVEGAÇÃO ENTRE AS ABAS
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const panels = document.querySelectorAll(".tab-panel");
-
-    function abrirAba(button) {
-
-        const id = button.dataset.tab;
-
-        tabButtons.forEach(b => {
-
-            const selecionado = b === button;
-
-            b.classList.toggle("active", selecionado);
-            b.setAttribute("aria-selected", String(selecionado));
-            b.tabIndex = selecionado ? 0 : -1;
-
-        });
-
-        panels.forEach(panel => {
-
-            const selecionado = panel.id === id;
-
-            panel.classList.toggle("active-panel", selecionado);
-            panel.setAttribute("aria-hidden", String(!selecionado));
-
-        });
-
-    }
-
-    tabButtons.forEach((button, index) => {
-
-        button.addEventListener("click", () => {
-            abrirAba(button);
-        });
-
-        // Navegação pelas setas do teclado
-        button.addEventListener("keydown", event => {
-
-            let novoIndex = index;
-
-            if (event.key === "ArrowRight") {
-                novoIndex = (index + 1) % tabButtons.length;
-            } else if (event.key === "ArrowLeft") {
-                novoIndex = (index - 1 + tabButtons.length) % tabButtons.length;
-            } else if (event.key === "Home") {
-                novoIndex = 0;
-            } else if (event.key === "End") {
-                novoIndex = tabButtons.length - 1;
-            } else {
-                return;
-            }
-
-            event.preventDefault();
-
-            const novaAba = tabButtons[novoIndex];
-
-            abrirAba(novaAba);
-            novaAba.focus();
-
-        });
-
-    });
-
-
-    // AUMENTAR E DIMINUIR TEXTO
-    let size = 16;
-
-    document.getElementById("aumentarTexto")?.addEventListener("click", () => {
-
-        size = Math.min(24, size + 1);
-
-        document.documentElement.style.setProperty(
-            "--base",
-            size + "px"
-        );
-
-    });
-
-    document.getElementById("diminuirTexto")?.addEventListener("click", () => {
-
-        size = Math.max(13, size - 1);
-
-        document.documentElement.style.setProperty(
-            "--base",
-            size + "px"
-        );
-
-    });
-
-
-    // ALTO CONTRASTE
-    const contraste = document.getElementById("altoContraste");
-
-    contraste?.addEventListener("click", () => {
-
-        const ativo = document.body.classList.toggle("high-contrast");
-
-        contraste.setAttribute("aria-pressed", String(ativo));
-
-    });
-
-
-    // TROCAR TEMA
-    const tema = document.getElementById("trocarTema");
-
-    tema?.addEventListener("click", () => {
-
-        const ativo = document.body.classList.toggle("light-theme");
-
-        tema.setAttribute("aria-pressed", String(ativo));
-
-    });
-
-
-    // ESPAÇAMENTO DO TEXTO
-    const espacamento = document.getElementById("espacamentoTexto");
-
-    espacamento?.addEventListener("click", () => {
-
-        const ativo = document.body.classList.toggle("wide-spacing");
-
-        espacamento.setAttribute("aria-pressed", String(ativo));
-
-    });
-
-
-    // REDUZIR MOVIMENTOS
-    const movimento = document.getElementById("reduzirMovimento");
-
-    movimento?.addEventListener("click", () => {
-
-        const ativo = document.body.classList.toggle("reduce-motion");
-
-        movimento.setAttribute("aria-pressed", String(ativo));
-
-    });
-
-
-    // LEITOR DE TEXTO EM VOZ ALTA
-    const lerPagina = document.getElementById("lerPagina");
-    const pausarLeitura = document.getElementById("pausarLeitura");
-    const pararLeitura = document.getElementById("pararLeitura");
-    const statusLeitura = document.getElementById("statusLeitura");
-
-    let falaAtual = null;
-
-    function atualizarControlesLeitura(lendo) {
-
-        pausarLeitura.disabled = !lendo;
-        pararLeitura.disabled = !lendo;
-
-    }
-
-    function obterTextoParaLeitura() {
-
-        const introducao = document.querySelector(".intro");
-        const abaAtiva = document.querySelector(".tab-panel.active-panel");
-
-        let texto = "";
-
-        if (introducao) {
-            texto += introducao.innerText + ". ";
-        }
-
-        if (abaAtiva) {
-            texto += abaAtiva.innerText;
-        }
-
-        return texto.trim();
-
-    }
-
-    if ("speechSynthesis" in window) {
-
-        lerPagina?.addEventListener("click", () => {
-
-            window.speechSynthesis.cancel();
-
-            const texto = obterTextoParaLeitura();
-
-            if (!texto) {
-                statusLeitura.textContent = "Não há conteúdo disponível para leitura.";
-                return;
-            }
-
-            falaAtual = new SpeechSynthesisUtterance(texto);
-
-            falaAtual.lang = "pt-BR";
-            falaAtual.rate = 0.9;
-            falaAtual.pitch = 1;
-
-            falaAtual.onstart = () => {
-
-                statusLeitura.textContent = "Leitura iniciada.";
-                atualizarControlesLeitura(true);
-
-            };
-
-            falaAtual.onend = () => {
-
-                statusLeitura.textContent = "Leitura concluída.";
-                atualizarControlesLeitura(false);
-
-            };
-
-            falaAtual.onerror = () => {
-
-                statusLeitura.textContent = "Não foi possível realizar a leitura.";
-                atualizarControlesLeitura(false);
-
-            };
-
-            window.speechSynthesis.speak(falaAtual);
-
-        });
-
-        pausarLeitura?.addEventListener("click", () => {
-
-            if (window.speechSynthesis.speaking) {
-
-                if (window.speechSynthesis.paused) {
-
-                    window.speechSynthesis.resume();
-                    pausarLeitura.textContent = "Pausar";
-                    statusLeitura.textContent = "Leitura retomada.";
-
-                } else {
-
-                    window.speechSynthesis.pause();
-                    pausarLeitura.textContent = "Continuar";
-                    statusLeitura.textContent = "Leitura pausada.";
-
-                }
-
-            }
-
-        });
-
-        pararLeitura?.addEventListener("click", () => {
-
-            window.speechSynthesis.cancel();
-
-            statusLeitura.textContent = "Leitura interrompida.";
-            pausarLeitura.textContent = "Pausar";
-
-            atualizarControlesLeitura(false);
-
-        });
-
-    } else {
-
-        if (lerPagina) {
-            lerPagina.disabled = true;
-            lerPagina.title = "Leitura em voz alta não disponível neste navegador.";
-        }
-
-        if (statusLeitura) {
-            statusLeitura.textContent =
-                "Este navegador não oferece suporte à leitura em voz alta.";
-        }
-
-    }
-
-
-    // CALCULADORA DE CALORIAS
-    const food = document.getElementById("alimento");
-    const grams = document.getElementById("quantidade");
-    const calc = document.getElementById("calcular");
-    const output = document.getElementById("resultado");
-
-    if (food && grams && calc && output) {
-
-        const calculate = () => {
-
-            const amount = Number(grams.value);
-
-            if (grams.value.trim() === "" || !Number.isFinite(amount) || amount < 0) {
-
-                output.textContent = "Digite uma quantidade válida.";
-                return;
-
-            }
-
-            const total = Number(food.value) * amount / 100;
-
-            output.textContent =
-                "Resultado: " +
-                total.toLocaleString("pt-BR", {
-                    maximumFractionDigits: 1
-                }) +
-                " kcal";
-
-        };
-
-        calc.addEventListener("click", calculate);
-        food.addEventListener("change", calculate);
-        grams.addEventListener("input", calculate);
-
-    }
-
+    const total = (caloriasPor100g * gramas) / 100;
+
+    resultado.innerHTML = `
+      <span>RESULTADO</span>
+      <strong>${total.toFixed(1).replace(".", ",")} kcal</strong>
+      <small>Estimativa para ${gramas} gramas do alimento selecionado.</small>
+    `;
+  }
 });

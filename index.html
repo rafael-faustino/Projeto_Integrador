@@ -1,345 +1,266 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projeto Integrador Um Novo Dia: Física e Tecnociência, Robótica e Programação.">
-    <title>Um Novo Dia</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090609">
+  <title>Um Novo Dia | Uchiha Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
-    <a class="skip-link" href="#conteudoPrincipal">Pular para o conteúdo principal</a>
+  <a class="skip-link" href="#site">Pular para o conteúdo</a>
 
-    <!-- ANIMAÇÃO DAS ARANHAS -->
-    <div class="spider-transition" id="spiderTransition" aria-hidden="true">
-        <span class="spider spider-one">🕷️</span>
-        <span class="spider spider-two">🕷️</span>
-        <span class="spider spider-three">🕷️</span>
-        <span class="spider spider-four">🕷️</span>
-        <span class="spider spider-five">🕷️</span>
-        <span class="spider spider-six">🕷️</span>
-        <span class="spider spider-seven">🕷️</span>
-        <span class="spider spider-eight">🕷️</span>
+  <!-- CAPA -->
+  <section class="cover" id="capa">
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+      <div class="clan-symbol">うちは</div>
+      <p class="eyebrow">CLÃ UCHIHA • SHARINGAN</p>
+      <h1>UM NOVO <span>DIA</span></h1>
+      <p class="cover-subtitle">
+        Conhecimento é poder. Enxergue além do que os olhos podem ver.
+      </p>
+      <button class="enter-button" id="entrarBtn">
+        <span>ENTRAR</span>
+        <span class="button-arrow">→</span>
+      </button>
+      <p class="cover-note">UMA NOVA JORNADA COMEÇA AQUI</p>
     </div>
+    <div class="cover-eye" aria-hidden="true">
+      <div class="mangekyou">
+        <div class="eye-core"></div>
+      </div>
+    </div>
+    <div class="cover-bottom">火の意志 — VONTADE DO FOGO</div>
+  </section>
 
-    <!-- CAPA -->
-    <section id="capa" class="cover" aria-labelledby="tituloCapa">
+  <!-- TRANSIÇÃO -->
+  <div class="transition-screen" id="transitionScreen" aria-hidden="true">
+    <div class="transition-eye">
+      <div class="mangekyou">
+        <div class="eye-core"></div>
+      </div>
+    </div>
+    <p>DESPERTANDO O SHARINGAN...</p>
+  </div>
 
-        <div class="cover-copy">
-            <p class="eyebrow">PROJETO INTEGRADOR</p>
-            <h1 id="tituloCapa">UM <span>NOVO</span><br>DIA</h1>
-            <p>Grandes ideias começam com um primeiro movimento.</p>
-            <button id="entrarBtn" type="button">ENTRAR ↗</button>
+  <!-- SITE -->
+  <main id="site" class="hidden">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Um Novo Dia - início">
+        <span class="brand-symbol">う</span>
+        <span>UM NOVO <b>DIA</b></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="tab-button active" data-tab="fisica" aria-selected="true">Física</button>
+        <button class="tab-button" data-tab="robotica" aria-selected="false">Robótica</button>
+        <button class="tab-button" data-tab="programacao" aria-selected="false">Programação</button>
+      </nav>
+
+      <div class="access-tools">
+        <button id="diminuirTexto" aria-label="Diminuir texto" title="Diminuir texto">A−</button>
+        <button id="aumentarTexto" aria-label="Aumentar texto" title="Aumentar texto">A+</button>
+        <button id="altoContraste" aria-label="Ativar alto contraste" title="Alto contraste">◐</button>
+        <button id="trocarTema" aria-label="Alternar tema claro e escuro" title="Alternar tema">☼</button>
+      </div>
+    </header>
+
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <p class="eyebrow">BEM-VINDO À JORNADA</p>
+        <h2>ENXERGUE <span>ALÉM.</span></h2>
+        <p>
+          Explore conhecimentos, descubra novas ideias e desenvolva suas habilidades.
+          Cada descoberta é um novo passo na sua jornada.
+        </p>
+        <div class="hero-tags">
+          <span>FÍSICA</span>
+          <span>ROBÓTICA</span>
+          <span>PROGRAMAÇÃO</span>
         </div>
-
-        <div class="cover-footer" aria-hidden="true">
-            FÍSICA <i></i> ROBÓTICA <i></i> PROGRAMAÇÃO
+      </div>
+      <div class="hero-decoration" aria-hidden="true">
+        <div class="hero-sharingan">
+          <div class="mangekyou">
+            <div class="eye-core"></div>
+          </div>
         </div>
-
+        <span class="hero-kanji">写輪眼</span>
+      </div>
     </section>
 
-    <!-- CONTEÚDO DO SITE -->
-    <main id="site" class="hidden">
+    <section class="welcome-strip">
+      <span class="strip-mark">✦</span>
+      <p>“O conhecimento é a ferramenta que transforma o mundo.”</p>
+      <span class="strip-mark">✦</span>
+    </section>
 
-        <header class="topbar">
-
-            <a class="brand" href="#conteudoPrincipal" aria-label="Um Novo Dia - ir para o conteúdo">
-                UM <b>NOVO DIA</b>
-            </a>
-
-            <nav aria-label="Navegação das áreas do projeto" role="tablist">
-                <button class="tab-button active"
-                        id="tab-fisica"
-                        data-tab="fisica"
-                        role="tab"
-                        aria-selected="true"
-                        aria-controls="fisica"
-                        type="button">
-                    Física e Tecnociência
-                </button>
-
-                <button class="tab-button"
-                        id="tab-robotica"
-                        data-tab="robotica"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="robotica"
-                        tabindex="-1"
-                        type="button">
-                    Robótica
-                </button>
-
-                <button class="tab-button"
-                        id="tab-programacao"
-                        data-tab="programacao"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="programacao"
-                        tabindex="-1"
-                        type="button">
-                    Programação
-                </button>
-            </nav>
-
-            <!-- FERRAMENTAS DE ACESSIBILIDADE -->
-            <div class="access" role="group" aria-label="Ferramentas de acessibilidade">
-
-                <button id="diminuirTexto" type="button" aria-label="Diminuir tamanho do texto">
-                    A−
-                </button>
-
-                <button id="aumentarTexto" type="button" aria-label="Aumentar tamanho do texto">
-                    A+
-                </button>
-
-                <button id="altoContraste" type="button"
-                        aria-label="Ativar ou desativar alto contraste"
-                        aria-pressed="false">
-                    ◐
-                </button>
-
-                <button id="trocarTema" type="button"
-                        aria-label="Alternar tema claro e escuro"
-                        aria-pressed="false">
-                    ☼
-                </button>
-
-                <button id="espacamentoTexto" type="button"
-                        aria-label="Ativar ou desativar espaçamento ampliado"
-                        aria-pressed="false">
-                    ↔
-                </button>
-
-                <button id="reduzirMovimento" type="button"
-                        aria-label="Ativar ou desativar redução de animações"
-                        aria-pressed="false">
-                    ≋
-                </button>
-
-                <button id="lerPagina" type="button">
-                    <span aria-hidden="true">🔊</span> Ler página
-                </button>
-
-                <button id="pausarLeitura" type="button" disabled>
-                    Pausar
-                </button>
-
-                <button id="pararLeitura" type="button" disabled>
-                    Parar
-                </button>
-
-            </div>
-
-            <p id="statusLeitura" class="sr-only" role="status" aria-live="polite">
-                Leitor de texto pronto.
+    <section class="content-area">
+      <!-- FÍSICA -->
+      <article class="tab-panel active" id="fisica">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ÁREA DE ESTUDO 01</p>
+            <h2>FÍSICA <span class="red-text">.</span></h2>
+            <p class="section-description">
+              Observe os fenômenos, analise os dados e descubra como a física está presente no cotidiano.
             </p>
-
-        </header>
-
-
-        <div id="conteudoPrincipal" tabindex="-1">
-
-            <section class="intro" aria-labelledby="tituloIntroducao">
-                <p class="eyebrow">PROJETO INTEGRADOR</p>
-
-                <h2 id="tituloIntroducao">Conhecimento em <span>movimento.</span></h2>
-
-                <p>
-                    Explore os conteúdos do nosso projeto nas áreas de
-                    Física e Tecnociência, Robótica e Programação.
-                </p>
-            </section>
-
-
-            <!-- FÍSICA -->
-            <section id="fisica"
-                     class="tab-panel active-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-fisica"
-                     tabindex="0">
-
-                <p class="eyebrow">01 / FÍSICA E TECNOCIÊNCIA</p>
-
-                <h2>O som ao nosso redor</h2>
-
-                <p class="muted">
-                    Registros de medições de intensidade sonora em decibéis (dB).
-                </p>
-
-                <div class="table-wrap" role="region"
-                     aria-label="Tabela de medições de intensidade sonora"
-                     tabindex="0">
-
-                    <table>
-                        <caption class="sr-only">
-                            Medições de intensidade sonora, com duração,
-                            leitura, valor mínimo, média e valor máximo.
-                        </caption>
-
-                        <thead>
-                            <tr>
-                                <th scope="col">Medição</th>
-                                <th scope="col">Duração</th>
-                                <th scope="col">Leitura</th>
-                                <th scope="col">Mínimo</th>
-                                <th scope="col">Média</th>
-                                <th scope="col">Máximo</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr><th scope="row">1</th><td>13 s</td><td>79,15</td><td>66,16</td><td>76,44</td><td>83,75</td></tr>
-                            <tr><th scope="row">2</th><td>2 s</td><td>63,37</td><td>53,68</td><td>60,53</td><td>63,58</td></tr>
-                            <tr><th scope="row">3</th><td>4 s</td><td>58,12</td><td>56,67</td><td>62,09</td><td>65,69</td></tr>
-                            <tr><th scope="row">4</th><td>4 s</td><td>67,57</td><td>62,21</td><td>70,27</td><td>77,62</td></tr>
-                            <tr><th scope="row">5</th><td>4 s</td><td>70,27</td><td>66,16</td><td>75,24</td><td>83,75</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="cards">
-                    <article>
-                        <small>01</small>
-                        <h3>Maior média</h3>
-                        <p>Medição 1: <b>76,44 dB</b>.</p>
-                    </article>
-
-                    <article>
-                        <small>02</small>
-                        <h3>Menor média</h3>
-                        <p>Medição 2: <b>60,53 dB</b>.</p>
-                    </article>
-
-                    <article>
-                        <small>03</small>
-                        <h3>Maior máximo</h3>
-                        <p>Medições 1 e 5: <b>83,75 dB</b>.</p>
-                    </article>
-                </div>
-
-                <p class="muted">
-                    As medições tiveram durações diferentes. Os dados permitem
-                    comparar os registros, mas não afirmar sozinhos qual local
-                    é geralmente mais barulhento.
-                </p>
-
-            </section>
-
-
-            <!-- ROBÓTICA -->
-            <section id="robotica"
-                     class="tab-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-robotica"
-                     tabindex="0"
-                     aria-hidden="true">
-
-                <p class="eyebrow">02 / ROBÓTICA</p>
-
-                <h2>Ideias que ganham movimento</h2>
-
-                <div class="placeholder">
-                    <div aria-hidden="true">⌁</div>
-                    <h3>Conteúdo de Robótica</h3>
-                    <p>
-                        Espaço reservado para inserir a explicação,
-                        os componentes, as imagens e os resultados do trabalho.
-                    </p>
-                </div>
-
-            </section>
-
-
-            <!-- PROGRAMAÇÃO -->
-            <section id="programacao"
-                     class="tab-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-programacao"
-                     tabindex="0"
-                     aria-hidden="true">
-
-                <p class="eyebrow">03 / PROGRAMAÇÃO</p>
-
-                <h2>Dados que ajudam a entender</h2>
-
-                <p class="muted">Valores aproximados por 100 g de alimento.</p>
-
-                <div class="table-wrap" role="region"
-                     aria-label="Tabela de valores nutricionais"
-                     tabindex="0">
-
-                    <table>
-                        <caption class="sr-only">
-                            Valores aproximados de calorias, proteínas,
-                            carboidratos e fibras por 100 gramas.
-                        </caption>
-
-                        <thead>
-                            <tr>
-                                <th scope="col">Alimento</th>
-                                <th scope="col">Calorias</th>
-                                <th scope="col">Proteínas</th>
-                                <th scope="col">Carboidratos</th>
-                                <th scope="col">Fibras</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr><th scope="row">Arroz cozido</th><td>130 kcal</td><td>2,7 g</td><td>28 g</td><td>0,4 g</td></tr>
-                            <tr><th scope="row">Feijão cozido</th><td>76 kcal</td><td>4,8 g</td><td>13,6 g</td><td>8,5 g</td></tr>
-                            <tr><th scope="row">Frango grelhado</th><td>159 kcal</td><td>32 g</td><td>0 g</td><td>0 g</td></tr>
-                            <tr><th scope="row">Banana</th><td>89 kcal</td><td>1,1 g</td><td>22,8 g</td><td>2,6 g</td></tr>
-                            <tr><th scope="row">Batata-doce cozida</th><td>77 kcal</td><td>0,6 g</td><td>18,4 g</td><td>2,2 g</td></tr>
-                            <tr><th scope="row">Ovo cozido</th><td>155 kcal</td><td>13 g</td><td>1,1 g</td><td>0 g</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="calculator">
-
-                    <p class="eyebrow">CALCULADORA DEMONSTRATIVA</p>
-                    <h3>Calcule as calorias</h3>
-
-                    <label for="alimento">Alimento</label>
-
-                    <select id="alimento">
-                        <option value="130">Arroz cozido</option>
-                        <option value="76">Feijão cozido</option>
-                        <option value="159">Frango grelhado</option>
-                        <option value="89">Banana</option>
-                        <option value="77">Batata-doce cozida</option>
-                        <option value="155">Ovo cozido</option>
-                    </select>
-
-                    <label for="quantidade">Quantidade em gramas</label>
-                    <input id="quantidade" type="number" min="0" value="100">
-
-                    <button id="calcular" type="button">CALCULAR</button>
-
-                    <p id="resultado" role="status" aria-live="polite">
-                        Resultado: 130 kcal
-                    </p>
-
-                    <p class="muted">
-                        Os valores podem variar conforme o alimento e o preparo.
-                        Esta calculadora é apenas demonstrativa.
-                    </p>
-
-                </div>
-
-            </section>
-
+          </div>
+          <div class="section-number">01</div>
         </div>
 
-        <footer>
-            UM NOVO DIA
-            <span>PROJETO INTEGRADOR</span>
-        </footer>
+        <div class="info-card">
+          <div class="card-topline">
+            <span class="card-icon">◉</span>
+            <span class="card-label">REGISTRO DE MEDIÇÕES</span>
+          </div>
+          <h3>Tabela de medições sonoras</h3>
+          <p class="muted">
+            Dados coletados durante as medições, organizados para facilitar a comparação dos resultados.
+          </p>
 
-    </main>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Medição</th>
+                  <th>Tempo</th>
+                  <th>Leitura</th>
+                  <th>Mínimo</th>
+                  <th>Média</th>
+                  <th>Máximo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>01</td><td>13 s</td><td>79,15</td><td>66,16</td><td>76,44</td><td>83,75</td></tr>
+                <tr><td>02</td><td>2 s</td><td>63,37</td><td>53,68</td><td>60,53</td><td>63,58</td></tr>
+                <tr><td>03</td><td>4 s</td><td>58,12</td><td>56,67</td><td>62,09</td><td>65,69</td></tr>
+                <tr><td>04</td><td>4 s</td><td>67,57</td><td>62,21</td><td>70,27</td><td>77,62</td></tr>
+                <tr><td>05</td><td>4 s</td><td>70,27</td><td>66,16</td><td>75,24</td><td>83,75</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Os valores foram mantidos conforme os dados fornecidos para o projeto.</p>
+        </div>
+      </article>
 
+      <!-- ROBÓTICA -->
+      <article class="tab-panel" id="robotica" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ÁREA DE ESTUDO 02</p>
+            <h2>ROBÓTICA <span class="red-text">.</span></h2>
+            <p class="section-description">
+              Tecnologia, criatividade e inovação trabalhando juntas para criar soluções.
+            </p>
+          </div>
+          <div class="section-number">02</div>
+        </div>
+
+        <div class="info-card robotics-card">
+          <div class="card-topline">
+            <span class="card-icon">⌘</span>
+            <span class="card-label">LABORATÓRIO DE IDEIAS</span>
+          </div>
+          <div class="robotics-symbol">⚙</div>
+          <h3>Em construção</h3>
+          <p class="muted">
+            Esta área está sendo preparada para receber os conteúdos, projetos e experiências de Robótica.
+          </p>
+          <div class="coming-soon">NOVOS PROJETOS EM BREVE</div>
+        </div>
+      </article>
+
+      <!-- PROGRAMAÇÃO -->
+      <article class="tab-panel" id="programacao" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ÁREA DE ESTUDO 03</p>
+            <h2>PROGRAMAÇÃO <span class="red-text">.</span></h2>
+            <p class="section-description">
+              Transforme ideias em soluções usando lógica, algoritmos e código.
+            </p>
+          </div>
+          <div class="section-number">03</div>
+        </div>
+
+        <div class="info-card">
+          <div class="card-topline">
+            <span class="card-icon">⌨</span>
+            <span class="card-label">BASE DE DADOS</span>
+          </div>
+          <h3>Informações nutricionais</h3>
+          <p class="muted">Valores aproximados por 100 gramas de cada alimento.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Alimento</th>
+                  <th>Calorias</th>
+                  <th>Proteínas</th>
+                  <th>Carboidratos</th>
+                  <th>Fibras</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Arroz</td><td>130 kcal</td><td>2,7 g</td><td>28 g</td><td>0,4 g</td></tr>
+                <tr><td>Feijão</td><td>76 kcal</td><td>4,8 g</td><td>13,6 g</td><td>8,5 g</td></tr>
+                <tr><td>Frango grelhado</td><td>159 kcal</td><td>32 g</td><td>0 g</td><td>0 g</td></tr>
+                <tr><td>Banana</td><td>89 kcal</td><td>1,1 g</td><td>22,8 g</td><td>2,6 g</td></tr>
+                <tr><td>Batata-doce</td><td>77 kcal</td><td>0,6 g</td><td>18,4 g</td><td>2,2 g</td></tr>
+                <tr><td>Ovo cozido</td><td>155 kcal</td><td>13 g</td><td>1,1 g</td><td>0 g</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="info-card calculator-card">
+          <div class="card-topline">
+            <span class="card-icon">∑</span>
+            <span class="card-label">FERRAMENTA INTERATIVA</span>
+          </div>
+          <h3>Calculadora de calorias</h3>
+          <p class="muted">Escolha um alimento e informe a quantidade em gramas para calcular o valor correspondente.</p>
+
+          <div class="calculator-fields">
+            <label for="alimento">Alimento</label>
+            <select id="alimento">
+              <option value="130">Arroz</option>
+              <option value="76">Feijão</option>
+              <option value="159">Frango grelhado</option>
+              <option value="89">Banana</option>
+              <option value="77">Batata-doce</option>
+              <option value="155">Ovo cozido</option>
+            </select>
+
+            <label for="quantidade">Quantidade (gramas)</label>
+            <input type="number" id="quantidade" min="1" placeholder="Ex.: 150">
+
+            <button class="calculate-button" id="calcularBtn">CALCULAR</button>
+          </div>
+
+          <div class="result-area" id="resultado" aria-live="polite">
+            <span>RESULTADO</span>
+            <strong>—</strong>
+            <small>O resultado aparecerá aqui.</small>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-symbol">う</div>
+      <p>UM NOVO DIA</p>
+      <span>CONHECIMENTO • TECNOLOGIA • CRIATIVIDADE</span>
+      <small>Projeto escolar</small>
+    </footer>
+  </main>
 </body>
 </html>

@@ -1,5 +1,5 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-  // ELEMENTOS
   const capa = document.getElementById("capa");
   const entrarBtn = document.getElementById("entrarBtn");
   const site = document.getElementById("site");
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabButtons = document.querySelectorAll(".tab-button");
   const tabPanels = document.querySelectorAll(".tab-panel");
 
-  // ENTRADA DO SITE
+  // ENTRADA
   entrarBtn.addEventListener("click", () => {
     entrarBtn.disabled = true;
     transitionScreen.classList.add("show");
@@ -17,26 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
       capa.classList.add("hidden");
       transitionScreen.classList.remove("show");
       site.classList.remove("hidden");
-
-      window.scrollTo({
-        top: 0,
-        behavior: "instant"
-      });
+      window.scrollTo(0, 0);
     }, 2500);
   });
 
-  // NAVEGAÇÃO ENTRE AS ABAS
+  // ABAS
   function abrirAba(nomeAba) {
     tabPanels.forEach((panel) => {
       const ativo = panel.id === nomeAba;
-
       panel.classList.toggle("active", ativo);
       panel.hidden = !ativo;
     });
 
     tabButtons.forEach((button) => {
       const ativo = button.dataset.tab === nomeAba;
-
       button.classList.toggle("active", ativo);
       button.setAttribute("aria-selected", String(ativo));
     });
@@ -48,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ACESSIBILIDADE: TAMANHO DO TEXTO
+  // TAMANHO DO TEXTO
   let tamanhoTexto = 16;
 
   document.getElementById("aumentarTexto").addEventListener("click", () => {
@@ -66,12 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("high-contrast");
   });
 
-  // TEMA CLARO E ESCURO
+  // TEMA CLARO
   document.getElementById("trocarTema").addEventListener("click", () => {
     document.body.classList.toggle("light-theme");
   });
 
-  // CALCULADORA DE CALORIAS
+  // CALCULADORA
   const alimento = document.getElementById("alimento");
   const quantidade = document.getElementById("quantidade");
   const calcularBtn = document.getElementById("calcularBtn");

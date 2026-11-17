@@ -62,16 +62,6 @@ button {
     background-size: 55px 55px;
 }
 
-.skyline {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 65%;
-    height: 45%;
-    background: #070910;
-    opacity: .7;
-}
-
 .cover-copy {
     position: relative;
     z-index: 3;
@@ -116,105 +106,6 @@ button {
     cursor: wait;
 }
 
-/* PERSONAGEM BALANÇANDO */
-
-.swing-art {
-    position: absolute;
-    z-index: 2;
-    width: min(70vw, 850px);
-    height: min(65vw, 570px);
-    right: -2%;
-    top: 5%;
-    overflow: visible;
-    pointer-events: none;
-
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* Só aparece ao clicar em ENTRAR */
-.cover.animating .swing-art {
-    opacity: 1;
-    visibility: visible;
-}
-
-.rope {
-    fill: none;
-    stroke: white;
-    stroke-width: 3;
-    stroke-linecap: round;
-}
-
-.swinger {
-    transform-box: view-box;
-    transform-origin: 510px 0;
-}
-
-.cover.animating .swinger {
-    animation: swing 2.3s cubic-bezier(.2,.65,.25,1) forwards;
-}
-
-.person {
-    transform: rotate(-22deg);
-}
-
-.head {
-    fill: #d71932;
-    stroke: #ff6572;
-    stroke-width: 1.5;
-}
-
-.body {
-    fill: #ed2638;
-    stroke: #ff6572;
-    stroke-width: 1.5;
-}
-
-.arm, .leg {
-    fill: none;
-    stroke: #d71932;
-    stroke-width: 13;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.hand {
-    fill: none;
-    stroke: #d71932;
-    stroke-width: 10;
-    stroke-linecap: round;
-}
-
-.mask {
-    fill: none;
-    stroke: white;
-    stroke-width: 2;
-    opacity: .9;
-}
-
-/* Movimento do personagem */
-@keyframes swing {
-    0% {
-        transform: translate(0, -100px) rotate(-55deg);
-    }
-
-    20% {
-        transform: translate(-30px, 20px) rotate(-35deg);
-    }
-
-    50% {
-        transform: translate(-220px, 150px) rotate(5deg);
-    }
-
-    75% {
-        transform: translate(-430px, 260px) rotate(30deg);
-    }
-
-    100% {
-        transform: translate(-850px, 400px) rotate(55deg);
-    }
-}
-
 .cover-footer {
     position: absolute;
     bottom: 28px;
@@ -233,6 +124,103 @@ button {
     height: 4px;
     border-radius: 50%;
     background: var(--red);
+}
+
+/* ANIMAÇÃO DAS ARANHAS */
+
+.spider-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.spider {
+    position: absolute;
+    font-size: clamp(40px, 7vw, 65px);
+    opacity: 0;
+    filter: drop-shadow(0 0 8px #ed2638);
+}
+
+.spider-one {
+    top: -100px;
+    left: 12%;
+}
+
+.spider-two {
+    top: -120px;
+    left: 48%;
+}
+
+.spider-three {
+    top: -100px;
+    left: 82%;
+}
+
+.spider-transition.active {
+    visibility: visible;
+}
+
+.spider-transition.active .spider-one {
+    animation: spiderOne 2.1s ease-in forwards;
+}
+
+.spider-transition.active .spider-two {
+    animation: spiderTwo 2.1s ease-in forwards;
+}
+
+.spider-transition.active .spider-three {
+    animation: spiderThree 2.1s ease-in forwards;
+}
+
+@keyframes spiderOne {
+    0% {
+        transform: translate(0, -50px) rotate(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(40vw, 110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spiderTwo {
+    0% {
+        transform: translate(0, -50px) rotate(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-10vw, 110vh) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spiderThree {
+    0% {
+        transform: translate(0, -50px) rotate(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-45vw, 110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 /* SITE */
@@ -495,12 +483,6 @@ body.high-contrast {
 /* CELULAR */
 
 @media(max-width: 800px) {
-    .swing-art {
-        width: 90vw;
-        right: -24%;
-        top: 3%;
-    }
-
     .cover {
         align-items: flex-start;
         padding-top: 27vh;
@@ -523,12 +505,6 @@ body.high-contrast {
 @media(max-width: 520px) {
     .cover h1 {
         font-size: 5rem;
-    }
-
-    .swing-art {
-        width: 110vw;
-        right: -38%;
-        top: 0;
     }
 
     .cover-footer {

@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const cover = document.getElementById("capa");
     const enter = document.getElementById("entrarBtn");
     const site = document.getElementById("site");
+    const spiders = document.getElementById("spiderTransition");
 
 
-    // ANIMAÇÃO DE ENTRADA
-    if (cover && enter && site) {
+    // ANIMAÇÃO DAS ARANHAS
+    if (cover && enter && site && spiders) {
 
         enter.addEventListener("click", () => {
 
@@ -16,21 +17,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             enter.disabled = true;
 
-            // Inicia a animação do personagem
-            cover.classList.add("animating");
+            // Inicia a animação
+            spiders.classList.add("active");
 
-            // Espera a animação terminar
+            // Aguarda as aranhas atravessarem a tela
             setTimeout(() => {
 
                 cover.classList.add("hidden");
                 site.classList.remove("hidden");
+
+                spiders.classList.remove("active");
 
                 window.scrollTo({
                     top: 0,
                     behavior: "smooth"
                 });
 
-            }, 2300);
+            }, 2200);
 
         });
 
@@ -137,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 " kcal";
 
         };
-
 
         calc.addEventListener("click", calculate);
         food.addEventListener("change", calculate);

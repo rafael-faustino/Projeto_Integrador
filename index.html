@@ -136,7 +136,7 @@
 
     <section class="content-area">
 
-      <!-- FÍSICA: DIMENSÃO KAMUI -->
+      <!-- FÍSICA -->
       <article class="tab-panel active scene-panel kamui-panel" id="fisica" aria-label="Física — Dimensão Kamui">
         <div class="section-heading">
           <div>
@@ -193,21 +193,116 @@
           <div class="section-number">02</div>
         </div>
 
-        <div class="info-card robotics-card">
+        <div class="info-card robotics-intro">
           <div class="card-topline">
             <span class="card-icon">⌘</span>
             <span class="card-label">LABORATÓRIO DE IDEIAS</span>
           </div>
-          <div class="robotics-symbol">⚙</div>
-          <h3>Em construção</h3>
+          <h3>Criptografia de senhas</h3>
           <p class="muted">
-            Esta área está sendo preparada para receber os conteúdos, projetos e experiências de Robótica.
+            Nesta atividade, usamos Python para transformar números e letras em outros caracteres.
+            A ideia é entender como uma mensagem pode ser codificada por meio de regras simples.
           </p>
-          <div class="coming-soon">NOVOS PROJETOS EM BREVE</div>
+        </div>
+
+        <div class="info-card robotics-lesson">
+          <div class="lesson-heading">
+            <div>
+              <p class="eyebrow">AULA 01</p>
+              <h3>Criptografia de números</h3>
+            </div>
+            <span class="lesson-number">01</span>
+          </div>
+          <p class="muted">
+            O programa percorre cada algarismo da senha, transforma o caractere em número,
+            soma 1 e guarda o resultado em uma nova sequência.
+          </p>
+
+          <div class="code-window">
+            <div class="code-window-top"><span></span><span></span><span></span><small>Python</small></div>
+            <pre><code>senha_numerica = "123456"
+senha_num_criptografada = ""
+
+for numero in senha_numerica:
+    numero_somado = int(numero) + 1
+    senha_num_criptografada += str(numero_somado)
+
+print(f"Senha original: {senha_numerica}")
+print(f"Senha criptografada: {senha_num_criptografada}")</code></pre>
+          </div>
+
+          <div class="code-output">
+            <span>SAÍDA DO PROGRAMA</span>
+            <pre>Senha original: 123456
+Senha criptografada: 234567</pre>
+          </div>
+          <p class="table-note">
+            Observação: este é um exemplo didático de codificação, não um método seguro para proteger senhas reais.
+          </p>
+        </div>
+
+        <div class="info-card robotics-lesson">
+          <div class="lesson-heading">
+            <div>
+              <p class="eyebrow">AULA 02</p>
+              <h3>Convertendo letras em números — Cifra de César</h3>
+            </div>
+            <span class="lesson-number">02</span>
+          </div>
+          <p class="muted">
+            Primeiro, o código mostra que cada letra minúscula possui um código numérico.
+            Depois, usa um alfabeto deslocado uma posição: a vira b, b vira c e assim por diante.
+            Espaços, números e símbolos permanecem iguais.
+          </p>
+
+          <div class="code-window">
+            <div class="code-window-top"><span></span><span></span><span></span><small>Python</small></div>
+            <pre><code>alfabeto = "abcdefghijklmnopqrstuvwxyz"
+
+for letra in alfabeto[:5]:
+    numero = ord(letra)
+    print(f"Letra: {letra} -> Código ASCII: {numero}")
+
+dicionario = "bcdefghijklmnopqrstuvwxyza"
+
+def codifica(senha):
+    senha_criptografada = ""
+
+    for letra in senha:
+        if "a" &lt;= letra &lt;= "z":
+            posicao = ord(letra) - ord("a")
+            senha_criptografada += dicionario[posicao]
+        else:
+            senha_criptografada += letra
+
+    return senha_criptografada
+
+texto_teste = "rafael"
+resultado = codifica(texto_teste)
+
+print(f"Texto original: {texto_teste}")
+print(f"Texto criptografado: {resultado}")</code></pre>
+          </div>
+
+          <div class="code-output">
+            <span>SAÍDA DO PROGRAMA</span>
+            <pre>Letra: a -> Código ASCII: 97
+Letra: b -> Código ASCII: 98
+Letra: c -> Código ASCII: 99
+Letra: d -> Código ASCII: 100
+Letra: e -> Código ASCII: 101
+...
+Texto original: rafael
+Texto criptografado: sbgbfm</pre>
+          </div>
+          <p class="table-note">
+            A cifra apresentada desloca cada letra uma posição para frente no alfabeto.
+            É uma técnica simples para aprender lógica de programação e criptografia.
+          </p>
         </div>
       </article>
 
-      <!-- PROGRAMAÇÃO: CAVERNA DA AKATSUKI -->
+      <!-- PROGRAMAÇÃO -->
       <article class="tab-panel scene-panel akatsuki-panel" id="programacao" aria-label="Programação — Esconderijo da Akatsuki" hidden>
         <div class="section-heading">
           <div>

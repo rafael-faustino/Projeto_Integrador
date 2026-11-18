@@ -1,297 +1,299 @@
-
-/* UM NOVO DIA | UCHIHA EDITION */
-
-document.addEventListener("DOMContentLoaded", () => {
-  const entrarBtn = document.getElementById("entrarBtn");
-  const capa = document.getElementById("capa");
-  const site = document.getElementById("site");
-  const transitionScreen = document.getElementById("transitionScreen");
-
-  // ENTRADA DO SITE
-  entrarBtn?.addEventListener("click", () => {
-    entrarBtn.disabled = true;
-    transitionScreen?.classList.add("show");
-
-    window.setTimeout(() => {
-      capa?.classList.add("hidden");
-      transitionScreen?.classList.remove("show");
-      site?.classList.remove("hidden");
-
-      document.getElementById("inicio")?.scrollIntoView({
-        behavior: "smooth"
-      });
-
-      document.querySelector(".skip-link")
-        ?.setAttribute("href", "#inicio");
-    }, 2500);
-  });
-
-  // LEITURA EM VOZ ALTA
-  const lerBtn = document.getElementById("lerPagina");
-  const pararBtn = document.getElementById("pararLeitura");
-  const statusLeitura = document.getElementById("statusLeitura");
-
-  let falaAtual = null;
-
-  function atualizarControlesLeitura(lendo) {
-    if (lerBtn) lerBtn.disabled = lendo;
-    if (pararBtn) pararBtn.disabled = !lendo;
-  }
-
-  function pararLeitura(mensagem = "Leitura interrompida.") {
-    if ("speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-    }
-
-    falaAtual = null;
-    atualizarControlesLeitura(false);
-
-    if (statusLeitura) {
-      statusLeitura.textContent = mensagem;
-    }
-  }
-
-  lerBtn?.addEventListener("click", () => {
-    if (!("speechSynthesis" in window)) {
-      if (statusLeitura) {
-        statusLeitura.textContent =
-          "Este navegador não oferece suporte à leitura em voz alta.";
-      }
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-
-    const hero = document.querySelector(".hero");
-
-    const painelAtivo = document.querySelector(
-      ".tab-panel.active:not([hidden])"
-    );
-
-    const texto = [
-      hero?.innerText,
-      painelAtivo?.innerText
-    ]
-      .filter(Boolean)
-      .join(". ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    if (!texto) {
-      if (statusLeitura) {
-        statusLeitura.textContent =
-          "Não há conteúdo disponível para leitura.";
-      }
-      return;
-    }
-
-    falaAtual = new SpeechSynthesisUtterance(texto);
-
-    falaAtual.lang = "pt-BR";
-    falaAtual.rate = 1;
-    falaAtual.pitch = 1;
-
-    falaAtual.onstart = () => {
-      atualizarControlesLeitura(true);
-
-      if (statusLeitura) {
-        statusLeitura.textContent =
-          "Leitura em voz alta iniciada.";
-      }
-    };
-
-    falaAtual.onend = () => {
-      falaAtual = null;
-      atualizarControlesLeitura(false);
-
-      if (statusLeitura) {
-        statusLeitura.textContent = "Leitura concluída.";
-      }
-    };
-
-    falaAtual.onerror = () => {
-      falaAtual = null;
-      atualizarControlesLeitura(false);
-
-      if (statusLeitura) {
-        statusLeitura.textContent =
-          "Não foi possível realizar a leitura.";
-      }
-    };
-
-    atualizarControlesLeitura(true);
-    window.speechSynthesis.speak(falaAtual);
-  });
-
-  pararBtn?.addEventListener("click", () => {
-    pararLeitura();
-  });
-
-  // NAVEGAÇÃO POR ABAS
-  const tabButtons = [
-    ...document.querySelectorAll(".tab-button")
-  ];
-
-  const panels = [
-    ...document.querySelectorAll(".tab-panel")
-  ];
-
-  function abrirAba(id, button) {
-    if (
-      "speechSynthesis" in window &&
-      window.speechSynthesis.speaking
-    ) {
-      pararLeitura(
-        "Leitura interrompida porque a aba foi alterada."
-      );
-    }
-
-    panels.forEach(panel => {
-      const ativo = panel.id === id;
-
-      panel.hidden = !ativo;
-      panel.classList.toggle("active", ativo);
-    });
-
-    tabButtons.forEach(tab => {
-      const ativo = tab === button;
-
-      tab.classList.toggle("active", ativo);
-      tab.setAttribute("aria-selected", String(ativo));
-      tab.setAttribute("tabindex", ativo ? "0" : "-1");
-    });
-  }
-
-  tabButtons.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      abrirAba(button.dataset.tab, button);
-    });
-
-    button.addEventListener("keydown", event => {
-      if (
-        !["ArrowRight", "ArrowLeft", "Home", "End"]
-          .includes(event.key)
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-
-      let next = index;
-
-      if (event.key === "ArrowRight") {
-        next = (index + 1) % tabButtons.length;
-      }
-
-      if (event.key === "ArrowLeft") {
-        next = (index - 1 + tabButtons.length)
-          % tabButtons.length;
-      }
-
-      if (event.key === "Home") next = 0;
-      if (event.key === "End") next = tabButtons.length - 1;
-
-      tabButtons[next].focus();
-
-      abrirAba(
-        tabButtons[next].dataset.tab,
-        tabButtons[next]
-      );
-    });
-  });
-
-  // AUMENTAR E DIMINUIR TEXTO
-  let tamanhoBase = 16;
-
-  const aplicarTamanho = () => {
-    document.documentElement.style.setProperty(
-      "--base",
-      `${tamanhoBase}px`
-    );
-  };
-
-  document.getElementById("aumentarTexto")
-    ?.addEventListener("click", () => {
-      tamanhoBase = Math.min(22, tamanhoBase + 1);
-      aplicarTamanho();
-    });
-
-  document.getElementById("diminuirTexto")
-    ?.addEventListener("click", () => {
-      tamanhoBase = Math.max(13, tamanhoBase - 1);
-      aplicarTamanho();
-    });
-
-  // ALTO CONTRASTE
-  const contrasteBtn = document.getElementById("altoContraste");
-
-  contrasteBtn?.addEventListener("click", () => {
-    const ativo = document.body.classList.toggle("high-contrast");
-
-    contrasteBtn.setAttribute(
-      "aria-pressed",
-      String(ativo)
-    );
-  });
-
-  // TEMA CLARO E ESCURO
-  const temaBtn = document.getElementById("trocarTema");
-
-  temaBtn?.addEventListener("click", () => {
-    const claro = document.body.classList.toggle("light-theme");
-
-    temaBtn.setAttribute("aria-pressed", String(claro));
-
-    temaBtn.setAttribute(
-      "aria-label",
-      claro ? "Ativar tema escuro" : "Ativar tema claro"
-    );
-  });
-
-  // CALCULADORA DE CALORIAS
-  const calcularBtn = document.getElementById("calcularBtn");
-  const alimento = document.getElementById("alimento");
-  const quantidade = document.getElementById("quantidade");
-  const resultado = document.getElementById("resultado");
-
-  function calcularCalorias() {
-    const gramas = Number(quantidade?.value);
-    const kcalPor100g = Number(alimento?.value);
-
-    if (!Number.isFinite(gramas) || gramas <= 0) {
-      resultado.innerHTML = `
-        <span>ATENÇÃO</span>
-        <strong>Informe a quantidade</strong>
-        <small>Digite um valor em gramas maior que zero.</small>
-      `;
-
-      quantidade?.focus();
-      return;
-    }
-
-    const kcal = (kcalPor100g * gramas) / 100;
-
-    const nome =
-      alimento?.selectedOptions[0]?.textContent ?? "Alimento";
-
-    resultado.innerHTML = `
-      <span>RESULTADO</span>
-      <strong>
-        ${kcal.toLocaleString("pt-BR", {
-          maximumFractionDigits: 1
-        })} kcal
-      </strong>
-      <small>
-        ${nome} — ${gramas.toLocaleString("pt-BR")} g
-      </small>
-    `;
-  }
-
-  calcularBtn?.addEventListener("click", calcularCalorias);
-
-  quantidade?.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-      calcularCalorias();
-    }
-  });
-});
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080609">
+  <meta name="description" content="Um Novo Dia — conhecimento, tecnologia e criatividade.">
+  <title>Um Novo Dia | Uchiha Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#site">Pular para o conteúdo</a>
+
+  <!-- CAPA -->
+  <section class="cover" id="capa">
+    <div class="cover-grid"></div>
+    <div class="cover-vignette"></div>
+
+    <div class="cover-content">
+      <div class="clan-symbol">うちは</div>
+      <p class="eyebrow">CLÃ UCHIHA <span></span> MANGEKYŌ SHARINGAN</p>
+      <h1>UM NOVO<br><span>DIA.</span></h1>
+      <p class="cover-subtitle">
+        Conhecimento é poder. Enxergue além do que os olhos podem ver.
+      </p>
+
+      <button class="enter-button" id="entrarBtn">
+        <span>INICIAR JORNADA</span>
+        <span class="button-arrow">↗</span>
+      </button>
+
+      <p class="cover-note">UMA NOVA JORNADA COMEÇA AQUI</p>
+    </div>
+
+    <div class="cover-eye" aria-hidden="true">
+      <div class="eye-ring">
+        <svg class="mangekyou" viewBox="0 0 200 200" role="presentation">
+          <circle class="iris" cx="100" cy="100" r="96"/>
+          <circle class="iris-inner" cx="100" cy="100" r="82"/>
+          <g class="tomoe">
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
+          </g>
+          <circle class="pupil" cx="100" cy="100" r="13"/>
+          <circle class="pupil-glint" cx="96" cy="95" r="3"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cover-side-label">写輪眼 — SHARINGAN</div>
+    <div class="cover-bottom">火の意志 <span>—</span> VONTADE DO FOGO</div>
+  </section>
+
+  <!-- TRANSIÇÃO -->
+  <div class="transition-screen" id="transitionScreen" aria-hidden="true">
+    <div class="transition-eye">
+      <svg class="mangekyou" viewBox="0 0 200 200" role="presentation">
+        <circle class="iris" cx="100" cy="100" r="96"/>
+        <circle class="iris-inner" cx="100" cy="100" r="82"/>
+        <g class="tomoe">
+          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
+          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
+          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
+        </g>
+        <circle class="pupil" cx="100" cy="100" r="13"/>
+      </svg>
+    </div>
+    <p>DESPERTANDO O SHARINGAN...</p>
+  </div>
+
+  <!-- SITE -->
+  <main id="site" class="hidden">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Um Novo Dia - início">
+        <span class="brand-symbol">う</span>
+        <span>UM NOVO <b>DIA</b></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="tab-button active" data-tab="fisica" aria-selected="true">Física</button>
+        <button class="tab-button" data-tab="robotica" aria-selected="false">Robótica</button>
+        <button class="tab-button" data-tab="programacao" aria-selected="false">Programação</button>
+      </nav>
+
+      <div class="access-tools" aria-label="Ferramentas de acessibilidade">
+        <button id="diminuirTexto" aria-label="Diminuir texto" title="Diminuir texto">A−</button>
+        <button id="aumentarTexto" aria-label="Aumentar texto" title="Aumentar texto">A+</button>
+        <button id="altoContraste" aria-label="Ativar alto contraste" aria-pressed="false" title="Alto contraste">◐</button>
+        <button id="trocarTema" aria-label="Alternar tema claro e escuro" aria-pressed="false" title="Alternar tema">☼</button>
+      </div>
+    </header>
+
+    <section class="hero" id="inicio">
+      <div class="hero-background-mark">うちは</div>
+      <div class="hero-content">
+        <p class="eyebrow">BEM-VINDO À JORNADA</p>
+        <h2>ENXERGUE<br><span>ALÉM.</span></h2>
+        <p>
+          Explore conhecimentos, descubra novas ideias e desenvolva suas habilidades.
+          Cada descoberta é um novo passo na sua jornada.
+        </p>
+        <div class="hero-tags">
+          <span>01 / FÍSICA</span>
+          <span>02 / ROBÓTICA</span>
+          <span>03 / PROGRAMAÇÃO</span>
+        </div>
+      </div>
+
+      <div class="hero-decoration" aria-hidden="true">
+        <svg class="mangekyou" viewBox="0 0 200 200">
+          <circle class="iris" cx="100" cy="100" r="96"/>
+          <circle class="iris-inner" cx="100" cy="100" r="82"/>
+          <g class="tomoe">
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
+            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
+          </g>
+          <circle class="pupil" cx="100" cy="100" r="13"/>
+        </svg>
+        <span class="hero-kanji">写輪眼</span>
+      </div>
+      <div class="hero-index">UCHIHA ARCHIVE <span>— 001</span></div>
+    </section>
+
+    <section class="welcome-strip">
+      <span class="strip-mark">✦</span>
+      <p>“O conhecimento é a ferramenta que transforma o mundo.”</p>
+      <span class="strip-mark">✦</span>
+    </section>
+
+    <section class="content-area">
+
+      <!-- FÍSICA: DIMENSÃO KAMUI -->
+      <article class="tab-panel active scene-panel kamui-panel" id="fisica" aria-label="Física — Dimensão Kamui">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ÁREA DE ESTUDO 01</p>
+            <h2>FÍSICA <span class="red-text">.</span></h2>
+            <p class="section-description">
+              Observe os fenômenos, analise os dados e descubra como a física está presente no cotidiano.
+            </p>
+          </div>
+          <div class="section-number">01</div>
+        </div>
+
+        <div class="info-card">
+          <div class="card-topline">
+            <span class="card-icon">◉</span>
+            <span class="card-label">REGISTRO DE MEDIÇÕES</span>
+          </div>
+          <h3>Tabela de medições sonoras</h3>
+          <p class="muted">
+            Dados coletados durante as medições, organizados para facilitar a comparação dos resultados.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Medição</th><th>Tempo</th><th>Leitura</th>
+                  <th>Mínimo</th><th>Média</th><th>Máximo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>01</td><td>13 s</td><td>79,15</td><td>66,16</td><td>76,44</td><td>83,75</td></tr>
+                <tr><td>02</td><td>2 s</td><td>63,37</td><td>53,68</td><td>60,53</td><td>63,58</td></tr>
+                <tr><td>03</td><td>4 s</td><td>58,12</td><td>56,67</td><td>62,09</td><td>65,69</td></tr>
+                <tr><td>04</td><td>4 s</td><td>67,57</td><td>62,21</td><td>70,27</td><td>77,62</td></tr>
+                <tr><td>05</td><td>4 s</td><td>70,27</td><td>66,16</td><td>75,24</td><td>83,75</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Os valores foram mantidos conforme os dados fornecidos para o projeto.</p>
+        </div>
+      </article>
+
+      <!-- ROBÓTICA -->
+      <article class="tab-panel" id="robotica" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ÁREA DE ESTUDO 02</p>
+            <h2>ROBÓTICA <span class="red-text">.</span></h2>
+            <p class="section-description">
+              Tecnologia, criatividade e inovação trabalhando juntas para criar soluções.
+            </p>
+          </div>
+          <div class="section-number">02</div>
+        </div>
+
+        <div class="info-card robotics-card">
+          <div class="card-topline">
+            <span class="card-icon">⌘</span>
+            <span class="card-label">LABORATÓRIO DE IDEIAS</span>
+          </div>
+          <div class="robotics-symbol">⚙</div>
+          <h3>Em construção</h3>
+          <p class="muted">
+            Esta área está sendo preparada para receber os conteúdos, projetos e experiências de Robótica.
+          </p>
+          <div class="coming-soon">NOVOS PROJETOS EM BREVE</div>
+        </div>
+      </article>
+
+      <!-- PROGRAMAÇÃO: CAVERNA DA AKATSUKI -->
+      <article class="tab-panel scene-panel akatsuki-panel" id="programacao" aria-label="Programação — Esconderijo da Akatsuki" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ÁREA DE ESTUDO 03</p>
+            <h2>PROGRAMAÇÃO <span class="red-text">.</span></h2>
+            <p class="section-description">
+              Transforme ideias em soluções usando lógica, algoritmos e código.
+            </p>
+          </div>
+          <div class="section-number">03</div>
+        </div>
+
+        <div class="info-card">
+          <div class="card-topline">
+            <span class="card-icon">⌨</span>
+            <span class="card-label">BASE DE DADOS</span>
+          </div>
+          <h3>Informações nutricionais</h3>
+          <p class="muted">Valores aproximados por 100 gramas de cada alimento.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Alimento</th><th>Calorias</th><th>Proteínas</th>
+                  <th>Carboidratos</th><th>Fibras</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Arroz</td><td>130 kcal</td><td>2,7 g</td><td>28 g</td><td>0,4 g</td></tr>
+                <tr><td>Feijão</td><td>76 kcal</td><td>4,8 g</td><td>13,6 g</td><td>8,5 g</td></tr>
+                <tr><td>Frango grelhado</td><td>159 kcal</td><td>32 g</td><td>0 g</td><td>0 g</td></tr>
+                <tr><td>Banana</td><td>89 kcal</td><td>1,1 g</td><td>22,8 g</td><td>2,6 g</td></tr>
+                <tr><td>Batata-doce</td><td>77 kcal</td><td>0,6 g</td><td>18,4 g</td><td>2,2 g</td></tr>
+                <tr><td>Ovo cozido</td><td>155 kcal</td><td>13 g</td><td>1,1 g</td><td>0 g</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="info-card calculator-card">
+          <div class="card-topline">
+            <span class="card-icon">∑</span>
+            <span class="card-label">FERRAMENTA INTERATIVA</span>
+          </div>
+          <h3>Calculadora de calorias</h3>
+          <p class="muted">
+            Escolha um alimento e informe a quantidade em gramas para calcular o valor correspondente.
+          </p>
+
+          <div class="calculator-fields">
+            <div class="field">
+              <label for="alimento">Alimento</label>
+              <select id="alimento">
+                <option value="130">Arroz</option>
+                <option value="76">Feijão</option>
+                <option value="159">Frango grelhado</option>
+                <option value="89">Banana</option>
+                <option value="77">Batata-doce</option>
+                <option value="155">Ovo cozido</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="quantidade">Quantidade (gramas)</label>
+              <input type="number" id="quantidade" min="1" step="any" placeholder="Ex.: 150">
+            </div>
+
+            <button class="calculate-button" id="calcularBtn">CALCULAR <span>↗</span></button>
+          </div>
+
+          <div class="result-area" id="resultado" aria-live="polite">
+            <span>RESULTADO</span>
+            <strong>—</strong>
+            <small>O resultado aparecerá aqui.</small>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-symbol">う</div>
+      <p>UM NOVO DIA</p>
+      <span>CONHECIMENTO <i>•</i> TECNOLOGIA <i>•</i> CRIATIVIDADE</span>
+      <small>Projeto escolar</small>
+    </footer>
+  </main>
+</body>
+</html>

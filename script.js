@@ -1,4 +1,3 @@
-
 /* ==========================================
    UM NOVO DIA | UCHIHA EDITION
    JavaScript completo + leitor de voz
@@ -201,50 +200,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================
-     LEITOR DE TEXTO POR VOZ
+     LEITOR DE TEXTO POR VOZ — LEITURA COMPLETA
   ========================================== */
 
   const ferramentas = document.querySelector(".access-tools");
 
   if ("speechSynthesis" in window && ferramentas) {
+    const leitor = window.speechSynthesis;
+    let partesDaLeitura = [];
+    let indiceParte = 0;
+    let lendo = false;
+    let vozPortuguesa = null;
 
-    // Cria os botões automaticamente
+    // Cria os controles sem exigir alterações no HTML.
     const grupoLeitor = document.createElement("div");
-
     grupoLeitor.className = "voice-reader-tools";
     grupoLeitor.setAttribute("aria-label", "Leitor de texto por voz");
 
     grupoLeitor.innerHTML = `
       <button type="button" id="iniciarLeitor"
-        aria-label="Ler conteúdo da página em voz alta"
-        title="Ouvir conteúdo">
-        🔊 Ouvir
-      </button>
+        aria-label="Ler todo o conteúdo do site em voz alta"
+        title="Ouvir conteúdo">🔊 Ouvir</button>
 
       <button type="button" id="pausarLeitor"
         aria-label="Pausar leitura"
-        title="Pausar leitura">
-        ⏸ Pausar
-      </button>
+        title="Pausar leitura">⏸ Pausar</button>
 
       <button type="button" id="continuarLeitor"
         aria-label="Continuar leitura"
-        title="Continuar leitura">
-        ▶ Continuar
-      </button>
+        title="Continuar leitura">▶ Continuar</button>
 
       <button type="button" id="pararLeitor"
         aria-label="Parar leitura"
-        title="Parar leitura">
-        ⏹ Parar
-      </button>
+        title="Parar leitura">⏹ Parar</button>
     `;
 
     ferramentas.appendChild(grupoLeitor);
 
-    // Pequenos ajustes visuais dos botões
     const estiloLeitor = document.createElement("style");
-
     estiloLeitor.textContent = `
       .voice-reader-tools {
         display: flex;
@@ -285,15 +278,11 @@ document.addEventListener("DOMContentLoaded", () => {
         border: 0;
       }
     `;
-
     document.head.appendChild(estiloLeitor);
 
-    // Área de aviso para tecnologias assistivas
     const statusLeitor = document.createElement("p");
-
     statusLeitor.className = "voice-reader-status";
     statusLeitor.setAttribute("aria-live", "polite");
-
     grupoLeitor.appendChild(statusLeitor);
 
     const iniciar = document.getElementById("iniciarLeitor");
@@ -301,81 +290,165 @@ document.addEventListener("DOMContentLoaded", () => {
     const continuar = document.getElementById("continuarLeitor");
     const parar = document.getElementById("pararLeitor");
 
-    // Iniciar leitura
-    iniciar.addEventListener("click", () => {
+    function escolherVoz() {
+      const vozes = leitor.getVoices();
 
-      window.speechSynthesis.cancel();
+      vozPortuguesa =
+        vozes.find(voz => voz.lang.toLowerCase() === "pt-br") ||
+        vozes.find(voz => voz.lang.toLowerCase().startsWith("pt")) ||
+        null;
+    }
 
-      const abaAtiva = document.querySelector(
-        ".tab-panel:not([hidden])"
-      );
+    escolherVoz();
+    leitor.addEventListener?.("voiceschanged", escolherVoz);
 
-      const hero = document.querySelector(".hero");
-      const boasVindas = document.querySelector(".welcome-strip");
-      const rodape = document.querySelector(".footer");
+    // Divide o conteúdo em trechos curtos para evitar que o navegador
+    // interrompa a fala quando o texto é muito grande.
+    function dividirTexto(texto, limite = 220) {
+      const frases = texto
+        .replace(/\s+/g, " ")
+        .split(/(?<=[.!?;:])\s+/)
+        .map(frase => frase.trim())
+        .filter(Boolean);
 
-      let texto = "";
+      const resultado = [];
+      let atual = "";
 
-      if (hero) texto += hero.innerText + ". ";
-      if (boasVindas) texto += boasVindas.innerText + ". ";
-      if (abaAtiva) texto += abaAtiva.innerText + ". ";
-      if (rodape) texto += rodape.innerText;
+      frases.forEach(frase => {
+        if (frase.length > limite) {
+          if (atual) {
+            resultado.push(atual);
+            atual = "";
+          }
 
-      if (!texto.trim()) {
-        statusLeitor.textContent = "Nenhum conteúdo disponível para leitura.";
+          for (let i = 0; i < frase.length; i += limite) {
+            resultado.push(frase.slice(i, i + limite));
+          }
+          return;
+        }
+
+        if ((atual + " " + frase).trim().length > limite) {
+          if (atual) resultado.push(atual);
+          atual = frase;
+        } else {
+          atual = (atual + " " + frase).trim();
+        }
+      });
+
+      if (atual) resultado.push(atual);
+      return resultado;
+    }
+
+    function obterTextoDoSite() {
+      const seletores = [
+        ".hero",
+        ".welcome-strip",
+        ".tab-panel",
+        ".footer"
+      ];
+
+      const secoes = [];
+
+      seletores.forEach(seletor => {
+        document.querySelectorAll(seletor).forEach(secao => {
+          // Clona a seção para retirar botões e elementos de interface
+          // sem alterar o que aparece na página.
+          const copia = secao.cloneNode(true);
+
+          copia.querySelectorAll(
+            "button, script, style, input, select, textarea, .voice-reader-tools"
+          ).forEach(elemento => elemento.remove());
+
+          const texto = (copia.innerText || copia.textContent || "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+          if (texto) secoes.push(texto);
+        });
+      });
+
+      return secoes.join(". ");
+    }
+
+    function falarProximaParte() {
+      if (!lendo || indiceParte >= partesDaLeitura.length) {
+        if (indiceParte >= partesDaLeitura.length) {
+          lendo = false;
+          statusLeitor.textContent = "Leitura de todo o conteúdo finalizada.";
+        }
         return;
       }
 
-      const leitura = new SpeechSynthesisUtterance(texto);
+      const fala = new SpeechSynthesisUtterance(
+        partesDaLeitura[indiceParte]
+      );
 
-      leitura.lang = "pt-BR";
-      leitura.rate = 0.9;
-      leitura.pitch = 1;
+      fala.lang = "pt-BR";
+      fala.rate = 0.88;
+      fala.pitch = 1;
 
-      leitura.onstart = () => {
-        statusLeitor.textContent = "Leitura iniciada.";
+      if (vozPortuguesa) fala.voice = vozPortuguesa;
+
+      fala.onend = () => {
+        indiceParte++;
+        // Pequena pausa entre trechos para o navegador não cortar a sequência.
+        window.setTimeout(falarProximaParte, 120);
       };
 
-      leitura.onend = () => {
-        statusLeitor.textContent = "Leitura finalizada.";
+      fala.onerror = evento => {
+        if (evento.error === "canceled" || evento.error === "interrupted") {
+          return;
+        }
+
+        statusLeitor.textContent =
+          "Houve um problema na leitura. Pressione Ouvir para tentar novamente.";
+        lendo = false;
       };
 
-      leitura.onerror = () => {
-        statusLeitor.textContent = "Não foi possível realizar a leitura.";
-      };
+      leitor.speak(fala);
+    }
 
-      window.speechSynthesis.speak(leitura);
+    iniciar.addEventListener("click", () => {
+      leitor.cancel();
+
+      const textoCompleto = obterTextoDoSite();
+      partesDaLeitura = dividirTexto(textoCompleto);
+      indiceParte = 0;
+
+      if (!partesDaLeitura.length) {
+        statusLeitor.textContent = "Não encontrei conteúdo para ler.";
+        return;
+      }
+
+      escolherVoz();
+      lendo = true;
+      statusLeitor.textContent = "Lendo o conteúdo do site, incluindo todas as abas.";
+      falarProximaParte();
     });
 
-    // Pausar leitura
     pausar.addEventListener("click", () => {
-
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.pause();
+      if (leitor.speaking && !leitor.paused) {
+        leitor.pause();
         statusLeitor.textContent = "Leitura pausada.";
       }
     });
 
-    // Continuar leitura
     continuar.addEventListener("click", () => {
-
-      if (window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
+      if (leitor.paused) {
+        leitor.resume();
         statusLeitor.textContent = "Leitura continuada.";
       }
     });
 
-    // Parar leitura
     parar.addEventListener("click", () => {
-
-      window.speechSynthesis.cancel();
+      lendo = false;
+      indiceParte = partesDaLeitura.length;
+      leitor.cancel();
       statusLeitor.textContent = "Leitura encerrada.";
     });
 
   } else if (!("speechSynthesis" in window)) {
-
     console.warn("Este navegador não oferece suporte à leitura por voz.");
-
   }
 
 });

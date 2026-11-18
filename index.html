@@ -1,151 +1,297 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UM NOVO DIA | UCHIHA EDITION</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <a href="#capa" class="skip-link">Pular para o conteúdo principal</a>
 
-  <!-- Tela de Transição -->
-  <div id="transitionScreen" class="transition-screen" aria-hidden="true">
-    <p>Carregando experiência...</p>
-  </div>
+/* UM NOVO DIA | UCHIHA EDITION */
 
-  <!-- Capa Inicial -->
-  <header id="capa" class="capa">
-    <div class="capa-conteudo">
-      <h1>UM NOVO DIA</h1>
-      <p class="subtitulo">UCHIHA EDITION</p>
-      <button type="button" id="entrarBtn" class="btn-principal">Entrar no Site</button>
-    </div>
-  </header>
+document.addEventListener("DOMContentLoaded", () => {
+  const entrarBtn = document.getElementById("entrarBtn");
+  const capa = document.getElementById("capa");
+  const site = document.getElementById("site");
+  const transitionScreen = document.getElementById("transitionScreen");
 
-  <!-- Conteúdo Principal do Site -->
-  <div id="site" class="site hidden">
-    <!-- Barra de Acessibilidade e Temas -->
-    <nav class="barra-acessibilidade" aria-label="Controles de acessibilidade">
-      <button type="button" id="aumentarTexto" aria-label="Aumentar tamanho do texto">A+</button>
-      <button type="button" id="diminuirTexto" aria-label="Diminuir tamanho do texto">A-</button>
-      <button type="button" id="altoContraste" aria-pressed="false">Alto Contraste</button>
-      <button type="button" id="trocarTema" aria-pressed="false" aria-label="Ativar tema claro">Tema</button>
-    </nav>
+  // ENTRADA DO SITE
+  entrarBtn?.addEventListener("click", () => {
+    entrarBtn.disabled = true;
+    transitionScreen?.classList.add("show");
 
-    <main id="inicio" class="container">
-      <!-- Navegação por Abas -->
-      <div class="tabs-nav" role="tablist" aria-label="Seções do projeto">
-        <button class="tab-button active" role="tab" aria-selected="true" tabindex="0" data-tab="calorias">
-          Calculadora de Calorias
-        </button>
-        <button class="tab-button" role="tab" aria-selected="false" tabindex="-1" data-tab="robotica">
-          Robótica & Criptografia
-        </button>
-      </div>
+    window.setTimeout(() => {
+      capa?.classList.add("hidden");
+      transitionScreen?.classList.remove("show");
+      site?.classList.remove("hidden");
 
-      <!-- Aba 1: Calculadora de Calorias -->
-      <section id="calorias" class="tab-panel active" role="tabpanel">
-        <h2>Calculadora de Calorias</h2>
-        <p>Selecione o alimento e informe a quantidade em gramas para calcular o valor energético.</p>
+      document.getElementById("inicio")?.scrollIntoView({
+        behavior: "smooth"
+      });
 
-        <div class="card">
-          <div class="campo-grupo">
-            <label for="alimento">Alimento (kcal por 100g):</label>
-            <select id="alimento">
-              <option value="130">Arroz branco cozido (130 kcal)</option>
-              <option value="76">Feijão carioca cozido (76 kcal)</option>
-              <option value="159">Peito de frango grelhado (159 kcal)</option>
-              <option value="89">Banana prata (89 kcal)</option>
-              <option value="155">Ovo cozido (155 kcal)</option>
-            </select>
-          </div>
+      document.querySelector(".skip-link")
+        ?.setAttribute("href", "#inicio");
+    }, 2500);
+  });
 
-          <div class="campo-grupo">
-            <label for="quantidade">Quantidade (gramas):</label>
-            <input type="number" id="quantidade" min="1" placeholder="Ex: 150" />
-          </div>
+  // LEITURA EM VOZ ALTA
+  const lerBtn = document.getElementById("lerPagina");
+  const pararBtn = document.getElementById("pararLeitura");
+  const statusLeitura = document.getElementById("statusLeitura");
 
-          <button type="button" id="calcularBtn" class="btn-acao">Calcular Calorias</button>
+  let falaAtual = null;
 
-          <div id="resultado" class="resultado-box" aria-live="polite">
-            <span>AGUARDANDO</span>
-            <strong>Informe os dados acima</strong>
-            <small>O resultado aparecerá aqui.</small>
-          </div>
-        </div>
-      </section>
+  function atualizarControlesLeitura(lendo) {
+    if (lerBtn) lerBtn.disabled = lendo;
+    if (pararBtn) pararBtn.disabled = !lendo;
+  }
 
-      <!-- Aba 2: Robótica & Criptografia -->
-      <section id="robotica" class="tab-panel" role="tabpanel" hidden>
-        <h2>Robótica: Criptografia de Dados em Python</h2>
-        <p>Pesquisa prática sobre proteção de sinais e senhas utilizando lógica de programação e Cifra de César.</p>
+  function pararLeitura(mensagem = "Leitura interrompida.") {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
 
-        <!-- Aula 1 -->
-        <article class="card">
-          <h3>Aula 1 — Criptografia de Números</h3>
-          <p>Cada dígito da senha original é convertido para inteiro, somado a 1 e remontado como texto.</p>
+    falaAtual = null;
+    atualizarControlesLeitura(false);
 
-          <div class="campo-grupo">
-            <label for="inputSenhaNum">Senha numérica:</label>
-            <input type="text" id="inputSenhaNum" value="123456" inputmode="numeric" />
-          </div>
+    if (statusLeitura) {
+      statusLeitura.textContent = mensagem;
+    }
+  }
 
-          <button type="button" id="btnCriptoNum" class="btn-acao">Criptografar Números</button>
+  lerBtn?.addEventListener("click", () => {
+    if (!("speechSynthesis" in window)) {
+      if (statusLeitura) {
+        statusLeitura.textContent =
+          "Este navegador não oferece suporte à leitura em voz alta.";
+      }
+      return;
+    }
 
-          <div id="saidaAula1" class="resultado-box" aria-live="polite"></div>
+    window.speechSynthesis.cancel();
 
-          <details>
-            <summary>Ver código original em Python (Aula 1)</summary>
-            <pre><code>senha_numerica = "123456"
-senha_num_criptografada = ""
+    const hero = document.querySelector(".hero");
 
-for numero in senha_numerica:
-    numero_somado = int(numero) + 1
-    senha_num_criptografada = senha_num_criptografada + str(numero_somado)
+    const painelAtivo = document.querySelector(
+      ".tab-panel.active:not([hidden])"
+    );
 
-print(f"Senha original: {senha_numerica}")
-print(f"Senha criptografada: {senha_num_criptografada}")</code></pre>
-          </details>
-        </article>
+    const texto = [
+      hero?.innerText,
+      painelAtivo?.innerText
+    ]
+      .filter(Boolean)
+      .join(". ")
+      .replace(/\s+/g, " ")
+      .trim();
 
-        <!-- Aula 2 -->
-        <article class="card">
-          <h3>Aula 2 — Cifra de César e Tabela ASCII</h3>
-          <p>Conversão de caracteres utilizando o deslocamento de 1 posição no alfabeto através do código ASCII.</p>
+    if (!texto) {
+      if (statusLeitura) {
+        statusLeitura.textContent =
+          "Não há conteúdo disponível para leitura.";
+      }
+      return;
+    }
 
-          <div id="tabelaAsciiExemplo" class="ascii-info"></div>
+    falaAtual = new SpeechSynthesisUtterance(texto);
 
-          <div class="campo-grupo">
-            <label for="inputTextoCesar">Texto ou senha para codificar:</label>
-            <input type="text" id="inputTextoCesar" value="rafael" />
-          </div>
+    falaAtual.lang = "pt-BR";
+    falaAtual.rate = 1;
+    falaAtual.pitch = 1;
 
-          <button type="button" id="btnCriptoTexto" class="btn-acao">Codificar Texto</button>
+    falaAtual.onstart = () => {
+      atualizarControlesLeitura(true);
 
-          <div id="saidaAula2" class="resultado-box" aria-live="polite"></div>
+      if (statusLeitura) {
+        statusLeitura.textContent =
+          "Leitura em voz alta iniciada.";
+      }
+    };
 
-          <details>
-            <summary>Ver código original em Python (Aula 2)</summary>
-            <pre><code>dicionario = "bcdefghijklmnopqrstuvwxyza"
+    falaAtual.onend = () => {
+      falaAtual = null;
+      atualizarControlesLeitura(false);
 
-def codifica(senha):
-    senha_criptografada = ""
-    for letra in senha:
-        if "a" &lt;= letra &lt;= "z":
-            posicao = ord(letra) - ord("a")
-            senha_criptografada += dicionario[posicao]
-        else:
-            senha_criptografada += letra
-    return senha_criptografada
+      if (statusLeitura) {
+        statusLeitura.textContent = "Leitura concluída.";
+      }
+    };
 
-print(codifica("rafael"))</code></pre>
-          </details>
-        </article>
-      </section>
-    </main>
-  </div>
+    falaAtual.onerror = () => {
+      falaAtual = null;
+      atualizarControlesLeitura(false);
 
-  <script src="script.js"></script>
-</body>
-</html>
+      if (statusLeitura) {
+        statusLeitura.textContent =
+          "Não foi possível realizar a leitura.";
+      }
+    };
+
+    atualizarControlesLeitura(true);
+    window.speechSynthesis.speak(falaAtual);
+  });
+
+  pararBtn?.addEventListener("click", () => {
+    pararLeitura();
+  });
+
+  // NAVEGAÇÃO POR ABAS
+  const tabButtons = [
+    ...document.querySelectorAll(".tab-button")
+  ];
+
+  const panels = [
+    ...document.querySelectorAll(".tab-panel")
+  ];
+
+  function abrirAba(id, button) {
+    if (
+      "speechSynthesis" in window &&
+      window.speechSynthesis.speaking
+    ) {
+      pararLeitura(
+        "Leitura interrompida porque a aba foi alterada."
+      );
+    }
+
+    panels.forEach(panel => {
+      const ativo = panel.id === id;
+
+      panel.hidden = !ativo;
+      panel.classList.toggle("active", ativo);
+    });
+
+    tabButtons.forEach(tab => {
+      const ativo = tab === button;
+
+      tab.classList.toggle("active", ativo);
+      tab.setAttribute("aria-selected", String(ativo));
+      tab.setAttribute("tabindex", ativo ? "0" : "-1");
+    });
+  }
+
+  tabButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      abrirAba(button.dataset.tab, button);
+    });
+
+    button.addEventListener("keydown", event => {
+      if (
+        !["ArrowRight", "ArrowLeft", "Home", "End"]
+          .includes(event.key)
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+
+      let next = index;
+
+      if (event.key === "ArrowRight") {
+        next = (index + 1) % tabButtons.length;
+      }
+
+      if (event.key === "ArrowLeft") {
+        next = (index - 1 + tabButtons.length)
+          % tabButtons.length;
+      }
+
+      if (event.key === "Home") next = 0;
+      if (event.key === "End") next = tabButtons.length - 1;
+
+      tabButtons[next].focus();
+
+      abrirAba(
+        tabButtons[next].dataset.tab,
+        tabButtons[next]
+      );
+    });
+  });
+
+  // AUMENTAR E DIMINUIR TEXTO
+  let tamanhoBase = 16;
+
+  const aplicarTamanho = () => {
+    document.documentElement.style.setProperty(
+      "--base",
+      `${tamanhoBase}px`
+    );
+  };
+
+  document.getElementById("aumentarTexto")
+    ?.addEventListener("click", () => {
+      tamanhoBase = Math.min(22, tamanhoBase + 1);
+      aplicarTamanho();
+    });
+
+  document.getElementById("diminuirTexto")
+    ?.addEventListener("click", () => {
+      tamanhoBase = Math.max(13, tamanhoBase - 1);
+      aplicarTamanho();
+    });
+
+  // ALTO CONTRASTE
+  const contrasteBtn = document.getElementById("altoContraste");
+
+  contrasteBtn?.addEventListener("click", () => {
+    const ativo = document.body.classList.toggle("high-contrast");
+
+    contrasteBtn.setAttribute(
+      "aria-pressed",
+      String(ativo)
+    );
+  });
+
+  // TEMA CLARO E ESCURO
+  const temaBtn = document.getElementById("trocarTema");
+
+  temaBtn?.addEventListener("click", () => {
+    const claro = document.body.classList.toggle("light-theme");
+
+    temaBtn.setAttribute("aria-pressed", String(claro));
+
+    temaBtn.setAttribute(
+      "aria-label",
+      claro ? "Ativar tema escuro" : "Ativar tema claro"
+    );
+  });
+
+  // CALCULADORA DE CALORIAS
+  const calcularBtn = document.getElementById("calcularBtn");
+  const alimento = document.getElementById("alimento");
+  const quantidade = document.getElementById("quantidade");
+  const resultado = document.getElementById("resultado");
+
+  function calcularCalorias() {
+    const gramas = Number(quantidade?.value);
+    const kcalPor100g = Number(alimento?.value);
+
+    if (!Number.isFinite(gramas) || gramas <= 0) {
+      resultado.innerHTML = `
+        <span>ATENÇÃO</span>
+        <strong>Informe a quantidade</strong>
+        <small>Digite um valor em gramas maior que zero.</small>
+      `;
+
+      quantidade?.focus();
+      return;
+    }
+
+    const kcal = (kcalPor100g * gramas) / 100;
+
+    const nome =
+      alimento?.selectedOptions[0]?.textContent ?? "Alimento";
+
+    resultado.innerHTML = `
+      <span>RESULTADO</span>
+      <strong>
+        ${kcal.toLocaleString("pt-BR", {
+          maximumFractionDigits: 1
+        })} kcal
+      </strong>
+      <small>
+        ${nome} — ${gramas.toLocaleString("pt-BR")} g
+      </small>
+    `;
+  }
+
+  calcularBtn?.addEventListener("click", calcularCalorias);
+
+  quantidade?.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      calcularCalorias();
+    }
+  });
+});

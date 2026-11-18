@@ -198,58 +198,12 @@
             <span class="card-icon">⌘</span>
             <span class="card-label">LABORATÓRIO DE IDEIAS</span>
           </div>
-          <h3>Aula 1 — Criptografia de Números</h3>
-          <p class="muted">Demonstração de uma criptografia simples: cada número da senha é convertido em inteiro e somado a 1.</p>
-          <pre class="robotics-code"><code>print("--- Resultado da Aula 1 ---")
-
-senha_numerica = "123456"
-senha_num_criptografada = ""
-
-for numero in senha_numerica:
-    numero_somado = int(numero) + 1
-    senha_num_criptografada = senha_num_criptografada + str(numero_somado)
-
-print(f"Senha original: {senha_numerica}")
-print(f"Senha criptografada: {senha_num_criptografada}")
-print("-" * 30)</code></pre>
-        </div>
-
-        <div class="info-card robotics-card">
-          <div class="card-topline">
-            <span class="card-icon">⌘</span>
-            <span class="card-label">LABORATÓRIO DE IDEIAS</span>
-          </div>
-          <h3>Aula 2 — Convertendo Letras em Números (Cifra de César)</h3>
-          <p class="muted">O código apresenta exemplos de conversão de letras em códigos ASCII e substitui cada letra minúscula pela próxima letra do alfabeto.</p>
-          <pre class="robotics-code"><code>print("\n--- Resultado da Aula 2 ---")
-
-alfabeto = "abcdefghijklmnopqrstuvwxyz"
-print("Tabela de conversão ASCII de exemplo:")
-for letra in alfabeto[:5]:
-    numero = ord(letra)
-    print(f"  Letra: {letra} -&gt; Código ASCII: {numero}")
-print("  ...")
-
-dicionario = "bcdefghijklmnopqrstuvwxyza"
-
-def codifica(senha):
-    senha_criptografada = ""
-
-    for letra in senha:
-        if "a" &lt;= letra &lt;= "z":
-            posicao = ord(letra) - ord("a")
-            senha_criptografada += dicionario[posicao]
-        else:
-            senha_criptografada += letra
-
-    return senha_criptografada
-
-texto_teste = "rafael"
-resultado = codifica(texto_teste)
-
-print(f"\nTexto original: {texto_teste}")
-print(f"Texto criptografado: {resultado}")
-print("-" * 30)</code></pre>
+          <div class="robotics-symbol">⚙</div>
+          <h3>Em construção</h3>
+          <p class="muted">
+            Esta área está sendo preparada para receber os conteúdos, projetos e experiências de Robótica.
+          </p>
+          <div class="coming-soon">NOVOS PROJETOS EM BREVE</div>
         </div>
       </article>
 

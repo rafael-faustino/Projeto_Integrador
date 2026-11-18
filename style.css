@@ -169,3 +169,60 @@ body.light-theme .scene-panel::before{background:linear-gradient(90deg,rgba(15,1
 body.high-contrast .scene-panel::before{background:rgba(0,0,0,.94)}
 body.high-contrast .scene-panel .info-card{background:#000;border-color:#fff}
 @media(max-width:650px){.scene-panel{padding:14px;background-attachment:scroll}}
+
+/* PESQUISA DE ROBÓTICA — estilos exclusivos desta seção */
+.robotics-card{
+  display:block;
+  min-height:0;
+  text-align:left;
+}
+.robotics-card .card-topline{
+  align-self:auto;
+}
+.robotics-card h3{
+  margin-top:24px;
+}
+.robotics-card h3:first-of-type{
+  margin-top:0;
+}
+.robotics-card .muted{
+  max-width:850px;
+}
+.robotics-code{
+  width:100%;
+  overflow-x:auto;
+  margin-top:18px;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:3px;
+  background:#090609;
+  color:#f1dfe5;
+  font-family:Consolas,"Courier New",monospace;
+  font-size:.82rem;
+  line-height:1.75;
+  text-align:left;
+  white-space:pre;
+}
+.robotics-code code{
+  font:inherit;
+}
+.robotics-divider{
+  height:1px;
+  margin:32px 0;
+  background:var(--border);
+}
+body.light-theme .robotics-code{
+  background:#21171c;
+  color:#fff0f3;
+}
+body.high-contrast .robotics-code{
+  background:#000;
+  color:#fff;
+  border-color:#fff;
+}
+@media(max-width:650px){
+  .robotics-code{
+    padding:14px;
+    font-size:.72rem;
+  }
+}

@@ -1,299 +1,151 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080609">
-  <meta name="description" content="Um Novo Dia — conhecimento, tecnologia e criatividade.">
-  <title>Um Novo Dia | Uchiha Edition</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UM NOVO DIA | UCHIHA EDITION</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a href="#capa" class="skip-link">Pular para o conteúdo principal</a>
 
-  <a class="skip-link" href="#site">Pular para o conteúdo</a>
-
-  <!-- CAPA -->
-  <section class="cover" id="capa">
-    <div class="cover-grid"></div>
-    <div class="cover-vignette"></div>
-
-    <div class="cover-content">
-      <div class="clan-symbol">うちは</div>
-      <p class="eyebrow">CLÃ UCHIHA <span></span> MANGEKYŌ SHARINGAN</p>
-      <h1>UM NOVO<br><span>DIA.</span></h1>
-      <p class="cover-subtitle">
-        Conhecimento é poder. Enxergue além do que os olhos podem ver.
-      </p>
-
-      <button class="enter-button" id="entrarBtn">
-        <span>INICIAR JORNADA</span>
-        <span class="button-arrow">↗</span>
-      </button>
-
-      <p class="cover-note">UMA NOVA JORNADA COMEÇA AQUI</p>
-    </div>
-
-    <div class="cover-eye" aria-hidden="true">
-      <div class="eye-ring">
-        <svg class="mangekyou" viewBox="0 0 200 200" role="presentation">
-          <circle class="iris" cx="100" cy="100" r="96"/>
-          <circle class="iris-inner" cx="100" cy="100" r="82"/>
-          <g class="tomoe">
-            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
-            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
-            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
-          </g>
-          <circle class="pupil" cx="100" cy="100" r="13"/>
-          <circle class="pupil-glint" cx="96" cy="95" r="3"/>
-        </svg>
-      </div>
-    </div>
-
-    <div class="cover-side-label">写輪眼 — SHARINGAN</div>
-    <div class="cover-bottom">火の意志 <span>—</span> VONTADE DO FOGO</div>
-  </section>
-
-  <!-- TRANSIÇÃO -->
-  <div class="transition-screen" id="transitionScreen" aria-hidden="true">
-    <div class="transition-eye">
-      <svg class="mangekyou" viewBox="0 0 200 200" role="presentation">
-        <circle class="iris" cx="100" cy="100" r="96"/>
-        <circle class="iris-inner" cx="100" cy="100" r="82"/>
-        <g class="tomoe">
-          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
-          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
-          <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
-        </g>
-        <circle class="pupil" cx="100" cy="100" r="13"/>
-      </svg>
-    </div>
-    <p>DESPERTANDO O SHARINGAN...</p>
+  <!-- Tela de Transição -->
+  <div id="transitionScreen" class="transition-screen" aria-hidden="true">
+    <p>Carregando experiência...</p>
   </div>
 
-  <!-- SITE -->
-  <main id="site" class="hidden">
-    <header class="topbar">
-      <a class="brand" href="#inicio" aria-label="Um Novo Dia - início">
-        <span class="brand-symbol">う</span>
-        <span>UM NOVO <b>DIA</b></span>
-      </a>
+  <!-- Capa Inicial -->
+  <header id="capa" class="capa">
+    <div class="capa-conteudo">
+      <h1>UM NOVO DIA</h1>
+      <p class="subtitulo">UCHIHA EDITION</p>
+      <button type="button" id="entrarBtn" class="btn-principal">Entrar no Site</button>
+    </div>
+  </header>
 
-      <nav class="main-nav" aria-label="Navegação principal">
-        <button class="tab-button active" data-tab="fisica" aria-selected="true">Física</button>
-        <button class="tab-button" data-tab="robotica" aria-selected="false">Robótica</button>
-        <button class="tab-button" data-tab="programacao" aria-selected="false">Programação</button>
-      </nav>
+  <!-- Conteúdo Principal do Site -->
+  <div id="site" class="site hidden">
+    <!-- Barra de Acessibilidade e Temas -->
+    <nav class="barra-acessibilidade" aria-label="Controles de acessibilidade">
+      <button type="button" id="aumentarTexto" aria-label="Aumentar tamanho do texto">A+</button>
+      <button type="button" id="diminuirTexto" aria-label="Diminuir tamanho do texto">A-</button>
+      <button type="button" id="altoContraste" aria-pressed="false">Alto Contraste</button>
+      <button type="button" id="trocarTema" aria-pressed="false" aria-label="Ativar tema claro">Tema</button>
+    </nav>
 
-      <div class="access-tools" aria-label="Ferramentas de acessibilidade">
-        <button id="diminuirTexto" aria-label="Diminuir texto" title="Diminuir texto">A−</button>
-        <button id="aumentarTexto" aria-label="Aumentar texto" title="Aumentar texto">A+</button>
-        <button id="altoContraste" aria-label="Ativar alto contraste" aria-pressed="false" title="Alto contraste">◐</button>
-        <button id="trocarTema" aria-label="Alternar tema claro e escuro" aria-pressed="false" title="Alternar tema">☼</button>
-      </div>
-    </header>
-
-    <section class="hero" id="inicio">
-      <div class="hero-background-mark">うちは</div>
-      <div class="hero-content">
-        <p class="eyebrow">BEM-VINDO À JORNADA</p>
-        <h2>ENXERGUE<br><span>ALÉM.</span></h2>
-        <p>
-          Explore conhecimentos, descubra novas ideias e desenvolva suas habilidades.
-          Cada descoberta é um novo passo na sua jornada.
-        </p>
-        <div class="hero-tags">
-          <span>01 / FÍSICA</span>
-          <span>02 / ROBÓTICA</span>
-          <span>03 / PROGRAMAÇÃO</span>
-        </div>
+    <main id="inicio" class="container">
+      <!-- Navegação por Abas -->
+      <div class="tabs-nav" role="tablist" aria-label="Seções do projeto">
+        <button class="tab-button active" role="tab" aria-selected="true" tabindex="0" data-tab="calorias">
+          Calculadora de Calorias
+        </button>
+        <button class="tab-button" role="tab" aria-selected="false" tabindex="-1" data-tab="robotica">
+          Robótica & Criptografia
+        </button>
       </div>
 
-      <div class="hero-decoration" aria-hidden="true">
-        <svg class="mangekyou" viewBox="0 0 200 200">
-          <circle class="iris" cx="100" cy="100" r="96"/>
-          <circle class="iris-inner" cx="100" cy="100" r="82"/>
-          <g class="tomoe">
-            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z"/>
-            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(120 100 100)"/>
-            <path d="M100 100 C91 83 75 65 78 45 C80 29 94 18 108 20 C96 29 96 42 105 51 C121 67 119 85 100 100Z" transform="rotate(240 100 100)"/>
-          </g>
-          <circle class="pupil" cx="100" cy="100" r="13"/>
-        </svg>
-        <span class="hero-kanji">写輪眼</span>
-      </div>
-      <div class="hero-index">UCHIHA ARCHIVE <span>— 001</span></div>
-    </section>
+      <!-- Aba 1: Calculadora de Calorias -->
+      <section id="calorias" class="tab-panel active" role="tabpanel">
+        <h2>Calculadora de Calorias</h2>
+        <p>Selecione o alimento e informe a quantidade em gramas para calcular o valor energético.</p>
 
-    <section class="welcome-strip">
-      <span class="strip-mark">✦</span>
-      <p>“O conhecimento é a ferramenta que transforma o mundo.”</p>
-      <span class="strip-mark">✦</span>
-    </section>
-
-    <section class="content-area">
-
-      <!-- FÍSICA: DIMENSÃO KAMUI -->
-      <article class="tab-panel active scene-panel kamui-panel" id="fisica" aria-label="Física — Dimensão Kamui">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">ÁREA DE ESTUDO 01</p>
-            <h2>FÍSICA <span class="red-text">.</span></h2>
-            <p class="section-description">
-              Observe os fenômenos, analise os dados e descubra como a física está presente no cotidiano.
-            </p>
-          </div>
-          <div class="section-number">01</div>
-        </div>
-
-        <div class="info-card">
-          <div class="card-topline">
-            <span class="card-icon">◉</span>
-            <span class="card-label">REGISTRO DE MEDIÇÕES</span>
-          </div>
-          <h3>Tabela de medições sonoras</h3>
-          <p class="muted">
-            Dados coletados durante as medições, organizados para facilitar a comparação dos resultados.
-          </p>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Medição</th><th>Tempo</th><th>Leitura</th>
-                  <th>Mínimo</th><th>Média</th><th>Máximo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>01</td><td>13 s</td><td>79,15</td><td>66,16</td><td>76,44</td><td>83,75</td></tr>
-                <tr><td>02</td><td>2 s</td><td>63,37</td><td>53,68</td><td>60,53</td><td>63,58</td></tr>
-                <tr><td>03</td><td>4 s</td><td>58,12</td><td>56,67</td><td>62,09</td><td>65,69</td></tr>
-                <tr><td>04</td><td>4 s</td><td>67,57</td><td>62,21</td><td>70,27</td><td>77,62</td></tr>
-                <tr><td>05</td><td>4 s</td><td>70,27</td><td>66,16</td><td>75,24</td><td>83,75</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="table-note">Os valores foram mantidos conforme os dados fornecidos para o projeto.</p>
-        </div>
-      </article>
-
-      <!-- ROBÓTICA -->
-      <article class="tab-panel" id="robotica" hidden>
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">ÁREA DE ESTUDO 02</p>
-            <h2>ROBÓTICA <span class="red-text">.</span></h2>
-            <p class="section-description">
-              Tecnologia, criatividade e inovação trabalhando juntas para criar soluções.
-            </p>
-          </div>
-          <div class="section-number">02</div>
-        </div>
-
-        <div class="info-card robotics-card">
-          <div class="card-topline">
-            <span class="card-icon">⌘</span>
-            <span class="card-label">LABORATÓRIO DE IDEIAS</span>
-          </div>
-          <div class="robotics-symbol">⚙</div>
-          <h3>Em construção</h3>
-          <p class="muted">
-            Esta área está sendo preparada para receber os conteúdos, projetos e experiências de Robótica.
-          </p>
-          <div class="coming-soon">NOVOS PROJETOS EM BREVE</div>
-        </div>
-      </article>
-
-      <!-- PROGRAMAÇÃO: CAVERNA DA AKATSUKI -->
-      <article class="tab-panel scene-panel akatsuki-panel" id="programacao" aria-label="Programação — Esconderijo da Akatsuki" hidden>
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">ÁREA DE ESTUDO 03</p>
-            <h2>PROGRAMAÇÃO <span class="red-text">.</span></h2>
-            <p class="section-description">
-              Transforme ideias em soluções usando lógica, algoritmos e código.
-            </p>
-          </div>
-          <div class="section-number">03</div>
-        </div>
-
-        <div class="info-card">
-          <div class="card-topline">
-            <span class="card-icon">⌨</span>
-            <span class="card-label">BASE DE DADOS</span>
-          </div>
-          <h3>Informações nutricionais</h3>
-          <p class="muted">Valores aproximados por 100 gramas de cada alimento.</p>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Alimento</th><th>Calorias</th><th>Proteínas</th>
-                  <th>Carboidratos</th><th>Fibras</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Arroz</td><td>130 kcal</td><td>2,7 g</td><td>28 g</td><td>0,4 g</td></tr>
-                <tr><td>Feijão</td><td>76 kcal</td><td>4,8 g</td><td>13,6 g</td><td>8,5 g</td></tr>
-                <tr><td>Frango grelhado</td><td>159 kcal</td><td>32 g</td><td>0 g</td><td>0 g</td></tr>
-                <tr><td>Banana</td><td>89 kcal</td><td>1,1 g</td><td>22,8 g</td><td>2,6 g</td></tr>
-                <tr><td>Batata-doce</td><td>77 kcal</td><td>0,6 g</td><td>18,4 g</td><td>2,2 g</td></tr>
-                <tr><td>Ovo cozido</td><td>155 kcal</td><td>13 g</td><td>1,1 g</td><td>0 g</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="info-card calculator-card">
-          <div class="card-topline">
-            <span class="card-icon">∑</span>
-            <span class="card-label">FERRAMENTA INTERATIVA</span>
-          </div>
-          <h3>Calculadora de calorias</h3>
-          <p class="muted">
-            Escolha um alimento e informe a quantidade em gramas para calcular o valor correspondente.
-          </p>
-
-          <div class="calculator-fields">
-            <div class="field">
-              <label for="alimento">Alimento</label>
-              <select id="alimento">
-                <option value="130">Arroz</option>
-                <option value="76">Feijão</option>
-                <option value="159">Frango grelhado</option>
-                <option value="89">Banana</option>
-                <option value="77">Batata-doce</option>
-                <option value="155">Ovo cozido</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="quantidade">Quantidade (gramas)</label>
-              <input type="number" id="quantidade" min="1" step="any" placeholder="Ex.: 150">
-            </div>
-
-            <button class="calculate-button" id="calcularBtn">CALCULAR <span>↗</span></button>
+        <div class="card">
+          <div class="campo-grupo">
+            <label for="alimento">Alimento (kcal por 100g):</label>
+            <select id="alimento">
+              <option value="130">Arroz branco cozido (130 kcal)</option>
+              <option value="76">Feijão carioca cozido (76 kcal)</option>
+              <option value="159">Peito de frango grelhado (159 kcal)</option>
+              <option value="89">Banana prata (89 kcal)</option>
+              <option value="155">Ovo cozido (155 kcal)</option>
+            </select>
           </div>
 
-          <div class="result-area" id="resultado" aria-live="polite">
-            <span>RESULTADO</span>
-            <strong>—</strong>
+          <div class="campo-grupo">
+            <label for="quantidade">Quantidade (gramas):</label>
+            <input type="number" id="quantidade" min="1" placeholder="Ex: 150" />
+          </div>
+
+          <button type="button" id="calcularBtn" class="btn-acao">Calcular Calorias</button>
+
+          <div id="resultado" class="resultado-box" aria-live="polite">
+            <span>AGUARDANDO</span>
+            <strong>Informe os dados acima</strong>
             <small>O resultado aparecerá aqui.</small>
           </div>
         </div>
-      </article>
-    </section>
+      </section>
 
-    <footer class="footer">
-      <div class="footer-symbol">う</div>
-      <p>UM NOVO DIA</p>
-      <span>CONHECIMENTO <i>•</i> TECNOLOGIA <i>•</i> CRIATIVIDADE</span>
-      <small>Projeto escolar</small>
-    </footer>
-  </main>
+      <!-- Aba 2: Robótica & Criptografia -->
+      <section id="robotica" class="tab-panel" role="tabpanel" hidden>
+        <h2>Robótica: Criptografia de Dados em Python</h2>
+        <p>Pesquisa prática sobre proteção de sinais e senhas utilizando lógica de programação e Cifra de César.</p>
+
+        <!-- Aula 1 -->
+        <article class="card">
+          <h3>Aula 1 — Criptografia de Números</h3>
+          <p>Cada dígito da senha original é convertido para inteiro, somado a 1 e remontado como texto.</p>
+
+          <div class="campo-grupo">
+            <label for="inputSenhaNum">Senha numérica:</label>
+            <input type="text" id="inputSenhaNum" value="123456" inputmode="numeric" />
+          </div>
+
+          <button type="button" id="btnCriptoNum" class="btn-acao">Criptografar Números</button>
+
+          <div id="saidaAula1" class="resultado-box" aria-live="polite"></div>
+
+          <details>
+            <summary>Ver código original em Python (Aula 1)</summary>
+            <pre><code>senha_numerica = "123456"
+senha_num_criptografada = ""
+
+for numero in senha_numerica:
+    numero_somado = int(numero) + 1
+    senha_num_criptografada = senha_num_criptografada + str(numero_somado)
+
+print(f"Senha original: {senha_numerica}")
+print(f"Senha criptografada: {senha_num_criptografada}")</code></pre>
+          </details>
+        </article>
+
+        <!-- Aula 2 -->
+        <article class="card">
+          <h3>Aula 2 — Cifra de César e Tabela ASCII</h3>
+          <p>Conversão de caracteres utilizando o deslocamento de 1 posição no alfabeto através do código ASCII.</p>
+
+          <div id="tabelaAsciiExemplo" class="ascii-info"></div>
+
+          <div class="campo-grupo">
+            <label for="inputTextoCesar">Texto ou senha para codificar:</label>
+            <input type="text" id="inputTextoCesar" value="rafael" />
+          </div>
+
+          <button type="button" id="btnCriptoTexto" class="btn-acao">Codificar Texto</button>
+
+          <div id="saidaAula2" class="resultado-box" aria-live="polite"></div>
+
+          <details>
+            <summary>Ver código original em Python (Aula 2)</summary>
+            <pre><code>dicionario = "bcdefghijklmnopqrstuvwxyza"
+
+def codifica(senha):
+    senha_criptografada = ""
+    for letra in senha:
+        if "a" &lt;= letra &lt;= "z":
+            posicao = ord(letra) - ord("a")
+            senha_criptografada += dicionario[posicao]
+        else:
+            senha_criptografada += letra
+    return senha_criptografada
+
+print(codifica("rafael"))</code></pre>
+          </details>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

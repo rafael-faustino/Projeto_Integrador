@@ -218,7 +218,7 @@
 
           <div class="robotics-divider"></div>
           <h3>7. Tabela comparativa dos fenômenos ópticos</h3>
-          <div class="table-wrap">
+             <div class="table-wrap">
             <table>
               <thead><tr><th>Fenômeno</th><th>Como acontece</th><th>Exemplo cotidiano</th><th>Aplicação tecnológica</th></tr></thead>
               <tbody>
@@ -247,7 +247,7 @@
           <div class="robotics-divider"></div>
           <h3>9. Proposta tecnológica: LumosSense</h3>
           <p class="muted">O LumosSense é uma proposta tecnológica que utiliza sensores e iluminação inteligente para auxiliar pessoas com baixa visão. O projeto pode utilizar um sensor de luminosidade para identificar a quantidade de luz presente em um ambiente.</p>
-                    <p class="muted">Quando a iluminação estiver abaixo do nível programado, o sistema poderá acionar uma lâmpada ou LED automaticamente.</p>
+          <p class="muted">Quando a iluminação estiver abaixo do nível programado, o sistema poderá acionar uma lâmpada ou LED automaticamente.</p>
           <p class="muted"><strong>Como funcionaria?</strong></p>
           <ol class="muted">
             <li>O sensor identifica a luminosidade do ambiente.</li>
@@ -497,8 +497,8 @@
 
           <div class="robotics-divider"></div>
           <h3>3. Displays</h3>
-          <h4>O que é um display?</h4>
-          <p class="muted">Display é um dispositivo eletrônico utilizado para apresentar informações de maneira visual. Ele pode mostrar letras, números, símbolos, mensagens e até imagens, dependendo do modelo.</p>
+          <h4>O que é um display?</h4>       
+                    <p class="muted">Display é um dispositivo eletrônico utilizado para apresentar informações de maneira visual. Ele pode mostrar letras, números, símbolos, mensagens e até imagens, dependendo do modelo.</p>
           <p class="muted">Os displays são encontrados em relógios digitais, calculadoras, celulares, computadores, equipamentos médicos e sistemas eletrônicos.</p>
 
           <h4>Principais tipos de displays</h4>
@@ -520,7 +520,8 @@
             <li>Informar visualmente quando um equipamento está funcionando.</li>
           </ul>
           <p class="muted"><strong>Exemplo prático:</strong> um sistema de atendimento pode utilizar um display LCD para mostrar o número da senha chamada. Assim, pessoas com deficiência auditiva podem acompanhar o atendimento visualmente, sem depender apenas de avisos sonoros.</p>
-                    <div class="robotics-divider"></div>
+
+          <div class="robotics-divider"></div>
           <h3>4. Tabela comparativa dos três recursos</h3>
           <div class="table-wrap">
             <table>
@@ -669,7 +670,7 @@
             <p class="eyebrow">ÁREA DE ESTUDO 03</p>
             <h2>PROGRAMAÇÃO <span class="red-text">.</span></h2>
             <p class="section-description">
-              Transforme ideias em soluções usando lógica, algoritmos e código.
+              Desenvolva soluções, compreenda algoritmos e transforme ideias em programas.
             </p>
           </div>
           <div class="section-number">03</div>
@@ -677,12 +678,15 @@
 
         <div class="info-card">
           <div class="card-topline">
-            <span class="card-icon">⌨</span>
-            <span class="card-label">BASE DE DADOS</span>
+            <span class="card-icon">⌘</span>
+            <span class="card-label">PROGRAMAÇÃO E TECNOLOGIA</span>
           </div>
 
-          <h3>Informações nutricionais</h3>
-          <p class="muted">Valores aproximados por 100 gramas de cada alimento.</p>
+          <h3>Banco de dados de alimentos</h3>
+          <p class="muted">
+            Um banco de dados é uma estrutura utilizada para armazenar e organizar informações.
+            Neste exemplo, os alimentos são apresentados com seus valores nutricionais por 100 gramas.
+          </p>
 
           <div class="table-wrap">
             <table>
@@ -692,11 +696,11 @@
                   <th>Calorias</th>
                   <th>Proteínas</th>
                   <th>Carboidratos</th>
-                  <th>Fibras</th>
+                  <th>Gorduras</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Arroz</td><td>130 kcal</td><td>2,7 g</td><td>28 g</td><td>0,4 g</td></tr>
+                <tr><td>Arroz</td><td>130 kcal</td><td>2,7 g</td><td>28 g</td><td>0,3 g</td></tr>
                 <tr><td>Feijão</td><td>76 kcal</td><td>4,8 g</td><td>13,6 g</td><td>8,5 g</td></tr>
                 <tr><td>Frango grelhado</td><td>159 kcal</td><td>32 g</td><td>0 g</td><td>0 g</td></tr>
                 <tr><td>Banana</td><td>89 kcal</td><td>1,1 g</td><td>22,8 g</td><td>2,6 g</td></tr>
@@ -746,6 +750,42 @@
             <strong>—</strong>
             <small>O resultado aparecerá aqui.</small>
           </div>
+        </div>
+
+        <!-- CRIPTOGRAFIA -->
+        <div class="info-card">
+          <div class="card-topline">
+            <span class="card-icon">⌁</span>
+            <span class="card-label">LÓGICA E SEGURANÇA DA INFORMAÇÃO</span>
+          </div>
+
+          <h3>Criptografia</h3>
+          <p class="muted">Criptografia é uma técnica utilizada para transformar uma informação em um formato codificado, dificultando que pessoas não autorizadas entendam seu conteúdo. Ela é importante para proteger dados e informações em sistemas digitais, aplicativos e comunicações pela internet.</p>
+
+          <h4>Exemplo de criptografia em Python</h4>
+          <p class="muted">O código abaixo apresenta uma cifra simples: cada algarismo da senha é convertido em número e aumentado em uma unidade. O resultado é juntado para formar a sequência codificada.</p>
+
+          <pre class="code-example"><code>senha = "123456"
+senha_criptografada = ""
+
+for numero in senha:
+    numero = int(numero) + 1
+    senha_criptografada += str(numero)
+    print(senha_criptografada)</code></pre>
+
+          <h4>Como o código funciona?</h4>
+          <ol class="muted">
+            <li>A variável <strong>senha</strong> guarda a sequência original de números.</li>
+            <li>A variável <strong>senha_criptografada</strong> começa vazia para receber o resultado.</li>
+            <li>O comando <strong>for</strong> percorre cada caractere da senha.</li>
+            <li>A função <strong>int()</strong> transforma o caractere em número, e <strong>+ 1</strong> aumenta seu valor em uma unidade.</li>
+            <li>O comando <strong>str()</strong> transforma o resultado novamente em texto, que é acrescentado à sequência codificada.</li>
+            <li>O comando <strong>print()</strong> mostra a sequência construída em cada repetição.</li>
+          </ol>
+
+          <h4>Resultado do exemplo</h4>
+          <p class="muted">Com a senha <strong>123456</strong>, o resultado final será <strong>234567</strong>.</p>
+          <p class="muted"><strong>Importante:</strong> esse exemplo serve para estudar lógica de programação e substituição de números. Ele não é um método seguro para proteger senhas reais, pois é simples e fácil de descobrir.</p>
         </div>
       </article>
     </section>

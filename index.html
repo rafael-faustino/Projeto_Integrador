@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -75,7 +74,7 @@
   </div>
 
   <!-- SITE -->
-  <main id="site" class="hidden">
+  <main id="site">
     <header class="topbar">
       <a class="brand" href="#inicio" aria-label="Um Novo Dia - início">
         <span class="brand-symbol">う</span>
@@ -221,9 +220,7 @@
           <h3>7. Tabela comparativa dos fenômenos ópticos</h3>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr><th>Fenômeno</th><th>Como acontece</th><th>Exemplo cotidiano</th><th>Aplicação tecnológica</th></tr>
-              </thead>
+              <thead><tr><th>Fenômeno</th><th>Como acontece</th><th>Exemplo cotidiano</th><th>Aplicação tecnológica</th></tr></thead>
               <tbody>
                 <tr><td>Reflexão</td><td>A luz retorna ao meio de origem</td><td>Espelho</td><td>Periscópio</td></tr>
                 <tr><td>Refração</td><td>A luz muda de velocidade ao passar entre meios</td><td>Lápis na água</td><td>Óculos</td></tr>
@@ -250,7 +247,7 @@
           <div class="robotics-divider"></div>
           <h3>9. Proposta tecnológica: LumosSense</h3>
           <p class="muted">O LumosSense é uma proposta tecnológica que utiliza sensores e iluminação inteligente para auxiliar pessoas com baixa visão. O projeto pode utilizar um sensor de luminosidade para identificar a quantidade de luz presente em um ambiente.</p>
-          <p class="muted">Quando a iluminação estiver abaixo do nível programado, o sistema poderá acionar uma lâmpada ou LED automaticamente.</p>
+                    <p class="muted">Quando a iluminação estiver abaixo do nível programado, o sistema poderá acionar uma lâmpada ou LED automaticamente.</p>
           <p class="muted"><strong>Como funcionaria?</strong></p>
           <ol class="muted">
             <li>O sensor identifica a luminosidade do ambiente.</li>
@@ -292,7 +289,9 @@
           <h4>O que foi melhorado em relação à avaliação?</h4>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Critério</th><th>Correção realizada</th></tr></thead>
+              <thead>
+                <tr><th>Critério</th><th>Correção realizada</th></tr>
+              </thead>
               <tbody>
                 <tr><td>Conhecimento científico</td><td>Explicações aprofundadas e fórmulas</td></tr>
                 <tr><td>Investigação e análise</td><td>Dois experimentos com procedimentos e resultados esperados</td></tr>
@@ -303,6 +302,106 @@
             </table>
           </div>
           <p class="table-note">A pesquisa mantém a Óptica como tema principal, conforme o material de referência enviado.</p>
+        </div>
+
+        <!-- MEDIÇÕES SONORAS -->
+        <div class="info-card">
+          <div class="card-topline">
+            <span class="card-icon">◉</span>
+            <span class="card-label">REGISTRO DE MEDIÇÕES</span>
+          </div>
+
+          <h3>Tabela de medições sonoras</h3>
+          <p class="muted">
+            Dados coletados durante as medições, organizados para facilitar a comparação dos resultados.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Localização</th>
+                  <th>Tempo</th>
+                  <th>Leitura</th>
+                  <th>Mínimo</th>
+                  <th>Média</th>
+                  <th>Máximo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Biblioteca</td>
+                  <td>13 s</td>
+                  <td>79,15</td>
+                  <td>66,16</td>
+                  <td>76,44</td>
+                  <td>83,75</td>
+                </tr>
+                <tr>
+                  <td>Segundo A</td>
+                  <td>2 s</td>
+                  <td>63,37</td>
+                  <td>53,88</td>
+                  <td>60,53</td>
+                  <td>63,58</td>
+                </tr>
+                <tr>
+                  <td>Bliboeteca da Mara</td>
+                  <td>4 s</td>
+                  <td>58,12</td>
+                  <td>56,07</td>
+                  <td>62,09</td>
+                  <td>65,69</td>
+                </tr>
+                <tr>
+                  <td>Cromebuk</td>
+                  <td>4 s</td>
+                  <td>67,57</td>
+                  <td>62,21</td>
+                  <td>70,27</td>
+                  <td>77,62</td>
+                </tr>
+                <tr>
+                  <td>Sala de aula 2c</td>
+                  <td>4 s</td>
+                  <td>70,27</td>
+                  <td>66,16</td>
+                  <td>75,24</td>
+                  <td>83,75</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="table-note">
+            Os valores foram mantidos conforme os dados apresentados nas imagens.
+          </p>
+
+          <div class="robotics-divider"></div>
+          <h3>Análise das medições sonoras</h3>
+
+          <p class="muted">
+            Com base nos dados apresentados, é possível observar que os níveis sonoros variaram durante as cinco medições. A Biblioteca apresentou a maior leitura, com 79,15, enquanto a Bliboeteca da Mara registrou a menor leitura, com 58,12.
+          </p>
+
+          <p class="muted">
+            Também é possível perceber que os valores mínimos e máximos mudaram entre as medições, indicando que a intensidade do som não permaneceu constante durante todo o período analisado. A Sala de aula 2c apresentou a maior média, de 75,24.
+          </p>
+
+          <p class="muted">
+            Essas diferenças podem estar relacionadas às mudanças no ambiente, à presença de pessoas, ao movimento de veículos ou a outras fontes de ruído.
+          </p>
+
+          <div style="background:rgba(130,95,190,.18); border-left:4px solid #a985f3; padding:16px 18px; margin-top:18px;">
+            <strong>Conclusão:</strong>
+            <p class="muted">
+              As medições mostram que o ambiente apresentou variações na intensidade sonora. A análise desses dados é importante para compreender a presença de ruídos no cotidiano e perceber como a física está relacionada ao som e à propagação das ondas sonoras.
+            </p>
+          </div>
+
+          <p class="table-note">
+            Observação: a unidade das leituras deve ser confirmada com o instrumento utilizado na coleta.
+          </p>
         </div>
       </article>
 
@@ -329,8 +428,10 @@
           <h4>O que é uma matriz de LEDs?</h4>
           <p class="muted">A matriz de LEDs é um componente eletrônico formado por vários pequenos LEDs organizados em linhas e colunas. Um dos modelos mais conhecidos possui 8 linhas e 8 colunas, totalizando 64 LEDs.</p>
           <p class="muted">Cada LED pode ser aceso ou apagado individualmente, permitindo formar letras, números, símbolos, desenhos e animações.</p>
+
           <h4>Como funciona?</h4>
           <p class="muted">A matriz funciona por meio do controle das linhas e colunas. O sistema eletrônico seleciona quais LEDs devem acender para formar determinada imagem. Em projetos com Arduino, é possível utilizar componentes controladores, como o MAX7219, que facilitam o controle da matriz e reduzem a quantidade de conexões necessárias.</p>
+
           <p class="muted"><strong>Exemplos:</strong></p>
           <ul class="muted">
             <li>Acender alguns LEDs para formar uma seta.</li>
@@ -338,6 +439,7 @@
             <li>Exibir letras e números.</li>
             <li>Produzir animações e mensagens em movimento.</li>
           </ul>
+
           <h4>Aplicação na acessibilidade</h4>
           <p class="muted">A matriz de LEDs pode ajudar pessoas com deficiência auditiva, pois permite transmitir informações visuais que normalmente seriam apresentadas por sons.</p>
           <ul class="muted">
@@ -353,11 +455,15 @@
           <h4>O que é o código Morse?</h4>
           <p class="muted">O código Morse é um sistema de comunicação que utiliza combinações de pontos e traços para representar letras, números e alguns sinais de pontuação. Ele foi desenvolvido no século XIX e ficou conhecido por permitir a transmissão de mensagens por telégrafo.</p>
           <p class="muted">O sistema utiliza dois sinais básicos: ponto (.) — sinal curto; e traço (-) — sinal longo. Esses sinais podem ser transmitidos por luz, som ou pulsos elétricos.</p>
+
           <h4>Como funciona?</h4>
           <p class="muted">Cada letra possui uma combinação específica de pontos e traços.</p>
+
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Letra</th><th>Código Morse</th></tr></thead>
+              <thead>
+                <tr><th>Letra</th><th>Código Morse</th></tr>
+              </thead>
               <tbody>
                 <tr><td>A</td><td>.-</td></tr>
                 <tr><td>B</td><td>-...</td></tr>
@@ -372,9 +478,12 @@
               </tbody>
             </table>
           </div>
+
           <p class="muted">Um exemplo muito conhecido é o sinal de SOS: <strong>... --- ...</strong>. Ele é utilizado internacionalmente como sinal de emergência.</p>
+
           <h4>Como utilizar na robótica?</h4>
           <p class="muted">Com um Arduino, um LED pode transmitir mensagens em código Morse. O LED acende rapidamente para representar um ponto, permanece aceso por mais tempo para representar um traço e os intervalos entre os sinais ajudam a identificar as letras.</p>
+
           <h4>Aplicação na acessibilidade</h4>
           <p class="muted">O código Morse pode ser utilizado como uma forma alternativa de comunicação.</p>
           <ul class="muted">
@@ -391,13 +500,16 @@
           <h4>O que é um display?</h4>
           <p class="muted">Display é um dispositivo eletrônico utilizado para apresentar informações de maneira visual. Ele pode mostrar letras, números, símbolos, mensagens e até imagens, dependendo do modelo.</p>
           <p class="muted">Os displays são encontrados em relógios digitais, calculadoras, celulares, computadores, equipamentos médicos e sistemas eletrônicos.</p>
+
           <h4>Principais tipos de displays</h4>
           <p class="muted"><strong>1. Display LCD:</strong> utiliza cristais líquidos para formar caracteres e informações. Um exemplo comum é o modelo 16x2, que possui duas linhas e permite exibir até 16 caracteres por linha.</p>
           <p class="muted"><strong>2. Display OLED:</strong> utiliza diodos orgânicos emissores de luz. Ele oferece bom contraste, pode apresentar textos e imagens e não necessita de iluminação traseira.</p>
           <p class="muted"><strong>3. Display de sete segmentos:</strong> é formado por segmentos luminosos que permitem representar números e alguns caracteres. É muito utilizado em relógios, cronômetros e contadores.</p>
+
           <h4>Como funciona?</h4>
           <p class="muted">O display recebe informações de um circuito eletrônico ou microcontrolador, como o Arduino. O programa determina o que será apresentado na tela. Dependendo do modelo, a comunicação pode acontecer por conexões digitais ou protocolos como I²C e SPI.</p>
           <p class="muted">Por exemplo, um sensor de temperatura pode enviar seus dados para um Arduino, que apresenta a temperatura no display.</p>
+
           <h4>Aplicação na acessibilidade</h4>
           <p class="muted">Os displays permitem apresentar informações visuais para pessoas com deficiência auditiva e também podem auxiliar pessoas que precisam de informações escritas ou numéricas de maneira direta.</p>
           <ul class="muted">
@@ -408,64 +520,133 @@
             <li>Informar visualmente quando um equipamento está funcionando.</li>
           </ul>
           <p class="muted"><strong>Exemplo prático:</strong> um sistema de atendimento pode utilizar um display LCD para mostrar o número da senha chamada. Assim, pessoas com deficiência auditiva podem acompanhar o atendimento visualmente, sem depender apenas de avisos sonoros.</p>
-
-          <div class="robotics-divider"></div>
+                    <div class="robotics-divider"></div>
           <h3>4. Tabela comparativa dos três recursos</h3>
           <div class="table-wrap">
             <table>
               <thead>
-                <tr><th>Característica</th><th>Matriz de LEDs</th><th>Código Morse</th><th>Display</th></tr>
+                <tr>
+                  <th>Característica</th>
+                  <th>Matriz de LEDs</th>
+                  <th>Código Morse</th>
+                  <th>Display</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td>Funcionamento</td><td>LEDs organizados em linhas e colunas</td><td>Combinação de pontos e traços</td><td>Apresentação visual de informações</td></tr>
-                <tr><td>Principal finalidade</td><td>Formar imagens, símbolos e animações</td><td>Transmitir mensagens codificadas</td><td>Mostrar textos, números e imagens</td></tr>
-                <tr><td>Componentes</td><td>LEDs e controlador</td><td>LED ou buzzer e microcontrolador</td><td>LCD, OLED ou segmentos</td></tr>
-                <tr><td>Tipo de informação</td><td>Visual</td><td>Luminosa ou sonora</td><td>Visual</td></tr>
-                <tr><td>Vantagem</td><td>Permite criar símbolos e animações</td><td>Comunicação com poucos componentes</td><td>Apresenta informações detalhadas</td></tr>
-                <tr><td>Limitação</td><td>Espaço limitado para mensagens longas</td><td>Exige conhecimento do código</td><td>Depende do tamanho e da tecnologia da tela</td></tr>
-                <tr><td>Uso na acessibilidade</td><td>Alertas visuais</td><td>Sinais luminosos alternativos</td><td>Informações escritas e numéricas</td></tr>
+                <tr>
+                  <td>Funcionamento</td>
+                  <td>LEDs organizados em linhas e colunas</td>
+                  <td>Combinação de pontos e traços</td>
+                  <td>Apresentação visual de informações</td>
+                </tr>
+                <tr>
+                  <td>Principal finalidade</td>
+                  <td>Formar imagens, símbolos e animações</td>
+                  <td>Transmitir mensagens codificadas</td>
+                  <td>Mostrar textos, números e imagens</td>
+                </tr>
+                <tr>
+                  <td>Componentes</td>
+                  <td>LEDs e controlador</td>
+                  <td>LED ou buzzer e microcontrolador</td>
+                  <td>LCD, OLED ou segmentos</td>
+                </tr>
+                <tr>
+                  <td>Tipo de informação</td>
+                  <td>Visual</td>
+                  <td>Luminosa ou sonora</td>
+                  <td>Visual</td>
+                </tr>
+                <tr>
+                  <td>Vantagem</td>
+                  <td>Permite criar símbolos e animações</td>
+                  <td>Comunicação com poucos componentes</td>
+                  <td>Apresenta informações detalhadas</td>
+                </tr>
+                <tr>
+                  <td>Limitação</td>
+                  <td>Espaço limitado para mensagens longas</td>
+                  <td>Exige conhecimento do código</td>
+                  <td>Depende do tamanho e da tecnologia da tela</td>
+                </tr>
+                <tr>
+                  <td>Uso na acessibilidade</td>
+                  <td>Alertas visuais</td>
+                  <td>Sinais luminosos alternativos</td>
+                  <td>Informações escritas e numéricas</td>
+                </tr>
               </tbody>
             </table>
           </div>
+
           <h4>Análise comparativa e pensamento crítico</h4>
           <p class="muted">Os três recursos possuem funções diferentes, mas podem trabalhar juntos em um mesmo projeto de robótica. A matriz de LEDs é interessante para apresentar símbolos e animações. O código Morse permite transmitir mensagens utilizando sinais luminosos ou sonoros. Já os displays conseguem apresentar informações mais completas, como frases, números e instruções.</p>
+
           <p class="muted">Pensando na acessibilidade, o display pode ser mais adequado para apresentar mensagens detalhadas, enquanto a matriz pode ser utilizada para alertas rápidos. O código Morse pode funcionar como uma alternativa complementar de comunicação.</p>
+
           <p class="muted">Não existe uma tecnologia que seja sempre melhor que as outras. A escolha depende das necessidades das pessoas que utilizarão o equipamento, do ambiente e do tipo de informação que precisa ser transmitida.</p>
 
           <div class="robotics-divider"></div>
           <h3>5. Proposta de integração com LumosSense e ChromaSense</h3>
           <p class="muted">Os conteúdos estudados também podem ser relacionados às propostas tecnológicas já desenvolvidas pelo grupo.</p>
+
           <h4>LumosSense + Matriz de LEDs</h4>
           <p class="muted">A matriz pode apresentar símbolos de alerta quando um sensor detectar determinada situação, como a presença de alguém ou uma emergência.</p>
+
           <h4>LumosSense + Código Morse</h4>
           <p class="muted">O dispositivo pode utilizar piscadas curtas e longas para transmitir sinais de emergência ou avisos luminosos.</p>
+
           <h4>ChromaSense + Display</h4>
           <p class="muted">Um display pode mostrar informações recebidas dos sensores, como intensidade da iluminação, estado do sistema e mensagens de orientação.</p>
 
           <div class="robotics-divider"></div>
           <h3>Conclusão da pesquisa</h3>
           <p class="muted">O estudo da matriz de LEDs, do código Morse e dos displays demonstra como a robótica pode transformar sinais eletrônicos em diferentes formas de comunicação. Esses recursos são importantes porque permitem desenvolver equipamentos capazes de transmitir informações de maneira visual, sonora e luminosa.</p>
+
           <p class="muted">Quando aplicados à acessibilidade, podem contribuir para a inclusão de pessoas com deficiência auditiva e para a criação de ambientes mais seguros e acessíveis.</p>
+
           <p class="muted">As propostas LumosSense e ChromaSense demonstram que sensores, programação e componentes eletrônicos podem ser combinados para desenvolver soluções tecnológicas que atendam às necessidades das pessoas. A tecnologia não deve ser desenvolvida apenas para funcionar, mas também para facilitar a vida das pessoas e oferecer oportunidades de participação e inclusão.</p>
 
           <div class="robotics-divider"></div>
           <h3>6. Uso responsável da inteligência artificial</h3>
+
           <h4>Ferramentas utilizadas</h4>
           <ul class="muted">
             <li>ChatGPT: utilizado para auxiliar na pesquisa e organização das informações.</li>
             <li>Gemini: utilizado como ferramenta complementar para esclarecer conceitos e buscar outras explicações.</li>
           </ul>
+
           <h4>Registro de prompts utilizados</h4>
           <p class="muted">Os exemplos abaixo são sugestões de registros. Se vocês ainda não fizeram essas perguntas às ferramentas, utilizem os prompts e registrem as respostas reais antes de apresentar como evidência.</p>
+
           <ol class="muted">
-            <li><strong>Prompt 1 — Matriz de LEDs:</strong> “Explique o funcionamento de uma matriz de LEDs 8x8, seus principais componentes e como ela pode ser utilizada em projetos de acessibilidade com Arduino.” <strong>Objetivo:</strong> compreender o funcionamento da matriz e identificar aplicações práticas.</li>
-            <li><strong>Prompt 2 — Código Morse:</strong> “Explique o código Morse, como funcionam os pontos e traços e como programar um LED para transmitir uma mensagem em código Morse.” <strong>Objetivo:</strong> entender a codificação e relacioná-la à comunicação por sinais luminosos.</li>
-            <li><strong>Prompt 3 — Displays:</strong> “Quais são os principais tipos de displays eletrônicos, como LCD, OLED e sete segmentos? Explique suas diferenças e aplicações na acessibilidade.” <strong>Objetivo:</strong> comparar tecnologias e identificar suas possibilidades de utilização.</li>
-            <li><strong>Prompt 4 — Análise crítica:</strong> “Compare matriz de LEDs, código Morse e displays em projetos de robótica. Apresente vantagens, limitações e aplicações para pessoas com deficiência.” <strong>Objetivo:</strong> apoiar a elaboração da tabela comparativa e estimular o pensamento crítico.</li>
+            <li>
+              <strong>Prompt 1 — Matriz de LEDs:</strong>
+              “Explique o funcionamento de uma matriz de LEDs 8x8, seus principais componentes e como ela pode ser utilizada em projetos de acessibilidade com Arduino.”
+              <strong>Objetivo:</strong> compreender o funcionamento da matriz e identificar aplicações práticas.
+            </li>
+            <li>
+              <strong>Prompt 2 — Código Morse:</strong>
+              “Explique o código Morse, como funcionam os pontos e traços e como programar um LED para transmitir uma mensagem em código Morse.”
+              <strong>Objetivo:</strong> entender a codificação e relacioná-la à comunicação por sinais luminosos.
+            </li>
+            <li>
+              <strong>Prompt 3 — Displays:</strong>
+              “Quais são os principais tipos de displays eletrônicos, como LCD, OLED e sete segmentos? Explique suas diferenças e aplicações na acessibilidade.”
+              <strong>Objetivo:</strong> comparar tecnologias e identificar suas possibilidades de utilização.
+            </li>
+            <li>
+              <strong>Prompt 4 — Análise crítica:</strong>
+              “Compare matriz de LEDs, código Morse e displays em projetos de robótica. Apresente vantagens, limitações e aplicações para pessoas com deficiência.”
+              <strong>Objetivo:</strong> apoiar a elaboração da tabela comparativa e estimular o pensamento crítico.
+            </li>
           </ol>
+
           <h4>Verificação crítica das respostas da IA</h4>
           <p class="muted">As informações fornecidas pelas ferramentas de inteligência artificial não devem ser consideradas verdadeiras automaticamente. Durante a pesquisa, é importante verificar se as explicações técnicas estão corretas, se os componentes citados realmente possuem as funções apresentadas, se os exemplos de acessibilidade são possíveis na prática, se existem limitações que a IA não mencionou e se as informações podem ser confirmadas em documentação técnica.</p>
+
           <p class="muted"><strong>Exemplo de análise crítica:</strong> a inteligência artificial explicou que uma matriz de LEDs pode apresentar mensagens e símbolos. Essa informação foi conferida na documentação oficial do Arduino, que apresenta exemplos de gráficos, textos e animações em matrizes de LEDs. Portanto, a explicação foi considerada tecnicamente adequada.</p>
+
           <p class="muted">Também é importante reconhecer que a IA pode apresentar informações incompletas ou generalizadas. Por isso, o grupo utilizou fontes técnicas para conferir os conceitos antes de incluí-los na pesquisa.</p>
 
           <div class="robotics-divider"></div>
@@ -476,12 +657,12 @@
             <li>Arduino Documentation — Using the Arduino UNO R4 WiFi LED Matrix. Tutorial sobre criação de gráficos e animações com matriz de LEDs.</li>
             <li>Pesquisa sobre código Morse — International Morse Code. Tabela de referência dos sinais e caracteres utilizados no código Morse, conforme referência da ITU.</li>
           </ol>
+
           <h4>Autoria e créditos</h4>
           <p class="muted">O conteúdo foi elaborado pelo grupo, com auxílio das ferramentas ChatGPT e Gemini para pesquisa, organização e esclarecimento de conceitos. As informações técnicas foram complementadas com documentação de referência, e as aplicações de acessibilidade foram analisadas pelo grupo.</p>
         </div>
       </article>
-
-      <!-- PROGRAMAÇÃO -->
+            <!-- PROGRAMAÇÃO -->
       <article class="tab-panel scene-panel akatsuki-panel" id="programacao" aria-label="Programação — Esconderijo da Akatsuki" hidden>
         <div class="section-heading">
           <div>
@@ -499,6 +680,7 @@
             <span class="card-icon">⌨</span>
             <span class="card-label">BASE DE DADOS</span>
           </div>
+
           <h3>Informações nutricionais</h3>
           <p class="muted">Valores aproximados por 100 gramas de cada alimento.</p>
 
@@ -506,8 +688,11 @@
             <table>
               <thead>
                 <tr>
-                  <th>Alimento</th><th>Calorias</th><th>Proteínas</th>
-                  <th>Carboidratos</th><th>Fibras</th>
+                  <th>Alimento</th>
+                  <th>Calorias</th>
+                  <th>Proteínas</th>
+                  <th>Carboidratos</th>
+                  <th>Fibras</th>
                 </tr>
               </thead>
               <tbody>
@@ -527,6 +712,7 @@
             <span class="card-icon">∑</span>
             <span class="card-label">FERRAMENTA INTERATIVA</span>
           </div>
+
           <h3>Calculadora de calorias</h3>
           <p class="muted">
             Escolha um alimento e informe a quantidade em gramas para calcular o valor correspondente.
@@ -550,7 +736,9 @@
               <input type="number" id="quantidade" min="1" step="any" placeholder="Ex.: 150">
             </div>
 
-            <button class="calculate-button" id="calcularBtn">CALCULAR <span>↗</span></button>
+            <button class="calculate-button" id="calcularBtn">
+              CALCULAR <span>↗</span>
+            </button>
           </div>
 
           <div class="result-area" id="resultado" aria-live="polite">
@@ -562,6 +750,7 @@
       </article>
     </section>
 
+    <!-- RODAPÉ -->
     <footer class="footer">
       <div class="footer-symbol">う</div>
       <p>UM NOVO DIA</p>
@@ -569,5 +758,167 @@
       <small>Projeto escolar</small>
     </footer>
   </main>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const cover = document.getElementById("capa");
+      const site = document.getElementById("site");
+      const transition = document.getElementById("transitionScreen");
+      const enterButton = document.getElementById("entrarBtn");
+
+      const tabs = [...document.querySelectorAll(".tab-button")];
+      const panels = [...document.querySelectorAll(".tab-panel")];
+
+      // ENTRADA NO SITE
+      enterButton?.addEventListener("click", () => {
+        enterButton.disabled = true;
+
+        transition?.classList.add("show");
+
+        window.setTimeout(() => {
+          cover?.classList.add("hidden");
+
+          if (transition) {
+            transition.style.display = "none";
+          }
+
+          site?.classList.remove("hidden");
+
+          site?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }, 900);
+      });
+
+
+      // NAVEGAÇÃO ENTRE AS ABAS
+      function activateTab(id) {
+
+        tabs.forEach(button => {
+          const active = button.dataset.tab === id;
+
+          button.classList.toggle("active", active);
+
+          button.setAttribute(
+            "aria-selected",
+            String(active)
+          );
+        });
+
+        panels.forEach(panel => {
+          const active = panel.id === id;
+
+          panel.hidden = !active;
+
+          panel.classList.toggle("active", active);
+        });
+      }
+
+      tabs.forEach(button => {
+        button.addEventListener("click", () => {
+          activateTab(button.dataset.tab);
+        });
+      });
+
+
+      // AUMENTAR E DIMINUIR TEXTO
+      let fontSize = 16;
+
+      document.getElementById("aumentarTexto")?.addEventListener("click", () => {
+
+        fontSize = Math.min(22, fontSize + 1);
+
+        document.documentElement.style.setProperty(
+          "--base",
+          fontSize + "px"
+        );
+
+      });
+
+      document.getElementById("diminuirTexto")?.addEventListener("click", () => {
+
+        fontSize = Math.max(12, fontSize - 1);
+
+        document.documentElement.style.setProperty(
+          "--base",
+          fontSize + "px"
+        );
+
+      });
+
+
+      // ALTO CONTRASTE
+      const contrastButton = document.getElementById("altoContraste");
+
+      contrastButton?.addEventListener("click", () => {
+
+        const enabled = document.body.classList.toggle("high-contrast");
+
+        contrastButton.setAttribute(
+          "aria-pressed",
+          String(enabled)
+        );
+
+      });
+
+
+      // ALTERNAR TEMA
+      const themeButton = document.getElementById("trocarTema");
+
+      themeButton?.addEventListener("click", () => {
+
+        const enabled = document.body.classList.toggle("light-theme");
+
+        themeButton.setAttribute(
+          "aria-pressed",
+          String(enabled)
+        );
+
+      });
+
+
+      // CALCULADORA
+      document.getElementById("calcularBtn")?.addEventListener("click", () => {
+
+        const calories = Number(
+          document.getElementById("alimento")?.value
+        );
+
+        const grams = Number(
+          document.getElementById("quantidade")?.value
+        );
+
+        const result = document.getElementById("resultado");
+
+        if (!result) return;
+
+        if (!Number.isFinite(grams) || grams <= 0) {
+
+          result.innerHTML = `
+            <span>ATENÇÃO</span>
+            <strong>Informe uma quantidade válida</strong>
+            <small>Digite um valor em gramas maior que zero.</small>
+          `;
+
+          return;
+        }
+
+        const total = calories * grams / 100;
+
+        result.innerHTML = `
+          <span>RESULTADO</span>
+          <strong>${total.toFixed(1).replace(".", ",")} kcal</strong>
+          <small>Estimativa para ${grams} g do alimento selecionado.</small>
+        `;
+
+      });
+
+    });
+  </script>
+
 </body>
 </html>
